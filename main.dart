@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
+import 'package:todo/pages/home_page.dart';
 
 
 class TodoApp extends StatelessWidget {
@@ -8,7 +9,7 @@ class TodoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo list',
-      home: SplashScreen(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.

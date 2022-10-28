@@ -1,5 +1,5 @@
 
-import 'package:firstapp/util/tasks_tile.dart';
+import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
 
 extension ColorExtension on String {
@@ -220,6 +220,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                         //Tasks Dashboard
                         Expanded(child: ListView(
+                          physics: BouncingScrollPhysics(),
                           children: [
                             TasksTile(
                               icon:Icons.work,
