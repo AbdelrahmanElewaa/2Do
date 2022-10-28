@@ -3,6 +3,7 @@ import 'package:todo/Model/TasksModel.dart';
 import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/stat.dart';
 
 
 class TodoApp extends StatelessWidget {

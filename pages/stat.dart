@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
 extension ColorExtension on String {
   toColor() {
     var hexString = this;
@@ -19,6 +21,14 @@ class Stat extends StatefulWidget {
 }
 
 class _StatState extends State<Stat> {
+  late List<GPDData> _chartData;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _chartData = getChartData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +36,10 @@ class _StatState extends State<Stat> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_sharp),
+            icon: Icon(
+              Icons.home_sharp,
+              color: Colors.black,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -44,7 +57,7 @@ class _StatState extends State<Stat> {
         child: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 0,
             ),
             //greating Row
             Padding(
@@ -52,77 +65,66 @@ class _StatState extends State<Stat> {
               child: Column(
                 children: [
                   Row(
-                   
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Text(
-                           'Statistics',
-                           style: TextStyle(
-                             color: '0C2233'.toColor(),
-                             fontSize: 40,
-                             fontWeight: FontWeight.bold,
-                           ),
-                         ),
-                         SizedBox(
-                           height: 8,
-                         ),
-                       ],
-                     ),
-                     //Notifcation
-                     Container(
-                       decoration: BoxDecoration(
-                         color: '0C2233'.toColor(),
-                         borderRadius: BorderRadius.circular(12),
-                       ),
-                       padding: EdgeInsets.all(12),
-                       child: Icon(
-                         Icons.add_circle,
-                         color: '0A91AB'.toColor(),
-                       ),
-                     )
-                   ],
-                    ),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Statistics',
+                            style: TextStyle(
+                              color: '0C2233'.toColor(),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                        ],
+                      ),
+                      //Notifcation
+                      Container(
+                        decoration: BoxDecoration(
+                          color: '0C2233'.toColor(),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: EdgeInsets.all(12),
+                        child: Icon(
+                          Icons.add_circle,
+                          color: '0A91AB'.toColor(),
+                        ),
+                      )
+                    ],
+                  ),
                   //Calender
-                  
-                 TableCalendar(
-                   
-                   firstDay: DateTime.utc(2010, 10, 16),
-                   lastDay: DateTime.utc(2030, 3, 14),
-                   focusedDay: DateTime.now(),
-                   
-                 )
-                  
-                  
+
+                  Container(
+                    height: 395,
+                    child: TableCalendar(
+                      firstDay: DateTime.utc(2010, 10, 16),
+                      lastDay: DateTime.utc(2030, 3, 14),
+                      focusedDay: DateTime.now(),
+                    ),
+                  )
                 ],
               ),
             ),
-            SizedBox(
-              height: 28,
-            ),
+           
             Expanded(
-              child: Container(
-                padding: EdgeInsets.all(25),
-                color: '065471'.toColor(),
-                child: Center(
-                  child: Column(
-                    children: [
-                      // Excercise Heading
-                      Row(
-                        
-                        children: [
-                        //  SfCircularChart(
-                          
-                        //  ),
-                        ],
-                      ),
-                  
-                      
-                  
-                    ],
+              child: SizedBox(
+                height: 0,
+                child: Container(
+                
+                  color: '065471'.toColor(),
+                  child: Center(
+                    child: SfCircularChart(series:<CircularSeries>[
+                      PieSeries<GPDData,String>(
+                        dataSource:_chartData,
+                        xValueMapper: (GPDData data, _) => data.continent,
+                        yValueMapper: (GPDData data, _) => data.gdb,
+                         )
+                    ],),
                   ),
                 ),
               ),
@@ -132,4 +134,22 @@ class _StatState extends State<Stat> {
       ),
     );
   }
+
+  List<GPDData> getChartData() {
+    final List<GPDData> chartData = [
+      GPDData('Ocenia', 1600),
+      GPDData('Ocenia', 1600),
+      GPDData('Ocenia', 1600),
+      GPDData('Ocenia', 1600),
+      GPDData('Ocenia', 1600),
+      GPDData('Ocenia', 1600),
+    ];
+    return chartData;
+  }
+}
+
+class GPDData {
+  GPDData(this.continent, this.gdb);
+  final String continent;
+  final int gdb;
 }
