@@ -11,7 +11,7 @@ class TodoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo list',
-      home: HomePage(),
+      home: Stat(),
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

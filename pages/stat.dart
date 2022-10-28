@@ -74,7 +74,7 @@ class _StatState extends State<Stat> {
                             'Statistics',
                             style: TextStyle(
                               color: '0C2233'.toColor(),
-                              fontSize: 20,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
