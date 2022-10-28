@@ -11,6 +11,7 @@ class TodoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Todo list',
       home: HomePage(),
+      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.

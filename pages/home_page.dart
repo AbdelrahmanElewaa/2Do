@@ -222,8 +222,7 @@ class _HomePageState extends State<HomePage> {
                         height: 20,
                       ),
                         //Tasks Dashboard
-                        Expanded(child: ListView(
-                          physics: BouncingScrollPhysics(),
+                            Expanded(child: ListView(
                           children: [
                             TasksTile(
                               icon:Icons.work,
