@@ -1,4 +1,3 @@
-
 import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +27,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_sharp),
+
+            icon: Icon(
+
+                color: Colors.black,
+                Icons.home_sharp),
             label: '',
           ),
           BottomNavigationBarItem(

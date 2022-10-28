@@ -35,37 +35,44 @@ decorationThickness: 3,
   Widget build(BuildContext context) {
     return 
       
-      Card(
-        elevation: 3,
-        // color: Color.fromRGBO(10, 145, 171, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        color: Color.fromRGBO(6, 84, 113, 1),
-        // color: Colors.amber,
-        child: CheckboxListTile(
-        // onTap: () {
-        //   onTodoChanged(todo);
-        // },
-        //   leading: Icon(
-        //       color: Colors.amber,
-        //       Icons.note_alt_outlined),
+      Dismissible(
+        key: ObjectKey(todo),
+        onDismissed: (direction) {
+          todos.remove(todo);
+        },
+        background: Container(color: Colors.red),
+        child: Card(
+          elevation: 3,
+          // color: Color.fromRGBO(10, 145, 171, 1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          color: Color.fromRGBO(6, 84, 113, 1),
+          // color: Colors.amber,
+          child: CheckboxListTile(
+          // onTap: () {
+          //   onTodoChanged(todo);
+          // },
+          //   leading: Icon(
+          //       color: Colors.amber,
+          //       Icons.note_alt_outlined),
 
 
-        // leading: CircleAvatar(
-        //   child: Text(todo.name[0]),
-        // ),
+          // leading: CircleAvatar(
+          //   child: Text(todo.name[0]),
+          // ),
 
-        title: Text(todo.name, style: _getTextStyle(todo.checked)),
-          value: todo.checked,
-          onChanged: (bool? value) {
-            onTodoChanged(todo);
-          },
+          title: Text(todo.name, style: _getTextStyle(todo.checked)),
+            value: todo.checked,
+            onChanged: (bool? value) {
+              onTodoChanged(todo);
+            },
 
-         checkboxShape: ContinuousRectangleBorder(),
-        // subtitle: Text("Dfghdf"),
-        // trailing: ,
+           checkboxShape: ContinuousRectangleBorder(),
+          // subtitle: Text("Dfghdf"),
+          // trailing: ,
     ),
+        ),
       );
   }
 }
@@ -94,7 +101,23 @@ class TodoListState extends State<TodoList> {
 // primary: ,
 
       ),
-      body: ListView(
+      body:
+      // ListView.builder(
+      //   itemCount: todos.length,
+      //     itemBuilder: (context, index) {
+      //    final item=  todos[index],
+      //    todos.map((Todo todo) {
+      //             return TodoItem(
+      //               todo: todo,
+      //               onTodoChanged: handleTodoChange,
+      //             );
+      //     },
+      //      Dismissible(key: ObjectKey(item),
+      //          child: child
+      //      )
+      //
+      // )
+      ListView(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 8.0),
         children: todos.map((Todo todo) {
