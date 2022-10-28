@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.book),
             label: '',
           ),
         ],
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         padding: EdgeInsets.all(12),
                         child: Icon(
-                          Icons.calendar_month_rounded,
+                          Icons.settings,
                           color: 'FFC045'.toColor(),
                         ),
                       )
