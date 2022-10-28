@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo/Data/TasksData.dart';
 import 'dart:math';
 
 import 'package:todo/Model/AddTask.dart';
+import 'package:todo/Model/taskDescription.dart';
+import 'package:todo/pages/home_page.dart';
 
 class TodoItem extends StatelessWidget {
   TodoItem({
@@ -49,13 +52,24 @@ decorationThickness: 3,
           ),
           color: Color.fromRGBO(6, 84, 113, 1),
           // color: Colors.amber,
-          child: CheckboxListTile(
-          // onTap: () {
-          //   onTodoChanged(todo);
-          // },
-          //   leading: Icon(
-          //       color: Colors.amber,
-          //       Icons.note_alt_outlined),
+
+          child: ListTile(
+            onLongPress: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>   tasktodo(todo: todo),
+                ),
+              );
+
+            },
+              //
+          onTap: () {
+            onTodoChanged(todo);
+          },
+            leading: Icon(
+                color: Colors.amber,
+                Icons.note_alt_outlined),
+            // Text()
 
 
           // leading: CircleAvatar(
@@ -63,14 +77,14 @@ decorationThickness: 3,
           // ),
 
           title: Text(todo.name, style: _getTextStyle(todo.checked)),
-            value: todo.checked,
-            onChanged: (bool? value) {
-              onTodoChanged(todo);
-            },
+            // value: todo.checked,
+            // onChanged: (bool? value) {
+            //   onTodoChanged(todo);
+            // },
+          //
+          //  checkboxShape: ContinuousRectangleBorder(),
 
-           checkboxShape: ContinuousRectangleBorder(),
-          // subtitle: Text("Dfghdf"),
-          // trailing: ,
+
     ),
         ),
       );
@@ -128,13 +142,16 @@ class TodoListState extends State<TodoList> {
         }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () =>  Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) =>  AddTask(),
-            ),
-          ),
+          onPressed: () =>
+        GoRouter.of(context).go('/addtask'),
+              // Navigator.of(context).push(
+            // MaterialPageRoute(
+            //   builder: (context) =>  AddTask(),
+            // ),
+          // ),
           tooltip: 'Add Item',
-          child: Icon(Icons.add)),
+          child: Icon(Icons.add)
+      ),
     );
   }
   // void inittodos(){

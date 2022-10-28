@@ -4,15 +4,37 @@ import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/pages/home_page.dart';
 import 'package:todo/pages/stat.dart';
-
+import 'package:go_router/go_router.dart';
 
 class TodoApp extends StatelessWidget {
+  final GoRouter router = GoRouter(
+    routes: <GoRoute>[
+      GoRoute(
+
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) =>
+         TodoList(),
+        routes: <GoRoute>[
+          GoRoute(
+            path: 'addtask',
+            builder: (BuildContext context, GoRouterState state) =>
+             AddTask(),
+
+          ),
+          
+        ],
+      ),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Todo list',
-      home: Stat(),
-      
+      // home: TodoList(),
+// >>>>>>> Stashed changes
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
