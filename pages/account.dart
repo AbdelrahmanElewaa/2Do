@@ -8,7 +8,7 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 12, 34, 51),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(children: [
           SizedBox(
@@ -17,7 +17,9 @@ class Account extends StatelessWidget {
           Text(
             'Account',
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 40, color: Colors.amber),
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: Color.fromARGB(255, 12, 34, 51)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20, left: 30),
@@ -50,7 +52,7 @@ class Account extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Color.fromARGB(255, 255, 192, 69),
+                      color: Color.fromARGB(255, 12, 34, 51),
                     )),
               )
             ]),
@@ -104,7 +106,7 @@ class ProfileListItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: Color.fromARGB(140, 255, 193, 7),
         ),
         child: Padding(
           padding: const EdgeInsets.only(right: 20),

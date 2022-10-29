@@ -25,11 +25,12 @@ class home extends StatelessWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         Text(
                           'Oct 2022',
                           style: TextStyle(
-                            color: 'FFC045'.toColor(),
+                            color: Color.fromARGB(255, 12, 34, 51),
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
@@ -42,7 +43,7 @@ class home extends StatelessWidget {
 //Notifcation
                     Container(
                       decoration: BoxDecoration(
-                        color: '065471'.toColor(),
+                        color: Color.fromARGB(140, 255, 193, 7),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       padding: EdgeInsets.all(12),
@@ -52,7 +53,7 @@ class home extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.settings,
-                          color: 'FFC045'.toColor(),
+                          color: Color.fromARGB(255, 12, 34, 51),
                         ),
                       ),
                     )
@@ -64,21 +65,21 @@ class home extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: '065471'.toColor(),
+                      color: Color.fromARGB(140, 255, 193, 7),
                       borderRadius: BorderRadius.circular(12)),
                   padding: EdgeInsets.all(12),
                   child: Row(
                     children: [
                       Icon(
                         Icons.search,
-                        color: 'FFC045'.toColor(),
+                        color: Color.fromARGB(255, 12, 34, 51),
                       ),
                       SizedBox(
                         width: 5,
                       ),
                       Text('Search',
                           style: TextStyle(
-                            color: 'FFC045'.toColor(),
+                            color: Color.fromARGB(255, 12, 34, 51),
                             fontSize: 20,
                           )),
                     ],
@@ -97,7 +98,7 @@ class home extends StatelessWidget {
                         height: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: '065471'.toColor(),
+                          color: Color.fromARGB(140, 255, 193, 7),
                         ),
                         child: Column(
                           children: [
@@ -109,41 +110,63 @@ class home extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              // ignore: prefer_const_literals_to_create_immutables
                               children: [
                                 Text(
                                   'Sat',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Sun',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Mon',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Tue',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Wed',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Thu',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   'Fri',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                    color: Color.fromARGB(255, 12, 34, 51),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
@@ -158,35 +181,40 @@ class home extends StatelessWidget {
                                 Text(
                                   '20',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                                 Text(
                                   '21',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                                 Text(
                                   '22',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                                 Text(
                                   '23',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                                 Container(
                                   width: 28,
                                   height: 30,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
-                                    color: '0A91AB'.toColor(),
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                   child: Center(
                                     child: Text(
                                       '24',
                                       style: TextStyle(
-                                          color: 'FFC045'.toColor(),
+                                          color:
+                                              Color.fromARGB(255, 12, 34, 51),
                                           fontSize: 20),
                                     ),
                                   ),
@@ -194,12 +222,14 @@ class home extends StatelessWidget {
                                 Text(
                                   '25',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                                 Text(
                                   '26',
                                   style: TextStyle(
-                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                      color: Color.fromARGB(255, 12, 34, 51),
+                                      fontSize: 20),
                                 ),
                               ],
                             ),
@@ -218,7 +248,7 @@ class home extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(25),
-              color: '065471'.toColor(),
+              color: Color.fromARGB(140, 255, 193, 7),
               child: Center(
                 child: Column(
                   children: [
@@ -231,11 +261,11 @@ class home extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              color: 'FFC045'.toColor()),
+                              color: Color.fromARGB(255, 12, 34, 51)),
                         ),
                         Icon(
                           Icons.more_horiz,
-                          color: 'FFC045'.toColor(),
+                          color: Color.fromARGB(255, 12, 34, 51),
                         )
                       ],
                     ),
@@ -276,7 +306,7 @@ class home extends StatelessWidget {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: '0C2233'.toColor(),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                       child: Center(
                           child: GestureDetector(
@@ -285,7 +315,7 @@ class home extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.add,
-                          color: 'FFC045'.toColor(),
+                          color: Color.fromARGB(255, 12, 34, 51),
                         ),
                       )),
                     ),

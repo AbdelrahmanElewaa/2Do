@@ -16,7 +16,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Scaffold(
-        backgroundColor: Color.fromARGB(255, 12, 34, 51),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: SafeArea(
           child: Column(children: [
             Padding(
@@ -35,7 +35,7 @@ class _SettingsState extends State<Settings> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 35,
-                    color: Color.fromARGB(255, 255, 192, 69),
+                    color: Color.fromARGB(255, 12, 34, 51),
                   ))
             ]),
             Divider(
@@ -95,7 +95,7 @@ class ProfileListItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.amber,
+          color: Color.fromARGB(140, 255, 193, 7),
         ),
         child: Padding(
           padding: const EdgeInsets.all(12),

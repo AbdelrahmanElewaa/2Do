@@ -24,7 +24,7 @@ class _StatState extends State<Stat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: 'FFC045'.toColor(),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(
           children: [
@@ -58,7 +58,7 @@ class _StatState extends State<Stat> {
                       //Notifcation
                       Container(
                         decoration: BoxDecoration(
-                          color: '0C2233'.toColor(),
+                          color: Color.fromARGB(140, 255, 193, 7),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: EdgeInsets.all(12),
@@ -68,7 +68,7 @@ class _StatState extends State<Stat> {
                           },
                           child: Icon(
                             Icons.add,
-                            color: '0A91AB'.toColor(),
+                            color: Color.fromARGB(255, 12, 34, 51),
                           ),
                         ),
                       )
@@ -92,7 +92,7 @@ class _StatState extends State<Stat> {
               child: SizedBox(
                 height: 0,
                 child: Container(
-                  color: '065471'.toColor(),
+                  color: Color.fromARGB(140, 255, 193, 7),
                   child: Center(
                     child: SfCircularChart(
                       series: <CircularSeries>[

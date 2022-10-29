@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:go_router/go_router.dart';
 import 'package:todo/pages/homw.dart';
 import 'package:todo/pages/stat.dart';
@@ -31,9 +33,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return
-      Scaffold(
-      backgroundColor: '0C2233'.toColor(),
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
 
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
-        backgroundColor: 'FFC045'.toColor(),
+        backgroundColor: Color.fromARGB(140, 255, 193, 7),
       ),
       body: Center(
         child: _pages.elementAt(_selectedIndex), //New
