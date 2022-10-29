@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Data/TasksData.dart';
 import 'package:todo/Widgets/adddialog.dart';
@@ -34,23 +35,16 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
     );
     lottieController.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
-        // Navigator.pop(context);
-        // lottieController.reset();
-        Navigator.of(context).pushReplacement(
+        GoRouter.of(context).go('/addtask');
 
-          MaterialPageRoute(
-
-            builder: (context) =>  TodoList(),
-
-          ),
-        );
       }
     });
   }
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
-    return Scaffold(
+    return
+      Scaffold(
       appBar:  AppBar(
         title:  const Text('Todo list'),
 // primary: ,

@@ -31,32 +31,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return
+      Scaffold(
       backgroundColor: '0C2233'.toColor(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          // inde
-          // currentIndex: _selectedIndex, //New
-          // onTap: _onItemTapped,
-          // _selectedIndex
-          // currentIndex: _selectedIndex, //New
-          // onTap: _onItemTapped,
+
           BottomNavigationBarItem(
             icon:
-                // TextButton(
-                // onTap: ,
-                // onPressed: () { GoRouter.of(context).go('/addtask'); },
-                // child:
+
                 const Icon(color: Colors.black, Icons.home_sharp),
             // ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon:
-                // TextButton(
-                // onPressed: () { GoRouter.of(context).go('/stat'); },
-
-                // child:
                 Icon(color: Colors.black, Icons.calendar_month_rounded),
             // ),
             label: '',
