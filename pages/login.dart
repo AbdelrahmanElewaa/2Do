@@ -95,7 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                           minimumSize: const Size.fromHeight(70), // NEW
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).go('/TodoList');
+                      },
                       child: const Text(
                         'Login',
                         style: TextStyle(fontSize: 24),
