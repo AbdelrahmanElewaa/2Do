@@ -13,15 +13,19 @@ class TodoApp extends StatelessWidget {
 
         path: '/',
         builder: (BuildContext context, GoRouterState state) =>
-         TodoList(),
+         HomePage(),
         routes: <GoRoute>[
           GoRoute(
             path: 'addtask',
             builder: (BuildContext context, GoRouterState state) =>
              AddTask(),
-
           ),
-          
+          GoRoute(
+            path: 'stat',
+            builder: (BuildContext context, GoRouterState state) =>
+                Stat(),
+          ),
+
         ],
       ),
     ],

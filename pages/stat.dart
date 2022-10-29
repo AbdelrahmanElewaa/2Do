@@ -2,16 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:todo/util/colorextension.dart';
 
-extension ColorExtension on String {
-  toColor() {
-    var hexString = this;
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-}
 
 class Stat extends StatefulWidget {
   const Stat({super.key});
