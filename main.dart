@@ -1,8 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/settings.dart';
+import 'package:todo/pages/account.dart';
+
 import 'package:todo/pages/stat.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,29 +15,31 @@ class TodoApp extends StatelessWidget {
   final GoRouter router = GoRouter(
     routes: <GoRoute>[
       GoRoute(
-
         path: '/',
-        builder: (BuildContext context, GoRouterState state) =>
-         HomePage(),
+        builder: (BuildContext context, GoRouterState state) => HomePage(),
         routes: <GoRoute>[
           GoRoute(
             path: 'addtask',
-            builder: (BuildContext context, GoRouterState state) =>
-             AddTask(),
+            builder: (BuildContext context, GoRouterState state) => AddTask(),
           ),
           GoRoute(
             path: 'stat',
-            builder: (BuildContext context, GoRouterState state) =>
-                Stat(),
+            builder: (BuildContext context, GoRouterState state) => Stat(),
           ),
-
+          GoRoute(
+            path: 'settings',
+            builder: (BuildContext context, GoRouterState state) => Settings(),
+          ),
+          GoRoute(
+            path: 'account',
+            builder: (BuildContext context, GoRouterState state) => Account(),
+          ),
         ],
       ),
     ],
   );
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp.router(
       routerConfig: router,
       title: 'Todo list',
@@ -52,7 +59,7 @@ class TodoApp extends StatelessWidget {
         // is not restarted.
         //   rgb(10, 145, 171)
         primarySwatch: Colors.amber,
-          // Color.fromRGBO(10, 145, 171, 1)
+        // Color.fromRGBO(10, 145, 171, 1)
         // canvasColor: Color.fromRGBO(10, 145, 171, 1),
         // accentColor: Color.fromRGBO(r, g, b, opacity),
         // primaryColor: Color.fromRGBO(10, 145, 171, 1),
@@ -64,4 +71,4 @@ class TodoApp extends StatelessWidget {
   }
 }
 
-void main() => runApp( TodoApp());
+void main() => runApp(TodoApp());

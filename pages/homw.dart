@@ -1,6 +1,6 @@
+import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
-
 import '../util/tasks_tile.dart';
 class home extends StatelessWidget{
   const home({super.key});
@@ -45,9 +45,14 @@ class home extends StatelessWidget{
                         borderRadius: BorderRadius.circular(12),
                       ),
                       padding: EdgeInsets.all(12),
-                      child: Icon(
-                        Icons.settings,
-                        color: 'FFC045'.toColor(),
+                      child: GestureDetector(
+                        onTap:() {
+                          GoRouter.of(context).go('/settings');
+                        },
+                        child: Icon(
+                          Icons.settings,
+                          color: 'FFC045'.toColor(),
+                        ),
                       ),
                     )
                   ],

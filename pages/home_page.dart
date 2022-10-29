@@ -5,9 +5,7 @@ import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/util/colorextension.dart';
 
-
 class HomePage extends StatefulWidget {
-   
   const HomePage({super.key});
 
   @override
@@ -29,12 +27,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery. of(context). size. width;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: '0C2233'.toColor(),
-
       bottomNavigationBar: BottomNavigationBar(
-
         items: const <BottomNavigationBarItem>[
           // inde
           // currentIndex: _selectedIndex, //New
@@ -44,26 +40,21 @@ class _HomePageState extends State<HomePage> {
           // onTap: _onItemTapped,
           BottomNavigationBarItem(
             icon:
-            // TextButton(
-              // onTap: ,
-              // onPressed: () { GoRouter.of(context).go('/addtask'); },
-              // child:
-      const Icon(
-
-                  color: Colors.black,
-                  Icons.home_sharp),
+                // TextButton(
+                // onTap: ,
+                // onPressed: () { GoRouter.of(context).go('/addtask'); },
+                // child:
+                const Icon(color: Colors.black, Icons.home_sharp),
             // ),
             label: '',
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon:
-            // TextButton(
+                // TextButton(
                 // onPressed: () { GoRouter.of(context).go('/stat'); },
 
                 // child:
-           Icon(
-                    color: Colors.black,
-                    Icons.calendar_month_rounded),
+                Icon(color: Colors.black, Icons.calendar_month_rounded),
             // ),
             label: '',
           ),
@@ -78,12 +69,9 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
         backgroundColor: 'FFC045'.toColor(),
       ),
-      body:  Center(
+      body: Center(
         child: _pages.elementAt(_selectedIndex), //New
       ),
     );
   }
 }
-
-
-
