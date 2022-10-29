@@ -35,7 +35,12 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
     );
     lottieController.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
-        GoRouter.of(context).go('/addtask');
+        GoRouter.of(context).go('/TodoList');
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(
+        //     builder: (context) =>   to,
+        //   ),
+        // );
 
       }
     });
@@ -156,7 +161,7 @@ SizedBox(
               ),
               const Center(
                 child: Text("Added!", style: TextStyle(
-                    color: Colors.amber,
+                    color: Color.fromARGB(140, 255, 193, 7),
                     fontSize: 24,
                     fontWeight: FontWeight.bold
                 ),),

@@ -50,6 +50,10 @@ class TodoApp extends StatelessWidget {
             path: 'TodoList',
             builder: (BuildContext context, GoRouterState state) => TodoList(),
           ),
+          GoRoute(
+            path: 'splash',
+            builder: (BuildContext context, GoRouterState state) => SplashScreen(),
+          ),
 
         ],
       ),
