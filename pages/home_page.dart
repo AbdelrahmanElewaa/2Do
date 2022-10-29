@@ -37,23 +37,18 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-
           BottomNavigationBarItem(
-            icon:
-
-                const Icon(color: Colors.black, Icons.home_sharp),
+            icon: const Icon(color: Colors.black, Icons.home_sharp),
             // ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon:
-                Icon(color: Colors.black, Icons.calendar_month_rounded),
+            icon: Icon(color: Colors.black, Icons.calendar_month_rounded),
             // ),
             label: '',
           ),
-
           BottomNavigationBarItem(
-            icon: Icon(color: Colors.black,Icons.book),
+            icon: Icon(color: Colors.black, Icons.book),
             label: '',
           ),
         ],

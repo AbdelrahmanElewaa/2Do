@@ -20,7 +20,8 @@ class TasksTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Color.fromRGBO(10, 145, 171,1), borderRadius: BorderRadius.circular(16)),
+            color: Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -33,7 +34,7 @@ class TasksTile extends StatelessWidget {
                       color: color,
                       child: Icon(
                         icon,
-                        color: Color.fromRGBO(12, 34, 51,1),
+                        color: Color.fromRGBO(12, 34, 51, 1),
                       )),
                 ),
                 SizedBox(
@@ -45,8 +46,11 @@ class TasksTile extends StatelessWidget {
                     //title
                     Text(
                       taskName,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color:Color.fromRGBO(12, 34, 52,1),),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Color.fromRGBO(12, 34, 52, 1),
+                      ),
                     ),
                     SizedBox(
                       height: 5,
@@ -54,12 +58,18 @@ class TasksTile extends StatelessWidget {
                     //sub title
                     Text(subTitle,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14, color:Color.fromRGBO(255, 192, 69,1),)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Color.fromRGBO(10, 145, 171, 1),
+                        )),
                   ],
                 ),
               ],
             ),
-            Icon(Icons.more_horiz, color:Color.fromRGBO(12, 34, 52,1),),
+            Icon(
+              Icons.more_horiz,
+              color: Color.fromRGBO(12, 34, 52, 1),
+            ),
           ],
         ),
       ),
