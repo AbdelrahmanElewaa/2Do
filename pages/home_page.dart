@@ -15,12 +15,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  int _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
     home(),
     Stat(),
   ];
-  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery. of(context). size. width;
@@ -29,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
       bottomNavigationBar: BottomNavigationBar(
 
-        items: [
+        items: const <BottomNavigationBarItem>[
           // inde
           // currentIndex: _selectedIndex, //New
           // onTap: _onItemTapped,
@@ -67,6 +73,9 @@ class _HomePageState extends State<HomePage> {
             label: '',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
         backgroundColor: 'FFC045'.toColor(),
       ),
       body:  Center(
@@ -75,3 +84,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+

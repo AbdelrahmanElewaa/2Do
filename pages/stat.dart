@@ -25,26 +25,6 @@ class _StatState extends State<Stat> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: 'FFC045'.toColor(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_sharp,
-              color: Colors.black,
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_rounded),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-        ],
-        backgroundColor: 'FFC045'.toColor(),
-      ),
       body: SafeArea(
         child: Column(
           children: [
