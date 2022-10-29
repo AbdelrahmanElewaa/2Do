@@ -39,7 +39,7 @@ class _NotesScreenState extends State<NotesScreen>
         width: 175.0,
         decoration: BoxDecoration(
           color: _selectedCategoryIndex == index
-              ? Color(0xFF417BFB)
+              ? Colors.amber
               : Color(0xFFF5F7FB),
           borderRadius: BorderRadius.circular(20.0),
           boxShadow: [
@@ -127,7 +127,7 @@ class _NotesScreenState extends State<NotesScreen>
               itemCount: categories.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return SizedBox(width: 60.0);
+                  return SizedBox(width: 80.0);
                 }
                 return _buildCategoryCard(
                   index - 1,
@@ -210,18 +210,6 @@ class _NotesScreenState extends State<NotesScreen>
                         color: Color(0xFFAFB4C6),
                         fontSize: 18.0,
                         fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Container(
-                      height: 50.0,
-                      width: 50.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF417BFB),
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Icon(
-                        Icons.location_on,
-                        color: Colors.white,
                       ),
                     ),
                   ],

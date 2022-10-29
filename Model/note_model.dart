@@ -7,18 +7,18 @@ class Note {
 }
 
 final Map<String, int> categories = {
-  'Notes': 112,
+  'Notes': 4,
 };
 
 final List<Note> notes = [
   Note(
-    title: 'Buy ticket',
-    content: 'Buy airplane ticket through Kayak for \$318.38',
-    date: DateTime(2019, 10, 10, 8, 30),
+    title: 'Lecture Notes',
+    content: 'Why people walk at the Park',
+    date: DateTime(2022, 10, 29, 3, 30),
   ),
   Note(
-    title: 'Walk with dog',
-    content: 'Walk on the street with my favorite dog.',
-    date: DateTime(2019, 10, 10, 8, 30),
+    title: 'Math',
+    content: 'y=mx+b',
+    date: DateTime(2022, 10, 30, 3, 30),
   ),
 ];
