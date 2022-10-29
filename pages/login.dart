@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -115,13 +116,18 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         print("You have");
                       },
-                      child: Text('Sign up',
-                          style: GoogleFonts.bebasNeue(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: Colors.amber,
-                            decoration: TextDecoration.underline,
-                          )),
+                      child: GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).go('/signup');
+                        },
+                        child: Text('Sign up',
+                            style: GoogleFonts.bebasNeue(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                              color: Colors.amber,
+                              decoration: TextDecoration.underline,
+                            )),
+                      ),
                     ),
                   ],
                 ),

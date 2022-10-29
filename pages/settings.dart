@@ -54,16 +54,21 @@ class _SettingsState extends State<Settings> {
                       text: 'Account',
                     ),
                   ),
-                  ProfileListItem(
-                    icon: Icons.production_quantity_limits,
-                    text: 'privacy',
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).go('/login');
+                    },
+                    child: ProfileListItem(
+                      icon: Icons.login_rounded,
+                      text: 'login',
+                    ),
                   ),
                   ProfileListItem(
                     icon: Icons.feedback_outlined,
                     text: 'Feedback',
                   ),
                   ProfileListItem(
-                    icon: Icons.login_rounded,
+                    icon: Icons.logout_rounded,
                     text: 'Logout',
                   ),
                 ],

@@ -5,8 +5,10 @@ import 'package:todo/Model/TasksModel.dart';
 import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/login.dart';
 import 'package:todo/pages/settings.dart';
 import 'package:todo/pages/account.dart';
+import 'package:todo/pages/signup.dart';
 
 import 'package:todo/pages/stat.dart';
 import 'package:go_router/go_router.dart';
@@ -34,6 +36,15 @@ class TodoApp extends StatelessWidget {
             path: 'account',
             builder: (BuildContext context, GoRouterState state) => Account(),
           ),
+          GoRoute(
+            path: 'login',
+            builder: (BuildContext context, GoRouterState state) => LoginPage(),
+          ),
+          GoRoute(
+            path: 'signup',
+            builder: (BuildContext context, GoRouterState state) => SignupPage(),
+          ),
+          
         ],
       ),
     ],

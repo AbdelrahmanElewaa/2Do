@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo/pages/login.dart';
 
@@ -119,9 +120,14 @@ class _SignupPageState extends State<SignupPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: () {},
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(fontSize: 24),
+                    child: GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).go('/login');
+                      },
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
                   ),
                 ),
@@ -137,7 +143,7 @@ class _SignupPageState extends State<SignupPage> {
                       )),
                   GestureDetector(
                     onTap: () {
-                      print("You have");
+                      GoRouter.of(context).go('/login');
                     },
                     child: Text('Login',
                         style: GoogleFonts.bebasNeue(
