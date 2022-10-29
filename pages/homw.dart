@@ -1,14 +1,16 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
 import '../util/tasks_tile.dart';
-class home extends StatelessWidget{
+
+class home extends StatelessWidget {
   const home({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
-
         children: [
           SizedBox(
             height: 20,
@@ -35,7 +37,6 @@ class home extends StatelessWidget{
                         SizedBox(
                           height: 8,
                         ),
-
                       ],
                     ),
 //Notifcation
@@ -46,7 +47,7 @@ class home extends StatelessWidget{
                       ),
                       padding: EdgeInsets.all(12),
                       child: GestureDetector(
-                        onTap:() {
+                        onTap: () {
                           GoRouter.of(context).go('/settings');
                         },
                         child: Icon(
@@ -70,7 +71,7 @@ class home extends StatelessWidget{
                     children: [
                       Icon(
                         Icons.search,
-                        color:'FFC045'.toColor(),
+                        color: 'FFC045'.toColor(),
                       ),
                       SizedBox(
                         width: 5,
@@ -91,7 +92,6 @@ class home extends StatelessWidget{
                 Center(
                   child: Row(
                     children: [
-
                       Container(
                         width: 340,
                         height: 150,
@@ -99,9 +99,7 @@ class home extends StatelessWidget{
                           borderRadius: BorderRadius.circular(10),
                           color: '065471'.toColor(),
                         ),
-                        child:
-
-                        Column(
+                        child: Column(
                           children: [
                             SizedBox(
                               height: 30,
@@ -112,14 +110,41 @@ class home extends StatelessWidget{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-
-                                Text('Sat', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Sun', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Mon', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Tue', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Wed', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Thu', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('Fri', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
+                                Text(
+                                  'Sat',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Sun',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Mon',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Tue',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Wed',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Thu',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  'Fri',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
                               ],
                             ),
                             SizedBox(
@@ -130,12 +155,26 @@ class home extends StatelessWidget{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-
-                                Text('20', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('21', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('22', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('23', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-
+                                Text(
+                                  '20',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  '21',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  '22',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  '23',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
                                 Container(
                                   width: 28,
                                   height: 30,
@@ -143,22 +182,33 @@ class home extends StatelessWidget{
                                     borderRadius: BorderRadius.circular(50),
                                     color: '0A91AB'.toColor(),
                                   ),
-                                  child: Center(child: Text('24', style: TextStyle(color:'FFC045'.toColor(), fontSize: 20),),),
+                                  child: Center(
+                                    child: Text(
+                                      '24',
+                                      style: TextStyle(
+                                          color: 'FFC045'.toColor(),
+                                          fontSize: 20),
+                                    ),
+                                  ),
                                 ),
-
-                                Text('25', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
-                                Text('26', style: TextStyle(color: 'FFC045'.toColor(), fontSize: 20),),
+                                Text(
+                                  '25',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
+                                Text(
+                                  '26',
+                                  style: TextStyle(
+                                      color: 'FFC045'.toColor(), fontSize: 20),
+                                ),
                               ],
                             ),
                           ],
                         ),
-
                       ),
-
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -179,31 +229,42 @@ class home extends StatelessWidget{
                         Text(
                           'Tasks',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20, color: 'FFC045'.toColor()),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: 'FFC045'.toColor()),
                         ),
-                        Icon(Icons.more_horiz,color: 'FFC045'.toColor(),)
+                        Icon(
+                          Icons.more_horiz,
+                          color: 'FFC045'.toColor(),
+                        )
                       ],
                     ),
                     SizedBox(
                       height: 20,
                     ),
 //Tasks Dashboard
-                    Expanded(child: ListView(
+                    Expanded(
+                        child: ListView(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TasksTile(
-                          icon:Icons.work,
+                          icon: Icons.work,
                           taskName: 'Project Meeting',
                           subTitle: 'Emergency',
                           color: Colors.blue,
                         ),
-                        TasksTile( icon:Icons.sports_gymnastics,
+                        TasksTile(
+                          icon: Icons.sports_gymnastics,
                           taskName: 'Gym',
                           subTitle: 'Sports',
-                          color: Colors.green,),
-                        TasksTile( icon:Icons.dinner_dining,
+                          color: Colors.green,
+                        ),
+                        TasksTile(
+                          icon: Icons.dinner_dining,
                           taskName: 'Dinner',
                           subTitle: 'Appoitment',
-                          color: Colors.red,),
+                          color: Colors.red,
+                        ),
                       ],
                     )),
                     SizedBox(
@@ -217,21 +278,24 @@ class home extends StatelessWidget{
                         borderRadius: BorderRadius.circular(50),
                         color: '0C2233'.toColor(),
                       ),
-                      child: Center(child: Icon(Icons.add, color:'FFC045'.toColor() ,)),
+                      child: Center(
+                          child: GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).go('/TodoList');
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: 'FFC045'.toColor(),
+                        ),
+                      )),
                     ),
-
                   ],
-
                 ),
-
               ),
-
             ),
-
           ),
         ],
       ),
     );
   }
-
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:todo/util/colorextension.dart';
-
 
 class Stat extends StatefulWidget {
   const Stat({super.key});
@@ -62,9 +62,14 @@ class _StatState extends State<Stat> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: EdgeInsets.all(12),
-                        child: Icon(
-                          Icons.add_circle,
-                          color: '0A91AB'.toColor(),
+                        child: GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context).go('/TodoList');
+                          },
+                          child: Icon(
+                            Icons.add,
+                            color: '0A91AB'.toColor(),
+                          ),
                         ),
                       )
                     ],
@@ -82,21 +87,22 @@ class _StatState extends State<Stat> {
                 ],
               ),
             ),
-           
+
             Expanded(
               child: SizedBox(
                 height: 0,
                 child: Container(
-                
                   color: '065471'.toColor(),
                   child: Center(
-                    child: SfCircularChart(series:<CircularSeries>[
-                      PieSeries<GPDData,String>(
-                        dataSource:_chartData,
-                        xValueMapper: (GPDData data, _) => data.continent,
-                        yValueMapper: (GPDData data, _) => data.gdb,
-                         )
-                    ],),
+                    child: SfCircularChart(
+                      series: <CircularSeries>[
+                        PieSeries<GPDData, String>(
+                          dataSource: _chartData,
+                          xValueMapper: (GPDData data, _) => data.continent,
+                          yValueMapper: (GPDData data, _) => data.gdb,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
