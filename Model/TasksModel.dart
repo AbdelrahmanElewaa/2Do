@@ -55,6 +55,8 @@ decorationThickness: 3,
 
           child: ListTile(
             onLongPress: () {
+
+              // GoRouter.of(context).go('/addtask');
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>   tasktodo(todo: todo),
@@ -144,11 +146,6 @@ class TodoListState extends State<TodoList> {
       floatingActionButton: FloatingActionButton(
           onPressed: () =>
         GoRouter.of(context).go('/addtask'),
-              // Navigator.of(context).push(
-            // MaterialPageRoute(
-            //   builder: (context) =>  AddTask(),
-            // ),
-          // ),
           tooltip: 'Add Item',
           child: Icon(Icons.add)
       ),
@@ -173,28 +170,4 @@ class TodoListState extends State<TodoList> {
   //   _textFieldController.clear();
   // }
 
-  Future<void> _displayDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Add a new todo item'),
-          content: TextField(
-            controller: _textFieldController,
-            decoration: const InputDecoration(hintText: 'Type your new todo'),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Add'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                // addTodoItem(_textFieldController.text);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

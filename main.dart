@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:todo/Model/TasksModel.dart';
+import 'package:todo/Model/start.dart';
+import 'package:todo/Model/taskDescription.dart';
 import 'package:todo/Widgets/splashscreen.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/pages/home_page.dart';
@@ -9,7 +11,6 @@ import 'package:todo/pages/login.dart';
 import 'package:todo/pages/settings.dart';
 import 'package:todo/pages/account.dart';
 import 'package:todo/pages/signup.dart';
-
 import 'package:todo/pages/stat.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +19,7 @@ class TodoApp extends StatelessWidget {
     routes: <GoRoute>[
       GoRoute(
         path: '/',
-        builder: (BuildContext context, GoRouterState state) => HomePage(),
+        builder: (BuildContext context, GoRouterState state) => start(),
         routes: <GoRoute>[
           GoRoute(
             path: 'addtask',
@@ -49,6 +50,7 @@ class TodoApp extends StatelessWidget {
             path: 'TodoList',
             builder: (BuildContext context, GoRouterState state) => TodoList(),
           ),
+
         ],
       ),
     ],
