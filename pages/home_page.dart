@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
+            icon: Icon(color: Colors.black,Icons.book),
             label: '',
           ),
         ],
