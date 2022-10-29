@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/note_model.dart';
+import 'package:todo/Model/note_model.dart';
 import 'package:intl/intl.dart';
 
 // ignore_for_file: prefer_const_constructors
