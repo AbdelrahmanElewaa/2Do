@@ -42,9 +42,9 @@ class TodoApp extends StatelessWidget {
           ),
           GoRoute(
             path: 'signup',
-            builder: (BuildContext context, GoRouterState state) => SignupPage(),
+            builder: (BuildContext context, GoRouterState state) =>
+                SignupPage(),
           ),
-          
         ],
       ),
     ],
