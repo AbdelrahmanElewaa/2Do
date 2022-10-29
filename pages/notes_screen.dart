@@ -102,9 +102,9 @@ class _NotesScreenState extends State<NotesScreen>
                   height: 50.0,
                   width: 50.0,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/user.png'),
-                    ),
+                    // image: DecorationImage(
+                    //   image: AssetImage('assets/images/user.png'),
+                    // ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -127,12 +127,12 @@ class _NotesScreenState extends State<NotesScreen>
               itemCount: categories.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return SizedBox(width: 20.0);
+                  return SizedBox(width: 60.0);
                 }
                 return _buildCategoryCard(
                   index - 1,
-                  categories.keys.toList()[index - 1],
-                  categories.values.toList()[index - 1],
+                  'Notes',
+                  4,
                 );
               },
             ),
@@ -143,7 +143,7 @@ class _NotesScreenState extends State<NotesScreen>
               controller: _tabController,
               labelColor: Colors.black,
               unselectedLabelColor: Color(0xFFAFB4C6),
-              indicatorColor: Color(0xFF417BFB),
+              indicatorColor: Color.fromARGB(255, 2, 11, 30),
               indicatorSize: TabBarIndicatorSize.label,
               indicatorWeight: 4.0,
               isScrollable: true,
