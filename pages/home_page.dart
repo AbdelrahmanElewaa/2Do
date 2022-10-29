@@ -5,6 +5,8 @@ import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/util/colorextension.dart';
 
+import 'notes_screen.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -17,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   static List<Widget> _pages = <Widget>[
     home(),
     Stat(),
+    NotesScreen(),
   ];
 
   void _onItemTapped(int index) {
