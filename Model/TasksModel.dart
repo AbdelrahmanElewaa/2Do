@@ -7,6 +7,8 @@ import 'package:todo/Model/AddTask.dart';
 import 'package:todo/Model/taskDescription.dart';
 import 'package:todo/pages/home_page.dart';
 
+import 'EditTask.dart';
+
 class TodoItem extends StatelessWidget {
   TodoItem({
     required this.todo,
@@ -59,7 +61,7 @@ decorationThickness: 3,
               // GoRouter.of(context).go('/addtask');
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>   tasktodo(todo: todo),
+                  builder: (context) =>   EditTask(todo: todo),
                 ),
               );
 
@@ -104,7 +106,9 @@ class TodoListState extends State<TodoList> {
 
   @override
   void initState() {
+
     todos;
+
   } // final List<Todo> _todos = <Todo>[];
 
 

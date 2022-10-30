@@ -28,7 +28,7 @@ class Account extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 45,
-                    backgroundImage: AssetImage('assets/omar.jpg'),
+                    backgroundImage: AssetImage('assets/2do.jpg'),
                   ),
                   GestureDetector(
                     onTap: () {

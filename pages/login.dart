@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: TextField(
+
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

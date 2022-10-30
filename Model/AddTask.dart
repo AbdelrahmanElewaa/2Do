@@ -36,6 +36,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
     lottieController.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
         GoRouter.of(context).go('/TodoList');
+        // lottieController.clearListeners();
         // Navigator.of(context).push(
         //   MaterialPageRoute(
         //     builder: (context) =>   to,
@@ -44,6 +45,14 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
 
       }
     });
+  }
+
+
+
+  @override
+  void dispose() {
+    lottieController.dispose();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {

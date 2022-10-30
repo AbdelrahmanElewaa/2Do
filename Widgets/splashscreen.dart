@@ -13,12 +13,14 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
+      // disableNavigation: ,
       splash: Lottie.asset('assets/splashscreen.json'),
       splashTransition: null,
+      // function: ,
       // Column(
       //   children: [
-      ///TODO Add your image under assets folder
-      //     Image.asset('assets/logo_icon.png'),
+      // /TODO Add your image under assets folder
+      //     // Image.asset('assets/logo_icon.png'),
       //     const Text('Cake app', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),)
       //   ],
       // ),
