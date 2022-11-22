@@ -43,7 +43,7 @@ class _StatState extends State<Stat> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Statistics',
+                            'Calender',
                             style: TextStyle(
                               color: '0C2233'.toColor(),
                               fontSize: 40,
