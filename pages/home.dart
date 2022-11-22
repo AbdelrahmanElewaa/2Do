@@ -21,7 +21,6 @@ class home extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text("home"),
         ),
         drawer: Drawer(
           child: ListView(
@@ -88,7 +87,6 @@ class home extends StatelessWidget {
                         ],
                       ),
                       //Settings
-                      SettingsButton()
                     ],
                   ),
 
@@ -132,7 +130,7 @@ class home extends StatelessWidget {
                           //ADD Button
                           ElevatedButton(
                             onPressed: () {
-                              GoRouter.of(context).go('/TodoList');
+                              GoRouter.of(context).go('/addtask');
                             },
                             child: Icon(
                               Icons.add,
