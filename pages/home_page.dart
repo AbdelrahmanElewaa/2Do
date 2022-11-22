@@ -93,9 +93,8 @@ class _HomePageState extends State<HomePage> {
               tabs: const [
                 GButton(icon: Icons.home, text: 'Home'),
                 GButton(icon: Icons.calendar_month_rounded, text: 'Calendar'),
-                 GButton(icon: Icons.book, text: 'Notes'),              
                 GButton(icon: Icons.add, text: 'New Task'),
-               
+                GButton(icon: Icons.book, text: 'Notes'),
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
