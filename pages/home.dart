@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
 import '../util/tasks_tile.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:calendar_timeline/calendar_timeline.dart';
+import '../util/calenderweek.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -90,155 +93,7 @@ class home extends StatelessWidget {
                 ),
 
 //Calender
-                Center(
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 340,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(140, 255, 193, 7),
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-
-//Name Of Days
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                                Text(
-                                  'Sat',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Sun',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Mon',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Tue',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Wed',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Thu',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Fri',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 12, 34, 51),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-// Days Numbers
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  '20',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                                Text(
-                                  '21',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                                Text(
-                                  '22',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                                Text(
-                                  '23',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                                Container(
-                                  width: 28,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '24',
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 12, 34, 51),
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '25',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                                Text(
-                                  '26',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 12, 34, 51),
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+    Calenderweek()
               ],
             ),
           ),
