@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import '../util/calenderweek.dart';
 import 'package:intl/intl.dart';
 import '../util/searchbar.dart';
+
 class home extends StatelessWidget {
   home({super.key});
 
@@ -17,131 +17,171 @@ class home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text("home"),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text(' My Profile '),
+                onTap: () {
+                  GoRouter.of(context).go('/settings');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.edit),
+                title: const Text(' Edit Profile '),
+                onTap: () {
+                  GoRouter.of(context).go('/account');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.login),
+                title: const Text(' Login '),
+                onTap: () {
+                  GoRouter.of(context).go('/login');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('LogOut'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
-//greating Row
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        Text(
-                          formattedDate,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 12, 34, 51),
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                      ],
-                    ),
-//Settings
-                    SettingsButton()
-                  ],
-                ),
-
-                SizedBox(
-                  height: 25,
-                ),
-                //Search Bar
-                SearchBar(),
-                SizedBox(
-                  height: 25,
-                ),
-                 
-//Calender
-
-                Calenderweek(),
-              ],
+        ),
+        body: Column(
+          children: [
+            SizedBox(
+              height: 20,
             ),
-          ),
-          SizedBox(
-            height: 28,
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(25),
-              color: Color.fromARGB(140, 255, 193, 7),
-              child: Center(
-                child: Column(
-                  children: [
-// Excercise Heading
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Tasks',
-                          style: TextStyle(
+            //greating Row
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          Text(
+                            formattedDate,
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 12, 34, 51),
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: Color.fromARGB(255, 12, 34, 51)),
-                        ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      ),
+                      //Settings
+                      SettingsButton()
+                    ],
+                  ),
 
+                  SizedBox(
+                    height: 25,
+                  ),
+                  //Search Bar
+                  SearchBar(),
+                  SizedBox(
+                    height: 25,
+                  ),
 
-                        //ADD Button
-                         ElevatedButton(
-                      onPressed:(){GoRouter.of(context).go('/TodoList');}, child: Icon(Icons.add ,size: 40,),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        backgroundColor: Colors.red
-                        
-                      ),),
+                  //Calender
 
+                  Calenderweek(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 28,
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(25),
+                color: Color.fromARGB(140, 255, 193, 7),
+                child: Center(
+                  child: Column(
+                    children: [
+                      // Excercise Heading
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Tasks',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: Color.fromARGB(255, 12, 34, 51)),
+                          ),
 
-
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-//Tasks Dashboard
-                    Expanded(
-                        child: ListView(
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        TasksTile(
-                          icon: Icons.work,
-                          taskName: 'Project Meeting',
-                          subTitle: 'Emergency',
-                          color: Colors.blue,
-                        ),
-                        TasksTile(
-                          icon: Icons.sports_gymnastics,
-                          taskName: 'Gym',
-                          subTitle: 'Sports',
-                          color: Colors.green,
-                        ),
-                        TasksTile(
-                          icon: Icons.dinner_dining,
-                          taskName: 'Dinner',
-                          subTitle: 'Appoitment',
-                          color: Colors.red,
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 8,
-                    ),
-                   
-                  
-                  ],
+                          //ADD Button
+                          ElevatedButton(
+                            onPressed: () {
+                              GoRouter.of(context).go('/TodoList');
+                            },
+                            child: Icon(
+                              Icons.add,
+                              size: 40,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                backgroundColor: Colors.red),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      //Tasks Dashboard
+                      Expanded(
+                          child: ListView(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          TasksTile(
+                            icon: Icons.work,
+                            taskName: 'Project Meeting',
+                            subTitle: 'Emergency',
+                            color: Colors.blue,
+                          ),
+                          TasksTile(
+                            icon: Icons.sports_gymnastics,
+                            taskName: 'Gym',
+                            subTitle: 'Sports',
+                            color: Colors.green,
+                          ),
+                          TasksTile(
+                            icon: Icons.dinner_dining,
+                            taskName: 'Dinner',
+                            subTitle: 'Appoitment',
+                            color: Colors.red,
+                          ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 8,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
