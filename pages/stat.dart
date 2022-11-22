@@ -38,44 +38,7 @@ class _StatState extends State<Stat> {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Calender',
-                            style: TextStyle(
-                              color: '0C2233'.toColor(),
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 0,
-                          ),
-                        ],
-                      ),
-                      //Notifcation
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(140, 255, 193, 7),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: EdgeInsets.all(12),
-                        child: GestureDetector(
-                          onTap: () {
-                            GoRouter.of(context).go('/TodoList');
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Color.fromARGB(255, 12, 34, 51),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                 
                   //Calender
 
                   Container(
