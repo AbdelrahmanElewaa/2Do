@@ -3,13 +3,17 @@
 import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/util/settingsbutton.dart';
 import '../util/tasks_tile.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import '../util/calenderweek.dart';
-
+import 'package:intl/intl.dart';
+import '../util/searchbar.dart';
 class home extends StatelessWidget {
-  const home({super.key});
+  home({super.key});
+
+  String formattedDate = DateFormat('MM-yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,7 +35,7 @@ class home extends StatelessWidget {
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         Text(
-                          'Oct 2022',
+                          formattedDate,
                           style: TextStyle(
                             color: Color.fromARGB(255, 12, 34, 51),
                             fontSize: 40,
@@ -43,57 +47,23 @@ class home extends StatelessWidget {
                         ),
                       ],
                     ),
-//Notifcation
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(140, 255, 193, 7),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.all(12),
-                      child: GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).go('/settings');
-                        },
-                        child: Icon(
-                          Icons.settings,
-                          color: Color.fromARGB(255, 12, 34, 51),
-                        ),
-                      ),
-                    )
+//Settings
+                    SettingsButton()
                   ],
                 ),
-//Search Bar
-                SizedBox(
-                  height: 25,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(140, 255, 193, 7),
-                      borderRadius: BorderRadius.circular(12)),
-                  padding: EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                        color: Color.fromARGB(255, 12, 34, 51),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text('Search',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 12, 34, 51),
-                            fontSize: 20,
-                          )),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
 
+                SizedBox(
+                  height: 25,
+                ),
+                //Search Bar
+                SearchBar(),
+                SizedBox(
+                  height: 25,
+                ),
+                 
 //Calender
-    Calenderweek()
+
+                Calenderweek(),
               ],
             ),
           ),
@@ -115,13 +85,22 @@ class home extends StatelessWidget {
                           'Tasks',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 30,
                               color: Color.fromARGB(255, 12, 34, 51)),
                         ),
-                        Icon(
-                          Icons.more_horiz,
-                          color: Color.fromARGB(255, 12, 34, 51),
-                        )
+
+
+                        //ADD Button
+                         ElevatedButton(
+                      onPressed:(){GoRouter.of(context).go('/TodoList');}, child: Icon(Icons.add ,size: 40,),
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        backgroundColor: Colors.red
+                        
+                      ),),
+
+
+
                       ],
                     ),
                     SizedBox(
@@ -155,25 +134,8 @@ class home extends StatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-// ADD Button
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      child: Center(
-                          child: GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).go('/TodoList');
-                        },
-                        child: Icon(
-                          Icons.add,
-                          color: Color.fromARGB(255, 12, 34, 51),
-                        ),
-                      )),
-                    ),
+                   
+                  
                   ],
                 ),
               ),
