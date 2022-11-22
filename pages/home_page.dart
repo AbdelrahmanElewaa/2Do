@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
     home(),
-    AddTask(),
+    Stat(),
     TodoList(),
     NotesScreen(),
   ];
