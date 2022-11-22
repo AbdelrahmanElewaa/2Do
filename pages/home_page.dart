@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:go_router/go_router.dart';
-import 'package:todo/pages/homw.dart';
+import 'package:todo/pages/home.dart';
 import 'package:todo/pages/stat.dart';
 import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
