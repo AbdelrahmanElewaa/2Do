@@ -24,7 +24,7 @@ class _CalenderweekState extends State<Calenderweek> {
   activeDayColor: Colors.red,
   activeBackgroundDayColor: Colors.amber,
   dotsColor: Color(0xFF333A47),
-  selectableDayPredicate: (date) => date.day != 23,
+ 
   locale: 'en_ISO',
 );
   }
