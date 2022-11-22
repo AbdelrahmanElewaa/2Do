@@ -4,20 +4,22 @@ import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:todo/util/colorextension.dart';
+import 'package:pie_chart/pie_chart.dart';
+import 'package:todo/util/piechart.dart';
 
 class Stat extends StatefulWidget {
-  const Stat({super.key});
+   Stat({super.key});
 
   @override
   State<Stat> createState() => _StatState();
 }
 
 class _StatState extends State<Stat> {
-  late List<GPDData> _chartData;
+  
   @override
   void initState() {
     // TODO: implement initState
-    _chartData = getChartData();
+    
     super.initState();
   }
 
@@ -88,46 +90,10 @@ class _StatState extends State<Stat> {
               ),
             ),
 
-            Expanded(
-              child: SizedBox(
-                height: 0,
-                child: Container(
-                  color: Color.fromARGB(140, 255, 193, 7),
-                  child: Center(
-                    child: SfCircularChart(
-                      series: <CircularSeries>[
-                        PieSeries<GPDData, String>(
-                          dataSource: _chartData,
-                          xValueMapper: (GPDData data, _) => data.continent,
-                          yValueMapper: (GPDData data, _) => data.gdb,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+         Pie(),
           ],
         ),
       ),
     );
   }
-
-  List<GPDData> getChartData() {
-    final List<GPDData> chartData = [
-      GPDData('Ocenia', 1600),
-      GPDData('Ocenia', 1600),
-      GPDData('Ocenia', 1600),
-      GPDData('Ocenia', 1600),
-      GPDData('Ocenia', 1600),
-      GPDData('Ocenia', 1600),
-    ];
-    return chartData;
-  }
-}
-
-class GPDData {
-  GPDData(this.continent, this.gdb);
-  final String continent;
-  final int gdb;
 }
