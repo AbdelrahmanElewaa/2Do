@@ -6,11 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:todo/util/settingsbutton.dart';
 import '../util/drawerr.dart';
-import '../util/tasks_tile.dart';
+import '../util/notes_tile.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import '../util/calenderweek.dart';
-import '../util/searchbar.dart';
+import '../util/notes_searchbar.dart';
 
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
@@ -50,7 +50,7 @@ class NotesScreen extends StatelessWidget {
                   ),
 
                   //Search Bar
-                  SearchBar(),
+                  NotesSearchbar(),
                 ],
               ),
             ),
@@ -69,59 +69,58 @@ class NotesScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Tasks',
+                            'Today',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 30,
+                                fontSize: 15,
                                 color: Color.fromARGB(255, 12, 34, 51)),
-                          ),
-
-                          //ADD Button
-                          ElevatedButton(
-                            onPressed: () {
-                              GoRouter.of(context).go('/addtask');
-                            },
-                            child: Icon(
-                              Icons.add,
-                              size: 40,
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                backgroundColor: Colors.red),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
-                      //Tasks Dashboard
+                      //Notes Dashboard
                       Expanded(
                           child: ListView(
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          TasksTile(
-                            icon: Icons.work,
-                            taskName: 'Project Meeting',
-                            subTitle: 'Emergency',
-                            color: Colors.blue,
+                          NotesTile(
+                            taskName: 'Orders',
+                            subTitle: '2:12 PM oil',
+                            color: Colors.white30,
                           ),
-                          TasksTile(
-                            icon: Icons.sports_gymnastics,
-                            taskName: 'Gym',
-                            subTitle: 'Sports',
-                            color: Colors.green,
+                        ],
+                      )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Yesterday',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 12, 34, 51)),
                           ),
-                          TasksTile(
-                            icon: Icons.dinner_dining,
-                            taskName: 'Dinner',
-                            subTitle: 'Appoitment',
-                            color: Colors.red,
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      //Notes Dashboard
+                      Expanded(
+                          child: ListView(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          NotesTile(
+                            taskName: 'meeting',
+                            subTitle: 'yesterday postpone the ...',
+                            color: Colors.white30,
                           ),
-                          TasksTile(
-                            icon: Icons.dinner_dining,
-                            taskName: 'Dinner',
-                            subTitle: 'Appoitment',
-                            color: Colors.red,
+                          NotesTile(
+                            taskName: 'theory',
+                            subTitle: 'yesterday 6,7,8,9',
+                            color: Colors.white30,
                           ),
                         ],
                       )),
