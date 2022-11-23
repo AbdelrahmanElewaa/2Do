@@ -6,7 +6,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:todo/util/piechart.dart';
-
+import '../util/sizedboxx.dart';
 class Stat extends StatefulWidget {
    Stat({super.key});
 
@@ -31,7 +31,7 @@ class _StatState extends State<Stat> {
         child: Column(
           children: [
             SizedBox(
-              height: 0,
+              height: 20,
             ),
             //greating Row
             Padding(
@@ -52,7 +52,7 @@ class _StatState extends State<Stat> {
                 ],
               ),
             ),
-
+SizedBoxx(size: 20),
          Pie(),
           ],
         ),

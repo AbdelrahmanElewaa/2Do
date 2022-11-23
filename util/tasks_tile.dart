@@ -20,7 +20,7 @@ class TasksTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: Colors.amber,
             borderRadius: BorderRadius.circular(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +49,7 @@ class TasksTile extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        color: Color.fromRGBO(12, 34, 52, 1),
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(
@@ -60,7 +60,7 @@ class TasksTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Color.fromRGBO(10, 145, 171, 1),
+                          color: Colors.red,
                         )),
                   ],
                 ),

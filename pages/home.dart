@@ -27,59 +27,60 @@ class home extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             //greating Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          Text(
-                            formattedDate,
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 12, 34, 51),
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                        ],
-                      ),
-                      //Settings
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       // ignore: prefer_const_literals_to_create_immutables
+                  //       children: [
+                  //         // Text(
+                  //         //   formattedDate,
+                  //         //   style: TextStyle(
+                  //         //     color: Color.fromARGB(255, 12, 34, 51),
+                  //         //     fontSize: 40,
+                  //         //     fontWeight: FontWeight.bold,
+                  //         //   ),
+                  //         // ),
+                  //         // SizedBox(
+                  //         //   height: 8,
+                  //         // ),
+                  //       ],
+                  //     ),
+                  //     //Settings
+                  //   ],
+                  // ),
 
                   SizedBox(
-                    height: 25,
+                    height: 10,
                   ),
+                   Calenderweek(),
                   //Search Bar
-                  SearchBar(),
+                 
                   SizedBox(
                     height: 25,
                   ),
 
                   //Calender
-
-                  Calenderweek(),
+ SearchBar(),
+                 
                 ],
               ),
             ),
             SizedBox(
-              height: 28,
+              height: 20,
             ),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(25),
-                color: Color.fromARGB(140, 255, 193, 7),
+                color:  Colors.transparent,
                 child: Center(
                   child: Column(
                     children: [
@@ -136,6 +137,13 @@ class home extends StatelessWidget {
                             subTitle: 'Appoitment',
                             color: Colors.red,
                           ),
+                          TasksTile(
+                            icon: Icons.dinner_dining,
+                            taskName: 'Dinner',
+                            subTitle: 'Appoitment',
+                            color: Colors.red,
+                          ),
+                          
                         ],
                       )),
                       SizedBox(

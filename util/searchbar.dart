@@ -13,7 +13,7 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(140, 255, 193, 7),
+                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(12)),
                   padding: EdgeInsets.all(12),
                   child: Row(
