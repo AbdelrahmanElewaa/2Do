@@ -12,6 +12,7 @@ import 'package:todo/pages/settings.dart';
 import 'package:todo/pages/account.dart';
 import 'package:todo/pages/signup.dart';
 import 'package:todo/pages/stat.dart';
+import 'package:todo/pages/notes_details.dart';
 import 'package:go_router/go_router.dart';
 
 class TodoApp extends StatelessWidget {
@@ -54,6 +55,11 @@ class TodoApp extends StatelessWidget {
             path: 'splash',
             builder: (BuildContext context, GoRouterState state) =>
                 SplashScreen(),
+          ),
+          GoRoute(
+            path: 'notesdetails',
+            builder: (BuildContext context, GoRouterState state) =>
+                NotesDetails(),
           ),
         ],
       ),
