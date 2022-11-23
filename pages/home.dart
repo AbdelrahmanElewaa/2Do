@@ -34,41 +34,19 @@ class home extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       // ignore: prefer_const_literals_to_create_immutables
-                  //       children: [
-                  //         // Text(
-                  //         //   formattedDate,
-                  //         //   style: TextStyle(
-                  //         //     color: Color.fromARGB(255, 12, 34, 51),
-                  //         //     fontSize: 40,
-                  //         //     fontWeight: FontWeight.bold,
-                  //         //   ),
-                  //         // ),
-                  //         // SizedBox(
-                  //         //   height: 8,
-                  //         // ),
-                  //       ],
-                  //     ),
-                  //     //Settings
-                  //   ],
-                  // ),
+                  
 
                   SizedBox(
                     height: 10,
                   ),
                    Calenderweek(),
-                  //Search Bar
+                  //Calender
                  
                   SizedBox(
                     height: 25,
                   ),
 
-                  //Calender
+                  //Search Bar
  SearchBar(),
                  
                 ],
