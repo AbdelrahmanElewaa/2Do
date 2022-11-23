@@ -30,9 +30,6 @@ class NotesScreen extends StatelessWidget {
         drawer: Drawerr(),
         body: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
             //greating Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
