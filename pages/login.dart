@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../util/login-signup_text.dart';
 import '../util/sizedboxx.dart';
 
 class LoginPage extends StatefulWidget {
@@ -141,29 +142,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ]);
-  }
-
-}
-
-
-
-class LoginPageText extends StatelessWidget {
-  final text;
-  final double size;
-
-  const LoginPageText({
-    Key? key,
-    this.text,
-    required this.size,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(text,
-        style: GoogleFonts.bebasNeue(
-          fontWeight: FontWeight.bold,
-          fontSize: size,
-          color: Color.fromARGB(255, 255, 255, 255),
-        ));
   }
 }
