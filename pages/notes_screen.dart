@@ -38,7 +38,17 @@ class NotesScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  
+                  Text(
+                    'Notes',
+                    style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
                   //Search Bar
                   SearchBar(),
                 ],
