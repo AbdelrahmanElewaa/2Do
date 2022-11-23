@@ -89,7 +89,7 @@ class NotesScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                GoRouter.of(context).go('/TodoList');
+                                GoRouter.of(context).go('/notesdetails');
                               },
                               child: NotesTile(
                                 taskName: 'Orders',
@@ -124,7 +124,7 @@ class NotesScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                GoRouter.of(context).go('/account');
+                                GoRouter.of(context).go('/notesdetails');
                               },
                               child: NotesTile(
                                 taskName: 'meeting',
@@ -134,7 +134,7 @@ class NotesScreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                GoRouter.of(context).go('/account');
+                                GoRouter.of(context).go('/notesdetails');
                               },
                               child: NotesTile(
                                 taskName: 'theory',
