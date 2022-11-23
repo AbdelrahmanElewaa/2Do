@@ -81,17 +81,20 @@ class NotesScreen extends StatelessWidget {
                         height: 15,
                       ),
                       //Notes Dashboard
-                      Expanded(
-                          child: ListView(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          NotesTile(
-                            taskName: 'Orders',
-                            subTitle: '2:12 PM oil',
-                            color: Colors.white30,
-                          ),
-                        ],
-                      )),
+                      Container(
+                        height: 100,
+                        child: Expanded(
+                            child: ListView(
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            NotesTile(
+                              taskName: 'Orders',
+                              subTitle: '2:12 PM oil',
+                              color: Colors.white30,
+                            ),
+                          ],
+                        )),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -124,9 +127,6 @@ class NotesScreen extends StatelessWidget {
                           ),
                         ],
                       )),
-                      SizedBox(
-                        height: 8,
-                      ),
                     ],
                   ),
                 ),

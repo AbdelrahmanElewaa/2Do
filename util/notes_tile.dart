@@ -26,9 +26,6 @@ class NotesTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                SizedBox(
-                  width: 12,
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
