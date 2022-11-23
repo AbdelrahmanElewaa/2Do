@@ -19,7 +19,7 @@ class NotesTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 214, 193, 130),
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +35,7 @@ class NotesTile extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(
@@ -46,7 +46,7 @@ class NotesTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Colors.red,
+                          color: Theme.of(context).colorScheme.secondary,
                         )),
                   ],
                 ),
