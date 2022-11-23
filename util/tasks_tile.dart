@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../util/drop_down.dart';
+
 class TasksTile extends StatelessWidget {
   final icon;
   final String taskName;
@@ -20,7 +21,7 @@ class TasksTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Colors.amber,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +50,7 @@ class TasksTile extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     SizedBox(
@@ -60,7 +61,7 @@ class TasksTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Colors.red,
+                          color: Theme.of(context).colorScheme.secondary,
                         )),
                   ],
                 ),

@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 class LoginPageText extends StatelessWidget {
   final text;
   final double size;
-
+  final color;
   const LoginPageText({
     Key? key,
     this.text,
-    required this.size,
+    required this.size, this.color,
   }) : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class LoginPageText extends StatelessWidget {
         style: GoogleFonts.bebasNeue(
           fontWeight: FontWeight.bold,
           fontSize: size,
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: color,
         ));
   }
 }

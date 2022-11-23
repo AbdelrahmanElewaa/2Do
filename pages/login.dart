@@ -32,12 +32,14 @@ class _LoginPageState extends State<LoginPage> {
                 LoginPageText(
                   text: 'Login',
                   size: 60,
+                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
                 SizedBoxx(size: 10),
                 // *wlecome back text
                 LoginPageText(
                   text: 'Welcome back! Login with your credentials',
                   size: 20,
+                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
 
                 SizedBoxx(size: 20),
@@ -111,12 +113,11 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account ? ",
-                        style: GoogleFonts.bebasNeue(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                        )),
+                    LoginPageText(
+                      text: "Don't have an account ? ",
+                      size: 17,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
                     GestureDetector(
                       onTap: () {
                         print("You have");

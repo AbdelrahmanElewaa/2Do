@@ -34,21 +34,18 @@ class home extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  
-
                   SizedBox(
                     height: 10,
                   ),
-                   Calenderweek(),
+                  Calenderweek(),
                   //Calender
-                 
+
                   SizedBox(
                     height: 25,
                   ),
 
                   //Search Bar
- SearchBar(),
-                 
+                  SearchBar(),
                 ],
               ),
             ),
@@ -58,7 +55,7 @@ class home extends StatelessWidget {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(25),
-                color:  Colors.transparent,
+                color: Colors.transparent,
                 child: Center(
                   child: Column(
                     children: [
@@ -68,11 +65,8 @@ class home extends StatelessWidget {
                         children: [
                           Text(
                             'Tasks',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
-                                color: Color.fromARGB(255, 12, 34, 51)),
-                          ),
+                            style:Theme.of(context).textTheme.bodyText1),
+                          
 
                           //ADD Button
                           ElevatedButton(
@@ -85,7 +79,8 @@ class home extends StatelessWidget {
                             ),
                             style: ElevatedButton.styleFrom(
                                 shape: CircleBorder(),
-                                backgroundColor: Colors.red),
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.secondary),
                           ),
                         ],
                       ),
@@ -121,7 +116,6 @@ class home extends StatelessWidget {
                             subTitle: 'Appoitment',
                             color: Colors.red,
                           ),
-                          
                         ],
                       )),
                       SizedBox(
