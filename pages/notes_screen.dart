@@ -111,22 +111,25 @@ class NotesScreen extends StatelessWidget {
                         height: 15,
                       ),
                       //Notes Dashboard
-                      Expanded(
-                          child: ListView(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          NotesTile(
-                            taskName: 'meeting',
-                            subTitle: 'yesterday postpone the ...',
-                            color: Colors.white30,
-                          ),
-                          NotesTile(
-                            taskName: 'theory',
-                            subTitle: 'yesterday 6,7,8,9',
-                            color: Colors.white30,
-                          ),
-                        ],
-                      )),
+                      Container(
+                        height: 150,
+                        child: Expanded(
+                            child: ListView(
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            NotesTile(
+                              taskName: 'meeting',
+                              subTitle: 'yesterday postpone the ...',
+                              color: Colors.white30,
+                            ),
+                            NotesTile(
+                              taskName: 'theory',
+                              subTitle: 'yesterday 6,7,8,9',
+                              color: Colors.white30,
+                            ),
+                          ],
+                        )),
+                      ),
                     ],
                   ),
                 ),
