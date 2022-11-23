@@ -7,41 +7,39 @@ class Drawerr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer:Drawer(
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text(' My Profile '),
-                onTap: () {
-                  GoRouter.of(context).go('/settings');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text(' Edit Profile '),
-                onTap: () {
-                  GoRouter.of(context).go('/account');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.login),
-                title: const Text(' Login '),
-                onTap: () {
-                  GoRouter.of(context).go('/login');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('LogOut'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+    return Drawer(
+      child: ListView(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text(' My Profile '),
+            onTap: () {
+              GoRouter.of(context).go('/settings');
+            },
           ),
-        ), 
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text(' Edit Profile '),
+            onTap: () {
+              GoRouter.of(context).go('/account');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text(' Login '),
+            onTap: () {
+              GoRouter.of(context).go('/login');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('LogOut'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
     );
   }
 }

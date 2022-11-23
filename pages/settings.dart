@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../util/profilelistitem.dart';
+
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -24,6 +26,7 @@ class _SettingsState extends State<Settings> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    //account photo
                     CircleAvatar(
                       radius: 70,
                       backgroundImage: AssetImage('assets/1024.png'),
@@ -31,6 +34,7 @@ class _SettingsState extends State<Settings> {
                   ]),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              //account name
               Text('Omar mohamed abdel',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -45,6 +49,7 @@ class _SettingsState extends State<Settings> {
             Expanded(
               child: ListView(
                 children: [
+                  //accounts tabs
                   GestureDetector(
                     onTap: () {
                       GoRouter.of(context).go('/account');
@@ -81,62 +86,3 @@ class _SettingsState extends State<Settings> {
   }
 }
 
-class ProfileListItem extends StatelessWidget {
-  final IconData icon;
-  final text;
-  const ProfileListItem({super.key, required this.icon, this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Container(
-        height: 70,
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(140, 255, 193, 7),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(children: [
-            Icon(
-              icon,
-              size: 40,
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Text(
-              text,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
-            ),
-            Spacer(),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 30,
-            ),
-          ]),
-        ),
-      ),
-    );
-  }
-}
-
-class FeedBack extends StatelessWidget {
-  const FeedBack({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('AlertDemo with TextField '),
-      content: TextField(
-        decoration: InputDecoration(hintText: "Enter Text"),
-      ),
-    );
-  }
-}
