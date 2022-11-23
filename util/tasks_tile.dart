@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../util/drop_down.dart';
 class TasksTile extends StatelessWidget {
   final icon;
   final String taskName;
@@ -66,10 +66,7 @@ class TasksTile extends StatelessWidget {
                 ),
               ],
             ),
-            Icon(
-              Icons.more_horiz,
-              color: Color.fromRGBO(12, 34, 52, 1),
-            ),
+            DropDown(),
           ],
         ),
       ),
