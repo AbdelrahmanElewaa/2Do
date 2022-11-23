@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../util/sizedboxx.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -23,21 +25,21 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 10),
-                Text('Login',
-                    style: GoogleFonts.bebasNeue(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 60,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    )),
-                SizedBox(height: 10),
-                Text('Welcome back! Login with your credentials',
-                    style: GoogleFonts.bebasNeue(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    )),
-                SizedBox(height: 20),
+                SizedBoxx(size: 10),
+                // *login text
+
+                LoginPageText(
+                  text: 'Login',
+                  size: 60,
+                ),
+                SizedBoxx(size: 10),
+                // *wlecome back text
+                LoginPageText(
+                  text: 'Welcome back! Login with your credentials',
+                  size: 20,
+                ),
+
+                SizedBoxx(size: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -48,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: TextField(
-
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -61,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBoxx(size: 12),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -85,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 4),
+                SizedBoxx(size: 4),
                 Container(
                   padding: const EdgeInsets.all(25),
                   child: SizedBox(
@@ -140,5 +141,29 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ]);
+  }
+
+}
+
+
+
+class LoginPageText extends StatelessWidget {
+  final text;
+  final double size;
+
+  const LoginPageText({
+    Key? key,
+    this.text,
+    required this.size,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: GoogleFonts.bebasNeue(
+          fontWeight: FontWeight.bold,
+          fontSize: size,
+          color: Color.fromARGB(255, 255, 255, 255),
+        ));
   }
 }

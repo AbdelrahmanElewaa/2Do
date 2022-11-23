@@ -26,7 +26,7 @@ class _SettingsState extends State<Settings> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    //account photo
+                    // *account photo
                     CircleAvatar(
                       radius: 70,
                       backgroundImage: AssetImage('assets/1024.png'),
@@ -34,7 +34,7 @@ class _SettingsState extends State<Settings> {
                   ]),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              //account name
+              // *account name
               Text('Omar mohamed abdel',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class _SettingsState extends State<Settings> {
             Expanded(
               child: ListView(
                 children: [
-                  //accounts tabs
+                  // *accounts tabs
                   GestureDetector(
                     onTap: () {
                       GoRouter.of(context).go('/account');
