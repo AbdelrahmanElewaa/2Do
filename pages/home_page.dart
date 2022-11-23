@@ -44,15 +44,15 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: Container(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
           child: GNav(
               haptic: true,
-              backgroundColor: Theme.of(context).colorScheme.secondary,
-              color: Colors.white,
-              activeColor: Colors.white,
-              tabBackgroundColor: Theme.of(context).colorScheme.primary,
+              backgroundColor: Colors.transparent,
+              color: Theme.of(context).colorScheme.primary,
+              activeColor: Theme.of(context).colorScheme.primary,
+              tabBackgroundColor: Theme.of(context).colorScheme.secondary,
               gap: 8,
               curve: Curves.easeInSine,
               duration: Duration(milliseconds: 900),
