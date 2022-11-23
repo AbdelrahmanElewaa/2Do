@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/util/settingsbutton.dart';
+import '../util/drawerr.dart';
 import '../util/tasks_tile.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
@@ -22,40 +23,7 @@ class home extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text(' My Profile '),
-                onTap: () {
-                  GoRouter.of(context).go('/settings');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text(' Edit Profile '),
-                onTap: () {
-                  GoRouter.of(context).go('/account');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.login),
-                title: const Text(' Login '),
-                onTap: () {
-                  GoRouter.of(context).go('/login');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('LogOut'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: Drawerr(),
         body: Column(
           children: [
             SizedBox(
