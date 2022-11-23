@@ -87,10 +87,15 @@ class NotesScreen extends StatelessWidget {
                             child: ListView(
                           // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            NotesTile(
-                              taskName: 'Orders',
-                              subTitle: '2:12 PM oil',
-                              color: Colors.white30,
+                            GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).go('/TodoList');
+                              },
+                              child: NotesTile(
+                                taskName: 'Orders',
+                                subTitle: '2:12 PM oil',
+                                color: Colors.white30,
+                              ),
                             ),
                           ],
                         )),
@@ -117,15 +122,25 @@ class NotesScreen extends StatelessWidget {
                             child: ListView(
                           // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            NotesTile(
-                              taskName: 'meeting',
-                              subTitle: 'yesterday postpone the ...',
-                              color: Colors.white30,
+                            GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).go('/account');
+                              },
+                              child: NotesTile(
+                                taskName: 'meeting',
+                                subTitle: 'yesterday postpone the ...',
+                                color: Colors.white30,
+                              ),
                             ),
-                            NotesTile(
-                              taskName: 'theory',
-                              subTitle: 'yesterday 6,7,8,9',
-                              color: Colors.white30,
+                            GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).go('/account');
+                              },
+                              child: NotesTile(
+                                taskName: 'theory',
+                                subTitle: 'yesterday 6,7,8,9',
+                                color: Colors.white30,
+                              ),
                             ),
                           ],
                         )),
