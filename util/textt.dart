@@ -8,13 +8,14 @@ class Textt extends StatelessWidget {
   const Textt({
     Key? key,
     this.text,
-    required this.size, this.color,
+    required this.size,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.bebasNeue(
+        style: GoogleFonts.roboto(
           fontWeight: FontWeight.bold,
           fontSize: size,
           color: color,

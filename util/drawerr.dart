@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/util/drawerrheader.dart';
+import 'package:todo/util/sizedboxx.dart';
 import 'package:todo/util/textt.dart';
 
 class Drawerr extends StatelessWidget {
@@ -29,13 +32,29 @@ class Drawerr extends StatelessWidget {
               GoRouter.of(context).go('/login');
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('LogOut'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
+          SizedBoxx(h: 310.0),
+          Column(
+            children: [
+              GestureDetector(
+                child: Container(
+                  width: 120,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 4,
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Center(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Textt(size: 25, text: 'Logout'),
+                  )),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          )
         ],
       ),
     );
