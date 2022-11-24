@@ -10,7 +10,6 @@ import 'package:todo/util/colorextension.dart';
 
 import '../Model/AddTask.dart';
 import '../Model/TasksModel.dart';
-
 import 'notes_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,9 +41,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: _pages.elementAt(_selectedIndex), //New
       ),
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: Container(
-        color: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
           child: GNav(

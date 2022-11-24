@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo/util/drawerrheader.dart';
+import 'package:todo/util/textt.dart';
 
 class Drawerr extends StatelessWidget {
   const Drawerr({super.key});
@@ -12,16 +14,10 @@ class Drawerr extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         children: [
+          DrawerrHeader(),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text(' My Profile '),
-            onTap: () {
-              GoRouter.of(context).go('/settings');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text(' Edit Profile '),
             onTap: () {
               GoRouter.of(context).go('/account');
             },
