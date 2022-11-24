@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Scaffold(
-        backgroundColor: Color.fromARGB(255, 31, 86, 115),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
           child: Center(
             child: Column(
@@ -32,19 +32,27 @@ class _LoginPageState extends State<LoginPage> {
                 Textt(
                   text: 'Login',
                   size: 60,
-                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
                 SizedBoxx(h: 10.0),
                 // *wlecome back text
-                Textt(
-                  text: 'Welcome back! Login with your credentials',
-                  size: 20,
-                  color: Color.fromARGB(255, 255, 255, 255),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Center(
+                    child: Text(
+                      'Welcome back! Login with your credentials',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
 
                 SizedBoxx(h: 20.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  //* Email textfield
                   child: Container(
                     decoration: BoxDecoration(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -68,10 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBoxx(h: 12.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  //* password text field
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(color: Colors.white),
+                        color: Theme.of(context).primaryColor,
+                        border:
+                            Border.all(color: Theme.of(context).primaryColor),
                         borderRadius: BorderRadius.circular(15)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15),
@@ -96,7 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                     height: 50,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
                           minimumSize: const Size.fromHeight(70), // NEW
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
@@ -116,12 +127,12 @@ class _LoginPageState extends State<LoginPage> {
                     Textt(
                       text: "Don't have an account ? ",
                       size: 17,
-                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
                     GestureDetector(
                       onTap: () {
                         print("You have");
                       },
+                      //* switch to signup button
                       child: GestureDetector(
                         onTap: () {
                           GoRouter.of(context).go('/signup');
@@ -130,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: GoogleFonts.bebasNeue(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
-                              color: Colors.amber,
+                              color: Theme.of(context).colorScheme.secondary,
                               decoration: TextDecoration.underline,
                             )),
                       ),

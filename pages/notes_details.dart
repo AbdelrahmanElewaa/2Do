@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../util/textt.dart';
+
 class NotesDetails extends StatelessWidget {
   const NotesDetails({super.key});
 
@@ -9,12 +11,7 @@ class NotesDetails extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             //* back button to notes
-            title: Text("Notes",
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                )),
+            title: Textt(text: 'Notes', size: 25.0),
             backgroundColor: Colors.transparent,
             elevation: 0,
             leading: IconButton(

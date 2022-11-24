@@ -5,20 +5,22 @@ class Textt extends StatelessWidget {
   final text;
   final double size;
   final color;
+  final decorationn;
   const Textt({
     Key? key,
     this.text,
     required this.size,
     this.color = Colors.black,
+    this.decorationn,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
         style: GoogleFonts.roboto(
-          fontWeight: FontWeight.bold,
-          fontSize: size,
-          color: color,
-        ));
+            fontWeight: FontWeight.bold,
+            fontSize: size,
+            color: color,
+            decoration: decorationn));
   }
 }
