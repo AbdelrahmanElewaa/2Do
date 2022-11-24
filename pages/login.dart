@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../util/login-signup_text.dart';
+import '../util/Textt.dart';
 import '../util/sizedboxx.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,23 +26,23 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBoxx(size: 10),
+                SizedBoxx(h: 10.0),
                 // *login text
 
-                LoginPageText(
+                Textt(
                   text: 'Login',
                   size: 60,
                   color: Color.fromARGB(255, 255, 255, 255),
                 ),
-                SizedBoxx(size: 10),
+                SizedBoxx(h: 10.0),
                 // *wlecome back text
-                LoginPageText(
+                Textt(
                   text: 'Welcome back! Login with your credentials',
                   size: 20,
                   color: Color.fromARGB(255, 255, 255, 255),
                 ),
 
-                SizedBoxx(size: 20),
+                SizedBoxx(h: 20.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBoxx(size: 12),
+                SizedBoxx(h: 12.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBoxx(size: 4),
+                SizedBoxx(h: 4.0),
                 Container(
                   padding: const EdgeInsets.all(25),
                   child: SizedBox(
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LoginPageText(
+                    Textt(
                       text: "Don't have an account ? ",
                       size: 17,
                       color: Color.fromARGB(255, 255, 255, 255),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPageText extends StatelessWidget {
+class Textt extends StatelessWidget {
   final text;
   final double size;
   final color;
-  const LoginPageText({
+  const Textt({
     Key? key,
     this.text,
     required this.size, this.color,
