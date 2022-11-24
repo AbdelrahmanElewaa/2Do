@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/util/account_tile.dart';
 
 import '../util/sizedboxx.dart';
+import '../util/textt.dart';
 
 class Account extends StatelessWidget {
   const Account({super.key});
@@ -11,22 +12,25 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      appBar: AppBar(
+        //* back button to Account
+        title: Textt(text: 'Account', size: 25.0),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new,
+              color: Theme.of(context).colorScheme.primary),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: SafeArea(
         child: Column(children: [
-          SizedBoxx(h: 50.0),
-          Text(
-            'Account',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: Color.fromARGB(255, 12, 34, 51)),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 20, left: 30),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Stack(
                 children: [
+                  //* Avatar + edit button
                   CircleAvatar(
                     radius: 45,
                     backgroundImage: AssetImage('assets/1024.png'),
@@ -38,7 +42,8 @@ class Account extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(60, 60, 0, 0),
                       decoration: BoxDecoration(
-                          color: Colors.amber, shape: BoxShape.circle),
+                          color: Theme.of(context).colorScheme.secondary,
+                          shape: BoxShape.circle),
                       child: Icon(
                         Icons.mode_edit_outline,
                         size: 30,
@@ -49,12 +54,10 @@ class Account extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Omar mohamed abdel',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 12, 34, 51),
-                    )),
+                child: Textt(
+                  text: 'Omar mohamed abdel',
+                  size: 20.0,
+                ),
               )
             ]),
           ),
@@ -67,6 +70,7 @@ class Account extends StatelessWidget {
           Expanded(
             child: ListView(
               // ignore: prefer_const_literals_to_create_immutables
+              //* tiles containing account info
               children: [
                 ProfileListItem(
                   header: 'Name',

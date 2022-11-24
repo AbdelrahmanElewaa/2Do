@@ -16,6 +16,7 @@ import 'package:todo/pages/notes_details.dart';
 import 'package:go_router/go_router.dart';
 
 class TodoApp extends StatelessWidget {
+  //* Application routing
   final GoRouter router = GoRouter(
     routes: <GoRoute>[
       GoRoute(
@@ -75,6 +76,7 @@ class TodoApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        //* Application colors
         primaryColor: Color.fromARGB(255, 255, 255, 255),
         scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243),
         colorScheme: ColorScheme.light(

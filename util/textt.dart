@@ -9,7 +9,7 @@ class Textt extends StatelessWidget {
     Key? key,
     this.text,
     required this.size,
-    this.color,
+    this.color = Colors.black,
   }) : super(key: key);
 
   @override

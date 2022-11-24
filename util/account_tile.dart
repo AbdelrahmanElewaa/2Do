@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class ProfileListItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(140, 255, 193, 7),
+          color: Theme.of(context).primaryColor,
         ),
         child: Padding(
           padding: const EdgeInsets.only(right: 20),
@@ -53,7 +52,7 @@ class ProfileListItem extends StatelessWidget {
                   child: Text('Update',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 10, 145, 171))),
+                          color: Theme.of(context).colorScheme.secondary)),
                 ),
               ]),
             ],
