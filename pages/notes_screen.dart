@@ -19,16 +19,11 @@ class NotesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        drawer: Drawerr(),
         body: Column(
           children: [
             //greating Row
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.fromLTRB(25, 40, 25, 10),
               child: Column(
                 children: [
                   Text(

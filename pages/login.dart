@@ -20,6 +20,16 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Scaffold(
+        appBar: AppBar(
+          //* back button to login
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new,
+                color: Theme.of(context).colorScheme.primary),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
           child: Center(
@@ -124,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    //*dont have an account text
                     Textt(
                       text: "Don't have an account ? ",
                       size: 17,
