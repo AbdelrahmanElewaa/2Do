@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:todo/util/sizedboxx.dart';
 import '../util/drop_down.dart';
 
 class TasksTile extends StatelessWidget {
@@ -38,9 +41,7 @@ class TasksTile extends StatelessWidget {
                         color: Color.fromRGBO(12, 34, 51, 1),
                       )),
                 ),
-                SizedBox(
-                  width: 12,
-                ),
+                SizedBoxx(w: 12.0,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,9 +54,7 @@ class TasksTile extends StatelessWidget {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    SizedBoxx(h: 5.0),
                     //sub title
                     Text(subTitle,
                         style: TextStyle(

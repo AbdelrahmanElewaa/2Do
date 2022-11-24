@@ -1,10 +1,10 @@
 //account bars (account,login,feedback,logout)
 import 'package:flutter/material.dart';
 
-class ProfileListItem extends StatelessWidget {
+class ProfileListItemm extends StatelessWidget {
   final IconData icon;
   final text;
-  const ProfileListItem({super.key, required this.icon, this.text});
+  const ProfileListItemm({super.key, required this.icon, this.text});
 
   @override
   Widget build(BuildContext context) {

@@ -54,7 +54,7 @@ class _SettingsState extends State<Settings> {
                     onTap: () {
                       GoRouter.of(context).go('/account');
                     },
-                    child: ProfileListItem(
+                    child: ProfileListItemm(
                       icon: Icons.account_box_rounded,
                       text: 'Account',
                     ),
@@ -63,16 +63,16 @@ class _SettingsState extends State<Settings> {
                     onTap: () {
                       GoRouter.of(context).go('/login');
                     },
-                    child: ProfileListItem(
+                    child: ProfileListItemm(
                       icon: Icons.login_rounded,
                       text: 'login',
                     ),
                   ),
-                  ProfileListItem(
+                  ProfileListItemm(
                     icon: Icons.feedback_outlined,
                     text: 'Feedback',
                   ),
-                  ProfileListItem(
+                  ProfileListItemm(
                     icon: Icons.logout_rounded,
                     text: 'Logout',
                   ),
