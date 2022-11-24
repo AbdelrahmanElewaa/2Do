@@ -1,16 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/Model/note_model.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo/util/colorextension.dart';
-import 'package:todo/util/settingsbutton.dart';
+
 import '../util/drawerr.dart';
 import '../util/notes_tile.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:calendar_timeline/calendar_timeline.dart';
-import '../util/calenderweek.dart';
+
 import '../util/notes_searchbar.dart';
+import '../util/sizedboxx.dart';
 
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
@@ -42,8 +38,8 @@ class NotesScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
+                  SizedBoxx(
+                    h: 20.0,
                   ),
 
                   //Search Bar
@@ -51,8 +47,8 @@ class NotesScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
+            SizedBoxx(
+              h: 20.0,
             ),
             Expanded(
               child: Container(
@@ -74,8 +70,8 @@ class NotesScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 15,
+                      SizedBoxx(
+                        h: 15.0,
                       ),
                       //Notes Dashboard
                       Container(
@@ -109,15 +105,14 @@ class NotesScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 15,
+                      SizedBoxx(
+                        h: 15.0,
                       ),
                       //Notes Dashboard
                       Container(
                         height: 150,
                         child: Expanded(
                             child: ListView(
-                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
                             GestureDetector(
                               onTap: () {

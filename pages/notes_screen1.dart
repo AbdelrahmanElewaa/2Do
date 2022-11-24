@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:todo/Model/note_model.dart';
 import 'package:intl/intl.dart';
 
+import '../util/sizedboxx.dart';
+
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
@@ -92,7 +94,7 @@ class _NotesScreenState extends State<NotesScreen>
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          SizedBox(height: 40.0),
+          SizedBoxx(h: 40.0),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Row(
@@ -108,7 +110,7 @@ class _NotesScreenState extends State<NotesScreen>
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                SizedBox(width: 20.0),
+                SizedBoxx(w: 20.0),
                 Text(
                   'Omar',
                   style: TextStyle(
@@ -119,7 +121,7 @@ class _NotesScreenState extends State<NotesScreen>
               ],
             ),
           ),
-          SizedBox(height: 40.0),
+          SizedBoxx(h: 40.0),
           SizedBox(
             height: 280.0,
             child: ListView.builder(
@@ -127,7 +129,7 @@ class _NotesScreenState extends State<NotesScreen>
               itemCount: categories.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return SizedBox(width: 80.0);
+                  return SizedBoxx(w: 80.0);
                 }
                 return _buildCategoryCard(
                   index - 1,
@@ -160,7 +162,7 @@ class _NotesScreenState extends State<NotesScreen>
               ],
             ),
           ),
-          SizedBox(height: 20.0),
+          SizedBoxx(h: 20.0),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 30.0),
             padding: EdgeInsets.all(30.0),
@@ -191,7 +193,7 @@ class _NotesScreenState extends State<NotesScreen>
                     ),
                   ],
                 ),
-                SizedBox(height: 15.0),
+                SizedBoxx(h: 15.0),
                 Text(
                   notes[0].content,
                   style: TextStyle(
@@ -217,7 +219,7 @@ class _NotesScreenState extends State<NotesScreen>
               ],
             ),
           ),
-          SizedBox(height: 20.0),
+          SizedBoxx(h: 20.0),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 30.0),
             padding: EdgeInsets.all(30.0),
@@ -248,7 +250,7 @@ class _NotesScreenState extends State<NotesScreen>
                     ),
                   ],
                 ),
-                SizedBox(height: 15.0),
+                SizedBoxx(h: 15.0),
                 Text(
                   notes[1].content,
                   style: TextStyle(

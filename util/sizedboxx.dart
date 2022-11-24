@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SizedBoxx extends StatelessWidget {
-  final double size;
-  const SizedBoxx({super.key, required this.size});
+  final h;
+  final w;
+
+  const SizedBoxx({super.key, this.h, this.w});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:size
+      height: h,
+      width: w,
     );
   }
 }

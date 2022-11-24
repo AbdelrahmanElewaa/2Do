@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../util/sizedboxx.dart';
+
 class Account extends StatelessWidget {
   const Account({super.key});
 
@@ -11,8 +13,8 @@ class Account extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(children: [
-          SizedBox(
-            height: 50,
+          SizedBoxx(
+            h: 50,
           ),
           Text(
             'Account',
@@ -28,7 +30,7 @@ class Account extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 45,
-                    backgroundImage: AssetImage('assets/2do.jpg'),
+                    backgroundImage: AssetImage('assets/1024.png'),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -114,8 +116,8 @@ class ProfileListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(children: [
-                SizedBox(
-                  width: 20,
+                SizedBoxx(
+                  w: 20,
                 ),
                 Text(
                   header,
@@ -126,8 +128,8 @@ class ProfileListItem extends StatelessWidget {
                 ),
               ]),
               Row(children: [
-                SizedBox(
-                  width: 20,
+                SizedBoxx(
+                  w: 20,
                 ),
                 Text(
                   text,

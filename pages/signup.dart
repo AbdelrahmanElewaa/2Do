@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo/pages/login.dart';
 
+import '../util/sizedboxx.dart';
+
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -23,21 +25,21 @@ class _SignupPageState extends State<SignupPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 10),
+              SizedBoxx(h: 10.0),
               Text('Sign up',
                   style: GoogleFonts.bebasNeue(
                     fontWeight: FontWeight.bold,
                     fontSize: 60,
                     color: Color.fromARGB(255, 255, 255, 255),
                   )),
-              SizedBox(height: 10),
+              SizedBoxx(h: 10.0),
               Text('Create a free account',
                   style: GoogleFonts.bebasNeue(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: Color.fromARGB(255, 255, 255, 255),
                   )),
-              SizedBox(height: 20),
+              SizedBoxx(h: 20.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -60,7 +62,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBoxx(h: 12.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -84,7 +86,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBoxx(h: 12.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -108,7 +110,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 4),
+              SizedBoxx(h: 4.0),
               Container(
                 padding: const EdgeInsets.all(25),
                 child: SizedBox(

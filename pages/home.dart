@@ -1,12 +1,10 @@
+                // ignore_for_file: prefer_const_literals_to_create_immutables
 // ignore_for_file: prefer_const_constructors
 import 'package:go_router/go_router.dart';
-import 'package:todo/util/colorextension.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/util/settingsbutton.dart';
 import '../util/drawerr.dart';
+import '../util/sizedboxx.dart';
 import '../util/tasks_tile.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:calendar_timeline/calendar_timeline.dart';
 import '../util/calenderweek.dart';
 import 'package:intl/intl.dart';
 import '../util/searchbar.dart';
@@ -26,22 +24,22 @@ class home extends StatelessWidget {
         drawer: Drawerr(),
         body: Column(
           children: [
-            SizedBox(
-              height: 10,
+            SizedBoxx(
+              h: 10.0,
             ),
             //greating Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 10,
+                  SizedBoxx(
+                    h: 10.0,
                   ),
                   Calenderweek(),
                   //Calender
 
-                  SizedBox(
-                    height: 25,
+                  SizedBoxx(
+                    h: 25.0,
                   ),
 
                   //Search Bar
@@ -49,8 +47,8 @@ class home extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
+            SizedBoxx(
+              h: 20.0,
             ),
             Expanded(
               child: Container(
@@ -84,8 +82,8 @@ class home extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
+                      SizedBoxx(
+                        h: 20.0,
                       ),
                       //Tasks Dashboard
                       Expanded(
@@ -118,8 +116,8 @@ class home extends StatelessWidget {
                           ),
                         ],
                       )),
-                      SizedBox(
-                        height: 8,
+                      SizedBoxx(
+                        h: 8.0,
                       ),
                     ],
                   ),
