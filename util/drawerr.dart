@@ -8,6 +8,8 @@ class Drawerr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 0.0,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         children: [
           ListTile(

@@ -1,4 +1,4 @@
-                // ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables
 // ignore_for_file: prefer_const_constructors
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +20,12 @@ class home extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          iconTheme: Theme.of(context).iconTheme,
         ),
         drawer: Drawerr(),
         body: Column(
           children: [
-            SizedBoxx(
-              h: 10.0,
-            ),
+            SizedBoxx(h: 10.0),
             //greating Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -47,9 +46,7 @@ class home extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBoxx(
-              h: 20.0,
-            ),
+            SizedBoxx(h: 20.0),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(25),
@@ -61,30 +58,26 @@ class home extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Tasks',
-                            style:Theme.of(context).textTheme.bodyText1),
-                          
+                          Text('Tasks',
+                              style: Theme.of(context).textTheme.bodyText1),
 
                           //ADD Button
                           ElevatedButton(
                             onPressed: () {
                               GoRouter.of(context).go('/addtask');
                             },
-                            child: Icon(
-                              Icons.add,
-                              size: 40,
-                            ),
                             style: ElevatedButton.styleFrom(
                                 shape: CircleBorder(),
                                 backgroundColor:
                                     Theme.of(context).colorScheme.secondary),
+                            child: Icon(
+                              Icons.add,
+                              size: 40,
+                            ),
                           ),
                         ],
                       ),
-                      SizedBoxx(
-                        h: 20.0,
-                      ),
+                      SizedBoxx(h: 20.0),
                       //Tasks Dashboard
                       Expanded(
                           child: ListView(

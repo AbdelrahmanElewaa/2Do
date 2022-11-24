@@ -77,9 +77,12 @@ class TodoApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color.fromARGB(255, 243, 240, 241),
         scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
-        colorScheme: ColorScheme.fromSwatch().copyWith(
+        colorScheme: ColorScheme.light(
             primary: Color.fromARGB(255, 0, 0, 0),
             secondary: Color.fromARGB(255, 71, 181, 255)),
+        iconTheme: IconThemeData(
+          color: Color.fromARGB(255, 0, 0, 0),
+        ),
       ),
     );
   }
