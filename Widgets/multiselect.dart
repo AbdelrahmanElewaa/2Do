@@ -27,7 +27,7 @@ class multiselectState extends State<multiselect>{
 itemsDecoration:
 MultiSelectDecorations(
   selectedDecoration: ShapeDecoration(
-    color: Colors.amber,
+    color: Colors.blue,
     shape:
     ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(20.0)

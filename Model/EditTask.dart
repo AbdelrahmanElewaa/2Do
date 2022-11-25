@@ -52,7 +52,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
     );
     lc.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
-        GoRouter.of(context).go('/TodoList');
+        // GoRouter.of(context).go('/TodoList');
         context.goNamed(
           "home",
           params: { "selectedIndex":"2"},
@@ -75,6 +75,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
       Scaffold(
         appBar:  AppBar(
           title:  const Text('Todo list'),
+          backgroundColor: Colors.blue,
         ),
         body:  SingleChildScrollView(
           child: Form(
@@ -122,16 +123,16 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                 Center(
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
-
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
                     child: const Text('Submit'),
                     onPressed: ()  {
-                      // showSuccessfulDialog();
                       if (_formKey.currentState!.validate()) {
                         multiselectState().selected.toString();
                         todos.remove(todo);
                         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
                         showSuccessfulDialog();
-                        // GoRouter.of(context).go('/TodoList')
                       };
                     },
                   ),
@@ -162,12 +163,12 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                   controller: lc,
                   onLoaded: (composition) {
                     lc.duration = composition.duration;
-                    lc.forward().whenComplete(() => GoRouter.of(context).go('/TodoList'));
+                    lc.forward();
                   }
               ),
               const Center(
                 child: Text("Updated!", style: TextStyle(
-                    color: Color.fromARGB(140, 255, 193, 7),
+                    color: Colors.blue,
                     fontSize: 24,
                     fontWeight: FontWeight.bold
                 ),),

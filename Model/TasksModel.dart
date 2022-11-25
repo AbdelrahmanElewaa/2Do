@@ -30,7 +30,7 @@ class TodoItem extends StatelessWidget {
       color: Colors.black,
       decoration: TextDecoration.lineThrough,
       decorationThickness: 3,
-      decorationColor: Colors.amber,
+      decorationColor: Colors.blue,
     );
   }
 

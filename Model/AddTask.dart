@@ -59,11 +59,11 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
       Scaffold(
       appBar:  AppBar(
         title:  const Text('Todo list'),
-// primary: ,
-
+backgroundColor: Colors.blue,
       ),
       body:  SingleChildScrollView(
         child: Form(
+
           key: _formKey,
           
           child: Column(
@@ -71,6 +71,8 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
             children: <Widget>[
               
               TextFormField(
+                cursorColor: Colors.blue,
+
           validator: (text) {
           if (text == null || text.isEmpty) {
           return 'Name is empty';
@@ -109,13 +111,13 @@ SizedBox(
                Center(
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
-
+style: ElevatedButton.styleFrom(
+  backgroundColor: Colors.blue,
+),
                     child: const Text('Submit'),
                     onPressed: () async {
-                      // showSuccessfulDialog();
     if (_formKey.currentState!.validate()) {
         multiselectState().selected.toString();
-
         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
         showSuccessfulDialog();
                     };
@@ -153,7 +155,7 @@ SizedBox(
               ),
               const Center(
                 child: Text("Added!", style: TextStyle(
-                    color: Color.fromARGB(140, 255, 193, 7),
+                    color: Colors.blue,
                     fontSize: 24,
                     fontWeight: FontWeight.bold
                 ),),
