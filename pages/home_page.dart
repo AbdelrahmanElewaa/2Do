@@ -13,14 +13,24 @@ import '../Model/TasksModel.dart';
 import 'notes_screen.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  int selectedIndex;
+  HomePage({
+    required this.selectedIndex,
+    // required this.onTodoChanged,
+  }) : super(key: ValueKey(selectedIndex));
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(selectedIndex: selectedIndex);
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int selectedIndex;
+  _HomePageState({
+    required this.selectedIndex,
+    // required this.onTodoChanged,
+  }) : super( );
+
+  // int _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
     home(),
     Stat(),
@@ -30,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
@@ -39,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: _pages.elementAt(_selectedIndex), //New
+        child: _pages.elementAt(selectedIndex), //New
       ),
       bottomNavigationBar: Container(
         child: Padding(
@@ -60,10 +70,10 @@ class _HomePageState extends State<HomePage> {
                 GButton(icon: Icons.checklist_outlined, text: 'Tasks'),
                 GButton(icon: Icons.book, text: 'Notes'),
               ],
-              selectedIndex: _selectedIndex,
+              selectedIndex: selectedIndex,
               onTabChange: (index) {
                 setState(() {
-                  _selectedIndex = index;
+                  selectedIndex = index;
                 });
               }),
         ),

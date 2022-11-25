@@ -62,6 +62,13 @@ class TodoApp extends StatelessWidget {
             builder: (BuildContext context, GoRouterState state) =>
                 NotesDetails(),
           ),
+          GoRoute(
+              path: 'home/:selectedIndex',
+            name: 'home',
+            builder: (context, state) => HomePage(
+                selectedIndex: int.parse(state.params["selectedIndex"]!),
+          ),
+          ),
         ],
       ),
     ],

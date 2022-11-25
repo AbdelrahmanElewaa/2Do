@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
       //   ],
       // ),
       backgroundColor: Colors.white,
-      nextScreen:   HomePage(),
+      nextScreen:   HomePage(selectedIndex: 0),
       // nextRoute:
       // );
 

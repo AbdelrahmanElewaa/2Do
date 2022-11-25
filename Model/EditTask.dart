@@ -53,6 +53,10 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
     lc.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
         GoRouter.of(context).go('/TodoList');
+        context.goNamed(
+          "home",
+          params: { "selectedIndex":"2"},
+        );
         // lottieController.clearListeners();
       }
     });

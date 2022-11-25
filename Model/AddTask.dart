@@ -35,7 +35,11 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
     );
     lottieController.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
-        GoRouter.of(context).go('/TodoList');
+        // GoRouter.of(context).go('/TodoList');
+        context.goNamed(
+          "home",
+        params: { "selectedIndex":"2"},
+        );
 
       }
     });
