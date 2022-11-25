@@ -54,12 +54,6 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
       if (status == AnimationStatus.completed) {
         GoRouter.of(context).go('/TodoList');
         // lottieController.clearListeners();
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (context) =>   to,
-        //   ),
-        // );
-
       }
     });
   }
@@ -77,8 +71,6 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
       Scaffold(
         appBar:  AppBar(
           title:  const Text('Todo list'),
-// primary: ,
-
         ),
         body:  SingleChildScrollView(
           child: Form(
@@ -87,9 +79,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-
                 TextFormField(
-
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'Name is empty';
@@ -120,17 +110,11 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     labelText: 'Description',
                   ),
                 ),
-
                 timepicker(),
                 SizedBox(
                   height: 20,
                 ),
-                // const Center(
-                //   heightFactor: 3,
                 multiselect(),
-                // ),
-
-
                 Center(
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
@@ -142,10 +126,8 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                         multiselectState().selected.toString();
                         todos.remove(todo);
                         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
-
                         showSuccessfulDialog();
-                        // GoRouter.of(context).go('/TodoList');
-
+                        // GoRouter.of(context).go('/TodoList')
                       };
                     },
                   ),
@@ -159,8 +141,6 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
 
   void showSuccessfulDialog() => showDialog(
       context: context,
-
-
       builder: (context) => Dialog(
 
         shape: const ContinuousRectangleBorder(
@@ -172,21 +152,14 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
             mainAxisSize: MainAxisSize.min,
             children: [
               Lottie.asset("assets/added.json",
-                  
                   repeat: false,
                   height: 200,
                   width: 200,
                   controller: lc,
                   onLoaded: (composition) {
-
                     lc.duration = composition.duration;
                     lc.forward().whenComplete(() => GoRouter.of(context).go('/TodoList'));
-                    // composition.
-
-
-
                   }
-
               ),
               const Center(
                 child: Text("Updated!", style: TextStyle(

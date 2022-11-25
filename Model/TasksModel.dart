@@ -62,26 +62,14 @@ class TodoItem extends StatelessWidget {
                 ),
               );
             },
-            //
             onTap: () {
               onTodoChanged(todo);
             },
             leading: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined),
-            // Text()
-
-            // leading: CircleAvatar(
-            //   child: Text(todo.name[0]),
-            // ),
 
             title: Text(todo.name, style: _getTextStyle(todo.checked)),
-            // value: todo.checked,
-            // onChanged: (bool? value) {
-            //   onTodoChanged(todo);
-            // },
-            //
-            //  checkboxShape: ContinuousRectangleBorder(),
           ),
         ),
       ),
@@ -104,25 +92,9 @@ class TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    // inittodos();
     return SafeArea(
       child: Scaffold(
         body:
-            // ListView.builder(
-            //   itemCount: todos.length,
-            //     itemBuilder: (context, index) {
-            //    final item=  todos[index],
-            //    todos.map((Todo todo) {
-            //             return TodoItem(
-            //               todo: todo,
-            //               onTodoChanged: handleTodoChange,
-            //             );
-            //     },
-            //      Dismissible(key: ObjectKey(item),
-            //          child: child
-            //      )
-            //
-            // )
             ListView(
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -142,23 +114,10 @@ class TodoListState extends State<TodoList> {
     );
   }
 
-  // void inittodos(){
-  //   addTodoItem("sdfsd");
-  // }
   void handleTodoChange(Todo todo) {
     setState(() {
       todo.checked = !todo.checked;
     });
   }
-
-  // void addTodoItem({required String name, required category cat, required String rem,required String des}) {
-  //   Random random =  Random();
-  //   int randomNumber = random.nextInt(101);
-  //   setState(() {
-  //
-  //     todos.add(Todo(name: name, checked: false,cat: cat,reminder: rem,percentage: randomNumber.toDouble(),description: des));
-  //   });
-  //   _textFieldController.clear();
-  // }
 
 }

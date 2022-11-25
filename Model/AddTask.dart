@@ -36,12 +36,6 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
     lottieController.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
         GoRouter.of(context).go('/TodoList');
-        // lottieController.clearListeners();
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (context) =>   to,
-        //   ),
-        // );
 
       }
     });
@@ -107,12 +101,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
 SizedBox(
   height: 20,
 ),
-              // const Center(
-              //   heightFactor: 3,
                   multiselect(),
-              // ),
-
-
                Center(
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
@@ -124,10 +113,7 @@ SizedBox(
         multiselectState().selected.toString();
 
         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
-        
         showSuccessfulDialog();
-
-
                     };
                     },
                   ),
@@ -141,10 +127,7 @@ SizedBox(
 
   void showSuccessfulDialog() => showDialog(
       context: context,
-
-
       builder: (context) => Dialog(
-
         shape: const ContinuousRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(100.2),
@@ -160,13 +143,9 @@ SizedBox(
                   width: 200,
                   controller: lottieController,
                   onLoaded: (composition) {
-
                     lottieController.duration = composition.duration;
                     lottieController.forward();
-
-
                   }
-                  
               ),
               const Center(
                 child: Text("Added!", style: TextStyle(
