@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Data/TasksData.dart';
 import 'package:todo/Widgets/adddialog.dart';
-import 'package:todo/Widgets/multiselect.dart';
+import 'package:todo/Widgets/multiselectobj.dart';
 import 'package:todo/Widgets/timepicker.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -41,14 +41,14 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
   final _fk = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TextEditingController timeController = TextEditingController();
   late AnimationController lc;
 
   @override
   void initState() {
     nameController.text=todo.name;
     descriptionController.text=todo.description;
-    // timeController.text=todo.reminder.format(context);
+    selected=todo.cat;
+    newtime=todo.reminder;
     super.initState();
 
     lc = AnimationController(
@@ -116,11 +116,11 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     labelText: 'Description',
                   ),
                 ),
-                timepickerobj(todo: todo),
+                timepickerobj(),
                 SizedBox(
                   height: 20,
                 ),
-                multiselect(),
+                multiselectobj(),
                 Center(
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
@@ -130,8 +130,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
-                        // multiselectState().selected.toString();
-                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: todo.reminder, cat: selected    );
+                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                         todos.remove(todo);
                           showUpdatedDialog();
                       };

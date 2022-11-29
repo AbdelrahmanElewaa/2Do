@@ -4,23 +4,13 @@ import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import '../Data/TasksData.dart';
 class timepickerobj extends StatefulWidget {
-  final Todo todo;
-  // final onTodoChanged;
-  timepickerobj({
-    required this.todo,
-    // required this.onTodoChanged,
-  }) : super(key: ObjectKey(todo));
+  const timepickerobj({Key? key}) : super(key: key);
 
   @override
-  State<timepickerobj> createState() => timepickerobjState(todo: todo);
+  State<timepickerobj> createState() => timepickerobjState();
 }
 
 class timepickerobjState extends State<timepickerobj> {
-  final Todo todo;
-  timepickerobjState({
-    required this.todo,
-    // required this.onTodoChanged,
-  }) : super( );
   // TimeOfDay timeOfDay = TimeOfDay.now();
   TextEditingController timeinput = TextEditingController();
   TimeOfDay timeOfDay = TimeOfDay.now();
@@ -29,16 +19,16 @@ class timepickerobjState extends State<timepickerobj> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      timeinput.text = todo.reminder.format(context);
+      timeinput.text = newtime.format(context);
 
     });
-    timeOfDay=todo.reminder;
+    timeOfDay=newtime;
      //set the initial value of text field
     super.initState();
   }
   void onTimeChanged(TimeOfDay time) {
     setState(() {
-      todo.reminder = time;
+      newtime = time;
       timeOfDay=time;
       timeinput.text = timeOfDay.format(context);
     });

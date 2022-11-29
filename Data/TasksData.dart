@@ -23,9 +23,9 @@ int randomNumber = random.nextInt(101);
 List<Todo> todos = <Todo>[
   // Todo(name: "walk the dog", checked: false,cat: cat,reminder: rem,percentage: randomNumber.toDouble(),description: des)
    Todo(name: "walk the dog", checked: false,cat: category.sport,percentage: randomNumber.toDouble(),description: "bhbh",reminder: TimeOfDay.now()),
-  Todo(name: "assignment", checked: false,cat: category.sport,percentage: randomNumber.toDouble(),description: "gvjgvh",reminder: TimeOfDay.now()),
-  Todo(name: "meeting", checked: false,cat: category.sport,percentage: randomNumber.toDouble(),description: "bhhhj",reminder: TimeOfDay.now()),
-  Todo(name: "doctor's apppointment", checked: false,cat: category.sport,percentage: randomNumber.toDouble(),description: "bhjhbj",reminder: TimeOfDay.now()),
+  Todo(name: "assignment", checked: false,cat: category.assignment,percentage: randomNumber.toDouble(),description: "gvjgvh",reminder: TimeOfDay.now()),
+  Todo(name: "meeting", checked: false,cat: category.meeting,percentage: randomNumber.toDouble(),description: "bhhhj",reminder: TimeOfDay.now()),
+  Todo(name: "doctor's apppointment", checked: false,cat: category.meeting,percentage: randomNumber.toDouble(),description: "bhjhbj",reminder: TimeOfDay.now()),
 
 
 
