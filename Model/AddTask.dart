@@ -63,16 +63,13 @@ backgroundColor: Colors.blue,
       ),
       body:  SingleChildScrollView(
         child: Form(
-
           key: _formKey,
-          
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               
               TextFormField(
                 cursorColor: Colors.blue,
-
           validator: (text) {
           if (text == null || text.isEmpty) {
           return 'Name is empty';

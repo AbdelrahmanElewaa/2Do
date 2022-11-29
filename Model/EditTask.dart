@@ -9,6 +9,9 @@ import 'package:todo/Widgets/multiselect.dart';
 import 'package:todo/Widgets/timepicker.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
+import 'package:todo/pages/home.dart';
+
+import '../pages/home_page.dart';
 
 class EditTask extends StatefulWidget {
   final Todo todo;
@@ -34,7 +37,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
 
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
-  final _formKey = GlobalKey<FormState>();
+  final _fk = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController timeController = TextEditingController();
@@ -50,22 +53,19 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
     lc = AnimationController(
       vsync: this,
     );
+
     lc.addStatusListener((status)  {
       if (status == AnimationStatus.completed) {
-        // GoRouter.of(context).go('/TodoList');
-        context.goNamed(
-          "home",
-          params: { "selectedIndex":"2"},
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) =>  HomePage(selectedIndex:2)),
         );
-        // lottieController.clearListeners();
       }
     });
   }
-
   @override
   void dispose() {
     lc.dispose();
-    // lottieController.
     super.dispose();
   }
   @override
@@ -79,7 +79,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
         ),
         body:  SingleChildScrollView(
           child: Form(
-            key: _formKey,
+            key: _fk,
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,12 +127,12 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                       backgroundColor: Colors.blue,
                     ),
                     child: const Text('Submit'),
-                    onPressed: ()  {
-                      if (_formKey.currentState!.validate()) {
+                    onPressed: () async {
+                      if (_fk.currentState!.validate()) {
                         multiselectState().selected.toString();
                         todos.remove(todo);
                         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
-                        showSuccessfulDialog();
+                        showUpdatedDialog();
                       };
                     },
                   ),
@@ -144,7 +144,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
       );
   }
 
-  void showSuccessfulDialog() => showDialog(
+  void showUpdatedDialog() => showDialog(
       context: context,
       builder: (context) => Dialog(
 
@@ -164,7 +164,10 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                   onLoaded: (composition) {
                     lc.duration = composition.duration;
                     lc.forward();
+                    // lc.
                   }
+
+
               ),
               const Center(
                 child: Text("Updated!", style: TextStyle(
