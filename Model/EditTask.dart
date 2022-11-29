@@ -130,8 +130,8 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
-                        multiselectState().selected.toString();
-                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: todo.reminder, cat: multiselectState().selected    );
+                        // multiselectState().selected.toString();
+                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: todo.reminder, cat: selected    );
                         todos.remove(todo);
                           showUpdatedDialog();
                       };

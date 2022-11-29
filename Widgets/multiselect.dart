@@ -10,7 +10,7 @@ class multiselect extends StatefulWidget {
 }
 
 class multiselectState extends State<multiselect>{
-  category selected=category.other;
+  // category selected=category.other;
 
 
   @override
@@ -42,33 +42,25 @@ MultiSelectDecorations(
 ),
 
       animations: MultiSelectAnimations(
-        decorationAimationDuration: Duration(milliseconds: 600),
-        // decorationAnimationCurve: Curves.easeInSine,
+        decorationAimationDuration: Duration(milliseconds: 800),
+        decorationAnimationCurve: standardEasing.flipped,
 
       ),
-//       highlightColor: Colors.brown,
-
+      // highlightColor: Colors.brown,
 singleSelectedItem: true,
 
           items: [
-
-
-            MultiSelectCard(value: category.assignment, label: category.assignment.name,),
-            MultiSelectCard(value :category.chore, label: category.chore.name),
-            MultiSelectCard(value :category.groceries, label: category.groceries.name),
-            MultiSelectCard(value :category.meeting, label: category.meeting.name),
-            MultiSelectCard(value :category.music, label: category.music.name),
-            MultiSelectCard(value :category.sport, label: category.sport.name),
-            MultiSelectCard(value :category.other, label: category.other.name, selected: true)
+            MultiSelectCard(value: category.assignment, label: category.assignment.name, selected: category.assignment==selected?true:false),
+            MultiSelectCard(value :category.chore, label: category.chore.name, selected: category.chore==selected?true:false),
+            MultiSelectCard(value :category.groceries, label: category.groceries.name, selected: category.groceries==selected?true:false),
+            MultiSelectCard(value :category.meeting, label: category.meeting.name, selected: category.meeting==selected?true:false),
+            MultiSelectCard(value :category.music, label: category.music.name, selected: category.music==selected?true:false),
+            MultiSelectCard(value :category.sport, label: category.sport.name, selected: category.sport==selected?true:false),
+            MultiSelectCard(value :category.other, label: category.other.name, selected: category.other==selected?true:false)
+            // selected: true
           ],
-          // onMaximumSelected: (allSelectedItems, selectedItem) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //       SnackBar(content: Text("The limit has been reached")));
-          // },
           onChange: (allSelectedItems, selectedItem) {
-
                selected= selectedItem;
-               print(selected.runtimeType);
           }
       ),
     );

@@ -13,7 +13,7 @@ enum category
   other
 }
 TimeOfDay newtime=TimeOfDay.now();
-
+category selected=category.other;
 Random random =  Random();
 int randomNumber = random.nextInt(101);
 // addstringonly(name: "walk the dog", des: "sdf");

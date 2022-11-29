@@ -115,9 +115,9 @@ style: ElevatedButton.styleFrom(
                     child: const Text('Submit'),
                     onPressed: () async {
     if (_formKey.currentState!.validate()) {
-        multiselectState().selected.toString();
+        // multiselectState().selected.toString();
         // final td = ModalRoute.of(context)?.settings.arguments as TimeOfDay;
-        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: multiselectState().selected    );
+        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
         showSuccessfulDialog();
                     };
                     },
