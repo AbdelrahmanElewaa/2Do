@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Data/TasksData.dart';
-import 'package:todo/Widgets/adddialog.dart';
 import 'package:todo/Widgets/multiselect.dart';
 import 'package:todo/Widgets/timepicker.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 
 class AddTask extends StatefulWidget {
+
   @override
   add createState() {
     return add();
@@ -25,6 +25,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   late AnimationController lottieController;
+  TimeOfDay timeOfDay = TimeOfDay.now();
 
   @override
   void initState() {
@@ -44,16 +45,15 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
       }
     });
   }
-
-
-
   @override
   void dispose() {
     lottieController.dispose();
     super.dispose();
   }
+  void gettime(){}
   @override
   Widget build(BuildContext context) {
+
     // Build a Form widget using the _formKey created above.
     return
       Scaffold(
@@ -101,6 +101,7 @@ backgroundColor: Colors.blue,
               ),
 
               timepicker(),
+
 SizedBox(
   height: 20,
 ),
@@ -115,7 +116,8 @@ style: ElevatedButton.styleFrom(
                     onPressed: () async {
     if (_formKey.currentState!.validate()) {
         multiselectState().selected.toString();
-        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
+        // final td = ModalRoute.of(context)?.settings.arguments as TimeOfDay;
+        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: multiselectState().selected    );
         showSuccessfulDialog();
                     };
                     },

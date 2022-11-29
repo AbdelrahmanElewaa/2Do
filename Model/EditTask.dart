@@ -11,6 +11,7 @@ import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:todo/pages/home.dart';
 
+import '../Widgets/timepickerobj.dart';
 import '../pages/home_page.dart';
 
 class EditTask extends StatefulWidget {
@@ -47,7 +48,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
   void initState() {
     nameController.text=todo.name;
     descriptionController.text=todo.description;
-    timeController.text=todo.reminder;
+    // timeController.text=todo.reminder.format(context);
     super.initState();
 
     lc = AnimationController(
@@ -115,7 +116,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     labelText: 'Description',
                   ),
                 ),
-                timepicker(),
+                timepickerobj(todo: todo),
                 SizedBox(
                   height: 20,
                 ),
@@ -130,9 +131,9 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
                         multiselectState().selected.toString();
+                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: todo.reminder, cat: multiselectState().selected    );
                         todos.remove(todo);
-                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: timepickerState().timeinput.text, cat: multiselectState().selected    );
-                        showUpdatedDialog();
+                          showUpdatedDialog();
                       };
                     },
                   ),

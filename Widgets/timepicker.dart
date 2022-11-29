@@ -2,29 +2,11 @@ import 'package:day_night_time_picker/lib/constants.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/Model/AddTask.dart';
 
-// void main() {
-//   runApp(const DayNight());
-// }
-//
-// class DayNight extends StatefulWidget {
-//   const DayNight({Key? key}) : super(key: key);
-//
-//   @override
-//   State<DayNight> createState() => _DayNightState();
-// }
-//
-// class _DayNightState extends State<DayNight> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: "DayNight",
-//       theme: ThemeData(primaryColor: Color.fromARGB(255, 25, 71, 133)),
-//       debugShowCheckedModeBanner: false,
-//       home: const Home(),
-//     );
-//   }
-// }
+import '../Data/TasksData.dart';
+
+
 class timepicker extends StatefulWidget {
   const timepicker({Key? key}) : super(key: key);
 
@@ -33,7 +15,8 @@ class timepicker extends StatefulWidget {
 }
 
 class timepickerState extends State<timepicker> {
-  TimeOfDay _timeOfDay = TimeOfDay.now();
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  // String rem= timeOfDay.format(context);
   TextEditingController timeinput = TextEditingController();
   //text editing controller for text field
 
@@ -44,8 +27,9 @@ class timepickerState extends State<timepicker> {
   }
   void onTimeChanged(TimeOfDay time) {
     setState(() {
-      _timeOfDay = time;
-      timeinput.text = _timeOfDay.format(context);
+      timeOfDay = time;
+      timeinput.text = timeOfDay.format(context);
+      newtime=time;
     });
   }
 
@@ -76,7 +60,7 @@ class timepickerState extends State<timepicker> {
                       Navigator.of(context).push(
                         showPicker(
                           context: context,
-                          value: _timeOfDay,
+                          value: timeOfDay,
                           onChange: onTimeChanged,
                           minuteInterval: MinuteInterval.FIVE,
                           is24HrFormat: false,
@@ -84,38 +68,8 @@ class timepickerState extends State<timepicker> {
                           sunAsset: Image.asset('assets/sun.png'),
                         ),
                       );
-
-
-                      
                     },
-                      
-
-
                   ),
-                  // Text(
-                  //   _timeOfDay.format(
-                  //     context,
-                  //   ),
-                  //   style: Theme.of(context).textTheme.headlineLarge,
-                  // ),
-                  // const SizedBox(
-                  //   height: 10,
-                  // ),
-                  // TextButton(
-                  //     onPressed: () {
-                  //       Navigator.of(context).push(
-                  //         showPicker(
-                  //           context: context,
-                  //           value: _timeOfDay,
-                  //           onChange: onTimeChanged,
-                  //           minuteInterval: MinuteInterval.FIVE,
-                  //           is24HrFormat: false,
-                  //           moonAsset: Image.asset('moon.png'),
-                  //           sunAsset: Image.asset('sun.png'),
-                  //         ),
-                  //       );
-                  //     },
-                  //     child: const Text("Pick Time "))
                 ],
               ),
             ),
