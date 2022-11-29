@@ -26,6 +26,7 @@ class SplashScreen extends StatelessWidget {
       // ),
       backgroundColor: Colors.white,
       nextScreen:   HomePage(selectedIndex: 0),
+      // nextRoute: context.go("")
       // nextRoute:
       // );
 
@@ -33,7 +34,8 @@ class SplashScreen extends StatelessWidget {
       duration: 3000,
       // splashTransition: SplashTransition.decoratedBoxTransition,
       // pageTransitionType: PageTransitionType.leftToRightWithFade,
-      animationDuration: const Duration(seconds: 1),
+      // animationDuration: const Duration(seconds: 1),
+      disableNavigation: false,
     );
   }
 }

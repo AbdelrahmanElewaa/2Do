@@ -78,9 +78,9 @@ class TodoApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'Todo list',
+      // builder: ,
       // home: TodoList(),
-// >>>>>>> Stashed changes
-
+      // builder: (context, widget) => SplashScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         //* Application colors
