@@ -12,6 +12,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:todo/pages/home.dart';
 
 import '../Widgets/timepickerobj.dart';
+import '../helper/notificationservice.dart';
 import '../pages/home_page.dart';
 
 class EditTask extends StatefulWidget {
@@ -131,6 +132,8 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
                         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+                        NotificationService().editNotification(
+                          todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
                         todos.remove(todo);
                           showUpdatedDialog();
                       };

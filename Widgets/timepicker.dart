@@ -62,7 +62,7 @@ class timepickerState extends State<timepicker> {
                           context: context,
                           value: timeOfDay,
                           onChange: onTimeChanged,
-                          minuteInterval: MinuteInterval.FIVE,
+                          minuteInterval: MinuteInterval.ONE,
                           is24HrFormat: false,
                           moonAsset: Image.asset('assets/moon.png'),
                           sunAsset: Image.asset('assets/sun.png'),

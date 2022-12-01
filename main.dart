@@ -15,7 +15,7 @@ import 'package:todo/pages/stat.dart';
 import 'package:todo/pages/notes_details.dart';
 import 'package:go_router/go_router.dart';
 
-import 'helper/local_notice_service.dart';
+import 'helper/notificationservice.dart';
 
 class TodoApp extends StatelessWidget {
   //* Application routing

@@ -59,4 +59,33 @@ class NotificationService {
       true, // To show notification even when the app is closed
     );
   }
+
+  Future<void> editNotification(int oldid,int newid, String title, String body, TimeOfDay tod) async {
+    flutterLocalNotificationsPlugin.cancel(oldid);
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      newid,
+      title,
+      body,
+      // tz.TZDateTime.now(tz.local).add(Duration(
+      // seconds: 1)),
+      tz.TZDateTime.from(DateTime(now.year, now.month, now.day, tod.hour, tod.minute), tz.local),
+      // schedule the notification to show after 2 seconds.
+      const NotificationDetails(
+
+        // Android details
+        android: AndroidNotificationDetails('main_channel', 'Main Channel',
+            channelDescription: "ashwin",
+            importance: Importance.max,
+            priority: Priority.max),
+
+
+      ),
+
+      // Type of time interpretation
+      uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.absoluteTime,
+      androidAllowWhileIdle:
+      true, // To show notification even when the app is closed
+    );
+  }
 }
