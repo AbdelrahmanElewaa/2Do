@@ -7,7 +7,6 @@ import 'package:todo/pages/stat.dart';
 import 'package:todo/util/tasks_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/util/colorextension.dart';
-
 import '../Model/AddTask.dart';
 import '../Model/TasksModel.dart';
 import 'notes_screen.dart';
@@ -24,6 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   int selectedIndex;
   _HomePageState({
     required this.selectedIndex,
@@ -81,3 +81,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

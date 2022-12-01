@@ -15,6 +15,8 @@ import 'package:todo/pages/stat.dart';
 import 'package:todo/pages/notes_details.dart';
 import 'package:go_router/go_router.dart';
 
+import 'helper/local_notice_service.dart';
+
 class TodoApp extends StatelessWidget {
   //* Application routing
   final GoRouter router = GoRouter(
@@ -98,4 +100,7 @@ class TodoApp extends StatelessWidget {
   }
 }
 
-void main() => runApp(TodoApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
+  runApp(TodoApp());}

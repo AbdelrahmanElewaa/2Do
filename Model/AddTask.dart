@@ -8,7 +8,9 @@ import 'package:todo/Widgets/multiselectobj.dart';
 import 'package:todo/Widgets/timepicker.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
-
+import '../helper/local_notice_service.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 import '../Widgets/multiselect.dart';
 
 class AddTask extends StatefulWidget {
@@ -32,7 +34,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+    tz.initializeTimeZones();
     lottieController = AnimationController(
       vsync: this,
     );
@@ -118,6 +120,8 @@ style: ElevatedButton.styleFrom(
                     onPressed: () async {
     if (_formKey.currentState!.validate()) {
         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+    NotificationService().showNotification(
+    1, nameController.text, descriptionController.text, newtime);
         showSuccessfulDialog();
                     };
                     },
