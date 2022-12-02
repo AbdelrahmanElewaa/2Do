@@ -5,7 +5,7 @@ import 'package:timezone/data/latest.dart' as tz;
 class NotificationService {
   static final NotificationService _notificationService =
   NotificationService._internal();
-  final now = DateTime.now();
+  // final now = DateTime.now();
 
   factory NotificationService() {
     return _notificationService;
@@ -33,6 +33,7 @@ class NotificationService {
   }
 
   Future<void> showNotification(int id, String title, String body, TimeOfDay tod) async {
+    DateTime now = DateTime.now();
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
@@ -46,6 +47,8 @@ class NotificationService {
         // Android details
         android: AndroidNotificationDetails('main_channel', 'Main Channel',
             channelDescription: "ashwin",
+            playSound: true,
+            // sound: RawResourceAndroidNotificationSound('ring.wav'),
             importance: Importance.max,
             priority: Priority.max),
 
@@ -61,6 +64,7 @@ class NotificationService {
   }
 
   Future<void> editNotification(int oldid,int newid, String title, String body, TimeOfDay tod) async {
+    DateTime now = DateTime.now();
     flutterLocalNotificationsPlugin.cancel(oldid);
     await flutterLocalNotificationsPlugin.zonedSchedule(
       newid,
@@ -75,6 +79,8 @@ class NotificationService {
         // Android details
         android: AndroidNotificationDetails('main_channel', 'Main Channel',
             channelDescription: "ashwin",
+            playSound: true,
+            // sound: RawResourceAndroidNotificationSound('ring.wav'),
             importance: Importance.max,
             priority: Priority.max),
 
@@ -88,4 +94,19 @@ class NotificationService {
       true, // To show notification even when the app is closed
     );
   }
+
+  notificationdetails(){
+    const NotificationDetails(
+
+      // Android details
+      android: AndroidNotificationDetails('main_channel', 'Main Channel',
+          channelDescription: "ashwin",
+          playSound: true,
+          sound: RawResourceAndroidNotificationSound('pop'),
+          importance: Importance.max,
+          priority: Priority.max),
+
+
+    );
+}
 }

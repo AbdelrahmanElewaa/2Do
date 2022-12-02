@@ -54,14 +54,14 @@ class TodoItem extends StatelessWidget {
           // color: Colors.amber,
 
           child: ListTile(
-            onLongPress: () {
-              // GoRouter.of(context).go('/addtask');
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => EditTask(todo: todo),
-                ),
-              );
-            },
+            // onLongPress: () {
+            //   // GoRouter.of(context).go('/addtask');
+            //   Navigator.of(context).push(
+            //     MaterialPageRoute(
+            //       builder: (context) => EditTask(todo: todo),
+            //     ),
+            //   );
+            // },
             onTap: () {
               onTodoChanged(todo);
             },
@@ -95,7 +95,7 @@ class TodoListState extends State<TodoList> {
     return SafeArea(
       child: Scaffold(
         body:
-            ListView(
+        ReorderableListView(
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: 8.0),
           children: todos.map((Todo todo) {
@@ -104,6 +104,16 @@ class TodoListState extends State<TodoList> {
               onTodoChanged: handleTodoChange,
             );
           }).toList(),
+          onReorder: (int oldIndex, int newIndex) {
+      setState(() {
+      if (oldIndex < newIndex) {
+      newIndex -= 1;
+      }
+      final  widget = todos.removeAt(oldIndex);
+      todos.insert(newIndex, widget);
+      });
+      },
+        // children: TodoItem,
         ),
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
@@ -117,6 +127,16 @@ class TodoListState extends State<TodoList> {
   void handleTodoChange(Todo todo) {
     setState(() {
       todo.checked = !todo.checked;
+    });
+  }
+
+  void reorderTodos(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final item = todos.removeAt(oldIndex);
+    setState(() {
+      todos.insert(newIndex, item);
     });
   }
 
