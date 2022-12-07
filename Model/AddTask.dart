@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -43,7 +43,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
         // GoRouter.of(context).go('/TodoList');
         context.goNamed(
           "home",
-        params: { "selectedIndex":"2"},
+          params: { "selectedIndex":"2"},
         );
 
       }
@@ -60,78 +60,89 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
 
     // Build a Form widget using the _formKey created above.
     return
-      Scaffold(
-      appBar:  AppBar(
-        title:  const Text('Todo list'),
-backgroundColor: Colors.blue,
-      ),
-      body:  SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              
-              TextFormField(
-                cursorColor: Colors.blue,
-          validator: (text) {
-          if (text == null || text.isEmpty) {
-          return 'Name is empty';
-          }
-          return null;
-          },
-                controller: nameController,
-    decoration: const InputDecoration(
-                  icon: Icon(Icons.label_important_rounded),
-                  hintText: 'Enter task name',
-                  labelText: 'Name',
+      DismissiblePage(
+        isFullScreen: true,
+        direction: DismissiblePageDismissDirection.multi,
+        // behavior: HitTestBehavior.translucent,
+        onDismissed: () {
+          Navigator.of(context).pop();
+        },
+        child: Hero(
+          tag: 'unique tag',
+          child: Scaffold(
+            appBar:  AppBar(
+              title:  const Text('Todo list'),
+              backgroundColor: Colors.blue,
+            ),
+            body:  SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+
+                    TextFormField(
+                      cursorColor: Colors.blue,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Name is empty';
+                        }
+                        return null;
+                      },
+                      controller: nameController,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.label_important_rounded),
+                        hintText: 'Enter task name',
+                        labelText: 'Name',
+                      ),
+                    ),
+
+                    TextFormField(
+                      controller: descriptionController,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Description is empty';
+                        }
+                        return null;
+                      },
+                      maxLines: 5,
+                      decoration: const InputDecoration(
+                        icon: const Icon(Icons.edit_note),
+                        hintText: 'Enter task description',
+                        labelText: 'Description',
+                      ),
+                    ),
+
+                    timepicker(),
+
+                    SizedBox(
+                      height: 20,
+                    ),
+                    multiselect(),
+                    Center(
+                      // padding: const EdgeInsets.only( top: 40.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: const Text('Submit'),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+                            NotificationService().showNotification(
+                                todos.last.id, nameController.text, descriptionController.text, newtime);
+                            showSuccessfulDialog();
+                          };
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              
-              TextFormField(
-                controller: descriptionController,
-                validator: (text) {
-                  if (text == null || text.isEmpty) {
-                    return 'Description is empty';
-                  }
-                  return null;
-                },
-                maxLines: 5,
-                decoration: const InputDecoration(
-                  icon: const Icon(Icons.edit_note),
-                  hintText: 'Enter task description',
-                  labelText: 'Description',
-                ),
-              ),
-
-              timepicker(),
-
-SizedBox(
-  height: 20,
-),
-                  multiselect(),
-               Center(
-                  // padding: const EdgeInsets.only( top: 40.0),
-                  child: ElevatedButton(
-style: ElevatedButton.styleFrom(
-  backgroundColor: Colors.blue,
-),
-                    child: const Text('Submit'),
-                    onPressed: () async {
-    if (_formKey.currentState!.validate()) {
-        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
-    NotificationService().showNotification(
-    todos.last.id, nameController.text, descriptionController.text, newtime);
-        showSuccessfulDialog();
-                    };
-                    },
-                  ),
-    ),
-            ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   void showSuccessfulDialog() => showDialog(

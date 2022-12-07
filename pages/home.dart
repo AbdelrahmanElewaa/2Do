@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 // ignore_for_file: prefer_const_constructors
+import 'package:dismissible_page/dismissible_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import '../Model/AddTask.dart';
 import '../util/drawerr.dart';
 import '../util/sizedboxx.dart';
 import '../util/tasks_tile.dart';
@@ -62,17 +64,21 @@ class home extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyText1),
 
                           //ADD Button
-                          ElevatedButton(
-                            onPressed: () {
-                              GoRouter.of(context).go('/addtask');
-                            },
-                            style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary),
-                            child: Icon(
-                              Icons.add,
-                              size: 40,
+                          Hero(
+                            tag: 'unique tag',
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.pushTransparentRoute(AddTask());
+                                // GoRouter.of(context).go('/addtask');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  shape: CircleBorder(),
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary),
+                              child: Icon(
+                                Icons.add,
+                                size: 40,
+                              ),
                             ),
                           ),
                         ],

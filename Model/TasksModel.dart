@@ -39,10 +39,15 @@ class TodoItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Slidable(
+
         key: ObjectKey(todo),
           endActionPane: ActionPane(
+
             motion: const ScrollMotion(),
-            dismissible: DismissiblePane(onDismissed: ()
+            dismissible: DismissiblePane(
+              // closeOnCancel: true,
+              key: ValueKey("delete"),
+                onDismissed: ()
             {
               todos.remove(todo);
               const snackBar = SnackBar(
@@ -69,9 +74,15 @@ class TodoItem extends StatelessWidget {
               // A SlidableAction can have an icon and/or a label.
               SlidableAction(
                 onPressed: (context) {
-                  todos.remove(todo);
-                  // Noti
-                },
+                    todos.remove(todo);
+                    const snackBar = SnackBar(
+    content: Text('Item successfully deleted!!'),
+    backgroundColor:  Color.fromARGB(255, 71, 181, 255),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    },
+                // ).onDismissed();// Noti
+                // },
                 backgroundColor: Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -189,6 +200,7 @@ class TodoListState extends State<TodoList> {
       },
         // children: TodoItem,
         ),
+        
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
             onPressed: () => GoRouter.of(context).go('/addtask'),
