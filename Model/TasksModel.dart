@@ -1,3 +1,5 @@
+import 'package:add_to_cart_animation/add_to_cart_animation.dart';
+import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Data/TasksData.dart';
@@ -6,10 +8,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/Model/taskDescription.dart';
 import 'package:todo/pages/home_page.dart';
-
 import 'EditTask.dart';
 
 class TodoItem extends StatelessWidget {
+  final GlobalKey imageGlobalKey = GlobalKey();
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
@@ -39,10 +41,8 @@ class TodoItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Slidable(
-
         key: ObjectKey(todo),
           endActionPane: ActionPane(
-
             motion: const ScrollMotion(),
             dismissible: DismissiblePane(
               // closeOnCancel: true,
@@ -71,7 +71,6 @@ class TodoItem extends StatelessWidget {
                 icon: Icons.edit,
                 label: 'Edit',
               ),
-              // A SlidableAction can have an icon and/or a label.
               SlidableAction(
                 onPressed: (context) {
                     todos.remove(todo);
@@ -111,24 +110,20 @@ class TodoItem extends StatelessWidget {
               label: 'Archive',
             ),
             SlidableAction(
-              onPressed:  (context) {
-          // Navigator.of(context).push(
-          // MaterialPageRoute(
-          // builder: (context) => EditTask(todo: todo),
-          // ),
-          // );
+              onPressed:  (context) async {
+                await Future.delayed(const Duration(milliseconds: 500),
+                        (){
+                  TodoListState.listClick(imageGlobalKey);
+                });
+
       },
               backgroundColor: Color(0xFF0392CF),
               foregroundColor: Colors.white,
-              icon: Icons.save,
-              label: 'Save',
+              icon: Icons.share,
+              label: 'Share',
             ),
           ],
         ),
-        // onDismissed: (direction) {
-        //   todos.remove(todo);
-        // },
-        // background: Container(color: Colors.red),
         child: Card(
           elevation: 0,
           // color: Color.fromRGBO(10, 145, 171, 1),
@@ -139,20 +134,18 @@ class TodoItem extends StatelessWidget {
           // color: Colors.amber,
 
           child: ListTile(
-            // onLongPress: () {
-            //   // GoRouter.of(context).go('/addtask');
-            //   Navigator.of(context).push(
-            //     MaterialPageRoute(
-            //       builder: (context) => EditTask(todo: todo),
-            //     ),
-            //   );
-            // },
             onTap: () {
+              // TodoListState.listClick(imageGlobalKey);
               onTodoChanged(todo);
             },
-            leading: Icon(
-                color: Theme.of(context).iconTheme.color,
-                Icons.note_alt_outlined),
+            leading: Container(
+              key: imageGlobalKey,
+              child: Icon(
+                  color: Theme.of(context).iconTheme.color,
+                  Icons.note_alt_outlined,
+
+              ),
+            ),
 
             title: Text(todo.name, style: _getTextStyle(todo.checked)),
           ),
@@ -169,7 +162,9 @@ class TodoList extends StatefulWidget {
 
 class TodoListState extends State<TodoList> {
   final TextEditingController _textFieldController = TextEditingController();
-
+  static GlobalKey<CartIconKey> gkCart = GlobalKey<CartIconKey>();
+  static late Function(GlobalKey) runAddToCardAnimation;
+  static var _cartQuantityItems = 0;
   @override
   void initState() {
     todos;
@@ -177,35 +172,62 @@ class TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body:
-        ReorderableListView(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          children: todos.map((Todo todo) {
-            return TodoItem(
-              todo: todo,
-              onTodoChanged: handleTodoChange,
-            );
-          }).toList(),
-          onReorder: (int oldIndex, int newIndex) {
-      setState(() {
-      if (oldIndex < newIndex) {
-      newIndex -= 1;
-      }
-      final  widget = todos.removeAt(oldIndex);
-      todos.insert(newIndex, widget);
-      });
+    return AddToCartAnimation(
+      gkCart: gkCart,
+      rotation: true,
+      dragToCardCurve: Curves.easeIn,
+      dragToCardDuration: const Duration(milliseconds: 1000),
+      previewCurve: Curves.linearToEaseOut,
+      previewDuration: const Duration(milliseconds: 500),
+      previewHeight: 30,
+      previewWidth: 30,
+      opacity: 0.85,
+      initiaJump: false,
+      receiveCreateAddToCardAnimationMethod: (addToCardAnimationMethod) {
+        // You can run the animation by addToCardAnimationMethod, just pass trough the the global key of  the image as parameter
+        runAddToCardAnimation = addToCardAnimationMethod;
       },
-        // children: TodoItem,
+      child: SafeArea(
+        child: Scaffold(
+
+          appBar: AppBar(
+            backgroundColor: Colors.blue,
+            automaticallyImplyLeading: false,
+            title: Text("Tasks"),
+            actions: [
+              AddToCartIcon(
+              key: gkCart,
+              icon: Icon(Icons.people,color: Colors.white),
+              )
+            ],
+          ),
+          body:
+          ReorderableListView(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            children: todos.map((Todo todo) {
+              return TodoItem(
+                todo: todo,
+                onTodoChanged: handleTodoChange,
+              );
+            }).toList(),
+            onReorder: (int oldIndex, int newIndex) {
+        setState(() {
+        if (oldIndex < newIndex) {
+        newIndex -= 1;
+        }
+        final  widget = todos.removeAt(oldIndex);
+        todos.insert(newIndex, widget);
+        });
+        },
+          // children: TodoItem,
+          ),
+          floatingActionButton: FloatingActionButton(
+              elevation: 0.0,
+              onPressed: () => GoRouter.of(context).go('/addtask'),
+              tooltip: 'Add Item',
+              child: Icon(Icons.add)),
         ),
-        
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            onPressed: () => GoRouter.of(context).go('/addtask'),
-            tooltip: 'Add Item',
-            child: Icon(Icons.add)),
       ),
     );
   }
@@ -225,5 +247,10 @@ class TodoListState extends State<TodoList> {
       todos.insert(newIndex, item);
     });
   }
-
+  static void listClick(GlobalKey gkImageContainer) async {
+    await runAddToCardAnimation(gkImageContainer);
+    await gkCart.currentState!.runCartAnimation((++_cartQuantityItems).toString());
+  }
 }
+
+
