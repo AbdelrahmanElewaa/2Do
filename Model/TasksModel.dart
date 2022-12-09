@@ -222,7 +222,9 @@ class TodoListState extends State<TodoList> {
         },
           // children: TodoItem,
           ),
+          // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
           floatingActionButton: FloatingActionButton(
+
               elevation: 0.0,
               onPressed: () => GoRouter.of(context).go('/addtask'),
               tooltip: 'Add Item',
