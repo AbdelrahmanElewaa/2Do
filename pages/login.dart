@@ -4,9 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../util/Textt.dart';
 import '../Common widgets/sizedboxx.dart';
+import '../Common widgets/textt.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
