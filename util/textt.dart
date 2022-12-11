@@ -8,7 +8,7 @@ class Textt extends StatelessWidget {
   final decorationn;
   const Textt({
     Key? key,
-    this.text,
+    required this.text,
     required this.size,
     this.color = Colors.black,
     this.decorationn,
