@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../util/textt.dart';
+import '../Common widgets/textt.dart';
 
 class NotesDetails extends StatelessWidget {
   const NotesDetails({super.key});

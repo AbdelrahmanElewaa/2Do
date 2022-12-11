@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../util/sizedboxx.dart';
-import '../util/textt.dart';
+import '../Common widgets/sizedboxx.dart';
+import '../Common widgets/textt.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

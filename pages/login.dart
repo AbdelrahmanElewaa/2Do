@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../util/Textt.dart';
-import '../util/sizedboxx.dart';
+import '../Common widgets/sizedboxx.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

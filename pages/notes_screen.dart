@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
 
-import '../util/drawerr.dart';
-import '../util/notes_tile.dart';
+import '../Common widgets/drawerr.dart';
+import '../Common widgets/notes_tile.dart';
 
-import '../util/notes_searchbar.dart';
-import '../util/sizedboxx.dart';
+import '../Common widgets/notes_searchbar.dart';
+import '../Common widgets/sizedboxx.dart';
 
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables

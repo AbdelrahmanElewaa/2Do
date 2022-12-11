@@ -4,12 +4,12 @@ import 'package:dismissible_page/dismissible_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import '../Model/AddTask.dart';
-import '../util/drawerr.dart';
-import '../util/sizedboxx.dart';
-import '../util/tasks_tile.dart';
-import '../util/calenderweek.dart';
+import '../Common widgets/drawerr.dart';
+import '../Common widgets/sizedboxx.dart';
+import '../Common widgets/tasks_tile.dart';
+import '../Common widgets/calenderweek.dart';
 import 'package:intl/intl.dart';
-import '../util/searchbar.dart';
+import '../Common widgets/searchbar.dart';
 
 class home extends StatelessWidget {
   home({super.key});

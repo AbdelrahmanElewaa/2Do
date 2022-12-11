@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'package:todo/util/piechart.dart';
-import '../util/sizedboxx.dart';
+import 'package:todo/Common%20widgets/piechart.dart';
+import '../Common widgets/sizedboxx.dart';
 
 class Stat extends StatefulWidget {
   Stat({super.key});

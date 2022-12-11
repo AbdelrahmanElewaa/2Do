@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../util/profilelistitem.dart';
+import '../Common widgets/profilelistitem.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});

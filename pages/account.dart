@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:todo/util/account_tile.dart';
+import 'package:todo/Common%20widgets/account_tile.dart';
 
-import '../util/sizedboxx.dart';
-import '../util/textt.dart';
+import '../Common widgets/sizedboxx.dart';
+import '../Common widgets/textt.dart';
 
 class Account extends StatelessWidget {
   const Account({super.key});
