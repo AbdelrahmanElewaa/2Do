@@ -177,9 +177,9 @@ class _NotesScreenState extends State<NotesScreen>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      notes[0].title,
+                      notes[0].content,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color.fromARGB(255, 230, 0, 0),
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600,
                       ),

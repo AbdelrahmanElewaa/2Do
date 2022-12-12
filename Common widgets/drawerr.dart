@@ -37,16 +37,16 @@ class Drawerr extends StatelessWidget {
             children: [
               GestureDetector(
                 child: Container(
-                  width: 120,
+                  width: 120.0,
                   decoration: BoxDecoration(
                       border: Border.all(
-                          width: 4,
+                          width: 4.0,
                           color: Theme.of(context).colorScheme.secondary),
-                      borderRadius: BorderRadius.circular(30)),
+                      borderRadius: BorderRadius.circular(30.0)),
                   child: Center(
                       child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Textt(size: 25, text: 'Logout'),
+                    child: Textt(size: 25.0, text: 'Logout'),
                   )),
                 ),
                 onTap: () {

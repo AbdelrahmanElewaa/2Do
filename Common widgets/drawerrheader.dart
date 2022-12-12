@@ -17,11 +17,11 @@ class DrawerrHeader extends StatelessWidget {
           child: Column(
             children: [
               CircleAvatar(
-                  radius: 55, backgroundImage: AssetImage('assets/1024.png')),
+                  radius: 55.0, backgroundImage: AssetImage('assets/1024.png')),
               SizedBoxx(h: 5.0),
               Textt(
                 text: 'Omar mohamed',
-                size: 30,
+                size: 30.0,
               ),
             ],
           ),
