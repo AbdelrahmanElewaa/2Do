@@ -7,13 +7,13 @@ import '../Model/AddTask.dart';
 import '../Model/TasksModel.dart';
 import '../Model/start.dart';
 import '../Widgets/splashscreen.dart';
-import '../pages/account.dart';
-import '../pages/home_page.dart';
-import '../pages/login.dart';
-import '../pages/notes_details.dart';
-import '../pages/settings.dart';
-import '../pages/signup.dart';
-import '../pages/stat.dart';
+import '../view/account.dart';
+import '../view/home_page.dart';
+import '../view/login.dart';
+import '../view/notes_details.dart';
+import '../view/settings.dart';
+import '../view/signup.dart';
+import '../view/stat.dart';
 
 final GoRouter router = GoRouter(
   routes: <GoRoute>[

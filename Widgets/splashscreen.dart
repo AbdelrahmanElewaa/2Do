@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:todo/Model/TasksModel.dart';
 
-import '../pages/home_page.dart';
+import '../view/home_page.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

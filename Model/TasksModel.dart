@@ -7,7 +7,7 @@ import 'dart:math';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/Model/AddTask.dart';
 import 'package:todo/Model/taskDescription.dart';
-import 'package:todo/pages/home_page.dart';
+import 'package:todo/view/home_page.dart';
 import 'EditTask.dart';
 
 class TodoItem extends StatelessWidget {

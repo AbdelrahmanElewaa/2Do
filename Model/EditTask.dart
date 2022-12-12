@@ -9,11 +9,11 @@ import 'package:todo/Widgets/multiselectobj.dart';
 import 'package:todo/Widgets/timepicker.dart';
 import 'package:todo/Model/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:todo/pages/home.dart';
+import 'package:todo/view/home.dart';
 
 import '../Widgets/timepickerobj.dart';
 import '../helper/notificationservice.dart';
-import '../pages/home_page.dart';
+import '../view/home_page.dart';
 
 class EditTask extends StatefulWidget {
   final Todo todo;

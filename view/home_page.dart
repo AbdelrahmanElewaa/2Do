@@ -2,8 +2,8 @@
 
 import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:todo/pages/home.dart';
-import 'package:todo/pages/stat.dart';
+import 'package:todo/view/home.dart';
+import 'package:todo/view/stat.dart';
 import 'package:todo/Common%20widgets/tasks_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/Common%20widgets/colorextension.dart';
