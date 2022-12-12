@@ -7,8 +7,8 @@ import 'package:todo/view/stat.dart';
 import 'package:todo/Common%20widgets/tasks_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/Common%20widgets/colorextension.dart';
-import '../Model/AddTask.dart';
-import '../Model/TasksModel.dart';
+import '../domain/AddTask.dart';
+import '../domain/TasksModel.dart';
 import 'notes_screen.dart';
 
 class HomePage extends StatefulWidget {

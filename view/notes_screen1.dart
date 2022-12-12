@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/Model/note_model.dart';
+import 'package:todo/domain/note_model.dart';
 import 'package:intl/intl.dart';
 
 import '../Common widgets/sizedboxx.dart';

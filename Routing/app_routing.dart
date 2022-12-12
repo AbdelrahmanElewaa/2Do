@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../Model/AddTask.dart';
-import '../Model/TasksModel.dart';
-import '../Model/start.dart';
+import '../domain/AddTask.dart';
+import '../domain/TasksModel.dart';
+import '../domain/start.dart';
 import '../Widgets/splashscreen.dart';
 import '../view/account.dart';
 import '../view/home_page.dart';

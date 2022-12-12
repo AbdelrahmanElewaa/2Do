@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:todo/Model/TasksModel.dart';
+import 'package:todo/domain/TasksModel.dart';
 
 import '../view/home_page.dart';
 

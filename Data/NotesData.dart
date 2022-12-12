@@ -1,4 +1,4 @@
-import '../Model/note_model.dart';
+import '../domain/note_model.dart';
 
 final Map<String, int> categories = {
   'Notes': 4,

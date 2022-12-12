@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/Data/TasksData.dart';
 import 'dart:math';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo/Model/AddTask.dart';
-import 'package:todo/Model/taskDescription.dart';
+import 'package:todo/domain/AddTask.dart';
+import 'package:todo/domain/taskDescription.dart';
 import 'package:todo/view/home_page.dart';
 import 'EditTask.dart';
 
