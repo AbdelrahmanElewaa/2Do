@@ -24,14 +24,14 @@ class _SearchBarState extends State<SearchBar> {
         children: [
           Icon(
             Icons.search,
-            color: Color.fromARGB(255, 12, 34, 51),
+            color: Theme.of(context).primaryColor,
           ),
           SizedBox(
             width: 5,
           ),
           Text('Search',
               style: TextStyle(
-                color: Color.fromARGB(255, 12, 34, 51),
+                color: Theme.of(context).primaryColor,
                 fontSize: 20,
               )),
         ],

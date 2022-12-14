@@ -7,7 +7,7 @@ import 'package:todo/Data/TasksData.dart';
 import 'package:todo/Widgets/adddialog.dart';
 import 'package:todo/Widgets/multiselectobj.dart';
 import 'package:todo/Widgets/timepicker.dart';
-import 'package:todo/domain/TasksModel.dart';
+import 'package:todo/Domain/TasksModel.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:todo/view/home.dart';
 
