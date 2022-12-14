@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/domain/AddTask.dart';
 import 'package:todo/domain/taskDescription.dart';
+import 'package:todo/helper/globalKeyGenerator.dart';
 import 'package:todo/view/home_page.dart';
 import 'EditTask.dart';
 import 'TasksModel.dart';
@@ -34,7 +35,9 @@ class TodoItemState extends State<TodoItem> {
 
   final Todo todo;
   final onTodoChanged;
-  final GlobalKey imageGlobalKey = GlobalKey();
+  // final GlobalKey imageGlobalKey = GlobalKey();
+   List<GlobalKey>gk=globalKeyGenerator().addgkfromtodos();
+
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) {
       return const TextStyle(
@@ -127,7 +130,7 @@ class TodoItemState extends State<TodoItem> {
               onPressed:  (context) async {
                 await Future.delayed(const Duration(milliseconds: 500),
                         (){
-                      TodoListState.listClick(imageGlobalKey);
+                      TodoListState.listClick(gk[globalKeyGenerator.nextkeyid()]);
                     });
 
               },
@@ -153,7 +156,7 @@ class TodoItemState extends State<TodoItem> {
               onTodoChanged(todo);
             },
             leading: Container(
-              key: imageGlobalKey,
+              key: gk[globalKeyGenerator.nextkeyid()],
               child: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined,
