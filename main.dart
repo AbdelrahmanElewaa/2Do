@@ -18,8 +18,9 @@ class TodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         //* Application colors
-        primaryColor: Color.fromARGB(255, 255, 255, 255),
-        scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243),
+        secondaryHeaderColor: Color.fromARGB(255, 94, 94, 94),
+        primaryColor: Color(0xFFF9F9F9),
+        scaffoldBackgroundColor: Color(0xFFE5E5E5),
         colorScheme: ColorScheme.light(
             primary: Color.fromARGB(255, 0, 0, 0),
             secondary: Color.fromARGB(255, 71, 181, 255)),
