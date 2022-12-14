@@ -5,7 +5,7 @@ import 'package:todo/Common%20widgets/searchbar.dart';
 import '../Common widgets/sizedboxx.dart';
 import '../Common widgets/textt.dart';
 import '../Data/NotesData.dart';
-import '../Common widgets/neww.dart';
+import '../Common widgets/notes_tabs.dart';
 
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables

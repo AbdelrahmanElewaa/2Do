@@ -127,7 +127,7 @@ class _NotesScreenState extends State<NotesScreen>
             height: 280.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: categories.length + 1,
+              // itemCount: categories.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
                   return SizedBoxx(w: 80.0);
