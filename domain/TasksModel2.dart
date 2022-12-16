@@ -41,7 +41,7 @@ class TodoItemState extends ConsumerWidget{
   final Todo todo;
   final onTodoChanged;
   // final GlobalKey imageGlobalKey = GlobalKey();
-   List<GlobalKey>gk=globalKeyGenerator().addgkfromtodos();
+  //  List<GlobalKey>gk=globalKeyGenerator().addgkfromtodos();
 
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) {
@@ -137,7 +137,7 @@ class TodoItemState extends ConsumerWidget{
               onPressed:  (context) async {
                 await Future.delayed(const Duration(milliseconds: 500),
                         (){
-                      TodoListState.listClick(gk[globalKeyGenerator.nextkeyid()]);
+                      // TodoListState.listClick(gk[globalKeyGenerator.nextkeyid()]);
                     });
 
               },
@@ -163,7 +163,7 @@ class TodoItemState extends ConsumerWidget{
               onTodoChanged(todo);
             },
             leading: Container(
-              key: gk[globalKeyGenerator.nextkeyid()],
+              // key: gk[globalKeyGenerator.nextkeyid()],
               child: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined,

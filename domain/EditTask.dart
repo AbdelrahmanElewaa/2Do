@@ -132,8 +132,8 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
                         addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
-                        NotificationService().editNotification(
-                          todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
+                        // NotificationService().editNotification(
+                        //   todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
                         todos.remove(todo);
                           showUpdatedDialog();
                       };
