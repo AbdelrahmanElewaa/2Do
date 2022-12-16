@@ -1,6 +1,7 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Data/TasksData.dart';
 import 'dart:math';
@@ -12,26 +13,30 @@ import 'package:todo/view/home_page.dart';
 import 'EditTask.dart';
 import 'TasksModel.dart';
 
-class TodoItem extends StatefulWidget {
+// for easy access
+import 'package:todo/Data/providers.dart';
 
-  TodoItem({
-    required this.todo,
-    required this.onTodoChanged,
-  }) : super(key: ObjectKey(todo));
 
-  final Todo todo;
-  final onTodoChanged;
+// class TodoItem extends StatefulWidget {
+//
+//   TodoItem({
+//     required this.todo,
+//     required this.onTodoChanged,
+//   }) : super(key: ObjectKey(todo));
+//
+//   final Todo todo;
+//   final onTodoChanged;
+//
+//   @override
+//   TodoItemState createState()  => TodoItemState(todo: todo, onTodoChanged: onTodoChanged);
+//
+// }
 
-  @override
-  TodoItemState createState()  => TodoItemState(todo: todo, onTodoChanged: onTodoChanged);
-
-}
-
-class TodoItemState extends State<TodoItem> {
+class TodoItemState extends ConsumerWidget{
   TodoItemState({
     required this.todo,
     required this.onTodoChanged,
-  }) : super( );
+  }) : super(key: ObjectKey(todo));
 
   final Todo todo;
   final onTodoChanged;
@@ -54,7 +59,9 @@ class TodoItemState extends State<TodoItem> {
     );
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(todoprovider);
+// data.
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Slidable(
@@ -66,7 +73,7 @@ class TodoItemState extends State<TodoItem> {
               key: ValueKey("delete"),
               onDismissed: ()
               {
-                todos.remove(todo);
+                data.remove(todo);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor:  Color.fromARGB(255, 71, 181, 255),
@@ -90,7 +97,7 @@ class TodoItemState extends State<TodoItem> {
             ),
             SlidableAction(
               onPressed: (context) {
-                todos.remove(todo);
+                data.remove(todo);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor:  Color.fromARGB(255, 71, 181, 255),

@@ -62,7 +62,7 @@ class TodoListState extends State<TodoList> {
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.symmetric(vertical: 8.0),
             children: todos.map((Todo todo) {
-              return TodoItem(
+              return TodoItemState(
                 todo: todo,
                 onTodoChanged: handleTodoChange,
               );
