@@ -12,7 +12,6 @@ import 'EditTask.dart';
 import 'TasksModel2.dart';
 
 class TodoList extends StatefulWidget {
-
   @override
   TodoListState createState() => TodoListState();
 }
@@ -63,7 +62,7 @@ class TodoListState extends State<TodoList> {
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.symmetric(vertical: 8.0),
             children: todos.map((Todo todo) {
-              return TodoItemState(
+              return TodoItem(
                 todo: todo,
                 onTodoChanged: handleTodoChange,
               );

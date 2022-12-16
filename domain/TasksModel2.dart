@@ -32,8 +32,8 @@ import 'package:todo/Data/providers.dart';
 //
 // }
 
-class TodoItemState extends ConsumerWidget{
-  TodoItemState({
+class TodoItem extends ConsumerWidget{
+  TodoItem({
     required this.todo,
     required this.onTodoChanged,
   }) : super(key: ObjectKey(todo));
