@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Routing/app_routing.dart';
 import 'helper/notificationservice.dart';
 
@@ -35,5 +36,5 @@ class TodoApp extends StatelessWidget {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
-  runApp(TodoApp());
+  runApp( ProviderScope(child: TodoApp()));
 }
