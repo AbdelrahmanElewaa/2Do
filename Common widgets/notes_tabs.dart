@@ -23,7 +23,7 @@ class MySquare extends StatelessWidget {
           height: 60,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(10.0)),
+              borderRadius: BorderRadius.circular(0.0)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

@@ -19,6 +19,7 @@ class TodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         //* Application colors
+        splashColor: Color(0xFF000000),
         secondaryHeaderColor: Color.fromARGB(255, 94, 94, 94),
         primaryColor: Color(0xFFF9F9F9),
         scaffoldBackgroundColor: Color(0xFFE5E5E5),
@@ -36,5 +37,5 @@ class TodoApp extends StatelessWidget {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
-  runApp( ProviderScope(child: TodoApp()));
+  runApp(ProviderScope(child: TodoApp()));
 }

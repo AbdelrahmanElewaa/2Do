@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Common%20widgets/searchbar.dart';
@@ -20,7 +21,6 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  final DateFormat _dateFormatter = DateFormat.MMMEd();
   final petsRepository = PetsRepository.instance;
   List<Pet> pets = [];
   @override
@@ -46,7 +46,26 @@ class _NotesScreenState extends State<NotesScreen> {
       ),
       child: Column(
         children: [
-          Textt(text: 'Notes', size: 32.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 140.0),
+                child: Textt(text: 'Notes', size: 32.0),
+              )),
+              IconButton(
+                splashRadius: 20.0,
+                icon: Icon(
+                  UniconsLine.plus,
+                ),
+                color: Theme.of(context).iconTheme.color,
+                onPressed: () {
+                  GoRouter.of(context).go('/notesdetails');
+                },
+              ),
+            ],
+          ),
           SizedBoxx(
             h: 12.0,
           ),
@@ -58,21 +77,72 @@ class _NotesScreenState extends State<NotesScreen> {
             child: ListView.builder(
                 itemCount: pets.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return MySquare(
-                    title: ' ${pets[index].title}',
-                    content: '${pets[index].content}',
-                    time: '${pets[index].date}',
+                  return Slidable(
+                    key: const ValueKey(0),
+
+                    // The start action pane is the one at the left or the top side.
+                    startActionPane: ActionPane(
+                      // A motion is a widget used to control how the pane animates.
+                      motion: const StretchMotion(),
+
+                      // A pane can dismiss the Slidable.
+                      dismissible: DismissiblePane(
+                        onDismissed: () {
+                          int? id = pets[index].id;
+                          petsRepository.delete(id).then((rowsDeleted) =>
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Note deleted'))));
+                        },
+                      ),
+
+                      // All actions are defined in the children parameter.
+                      children: [
+                        // A SlidableAction can have an icon and/or a label.
+                        SlidableAction(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15)),
+                          onPressed: (BuildContext context) {},
+                          backgroundColor: Color(0xFFFE4A49),
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                        ),
+                      ],
+                    ),
+
+                    // The end action pane is the one at the right or the bottom side.
+                    // endActionPane: ActionPane(
+                    //   motion: ScrollMotion(),
+                    //   children: [
+                    //     SlidableAction(
+                    //       // An action can be bigger than the others.
+
+                    //       onPressed: (BuildContext context) {},
+                    //       backgroundColor: Color(0xFF7BC043),
+                    //       foregroundColor: Colors.white,
+                    //       icon: Icons.archive,
+                    //       label: 'Archive',
+                    //     ),
+                    //     SlidableAction(
+                    //       borderRadius: BorderRadius.only(
+                    //           topRight: Radius.circular(15),
+                    //           bottomRight: Radius.circular(15)),
+                    //       onPressed: (BuildContext context) {},
+                    //       backgroundColor: Color(0xFF0392CF),
+                    //       foregroundColor: Colors.white,
+                    //       icon: Icons.save,
+                    //       label: 'Save',
+                    //     ),
+                    //   ],
+                    // ),
+                    child: MySquare(
+                      title: ' ${pets[index].title}',
+                      content: '${pets[index].content}',
+                      time: '${pets[index].date}',
+                    ),
                   );
                 }),
           ),
-          ElevatedButton.icon(
-              onPressed: () {
-                GoRouter.of(context).go('/notesdetails');
-              },
-              icon: Icon(
-                UniconsLine.plus_square,
-              ),
-              label: Text('Add'))
         ],
       ),
     )));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:unicons/unicons.dart';
 
 import '../Common widgets/textt.dart';
@@ -14,6 +15,8 @@ class NotesDetails extends StatefulWidget {
 
 class _NotesDetailsState extends State<NotesDetails> {
   final petsRepository = PetsRepository.instance;
+  final DateFormat _dateFormatter = DateFormat.MMMEd();
+
   //controllers used in insert/update operation UI
   TextEditingController idUpdateController = TextEditingController();
   TextEditingController titleController = TextEditingController();
@@ -28,6 +31,7 @@ class _NotesDetailsState extends State<NotesDetails> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             leading: IconButton(
+                splashRadius: 20.0,
                 icon: Icon(Icons.arrow_back_ios_new,
                     color: Theme.of(context).colorScheme.primary),
                 onPressed: () {
@@ -35,10 +39,10 @@ class _NotesDetailsState extends State<NotesDetails> {
                       contentController.text.isNotEmpty) {
                     String title = titleController.text;
                     String content = contentController.text;
-                    String date = '${DateTime.now()}';
+                    String date = '${_dateFormatter.format(DateTime.now())}';
                     petsRepository.insert(title, content, date).then((id) =>
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Pet $id inserted successfully'))));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Note Added'))));
                   }
                   Navigator.of(context).pop();
                 }),
