@@ -5,7 +5,6 @@ import 'package:todo/Common%20widgets/searchbar.dart';
 import 'package:unicons/unicons.dart';
 import '../Common widgets/sizedboxx.dart';
 import '../Common widgets/textt.dart';
-import '../Data/NotesData.dart';
 import '../Common widgets/notes_tabs.dart';
 import '../Data/notes_repository.dart';
 import '../domain/notes.dart';
