@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../Data/HiveDatabase.dart';
+import '../Data/TaskDataHive.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
-
-
-// class TodoItem extends StatefulWidget {
-//
-//   TodoItem({
-//     required this.todo,
-//     required this.onTodoChanged,
-//   }) : super(key: ObjectKey(todo));
-//
-//   final Todo todo;
-//   final onTodoChanged;
-//
-//   @override
-//   TodoItemState createState()  => TodoItemState(todo: todo, onTodoChanged: onTodoChanged);
-//
-// }
 
 class TodoItem extends ConsumerWidget{
   TodoItem({
@@ -29,6 +16,8 @@ class TodoItem extends ConsumerWidget{
 
   final Todo todo;
   final onTodoChanged;
+  final _myBox = Hive.box<TodoHive>('todobox');
+  ToDoDataBase db = ToDoDataBase();
   // final GlobalKey imageGlobalKey = GlobalKey();
   //  List<GlobalKey>gk=globalKeyGenerator().addgkfromtodos();
 
@@ -50,6 +39,7 @@ class TodoItem extends ConsumerWidget{
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(todoprovider);
+    db.todos=data;
 // data.
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -63,6 +53,7 @@ class TodoItem extends ConsumerWidget{
               onDismissed: ()
               {
                 data.remove(todo);
+                // db
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor:  Color.fromARGB(255, 71, 181, 255),
@@ -87,6 +78,8 @@ class TodoItem extends ConsumerWidget{
             SlidableAction(
               onPressed: (context) {
                 data.remove(todo);
+                db.todos=data;
+                db.updateDataBase();
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor:  Color.fromARGB(255, 71, 181, 255),

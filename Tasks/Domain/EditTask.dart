@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/Tasks/Widgets/multiselectobj.dart';
 import '../../Home/View/home_page.dart';
+import '../Data/HiveDatabase.dart';
+import '../Data/TaskDataHive.dart';
 import '../Widgets/timepickerobj.dart';
 
 class EditTask extends StatefulWidget {
@@ -33,6 +36,10 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   late AnimationController lc;
+  final _myBox = Hive.box<TodoHive>('todobox');
+  ToDoDataBase db = ToDoDataBase();
+
+
 
   @override
   void initState() {
@@ -54,6 +61,13 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
         );
       }
     });
+
+    if (_myBox.get("todolist") == null) {
+      db.createInitialData();
+    } else {
+      // there already exists data
+      db.loadData();
+    }
   }
   @override
   void dispose() {
@@ -121,10 +135,10 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
-                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+                        db.addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                         // NotificationService().editNotification(
                         //   todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
-                        todos.remove(todo);
+                        db.todos.remove(todo);
                           showUpdatedDialog();
                       };
                     },
