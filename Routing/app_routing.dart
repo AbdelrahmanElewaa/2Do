@@ -3,17 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../domain/AddTask.dart';
-import '../domain/TasksModel.dart';
-import '../domain/start.dart';
-import '../Widgets/splashscreen.dart';
-import '../view/account.dart';
-import '../view/home_page.dart';
-import '../view/login.dart';
-import '../view/notes_details.dart';
-import '../view/settings.dart';
-import '../view/signup.dart';
-import '../view/stat.dart';
+import '../Home/View/home_page.dart';
+import '../Tasks/Domain/AddTask.dart';
+import '../Tasks/Domain/TasksModel.dart';
+// import '../domain/TasksModel.dart';
+import '../Shared/View/start.dart';
+import '../Shared/View/splashscreen.dart';
+import '../User/View/account.dart';
+// import '../view/home_page.dart';
+import '../User/View/login.dart';
+import '../Notes/View/notes_details.dart';
+import '../User/View/settings.dart';
+import '../User/View/signup.dart';
+import '../Statistics/View/stat.dart';
 
 final GoRouter router = GoRouter(
   routes: <GoRoute>[
