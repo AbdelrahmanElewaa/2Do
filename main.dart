@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:todo/Data/TaskDataHive.dart';
 import 'Routing/app_routing.dart';
 import 'helper/notificationservice.dart';
 
@@ -34,7 +37,14 @@ class TodoApp extends StatelessWidget {
   }
 }
 
-void main() {
+void main() async{
+  // init the hive
+  await Hive.initFlutter();
+
+  // open a box
+  Hive.registerAdapter(TodoHiveAdapter());
+  await Hive.openBox<TodoHive>('todobox');
+  // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
   runApp(ProviderScope(child: TodoApp()));
