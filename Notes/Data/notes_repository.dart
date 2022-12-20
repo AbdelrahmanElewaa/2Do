@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import '../../Common widgets/constants.dart';
 import '../../Shared/Widgets/constants.dart';
 import '../../data/db_helper.dart';
 import '../Domain/notes.dart';
-// import '../../domain/notes.dart';
 
 class PetsRepository {
   //singleton pattern

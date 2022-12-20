@@ -1,20 +1,8 @@
-import 'package:add_to_cart_animation/add_to_cart_animation.dart';
-import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
-import 'dart:math';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo/Tasks/Domain/AddTask.dart';
-import 'package:todo/Tasks/View/taskDescription.dart';
-import 'package:todo/helper/globalKeyGenerator.dart';
-// import 'package:todo/view/home_page.dart';
-// import '../Tasks/Domain/EditTask.dart';
 import 'EditTask.dart';
-import 'TasksModel.dart';
-
-// for easy access
 import 'package:todo/Tasks/Data/providers.dart';
 
 

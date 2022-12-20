@@ -1,18 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:todo/Home/View/home.dart';
 import 'package:todo/Statistics/View/stat.dart';
-import 'package:todo/Home/Widgets/tasks_tile.dart';
 import 'package:flutter/material.dart';
-
 import '../../Notes/View/notes_screen.dart';
 import '../../Tasks/Domain/TasksModel.dart';
-// import 'package:todo/Common%20widgets/colorextension.dart';
-// import '../Tasks/Domain/AddTask.dart';
-// import '../domain/TasksModel.dart';
-// import '../Notes/View/notes_screen.dart';
 
 class HomePage extends StatefulWidget {
   int selectedIndex;

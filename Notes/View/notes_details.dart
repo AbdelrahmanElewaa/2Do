@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:unicons/unicons.dart';
-
-// import '../../Common widgets/textt.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../Data/notes_repository.dart';
-// import '../../domain/notes.dart';
 
 class NotesDetails extends StatefulWidget {
   final bool update;

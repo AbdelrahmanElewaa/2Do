@@ -7,13 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
-// import '../../Common widgets/sizedboxx.dart';
-// import '../../Common widgets/textt.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
-  
+
   @override
   State<SignupPage> createState() => _SignupPageState();
 }

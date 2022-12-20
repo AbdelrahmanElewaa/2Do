@@ -7,8 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
-// import '../../Common widgets/sizedboxx.dart';
-// import '../../Common widgets/textt.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

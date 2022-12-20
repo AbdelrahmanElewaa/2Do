@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Shared/Widgets/textt.dart';
-// import '../../Common widgets/textt.dart';
 
 class MySquare extends StatelessWidget {
   final title;

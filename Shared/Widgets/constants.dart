@@ -1,6 +1,4 @@
 
-// import '../domain/notes.dart';
-
 enum Columns {
   id,
   title,

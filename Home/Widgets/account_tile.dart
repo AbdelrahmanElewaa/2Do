@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
-// import 'package:todo/Common%20widgets/sizedboxx.dart';
 
 class ProfileListItem extends StatelessWidget {
   final header;

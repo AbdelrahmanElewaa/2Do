@@ -1,10 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-// import '../Common widgets/constants.dart';
 import '../Notes/Domain/notes.dart';
 import '../Shared/Widgets/constants.dart';
-// import '../domain/notes.dart';
 
 class DBHelper {
   final _databaseName = kDatabaseName;

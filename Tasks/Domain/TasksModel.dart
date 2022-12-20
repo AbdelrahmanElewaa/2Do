@@ -3,16 +3,7 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
-import 'dart:math';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo/Tasks/Domain/AddTask.dart';
-
 import 'TasksModel2.dart';
-// imp'package:todo/Tasks/View/taskDescription.dart'art';
-// import 'package:todo/view/home_page.dart';
-// import '../Tasks/Domain/EditTask.dart';
-// import 'TasksModel2.dart';
-
 class TodoList extends StatefulWidget {
   @override
   TodoListState createState() => TodoListState();

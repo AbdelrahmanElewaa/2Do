@@ -5,9 +5,6 @@ import 'package:todo/Home/Widgets/account_tile.dart';
 
 import '../../Shared/Widgets/textt.dart';
 
-// import '../../Common widgets/sizedboxx.dart';
-// import '../../Common widgets/textt.dart';
-
 class Account extends StatelessWidget {
   const Account({super.key});
 

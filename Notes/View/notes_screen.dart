@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:todo/Common%20widgets/searchbar.dart';
 import 'package:unicons/unicons.dart';
-// import '../../Common widgets/sizedboxx.dart';
-// import '../../Common widgets/textt.dart';
 import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
 import '../Data/notes_repository.dart';
-// import '../../domain/notes.dart';
-
-// ignore_for_file: prefer_const_constructors
-// ignore_for_file: prefer_const_literals_to_create_immutables
 
 class NotesScreen extends StatefulWidget {
   NotesScreen({super.key});
