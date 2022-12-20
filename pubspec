@@ -55,6 +55,8 @@ dependencies:
   dismissible_page: ^0.7.3
   add_to_cart_animation: ^1.0.1
   flutter_riverpod: ^2.1.1
+  unicons: ^2.1.0
+  sqflite: ^2.2.2
 
 
 
