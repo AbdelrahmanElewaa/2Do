@@ -6,21 +6,6 @@ import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
 
-// class TodoItem extends StatefulWidget {
-//
-//   TodoItem({
-//     required this.todo,
-//     required this.onTodoChanged,
-//   }) : super(key: ObjectKey(todo));
-//
-//   final Todo todo;
-//   final onTodoChanged;
-//
-//   @override
-//   TodoItemState createState()  => TodoItemState(todo: todo, onTodoChanged: onTodoChanged);
-//
-// }
-
 class TodoItem extends ConsumerWidget{
   TodoItem({
     required this.todo,
@@ -29,8 +14,6 @@ class TodoItem extends ConsumerWidget{
 
   final Todo todo;
   final onTodoChanged;
-  // final GlobalKey imageGlobalKey = GlobalKey();
-  //  List<GlobalKey>gk=globalKeyGenerator().addgkfromtodos();
 
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) {
@@ -111,11 +94,7 @@ class TodoItem extends ConsumerWidget{
               // An action can be bigger than the others.
               flex: 1,
               onPressed: (context) {
-                // Navigator.of(context).push(
-                // MaterialPageRoute(
-                // builder: (context) => EditTask(todo: todo),
-                // ),
-                // );
+
               },
               backgroundColor: Color(0xFF7BC043),
               foregroundColor: Colors.white,
@@ -124,10 +103,7 @@ class TodoItem extends ConsumerWidget{
             ),
             SlidableAction(
               onPressed:  (context) async {
-                await Future.delayed(const Duration(milliseconds: 500),
-                        (){
-                      // TodoListState.listClick(gk[globalKeyGenerator.nextkeyid()]);
-                    });
+
 
               },
               backgroundColor: Color(0xFF0392CF),
