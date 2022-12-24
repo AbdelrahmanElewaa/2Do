@@ -9,20 +9,19 @@ class globalKeyGenerator{
      GlobalKey string = GlobalKey();
     gk.add(string);
   }
-
   deletegk(int index){
     gk.removeAt(index);
   }
    List<GlobalKey> addgkfromtodos(){
     // int i;
-    // for( int i=0;i<todos.length;i++){
-    //   addgk(i.toString());
+    for( int i=0;i<todos.length;i++){
+      addgk(i.toString());
 
 
       // nextkeyid();
-    // }
+    }
     return gk;
   }
-  // static int nextkeyid() => (keyid++)%todos.length;
+  static int nextkeyid() => (keyid++)%todos.length;
 
 }

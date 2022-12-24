@@ -2,14 +2,8 @@ import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
-import '../Data/HiveDatabase.dart';
-import '../Data/TaskDataHive.dart';
 import 'TasksModel2.dart';
-import 'package:stack_trace/stack_trace.dart' as stack_trace;
-
-
 class TodoList extends StatefulWidget {
   @override
   TodoListState createState() => TodoListState();
@@ -20,27 +14,10 @@ class TodoListState extends State<TodoList> {
   static GlobalKey<CartIconKey> gkCart = GlobalKey<CartIconKey>();
   static late Function(GlobalKey) runAddToCardAnimation;
   static var _cartQuantityItems = 0;
-
-  final _myBox = Hive.box<TodoHive>('todobox');
-  ToDoDataBase db = ToDoDataBase();
-
   @override
   void initState() {
-    FlutterError.demangleStackTrace = (StackTrace stack) {
-      if (stack is stack_trace.Trace) return stack.vmTrace;
-      if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
-      return stack;
-    };
-    // if this is the 1st time ever openin the app, then create default data
-    if (_myBox.get("todolist") == null) {
-      db.createInitialData();
-    } else {
-      // there already exists data
-      db.loadData();
-    }
-
-    super.initState();
-  }// final List<Todo> _todos = <Todo>[];
+    todos;
+  } // final List<Todo> _todos = <Todo>[];
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +54,7 @@ class TodoListState extends State<TodoList> {
           ReorderableListView(
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.symmetric(vertical: 8.0),
-            children: db.todos.map((Todo todo) {
+            children: todos.map((Todo todo) {
               return TodoItem(
                 todo: todo,
                 onTodoChanged: handleTodoChange,
@@ -88,8 +65,8 @@ class TodoListState extends State<TodoList> {
         if (oldIndex < newIndex) {
         newIndex -= 1;
         }
-        final  widget = db.todos.removeAt(oldIndex);
-        db.todos.insert(newIndex, widget);
+        final  widget = todos.removeAt(oldIndex);
+        todos.insert(newIndex, widget);
         });
         },
           // children: TodoItem,
@@ -116,10 +93,9 @@ class TodoListState extends State<TodoList> {
     if (oldIndex < newIndex) {
       newIndex -= 1;
     }
-
-    final item = db.todos.removeAt(oldIndex);
+    final item = todos.removeAt(oldIndex);
     setState(() {
-      db.todos.insert(newIndex, item);
+      todos.insert(newIndex, item);
     });
   }
   static void listClick(GlobalKey gkImageContainer) async {

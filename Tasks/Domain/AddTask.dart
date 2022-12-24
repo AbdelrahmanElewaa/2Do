@@ -1,13 +1,10 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import '../../helper/notificationservice.dart';
-import '../Data/HiveDatabase.dart';
-import '../Data/TaskDataHive.dart';
 import '../Widgets/multiselect.dart';
 import '../Widgets/timepicker.dart';
 
@@ -29,9 +26,6 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
   late AnimationController lottieController;
   TimeOfDay timeOfDay = TimeOfDay.now();
 
-  final _myBox = Hive.box<TodoHive>('todobox');
-  ToDoDataBase db = ToDoDataBase();
-
   @override
   void initState() {
     super.initState();
@@ -49,15 +43,6 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
 
       }
     });
-
-    if (_myBox.get("todolist") == null) {
-      db.createInitialData();
-    } else {
-      // there already exists data
-      db.loadData();
-    }
-
-
   }
   @override
   void dispose() {
@@ -138,10 +123,9 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         child: const Text('Submit'),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-
-                            db.addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+                            addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                             NotificationService().showNotification(
-                                db.todos.last.id, nameController.text, descriptionController.text, newtime);
+                                todos.last.id, nameController.text, descriptionController.text, newtime);
                             showSuccessfulDialog();
                           };
                         },
