@@ -6,12 +6,21 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/Shared/Widgets/sizedboxx.dart';
 import 'package:todo/Shared/Widgets/textt.dart';
 import 'drawerrheader.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/provider/dark_theme_provider.dart';
 
-class Drawerr extends StatelessWidget {
+class Drawerr extends StatefulWidget {
   const Drawerr({super.key});
 
   @override
+  State<Drawerr> createState() => _DrawerrState();
+}
+
+class _DrawerrState extends State<Drawerr> {
+  @override
   Widget build(BuildContext context) {
+    final themeState = Provider.of<DarkThemeProvider>(context);
+
     return Drawer(
       elevation: 0.0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -32,11 +41,19 @@ class Drawerr extends StatelessWidget {
               GoRouter.of(context).go('/login');
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.brush),
-            title: const Text('Theme'),
-            
-            
+          Container(
+            child: SwitchListTile(
+              title: Text('Theme'),
+              secondary: Icon(themeState.getDarkTheme
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined),
+              onChanged: (bool value) {
+                setState(() {
+                  themeState.setDarkTheme = value;
+                });
+              },
+              value: themeState.getDarkTheme,
+            ),
           ),
           SizedBoxx(h: 310.0),
           Column(
