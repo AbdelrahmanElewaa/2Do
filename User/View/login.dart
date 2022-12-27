@@ -51,13 +51,10 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Center(
-                      child: Text(
-                        'Welcome back! Login with your credentials',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: Textt(
+                        text: 'Welcome back! Login with your credentials',
+                        textAli: TextAlign.center,
+                        size: 20,
                       ),
                     ),
                   ),
