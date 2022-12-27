@@ -1,13 +1,16 @@
+// ignore_for_file: unused_import, prefer_const_constructors, unnecessary_string_interpolations
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:unicons/unicons.dart';
+
 import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
+import '../Data/notes_repository.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
-import '../Data/notes_repository.dart';
+import '../../../globals.dart' as globals;
 import 'notes_searchbar.dart';
 
 class Noteslist extends StatefulWidget {
@@ -22,11 +25,20 @@ class _NoteslistState extends State<Noteslist> {
   List<Pet> pets = [];
   @override
   void initState() {
-    petsRepository.fetchPetList().then((value) {
-      setState(() {
-        pets = value;
+    if (globals.sorting == true) {
+      petsRepository.fetchPetList().then((value) {
+        setState(() {
+          pets = value;
+        });
       });
-    });
+    } else {
+      petsRepository.fetchPetListAsc().then((value) {
+        setState(() {
+          pets = value;
+        });
+      });
+    }
+
     super.initState();
   }
 
