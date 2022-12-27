@@ -41,6 +41,10 @@ class _StatState extends State<Stat> {
                   //Calender
 
                   Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
                     height: 395,
                     child: TableCalendar(
                       firstDay: DateTime.utc(2010, 10, 16),

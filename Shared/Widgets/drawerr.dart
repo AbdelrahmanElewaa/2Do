@@ -28,22 +28,22 @@ class _DrawerrState extends State<Drawerr> {
         children: [
           DrawerrHeader(),
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text(' My Profile '),
+            leading: const Icon(Icons.person,),
+           title: Textt(text:'My Profile' ,size: 15.0),
             onTap: () {
               GoRouter.of(context).go('/account');
             },
           ),
           ListTile(
             leading: const Icon(Icons.login),
-            title: const Text(' Login '),
+           title: Textt(text:'Login' ,size: 15.0),
             onTap: () {
               GoRouter.of(context).go('/login');
             },
           ),
           Container(
             child: SwitchListTile(
-              title: Text('Theme'),
+              title: Textt(text:'Theme' ,size: 15.0),
               secondary: Icon(themeState.getDarkTheme
                   ? Icons.dark_mode_outlined
                   : Icons.light_mode_outlined),

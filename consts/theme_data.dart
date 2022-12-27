@@ -13,7 +13,7 @@ class Styles {
             primary: isDarkTheme ?Colors.white: Color(0xFF252525),
             secondary: Color.fromARGB(255, 71, 181, 255)),
         iconTheme: IconThemeData(
-          color: Color.fromARGB(255, 0, 0, 0),
+          color:isDarkTheme ?Colors.white: Color(0xFF252525),
         ),
     );
   }
