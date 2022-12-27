@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +10,7 @@ import '../../Shared/Widgets/textt.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
 import '../Data/notes_repository.dart';
+import '../../../globals.dart' as globals;
 import 'notes_list.dart';
 import 'notes_searchbar.dart';
 
@@ -52,6 +55,21 @@ class _NotesScreenState extends State<NotesScreen> {
                 padding: const EdgeInsets.only(left: 140.0),
                 child: Textt(text: 'Notes', size: 32.0),
               )),
+              IconButton(
+                splashRadius: 20.0,
+                icon: Icon(
+                  UniconsLine.exchange_alt,
+                ),
+                color: Theme.of(context).iconTheme.color,
+                onPressed: () {
+                  if (globals.sorting == true) {
+                    globals.sorting = false;
+                  } else {
+                    globals.sorting = true;
+                  }
+                  setState(() {});
+                },
+              ),
               IconButton(
                 splashRadius: 20.0,
                 icon: Icon(
