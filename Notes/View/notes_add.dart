@@ -6,16 +6,17 @@ import '../Data/notes_repository.dart';
 class NotesAdd extends StatefulWidget {
   final bool update;
 
-  const NotesAdd(
-      {super.key,
-      this.update = false,});
+  const NotesAdd({
+    super.key,
+    this.update = false,
+  });
   @override
   State<NotesAdd> createState() => _NotesAddState();
 }
 
 class _NotesAddState extends State<NotesAdd> {
   final petsRepository = PetsRepository.instance;
-  final DateFormat _dateFormatter = DateFormat.MMMEd();
+  final DateFormat _dateFormatter = DateFormat.yMd().add_jm();
 
   //controllers used in insert/update operation UI
   TextEditingController idUpdateController = TextEditingController();
@@ -36,15 +37,15 @@ class _NotesAddState extends State<NotesAdd> {
               icon: Icon(Icons.arrow_back_ios_new,
                   color: Theme.of(context).colorScheme.primary),
               onPressed: () {
-                  if (titleController.text.isNotEmpty ||
-                      contentController.text.isNotEmpty) {
-                    String title = titleController.text;
-                    String content = contentController.text;
-                    String date = '${_dateFormatter.format(DateTime.now())}';
-                    petsRepository.insert(title, content, date).then((id) =>
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Note Added'))));
-                  }
+                if (titleController.text.isNotEmpty ||
+                    contentController.text.isNotEmpty) {
+                  String title = titleController.text;
+                  String content = contentController.text;
+                  String date = '${_dateFormatter.format(DateTime.now())}';
+                  petsRepository.insert(title, content, date).then((id) =>
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Note Added'))));
+                }
                 Navigator.of(context).pop();
               },
             ),
