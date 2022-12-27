@@ -24,7 +24,7 @@ class multiselectState extends State<multiselect>{
               ),
             ),
             decoration: ShapeDecoration(
-              color: Color.fromRGBO(47, 44, 47, 0.1450980392156863),
+              color:  Theme.of(context).primaryColor,
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),

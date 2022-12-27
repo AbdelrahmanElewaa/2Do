@@ -85,10 +85,14 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         return null;
                       },
                       controller: nameController,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.label_important_rounded),
+                      decoration:  InputDecoration(
+                        icon: Icon(Icons.label_important_rounded, color: Theme.of(context).colorScheme.primary,),
+                        
                         hintText: 'Enter task name',
+                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                         labelText: 'Name',
+                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary,)
+                        
                       ),
                     ),
 
@@ -101,10 +105,12 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         return null;
                       },
                       maxLines: 5,
-                      decoration: const InputDecoration(
-                        icon: const Icon(Icons.edit_note),
+                      decoration: InputDecoration(
+                        icon:  Icon(Icons.edit_note, color: Theme.of(context).colorScheme.primary,),
                         hintText: 'Enter task description',
+                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                         labelText: 'Description',
+                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                       ),
                     ),
 

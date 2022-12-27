@@ -48,10 +48,11 @@ class timepickerState extends State<timepicker> {
                       return null;
                     },
                     controller: timeinput,
-                    decoration: const InputDecoration(
-                      icon: const Icon(Icons.timer),
+                    decoration:  InputDecoration(
+                      icon:  Icon(Icons.timer, color: Theme.of(context).colorScheme.primary,),
                       // hintText: 'Enter time of reminder',
                       labelText: 'Reminder',
+                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                     ),
                     readOnly: true,
                     onTap:() {
