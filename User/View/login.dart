@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                   Formm(htext: 'Email'),
                   SizedBoxx(h: 12.0),
                   //* Password textfield
-                  Formm(htext: 'Password'),
+                  Formm(htext: 'Password', obsectext: true),
                   SizedBoxx(h: 4.0),
                   Container(
                     padding: const EdgeInsets.all(25),
