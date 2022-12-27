@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Textt extends StatelessWidget {
   final text;
   final size;
-  final color;
+  final colorr;
   final decorationn;
   final mlines;
   final textAli;
@@ -12,7 +12,7 @@ class Textt extends StatelessWidget {
     Key? key,
     required this.text,
     required this.size,
-    this.color = Colors.black,
+    this.colorr = Colors.black,
     this.decorationn,
     this.mlines,
     this.textAli,
