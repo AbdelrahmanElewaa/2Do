@@ -70,6 +70,7 @@ class Account extends StatelessWidget {
             child: ListView(
               // ignore: prefer_const_literals_to_create_immutables
               //* tiles containing account info
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 ProfileListItem(
                   header: 'Name',
