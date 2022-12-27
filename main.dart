@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart' as p;
-import 'package:todo/Tasks/Data/TaskDataHive.dart';
 import 'package:todo/consts/theme_data.dart';
 import 'package:todo/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -59,13 +58,7 @@ class _TodoAppState extends State<TodoApp> {
   }
 }
 
-void main() async {
-  // init the hive
-  await Hive.initFlutter();
-
-  // open a box
-  Hive.registerAdapter(TodoHiveAdapter());
-  await Hive.openBox<TodoHive>('todobox');
+void main() {
   // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
