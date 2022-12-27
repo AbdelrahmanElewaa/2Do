@@ -11,7 +11,6 @@ import '../../Shared/Widgets/textt.dart';
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
-
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
@@ -171,9 +170,9 @@ class _SignupPageState extends State<SignupPage> {
                           GoRouter.of(context).go('/login');
                         }
                       },
-                      child: Text(
-                        'Sign up',
-                        style: TextStyle(fontSize: 24),
+                      child: Textt(
+                        text: 'Sign up',
+                        size: 24,
                       ),
                     ),
                   ),
