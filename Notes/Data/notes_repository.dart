@@ -35,6 +35,15 @@ class PetsRepository {
     return pets;
   }
 
+  Future<List<Pet>> fetchPetListAsc() async {
+    final allRows = await _dbHelper.queryAllRowsAsc();
+    List<Pet> pets = [];
+    for (var row in allRows) {
+      pets.add(Pet.fromMap(row));
+    }
+    return pets;
+  }
+
   Future<List<Pet>> fetchPetListByName(title) async {
     final allRows = await _dbHelper.queryRows(title);
     List<Pet> petsByTitle = [];
