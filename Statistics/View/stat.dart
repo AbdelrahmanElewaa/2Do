@@ -69,6 +69,7 @@ class _StatState extends State<Stat> {
                               fontSize: 17,
                               fontWeight: FontWeight.bold)),
                       headerStyle: HeaderStyle(
+                        
                           titleTextStyle:
                               TextStyle(color:Theme.of(context).colorScheme.primary)),
                       firstDay: DateTime.utc(2010, 10, 16),
