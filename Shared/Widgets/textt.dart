@@ -7,23 +7,30 @@ class Textt extends StatelessWidget {
   final color;
   final decorationn;
   final mlines;
-  const Textt({
-    Key? key,
-    required this.text,
-    required this.size,
-    this.color = Colors.black,
-    this.decorationn,
-    this.mlines
-  }) : super(key: key);
+  const Textt(
+      {Key? key,
+      required this.text,
+      required this.size,
+      this.color = Colors.black,
+      this.decorationn,
+      this.mlines})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
-            maxLines: mlines,
+        maxLines: mlines,
         style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
-            fontSize: size,
+            fontSize: checkDouble(size),
             color: Theme.of(context).colorScheme.primary,
             decoration: decorationn));
+  }
+
+  double? checkDouble(dynamic value) {
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
   }
 }
