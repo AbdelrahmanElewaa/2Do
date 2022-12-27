@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
 class Formm extends StatelessWidget {
   final htext;
+  final bool obsectext;
   const Formm({
     Key? key,
     this.htext,
+    this.obsectext = false,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class Formm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: TextFormField(
-            //-Validation 
+            //-Validation
             validator: (value) {
               if (value != null && value.length < 7) {
                 return 'Enter minmum 7 characters';
@@ -29,12 +31,12 @@ class Formm extends StatelessWidget {
                 return null;
               }
             },
-            // ignore: prefer_const_constructors
+            obscureText: obsectext,
+
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
-            // ignore: prefer_const_constructors
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: htext,
