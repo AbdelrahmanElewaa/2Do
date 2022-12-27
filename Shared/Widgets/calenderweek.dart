@@ -18,11 +18,12 @@ class _CalenderweekState extends State<Calenderweek> {
       lastDate: DateTime(2030, 11, 20),
       onDateSelected: (date) => print(date),
       leftMargin: 20,
-      monthColor:Theme.of(context).colorScheme.primary,
+      dayNameColor: Color.fromARGB(255, 255, 7, 7),
+      monthColor: Theme.of(context).colorScheme.primary,
       dayColor: Theme.of(context).colorScheme.primary,
       activeDayColor: Theme.of(context).scaffoldBackgroundColor,
       activeBackgroundDayColor: Theme.of(context).colorScheme.secondary,
-      dotsColor: Color(0xFF333A47),
+      dotsColor: Color.fromARGB(255, 0, 89, 255),
       locale: 'en_ISO',
     );
   }
