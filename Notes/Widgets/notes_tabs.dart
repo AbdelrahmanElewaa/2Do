@@ -48,7 +48,7 @@ class MySquare extends StatelessWidget {
                         text: content,
                         size: 12.0,
                         mlines: 1,
-                        color: Theme.of(context).secondaryHeaderColor,
+                        colorr: Theme.of(context).secondaryHeaderColor,
                       ),
                     ),
                     Flexible(
@@ -56,7 +56,7 @@ class MySquare extends StatelessWidget {
                         text: '$time',
                         size: 12.0,
                         mlines: 1,
-                        color: Theme.of(context).secondaryHeaderColor,
+                        colorr: Theme.of(context).secondaryHeaderColor,
                       ),
                     ),
                   ],
