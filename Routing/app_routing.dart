@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../Home/View/home_page.dart';
+import '../Notes/View/notes_add.dart';
 import '../Tasks/Domain/AddTask.dart';
 import '../Tasks/Domain/TasksModel.dart';
 import '../Shared/View/start.dart';
@@ -55,9 +56,14 @@ final GoRouter router = GoRouter(
               SplashScreen(),
         ),
         GoRoute(
-          path: 'notesdetails',
+          path: 'notesdetails/:title/:content/:id',
+          builder: (BuildContext context, GoRouterState state) => NotesDetails(
+              title: state.params["title"], content: state.params["content"],id: state.params["id"]),
+        ),
+        GoRoute(
+          path: 'notesadd',
           builder: (BuildContext context, GoRouterState state) =>
-              NotesDetails(),
+              NotesAdd(),
         ),
         GoRoute(
           path: 'home/:selectedIndex',

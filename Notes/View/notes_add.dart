@@ -2,25 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../Data/notes_repository.dart';
-import '../Domain/notes.dart';
 
-class NotesDetails extends StatefulWidget {
+class NotesAdd extends StatefulWidget {
   final bool update;
-  final content;
-  final title;
-  final id;
 
-  const NotesDetails(
+  const NotesAdd(
       {super.key,
-      this.update = false,
-      required this.title,
-      required this.content,
-      required this.id});
+      this.update = false,});
   @override
-  State<NotesDetails> createState() => _NotesDetailsState();
+  State<NotesAdd> createState() => _NotesAddState();
 }
 
-class _NotesDetailsState extends State<NotesDetails> {
+class _NotesAddState extends State<NotesAdd> {
   final petsRepository = PetsRepository.instance;
   final DateFormat _dateFormatter = DateFormat.MMMEd();
 
@@ -28,12 +21,6 @@ class _NotesDetailsState extends State<NotesDetails> {
   TextEditingController idUpdateController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
-  @override
-  void initState() {
-    titleController.text = widget.title;
-    contentController.text = widget.content;
-    idUpdateController.text = widget.id;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +36,15 @@ class _NotesDetailsState extends State<NotesDetails> {
               icon: Icon(Icons.arrow_back_ios_new,
                   color: Theme.of(context).colorScheme.primary),
               onPressed: () {
-                if (titleController.text != widget.title ||
-                    contentController.text != widget.content) {
-                  Pet pet = Pet(
-                      id: int.parse(idUpdateController.text),
-                      title: titleController.text,
-                      content: contentController.text,
-                      date: '${_dateFormatter.format(DateTime.now())}');
-                  petsRepository.update(pet).then((rowsAffected) =>
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('$rowsAffected rows updated'))));
-                }
+                  if (titleController.text.isNotEmpty ||
+                      contentController.text.isNotEmpty) {
+                    String title = titleController.text;
+                    String content = contentController.text;
+                    String date = '${_dateFormatter.format(DateTime.now())}';
+                    petsRepository.insert(title, content, date).then((id) =>
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Note Added'))));
+                  }
                 Navigator.of(context).pop();
               },
             ),
@@ -68,7 +53,6 @@ class _NotesDetailsState extends State<NotesDetails> {
             padding: const EdgeInsets.all(8.0),
             // ignore: prefer_const_literals_to_create_immutables
             child: Column(children: [
-              Text('${widget.title}'),
               // ignore: prefer_const_constructors
               TextField(
                 controller: titleController,
