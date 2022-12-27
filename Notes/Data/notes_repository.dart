@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../Shared/Data/constants.dart';
-import '../../Helper/db_helper.dart';
+import 'db_helper.dart';
 import '../Domain/notes.dart';
 
 class PetsRepository {
