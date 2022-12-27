@@ -42,7 +42,7 @@ class _StatState extends State<Stat> {
 
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.white70,
                       borderRadius: BorderRadius.circular(20)
                     ),
                     height: 395,
