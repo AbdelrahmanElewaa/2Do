@@ -9,14 +9,15 @@ class MySquare extends StatelessWidget {
   final title;
   final content;
   final time;
+  final id;
 
-  MySquare({super.key, this.title, this.content, this.time});
+  MySquare({super.key, this.title, this.content, this.time, this.id});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).go('/notesdetails');
+        GoRouter.of(context).go('/notesdetails/$title/$content/$id');
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
