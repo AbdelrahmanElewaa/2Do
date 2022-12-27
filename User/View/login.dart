@@ -171,13 +171,12 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () {
                             GoRouter.of(context).go('/signup');
                           },
-                          child: Text('Sign up',
-                              style: GoogleFonts.bebasNeue(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Theme.of(context).colorScheme.secondary,
-                                decoration: TextDecoration.underline,
-                              )),
+                          child: Textt(
+                            text: 'Sign up',
+                            size: 17,
+                            colorr: Theme.of(context).colorScheme.secondary,
+                            decorationn: TextDecoration.underline,
+                          ),
                         ),
                       ),
                     ],
