@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/Home/Widgets/account_tile.dart';
 
 import '../../Shared/Widgets/textt.dart';
+import '../../Shared/Widgets/iconn.dart';
 
 class Account extends StatelessWidget {
   const Account({super.key});
@@ -17,8 +18,7 @@ class Account extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new,
-              color: Theme.of(context).colorScheme.primary),
+          icon: Iconn(icN: Icons.arrow_back_ios_new),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -43,9 +43,9 @@ class Account extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.secondary,
                           shape: BoxShape.circle),
-                      child: Icon(
-                        Icons.mode_edit_outline,
-                        size: 30,
+                      child: Iconn(
+                        icN: Icons.mode_edit_outline,
+                        sizee: 30.0,
                       ),
                     ),
                   ),
