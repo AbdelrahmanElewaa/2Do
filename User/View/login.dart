@@ -66,39 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                   //* Email textfield
                   Formm(htext: 'Email'),
                   SizedBoxx(h: 12.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    //* password text field
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          border:
-                              Border.all(color: Theme.of(context).primaryColor),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: TextFormField(
-                          //-password validation
-                          validator: (value) {
-                            if (value != null && value.length < 7) {
-                              return 'Enter minmum 7 characters';
-                            } else {
-                              return null;
-                            }
-                          },
-                          obscureText: true,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Password',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  //* Password textfield
+                  Formm(htext: 'Password'),
                   SizedBoxx(h: 4.0),
                   Container(
                     padding: const EdgeInsets.all(25),
