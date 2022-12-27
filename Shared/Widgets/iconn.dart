@@ -16,7 +16,14 @@ class Iconn extends StatelessWidget {
     return Icon(
       icN,
       color: Theme.of(context).colorScheme.primary,
-      size: sizee,
+      size: checkDouble(sizee),
     );
+  }
+
+  double? checkDouble(dynamic value) {
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
   }
 }
