@@ -190,13 +190,12 @@ class _SignupPageState extends State<SignupPage> {
                         GoRouter.of(context).go('/login');
                       },
                       //* login switch text
-                      child: Text('Login',
-                          style: GoogleFonts.bebasNeue(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: Theme.of(context).colorScheme.secondary,
-                            decoration: TextDecoration.underline,
-                          )),
+                      child: Textt(
+                        text: 'Login',
+                        size: 17,
+                        colorr: Theme.of(context).colorScheme.secondary,
+                        decorationn: TextDecoration.underline,
+                      ),
                     ),
                   ],
                 ),
