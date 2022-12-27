@@ -28,14 +28,14 @@ class _DrawerrState extends State<Drawerr> {
         children: [
           DrawerrHeader(),
           ListTile(
-            leading: const Icon(Icons.person,),
+            leading: Icon(Icons.person,color: Theme.of(context).colorScheme.primary),
            title: Textt(text:'My Profile' ,size: 15.0),
             onTap: () {
               GoRouter.of(context).go('/account');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.login),
+            leading:  Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
            title: Textt(text:'Login' ,size: 15.0),
             onTap: () {
               GoRouter.of(context).go('/login');
@@ -46,7 +46,7 @@ class _DrawerrState extends State<Drawerr> {
               title: Textt(text:'Theme' ,size: 15.0),
               secondary: Icon(themeState.getDarkTheme
                   ? Icons.dark_mode_outlined
-                  : Icons.light_mode_outlined),
+                  : Icons.light_mode_outlined , color: Theme.of(context).colorScheme.primary,),
               onChanged: (bool value) {
                 setState(() {
                   themeState.setDarkTheme = value;
