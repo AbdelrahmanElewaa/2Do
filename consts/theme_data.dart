@@ -11,7 +11,7 @@ class Styles {
         scaffoldBackgroundColor:  Color(0xFF252525) ,
         colorScheme: ColorScheme.light(
             primary: Colors.white,
-            secondary: Color.fromARGB(255, 71, 181, 255)),
+            secondary: Color(0xFFF3A953)),
         iconTheme: IconThemeData(
           color:Colors.white,
         ),
