@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as p;
 import 'package:todo/Tasks/Data/TaskDataHive.dart';
 import 'package:todo/consts/theme_data.dart';
 import 'package:todo/provider/dark_theme_provider.dart';
@@ -37,11 +37,11 @@ class _TodoAppState extends State<TodoApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-       ChangeNotifierProvider(create: (_) {
+       p.ChangeNotifierProvider(create: (_) {
                 return themeChangeProvider;
               }),
       ],
-      child: Consumer<DarkThemeProvider>(
+      child: p.Consumer<DarkThemeProvider>(
         builder: (context,  themeProvider, child) {
           
           return MaterialApp.router(
@@ -69,5 +69,6 @@ void main() async {
   // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
-  runApp( TodoApp());
+
+  runApp( ProviderScope(child: TodoApp()));
 }
