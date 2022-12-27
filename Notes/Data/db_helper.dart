@@ -58,7 +58,18 @@ class DBHelper {
   // a key-value list of columns.
   Future<List<Map<String, dynamic>>> queryAllRows() async {
     Database db = await database;
-    return await db.query(_table);
+    return await db.query(
+      _table,
+      orderBy: 'date DESC',
+    );
+  }
+
+  Future<List<Map<String, dynamic>>> queryAllRowsAsc() async {
+    Database db = await database;
+    return await db.query(
+      _table,
+      orderBy: 'date ASC',
+    );
   }
 
   // Queries rows based on the argument received
