@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../Shared/Widgets/textt.dart';
 import '../Widgets/profilelistitem.dart';
 
 class Settings extends StatefulWidget {
@@ -35,12 +36,10 @@ class _SettingsState extends State<Settings> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               // *account name
-              Text('Omar mohamed abdel',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35,
-                    color: Color.fromARGB(255, 12, 34, 51),
-                  ))
+              Textt(
+                text: 'Omar mohamed abdel',
+                size: 35,
+              )
             ]),
             Divider(
               height: 50,
@@ -85,4 +84,3 @@ class _SettingsState extends State<Settings> {
     ]);
   }
 }
-
