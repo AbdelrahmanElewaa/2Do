@@ -66,6 +66,10 @@ class TodoItem extends ConsumerWidget{
               foregroundColor: Colors.white,
               icon: Icons.edit,
               label: 'Edit',
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15)
+              ),
             ),
             SlidableAction(
               onPressed: (context) {
@@ -82,6 +86,10 @@ class TodoItem extends ConsumerWidget{
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  bottomRight: Radius.circular(15)
+            ),
             ),
 
           ],
@@ -100,6 +108,10 @@ class TodoItem extends ConsumerWidget{
               foregroundColor: Colors.white,
               icon: Icons.archive,
               label: 'Archive',
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  bottomLeft: Radius.circular(15)
+              ),
             ),
             SlidableAction(
               onPressed:  (context) async {
@@ -110,6 +122,10 @@ class TodoItem extends ConsumerWidget{
               foregroundColor: Colors.white,
               icon: Icons.share,
               label: 'Share',
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  bottomRight: Radius.circular(15)
+              ),
             ),
           ],
         ),
