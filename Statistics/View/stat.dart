@@ -41,9 +41,7 @@ class _StatState extends State<Stat> {
                   //Calender
 
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white70,
-                        borderRadius: BorderRadius.circular(20)),
+                    
                     height: MediaQuery.of(context).size.height / 2.3,
                     child: TableCalendar(
                       calendarFormat: CalendarFormat.month,
@@ -53,27 +51,26 @@ class _StatState extends State<Stat> {
                       ],
                       calendarStyle: CalendarStyle(
                         
-                        weekendTextStyle: TextStyle(
-                            color: Color.fromARGB(179, 0, 255, 34),
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
+                       weekendTextStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 17,),
                         defaultTextStyle: TextStyle(
-                            color: Color.fromARGB(179, 0, 47, 255),
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 17,
                             fontWeight: FontWeight.bold),
                       ),
                       daysOfWeekStyle: DaysOfWeekStyle(
                           weekendStyle: TextStyle(
-                              color: Color.fromARGB(255, 105, 0, 243),
+                              color: Theme.of(context).colorScheme.secondary ,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                           weekdayStyle: TextStyle(
-                              color: Color.fromARGB(255, 255, 197, 25),
+                              color: Theme.of(context).colorScheme.secondary ,
                               fontSize: 17,
                               fontWeight: FontWeight.bold)),
                       headerStyle: HeaderStyle(
                           titleTextStyle:
-                              TextStyle(color: Color.fromARGB(255, 255, 0, 0))),
+                              TextStyle(color:Theme.of(context).colorScheme.primary)),
                       firstDay: DateTime.utc(2010, 10, 16),
                       lastDay: DateTime.utc(2030, 3, 14),
                       focusedDay: DateTime.now(),
