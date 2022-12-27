@@ -58,38 +58,7 @@ class _SignupPageState extends State<SignupPage> {
                 Formm(htext: 'Email'),
                 SizedBoxx(h: 12.0),
                 //*password textfield
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: TextFormField(
-                        //-password validation
-                        validator: (value) {
-                          if (value != null && value.length < 7) {
-                            return 'Enter minmum 7 characters';
-                          } else {
-                            return null;
-                          }
-                        },
-                        obscureText: true,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Password',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                Formm(htext: 'Password', obsectext: true),
                 SizedBoxx(h: 12.0),
                 //*confirm password textfield
 
