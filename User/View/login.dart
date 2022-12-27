@@ -145,9 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                             GoRouter.of(context).go('/TodoList');
                           }
                         },
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(fontSize: 24),
+                        child: const Textt(
+                          text: 'Login',
+                          size: 24,
                         ),
                       ),
                     ),
