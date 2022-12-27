@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Shared/Widgets/formm.dart';
 import '../../Shared/Widgets/iconn.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
@@ -54,36 +55,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 SizedBoxx(h: 20.0),
                 //*email textfield
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: TextFormField(
-                        //-Validation for email
-                        validator: (value) {
-                          if (value != null && value.length < 7) {
-                            return 'Enter minmum 7 characters';
-                          } else {
-                            return null;
-                          }
-                        },
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Email',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                Formm(htext: 'Email'),
                 SizedBoxx(h: 12.0),
                 //*password textfield
 
