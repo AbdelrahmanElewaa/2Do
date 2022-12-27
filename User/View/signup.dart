@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Shared/Widgets/iconn.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 
@@ -25,8 +26,9 @@ class _SignupPageState extends State<SignupPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new,
-              color: Theme.of(context).colorScheme.primary),
+          icon: Iconn(
+            icN: Icons.arrow_back_ios_new,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
