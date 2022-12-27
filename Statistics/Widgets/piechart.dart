@@ -17,6 +17,7 @@ final dataMap = <String, double>{
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(color: Colors.white70),
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: PieChart(
           dataMap: dataMap,
