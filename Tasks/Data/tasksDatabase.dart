@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 
 import 'TasksData.dart';
 
-class DBHelper {
+class DBHelperTasks {
   final _databaseName = kDatabaseName;
   final _databaseVersion = kDatabaseVersion;
   final _table = kTableTasks;
@@ -18,8 +18,8 @@ class DBHelper {
       ${tasksCulomns.name.name} TEXT,)''';
 
   Database? _database;
-  static final DBHelper instance = DBHelper._();
-  DBHelper._();
+  static final DBHelperTasks instance = DBHelperTasks._();
+  DBHelperTasks._();
 
   // only have a single app-wide reference to the database
   Future<Database> get database async {
