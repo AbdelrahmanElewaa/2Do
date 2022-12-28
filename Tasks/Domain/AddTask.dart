@@ -27,16 +27,12 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
   late AnimationController lottieController;
   TimeOfDay timeOfDay = TimeOfDay.now();
   final taskrep = TasksRepository.instance;
-  List<Todo> todoss = [];
+
 
 
   @override
   void initState() {
-    taskrep.fetchTodoList().then((value) {
-      setState(() {
-        todoss = value;
-      });
-    });
+
     super.initState();
     tz.initializeTimeZones();
     lottieController = AnimationController(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
@@ -14,6 +15,7 @@ class TodoItem extends ConsumerWidget{
 
   final Todo todo;
   final onTodoChanged;
+  final taskrep = TasksRepository.instance;
 
   TextStyle? _getTextStyle(String checked) {
     if(checked=="false"){
@@ -46,7 +48,9 @@ class TodoItem extends ConsumerWidget{
               key: ValueKey("delete"),
               onDismissed: ()
               {
+                taskrep.delete(todo.id);
                 data.remove(todo);
+                // data.
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor:  Color.fromARGB(255, 71, 181, 255),
