@@ -62,11 +62,11 @@ class NotificationService {
     );
   }
 
-  Future<void> editNotification(int oldid,int newid, String title, String body, TimeOfDay tod) async {
+  Future<void> editNotification(int id,String title, String body, TimeOfDay tod) async {
     DateTime now = DateTime.now();
-    flutterLocalNotificationsPlugin.cancel(oldid);
+    flutterLocalNotificationsPlugin.cancel(id);
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      newid,
+      id,
       title,
       body,
       // tz.TZDateTime.now(tz.local).add(Duration(
