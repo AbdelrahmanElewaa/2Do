@@ -16,34 +16,34 @@ category selected=category.other;
 // addstringonly(name: "assignment", des: "thdsf");
 // addstringonly(name: "meeting", des: "dsgdsg");
 // addstringonly(name: "doctor's apppointment", des: "terfgdfg");
-List<Todo> todos = <Todo>[
-  // Todo(name: "walk the dog", checked: false,cat: cat,reminder: rem,percentage: randomNumber.toDouble(),description: des)
-   Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()),
-  Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()),
-  Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()),
-  Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()),
+List<Todo> todos = [];
+//   // Todo(name: "walk the dog", checked: false,cat: cat,reminder: rem,percentage: randomNumber.toDouble(),description: des)
+//    Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()),
+//   Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()),
+//   Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()),
+//   Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()),
+//
+//
+//
+// ];
+//
+// void addTodoItem({required String name, required category cat, required TimeOfDay rem,required String des}) {
+//
+//   todos.add(Todo( id: IDGen.nextID(),name: name, checked: false,cat: cat,reminder: rem,description: des));
+//
+// }
 
-
-
-];
-
-void addTodoItem({required String name, required category cat, required TimeOfDay rem,required String des}) {
-
-  todos.add(Todo( id: IDGen.nextID(),name: name, checked: false,cat: cat,reminder: rem,description: des));
-
-}
-
-void addstringonly({required String name,required String des}) {
-    todos.add(Todo(id: IDGen.nextID(),name: name, checked: false,cat: category.sport,description: des,reminder: TimeOfDay.now()));
-  }
+// void addstringonly({required String name,required String des}) {
+//     todos.add(Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: "TimeOfDay.now()"));
+//   }
 
 class Todo {
-  Todo({required this.id,required this.name,  this.checked=false, this.cat=category.other, required this.reminder, this.shared=false,required this.description});
+  Todo({required this.id,required this.name,  this.checked="false", this.cat="other", required this.reminder, this.shared="false",required this.description});
   String name;
-  bool checked;
-  category cat;
-  TimeOfDay reminder;
-  bool shared;
+  String checked;
+  String cat;
+  String reminder;
+  String shared;
   String description;
   int id;
 
@@ -66,10 +66,10 @@ class Todo {
   factory Todo.fromMap(Map<String, dynamic> map) {
     return Todo(
       name: map['name']??'not specified',
-      checked: map['checked'] ?? false,
-      cat: map['category'] ?? category.other,
-      reminder: map['reminder'] ?? TimeOfDay.now(),
-      shared: map['shared']??false,
+      checked: map['checked'] ?? "false",
+      cat: map['category'] ?? category.other.name,
+      reminder: map['reminder'] ?? "TimeOfDay.now()",
+      shared: map['shared']??"false",
       description: map['description']??'not specified',
       id: map['id']?.toInt(),
 

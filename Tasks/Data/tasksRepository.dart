@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/Tasks/Data/tasksDatabase.dart';
+import 'package:todo/Tasks/Domain/AddTask.dart';
+import '../../Helper/IDGen.dart';
 import '../../Shared/Data/constants.dart';
 import 'TasksData.dart';
 
@@ -12,7 +14,9 @@ class TasksRepository {
 
   final _dbHelper = DBHelperTasks.instance;
 
+
   Future<int> insert(name, checked, cat,rem,shared,des,idd) async {
+    // _dbHelper.database;
     // row to insert
     Map<String, dynamic> row = {
       tasksCulomns.name.name: name,
@@ -32,6 +36,7 @@ class TasksRepository {
   }
 
   Future<int> insertTodo(Todo todo) async {
+    // _dbHelper.initDatabase();
 
     // row to insert
     Map<String, dynamic> row = {
@@ -57,10 +62,29 @@ class TasksRepository {
     for (var row in allRows) {
       todos.add(Todo.fromMap(row));
     }
+    if (todos.isEmpty){
+      initTodos().then((value){
+        todos=value;
+      });
+    }
     return todos;
   }
+  Todo addstringonly({required String name,required String des}) {
+    return Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: "TimeOfDay.now()");
+  }
+  Future<List<Todo>> initTodos() async{
 
+    insertTodo(addstringonly(name:" walk dog", des: "dsfgds"));
+    insertTodo(addstringonly(name:" doctor", des: "dsfgds"));
+    insertTodo(addstringonly(name:" fuck dog", des: "dsfgds"));
+    insertTodo(addstringonly(name:" ds dog", des: "dsfgds"));
+return fetchTodoList();
+   // insertTodo( Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()));
+   // insertTodo(  Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()));
+   // insertTodo(Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()));
+   // insertTodo(Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()));
 
+  }
   // Future<List<Todo>> fetchTodoListByName(title) async {
   //   final allRows = await _dbHelper.queryRows(title);
   //   List<Todo> petsByTitle = [];

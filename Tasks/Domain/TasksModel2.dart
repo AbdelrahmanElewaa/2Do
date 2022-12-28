@@ -15,8 +15,9 @@ class TodoItem extends ConsumerWidget{
   final Todo todo;
   final onTodoChanged;
 
-  TextStyle? _getTextStyle(bool checked) {
-    if (!checked) {
+  TextStyle? _getTextStyle(String checked) {
+    if(checked=="false"){
+    // if (!checked) {
       return const TextStyle(
         color: Colors.black,
         // decoration: TextDecoration.lineThrough,

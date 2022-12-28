@@ -38,8 +38,8 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
   void initState() {
     nameController.text=todo.name;
     descriptionController.text=todo.description;
-    selected=todo.cat;
-    newtime=todo.reminder;
+    // selected=todo.cat;
+    // newtime=todo.reminder;
     super.initState();
 
     lc = AnimationController(
@@ -121,7 +121,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
-                        addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
+                        // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                         // NotificationService().editNotification(
                         //   todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
                         todos.remove(todo);

@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import '../../Shared/Data/constants.dart';
 import 'package:path/path.dart';
+import 'package:flutter/material.dart';
 
 import 'TasksData.dart';
 
@@ -15,7 +16,7 @@ class DBHelperTasks {
       ${tasksCulomns.reminder.name} TEXT,
       ${tasksCulomns.shared.name} TEXT,
       ${tasksCulomns.description.name} TEXT,
-      ${tasksCulomns.name.name} TEXT,)''';
+      ${tasksCulomns.name.name} TEXT)''';
 
   Database? _database;
   static final DBHelperTasks instance = DBHelperTasks._();
@@ -38,6 +39,7 @@ class DBHelperTasks {
         // Run the CREATE TABLE statement on the database.
         await db.execute(createSQL);
       },
+      // _database.
     );
     return _database!;
   }
@@ -49,11 +51,13 @@ class DBHelperTasks {
   // inserted row.
   // `conflictAlgorithm` to use in case the same pet is inserted twice.
   // In this case, replace any previous data.
-  Future<int> insert(Todo pet) async {
+  Future<int> insert(Todo todo) async {
     Database db = await database;
+    // db.execute(createSQL);
+    debugPrint('fetching $db');
     return db.insert(
       _table,
-      pet.toMap(),
+      todo.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
