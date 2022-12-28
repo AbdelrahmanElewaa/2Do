@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/Tasks/Widgets/multiselectobj.dart';
+import '../../Helper/notificationservice.dart';
 import '../../Home/View/home_page.dart';
+import '../Data/tasksRepository.dart';
 import '../Widgets/timepickerobj.dart';
 
 class EditTask extends StatefulWidget {
+
   final Todo todo;
   // final onTodoChanged;
   EditTask({
@@ -20,6 +23,7 @@ class EditTask extends StatefulWidget {
 }
 // Create a corresponding State class. This class holds data related to the form.
 class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
+  final taskrep = TasksRepository.instance;
   final Todo todo;
   // final onTodoChanged;
   edit({
@@ -121,10 +125,15 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {
+                        todo.name=nameController.text;
+                        todo.description=descriptionController.text;
+                        todo.reminder=newtime.toString();
+                        todo.cat=selected.name;
+                        taskrep.update(todo);
                         // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                         // NotificationService().editNotification(
                         //   todo.id, todos.last.id, nameController.text, descriptionController.text, newtime);
-                        todos.remove(todo);
+                        // todos.remove(todo);
                           showUpdatedDialog();
                       };
                     },
