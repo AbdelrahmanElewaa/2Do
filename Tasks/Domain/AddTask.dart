@@ -134,13 +134,15 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         child: const Text('Submit'),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            taskrep.insert(nameController.text, "false", selected.name, newtime.toString(), "false", descriptionController.text);
+                            taskrep.insert(nameController.text, "false", selected.name, newtime.toString(), "false", descriptionController.text).then((value) {
+                              NotificationService().showNotification(
+                                  value, nameController.text, descriptionController.text, newtime);
+                            });
                             // todoss
                           // Todo todo=  Todo(name: nameController.text, description:  descriptionController.text, reminder: newtime.toString(), cat: selected.name );
                           //   taskrep.update(todo);
                             // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
-                            // NotificationService().showNotification(
-                            //    todo.id, nameController.text, descriptionController.text, newtime);
+
                             showSuccessfulDialog();
                           };
                         },
