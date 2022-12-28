@@ -15,7 +15,7 @@ class TasksRepository {
   final _dbHelper = DBHelperTasks.instance;
 
 
-  Future<int> insert(name, checked, cat,rem,shared,des,idd) async {
+  Future<int> insert(name, checked, cat,rem,shared,des) async {
     // _dbHelper.database;
     // row to insert
     Map<String, dynamic> row = {
@@ -25,7 +25,6 @@ class TasksRepository {
       tasksCulomns.reminder.name: rem,
       tasksCulomns.shared.name: shared,
       tasksCulomns.description.name: des,
-      tasksCulomns.id.name: idd,
     };
 
     Todo todo = Todo.fromMap(row);
@@ -46,7 +45,6 @@ class TasksRepository {
       tasksCulomns.reminder.name: todo.reminder,
       tasksCulomns.shared.name: todo.shared,
       tasksCulomns.description.name: todo.description,
-      tasksCulomns.id.name: todo.id,
     };
 
     Todo td = Todo.fromMap(row);

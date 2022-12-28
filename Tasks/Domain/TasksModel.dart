@@ -12,7 +12,7 @@ class TodoList extends StatefulWidget {
 class TodoListState extends State<TodoList> {
   final taskrep = TasksRepository.instance;
   List<Todo> todoss = [];
-  bool ch=false;
+  // bool ch=false;
   @override
   void initState() {
     // taskrep.in

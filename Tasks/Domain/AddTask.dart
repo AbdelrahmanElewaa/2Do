@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import '../../helper/notificationservice.dart';
+import '../Data/tasksRepository.dart';
 import '../Widgets/multiselect.dart';
 import '../Widgets/timepicker.dart';
 
@@ -25,9 +26,17 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
   TextEditingController timeController = TextEditingController();
   late AnimationController lottieController;
   TimeOfDay timeOfDay = TimeOfDay.now();
+  final taskrep = TasksRepository.instance;
+  List<Todo> todoss = [];
+
 
   @override
   void initState() {
+    taskrep.fetchTodoList().then((value) {
+      setState(() {
+        todoss = value;
+      });
+    });
     super.initState();
     tz.initializeTimeZones();
     lottieController = AnimationController(
@@ -129,9 +138,12 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         child: const Text('Submit'),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
+                            taskrep.insert(nameController.text, "false", selected.name, newtime.toString(), "false", descriptionController.text);
+                          // Todo todo=  Todo(name: nameController.text, description:  descriptionController.text, reminder: newtime.toString(), cat: selected.name );
+                          //   taskrep.update(todo);
                             // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
-                            NotificationService().showNotification(
-                                todos.last.id, nameController.text, descriptionController.text, newtime);
+                            // NotificationService().showNotification(
+                            //     todos.last.id, nameController.text, descriptionController.text, newtime);
                             showSuccessfulDialog();
                           };
                         },

@@ -45,7 +45,7 @@ class Todo {
   String reminder;
   String shared;
   String description;
-  int id;
+  int? id;
 
 
 
