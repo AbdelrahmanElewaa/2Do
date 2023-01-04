@@ -55,7 +55,7 @@ class _DrawerrState extends State<Drawerr> {
               value: themeState.getDarkTheme,
             ),
           ),
-          SizedBoxx(h: 310.0),
+          SizedBoxx(h: 270.0),
           Column(
             children: [
               GestureDetector(

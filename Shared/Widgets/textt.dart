@@ -26,7 +26,7 @@ class Textt extends StatelessWidget {
         style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
             fontSize: checkDouble(size),
-            color: colorr,
+            color: Theme.of(context).colorScheme.primary,
             decoration: decorationn));
   }
 
