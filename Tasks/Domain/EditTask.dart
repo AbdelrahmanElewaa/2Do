@@ -87,7 +87,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     }
                     return null;
                   },
-                  controller: nameController,
+                  controller: nameController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                   decoration: const InputDecoration(
                     icon: Icon(Icons.label_important_rounded),
                     hintText: 'Enter task name',
@@ -97,7 +97,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                 ),
                 // Text(todo.name),
                 TextFormField(
-                  controller: descriptionController,
+                  controller: descriptionController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'Description is empty';
