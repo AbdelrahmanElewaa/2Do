@@ -57,14 +57,16 @@ final GoRouter router = GoRouter(
               SplashScreen(),
         ),
         GoRoute(
+          name: "notesdetails",
           path: 'notesdetails/:title/:content/:id',
           builder: (BuildContext context, GoRouterState state) => NotesDetails(
-              title: state.params["title"], content: state.params["content"],id: state.params["id"]),
+              title: state.params["title"]!,
+              content: state.params["content"]!,
+              id: state.params["id"]!),
         ),
         GoRoute(
           path: 'notesadd',
-          builder: (BuildContext context, GoRouterState state) =>
-              NotesAdd(),
+          builder: (BuildContext context, GoRouterState state) => NotesAdd(),
         ),
         GoRoute(
           path: 'home/:selectedIndex',
