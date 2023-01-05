@@ -17,7 +17,10 @@ class MySquare extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).go('/notesdetails/$title/$content/$id');
+        GoRouter.of(context).goNamed(
+          "notesdetails",
+          params: {'title': title, 'content': content, 'id': id},
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
