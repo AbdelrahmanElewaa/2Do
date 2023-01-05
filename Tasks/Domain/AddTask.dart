@@ -90,7 +90,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         }
                         return null;
                       },
-                      controller: nameController,
+                      controller: nameController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                       decoration:  InputDecoration(
                         icon: Icon(Icons.label_important_rounded, color: Theme.of(context).colorScheme.primary,),
                         
@@ -103,7 +103,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                     ),
 
                     TextFormField(
-                      controller: descriptionController,
+                      controller: descriptionController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                       validator: (text) {
                         if (text == null || text.isEmpty) {
                           return 'Description is empty';

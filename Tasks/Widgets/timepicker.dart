@@ -57,7 +57,7 @@ class timepickerState extends State<timepicker> {
                       }
                       return null;
                     },
-                    controller: timeinput,
+                    controller: timeinput,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                     decoration:  InputDecoration(
                       icon:  Icon(Icons.timer, color: Theme.of(context).colorScheme.primary,),
                       // hintText: 'Enter time of reminder',
