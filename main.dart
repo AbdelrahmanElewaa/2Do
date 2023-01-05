@@ -6,10 +6,13 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart' as p;
 import 'package:todo/consts/theme_data.dart';
+import 'package:todo/firebase_options.dart';
 import 'package:todo/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'Routing/app_routing.dart';
 import 'helper/notificationservice.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import 'consts/theme_data.dart';
 class TodoApp extends StatefulWidget {
@@ -20,6 +23,7 @@ class TodoApp extends StatefulWidget {
 class _TodoAppState extends State<TodoApp> {
   //* Application routing
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+  
 
   void getCurrentAppTheme() async {
     themeChangeProvider.setDarkTheme =
@@ -58,9 +62,12 @@ class _TodoAppState extends State<TodoApp> {
   }
 }
 
-void main() {
+void main() async{
   // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   NotificationService().initNotification();
 
   runApp( ProviderScope(child: TodoApp()));
