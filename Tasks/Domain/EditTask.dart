@@ -88,16 +88,19 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     return null;
                   },
                   controller: nameController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.label_important_rounded),
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.label_important_rounded, color: Theme.of(context).colorScheme.primary,),
                     hintText: 'Enter task name',
+                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
+                    labelText: 'Name',
+                    labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                     // labelText: todo.name,
                     // tex
                   ),
                 ),
                 // Text(todo.name),
                 TextFormField(
-                  controller: descriptionController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
+                  controller: descriptionController,style: TextStyle(color:Theme.of(context).colorScheme.primary),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'Description is empty';
@@ -105,10 +108,12 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     return null;
                   },
                   maxLines: 5,
-                  decoration: const InputDecoration(
-                    icon: const Icon(Icons.edit_note),
+                  decoration:  InputDecoration(
+                    icon:  Icon(Icons.edit_note, color: Theme.of(context).colorScheme.primary),
                     hintText: 'Enter task description',
+                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                     labelText: 'Description',
+                    labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary,),
                   ),
                 ),
                 timepickerobj(),
