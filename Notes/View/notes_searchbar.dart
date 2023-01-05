@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/Notes/View/notes_list.dart';
-
+import 'package:todo/consts/theme_data.dart';
 import '../Data/notes_repository.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
@@ -33,8 +33,18 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
             Expanded(
               child: TextField(
                 controller: queryController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                   // textfield input color
+                   labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+                   
+
+               
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Theme.of(context).colorScheme.primary, width: 2.0),
+                  ),
+               
+                  
                   labelText: 'Search',
                 ),
                 onChanged: (text) {
