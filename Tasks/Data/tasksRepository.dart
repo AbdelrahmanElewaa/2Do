@@ -68,14 +68,16 @@ class TasksRepository {
     return todos;
   }
   Todo addstringonly({required String name,required String des}) {
-    return Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: DateTime.now().toIso8601String());
+    return Todo(name: name, checked: "false",cat: category.other.name,description: des,reminder: DateTime.now().toIso8601String());
   }
   Future<List<Todo>> initTodos() async{
 
     insertTodo(addstringonly(name:" walk dog", des: "dsfgds"));
     insertTodo(addstringonly(name:" doctor", des: "dsfgds"));
-    insertTodo(addstringonly(name:" fuck dog", des: "dsfgds"));
-    insertTodo(addstringonly(name:" ds dog", des: "dsfgds"));
+    insertTodo(addstringonly(name:" meeting", des: "dsfgds"));
+    insertTodo(addstringonly(name:" meeting", des: "dsfgds"));
+
+    
 return fetchTodoList();
    // insertTodo( Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()));
    // insertTodo(  Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()));

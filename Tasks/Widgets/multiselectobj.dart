@@ -49,6 +49,7 @@ singleSelectedItem: true,
             MultiSelectCard(value :category.other, label: category.other.name, selected: category.other==selected?true:false)
             // selected: true
           ],
+          
           onChange: (allSelectedItems, selectedItem) {
                selected= selectedItem;
           }

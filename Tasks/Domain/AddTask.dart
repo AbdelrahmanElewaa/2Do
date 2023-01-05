@@ -35,6 +35,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
 
     super.initState();
     tz.initializeTimeZones();
+    selected=category.other;
     lottieController = AnimationController(
       vsync: this,
     );

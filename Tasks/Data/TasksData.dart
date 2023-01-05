@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../helper/IDGen.dart';
 enum category
 {
   assignment,
@@ -13,30 +12,16 @@ enum category
 TimeOfDay newtime=TimeOfDay.now();
 category selected=category.other;
 DateTime date=DateTime.now();
-// addstringonly(name: "walk the dog", des: "sdf");
-// addstringonly(name: "assignment", des: "thdsf");
-// addstringonly(name: "meeting", des: "dsgdsg");
-// addstringonly(name: "doctor's apppointment", des: "terfgdfg");
-List<Todo> todos = [];
-//   // Todo(name: "walk the dog", checked: false,cat: cat,reminder: rem,percentage: randomNumber.toDouble(),description: des)
-//    Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()),
-//   Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()),
-//   Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()),
-//   Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()),
-//
-//
-//
-// ];
-//
-// void addTodoItem({required String name, required category cat, required TimeOfDay rem,required String des}) {
-//
-//   todos.add(Todo( id: IDGen.nextID(),name: name, checked: false,cat: cat,reminder: rem,description: des));
-//
-// }
 
-// void addstringonly({required String name,required String des}) {
-//     todos.add(Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: "TimeOfDay.now()"));
-//   }
+List<Todo> todos = [];
+
+category valuecategory(String cat){
+
+  return cat==category.assignment.name?category.assignment:cat==category.chore.name?
+  category.chore:cat==category.sport.name?category.sport:cat==category.meeting.name?
+  category.meeting:cat==category.groceries.name?category.groceries:cat==category.music.name?
+  category.music:category.other;
+}
 
 class Todo {
   Todo({this.id,required this.name,  this.checked="false", this.cat="other", required this.reminder, this.shared="false",required this.description});

@@ -42,7 +42,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
   void initState() {
     nameController.text=todo.name;
     descriptionController.text=todo.description;
-    // selected=todo.cat;
+    selected=valuecategory(todo.cat);
     date =DateTime.parse(todo.reminder) ;
     super.initState();
 
