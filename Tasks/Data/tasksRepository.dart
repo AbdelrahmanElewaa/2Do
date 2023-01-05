@@ -68,7 +68,7 @@ class TasksRepository {
     return todos;
   }
   Todo addstringonly({required String name,required String des}) {
-    return Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: "TimeOfDay.now()");
+    return Todo(id: IDGen.nextID(),name: name, checked: "false",cat: category.sport.name,description: des,reminder: DateTime.now().toIso8601String());
   }
   Future<List<Todo>> initTodos() async{
 

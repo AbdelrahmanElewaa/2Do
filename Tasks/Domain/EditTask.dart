@@ -43,7 +43,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
     nameController.text=todo.name;
     descriptionController.text=todo.description;
     // selected=todo.cat;
-    // newtime=todo.reminder;
+    date =DateTime.parse(todo.reminder) ;
     super.initState();
 
     lc = AnimationController(
@@ -128,7 +128,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                       if (_fk.currentState!.validate()) {
                         todo.name=nameController.text;
                         todo.description=descriptionController.text;
-                        todo.reminder=newtime.toString();
+                        todo.reminder=date.toIso8601String();
                         todo.cat=selected.name;
                         taskrep.update(todo);
                         // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );

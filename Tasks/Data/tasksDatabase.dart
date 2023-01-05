@@ -88,8 +88,10 @@ class DBHelperTasks {
   Future<int> update(Todo pet) async {
     Database db = await database;
     int id = pet.toMap()[tasksCulomns.id.name];
+    debugPrint("rows affected: $id");
     return db.update(_table, pet.toMap(),
         where: '${tasksCulomns.id.name} = ?', whereArgs: [id]);
+        
   }
 
   // Deletes the row specified by the id. The number of affected rows is

@@ -12,6 +12,7 @@ enum category
 }
 TimeOfDay newtime=TimeOfDay.now();
 category selected=category.other;
+DateTime date=DateTime.now();
 // addstringonly(name: "walk the dog", des: "sdf");
 // addstringonly(name: "assignment", des: "thdsf");
 // addstringonly(name: "meeting", des: "dsgdsg");
@@ -38,7 +39,7 @@ List<Todo> todos = [];
 //   }
 
 class Todo {
-  Todo({required this.id,required this.name,  this.checked="false", this.cat="other", required this.reminder, this.shared="false",required this.description});
+  Todo({this.id,required this.name,  this.checked="false", this.cat="other", required this.reminder, this.shared="false",required this.description});
   String name;
   String checked;
   String cat;
@@ -68,7 +69,7 @@ class Todo {
       name: map['name']??'not specified',
       checked: map['checked'] ?? "false",
       cat: map['category'] ?? category.other.name,
-      reminder: map['reminder'] ?? "TimeOfDay.now()",
+      reminder: map['reminder'] ?? DateTime.now().toIso8601String(),
       shared: map['shared']??"false",
       description: map['description']??'not specified',
       id: map['id']?.toInt(),

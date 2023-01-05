@@ -16,7 +16,7 @@ class timepickerState extends State<timepicker> {
   TimeOfDay timeOfDay = TimeOfDay.now();
   // String rem= timeOfDay.format(context);
   TextEditingController timeinput = TextEditingController();
-  DateTime date=DateTime.now();
+  
   //text editing controller for text field
 
   @override
@@ -34,6 +34,8 @@ class timepickerState extends State<timepicker> {
  void onTimeChanged2(DateTime time) {
     setState(() {
       date=time;
+      // time.toIso8601String();
+      // String.
       // newtime = time;
       // timeOfDay=time;
       // timeinput.text = timeOfDay.format(context);

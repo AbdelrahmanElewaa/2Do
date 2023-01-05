@@ -134,7 +134,7 @@ class add extends State<AddTask>  with SingleTickerProviderStateMixin {
                         child: const Text('Submit'),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            taskrep.insert(nameController.text, "false", selected.name, newtime.toString(), "false", descriptionController.text).then((value) {
+                            taskrep.insert(nameController.text, "false", selected.name, date.toIso8601String(), "false", descriptionController.text).then((value) {
                               NotificationService().showNotification(
                                   value, nameController.text, descriptionController.text, newtime);
                             });
