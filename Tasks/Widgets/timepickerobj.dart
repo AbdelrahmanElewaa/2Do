@@ -14,15 +14,20 @@ class timepickerobjState extends State<timepickerobj> {
   // TimeOfDay timeOfDay = TimeOfDay.now();
   TextEditingController timeinput = TextEditingController();
   TimeOfDay timeOfDay = TimeOfDay.now();
+  DateTime date=DateTime.now();
   //text editing controller for text field
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Todo todo;
+      
+      // newtime.format(context)=todo.reminder;
       timeinput.text = newtime.format(context);
 
     });
     timeOfDay=newtime;
+
      //set the initial value of text field
     super.initState();
   }
@@ -31,6 +36,17 @@ class timepickerobjState extends State<timepickerobj> {
       newtime = time;
       timeOfDay=time;
       timeinput.text = timeOfDay.format(context);
+    });
+  }
+
+  void onTimeChanged2(DateTime time) {
+    setState(() {
+      date=time;
+      newtime=TimeOfDay.fromDateTime( time);
+      // newtime.
+      // newtime = time;
+      // timeOfDay=time;
+      // timeinput.text = timeOfDay.format(context);
     });
   }
 
@@ -60,6 +76,7 @@ class timepickerobjState extends State<timepickerobj> {
                   onTap:() {
                     Navigator.of(context).push(
                       showPicker(
+                        onChangeDateTime: onTimeChanged2,
                         context: context,
                         value: timeOfDay,
                         onChange: onTimeChanged,

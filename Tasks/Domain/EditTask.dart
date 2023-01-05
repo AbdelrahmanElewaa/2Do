@@ -122,6 +122,7 @@ class edit extends State<EditTask>  with SingleTickerProviderStateMixin {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
+
                     child: const Text('Submit'),
                     onPressed: () async {
                       if (_fk.currentState!.validate()) {

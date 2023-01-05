@@ -20,7 +20,7 @@ const kAppTitle = 'Pets Demo';
 //-------------------------------------------tasks----------------------------------------
 
 const kTableTasks = 'tasks_table';
-
+const kDatabaseNameTasks = "tasks.db";
 enum tasksCulomns{
   name,
   checked,

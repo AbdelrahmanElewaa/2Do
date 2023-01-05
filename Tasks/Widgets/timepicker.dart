@@ -16,6 +16,7 @@ class timepickerState extends State<timepicker> {
   TimeOfDay timeOfDay = TimeOfDay.now();
   // String rem= timeOfDay.format(context);
   TextEditingController timeinput = TextEditingController();
+  DateTime date=DateTime.now();
   //text editing controller for text field
 
   @override
@@ -30,7 +31,14 @@ class timepickerState extends State<timepicker> {
       newtime=time;
     });
   }
-
+ void onTimeChanged2(DateTime time) {
+    setState(() {
+      date=time;
+      // newtime = time;
+      // timeOfDay=time;
+      // timeinput.text = timeOfDay.format(context);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,6 +69,7 @@ class timepickerState extends State<timepicker> {
                           context: context,
                           value: timeOfDay,
                           onChange: onTimeChanged,
+                           onChangeDateTime: onTimeChanged2,
                           minuteInterval: MinuteInterval.ONE,
                           is24HrFormat: false,
                           moonAsset: Image.asset('assets/moon.png'),

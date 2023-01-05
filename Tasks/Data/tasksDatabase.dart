@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'TasksData.dart';
 
 class DBHelperTasks {
-  final _databaseName = kDatabaseName;
+  final _databaseName = kDatabaseNameTasks;
   final _databaseVersion = kDatabaseVersion;
   final _table = kTableTasks;
   final createSQL = '''CREATE TABLE $kTableTasks (
