@@ -32,7 +32,7 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
             ),
             Expanded(
               child: TextField(
-                controller: queryController,
+                controller: queryController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
                 decoration: InputDecoration(
                    // textfield input color
                    labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
