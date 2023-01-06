@@ -13,6 +13,7 @@ await docTask.set(map);
 
 void createTaskobj(SharedTodo todo) async {
   final docTask=FirebaseFirestore.instance.collection('tasks').doc();
+  todo.id=docTask.id;
   final map=todo.toMap();
 await docTask.set(map);
 }
