@@ -150,7 +150,7 @@ query.get().then((event) {
         // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
-            onPressed: () => GoRouter.of(context).go('/addtask'),
+            onPressed: () => GoRouter.of(context).go('/addsharedtasks'),
             tooltip: 'Add Item',
             child: Icon(Icons.add)),
       ),

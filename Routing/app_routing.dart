@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../Home/View/home_page.dart';
 import '../Notes/View/notes_add.dart';
 import '../Tasks/Domain/AddTask.dart';
@@ -10,6 +9,7 @@ import '../TasksShared/Domain/SharedTasksModel.dart';
 import '../Tasks/Domain/TasksModel.dart';
 import '../Shared/View/start.dart';
 import '../Shared/View/splashscreen.dart';
+import '../TasksShared/Domain/addSharedTasks.dart';
 import '../User/View/account.dart';
 import '../User/View/login.dart';
 import '../Notes/View/notes_details.dart';
@@ -79,6 +79,11 @@ final GoRouter router = GoRouter(
           path: 'sharedtasks',
           builder: (BuildContext context, GoRouterState state) =>
               SharedTodoList(),
+        ),
+        GoRoute(
+          path: 'addsharedtasks',
+          builder: (BuildContext context, GoRouterState state) =>
+              AddSharedTask(),
         ),
       ],
     ),
