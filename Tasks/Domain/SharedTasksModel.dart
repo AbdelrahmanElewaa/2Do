@@ -176,7 +176,7 @@ query.get().then((event) {
       // }
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
       // todo.checked = !todo.checked;
-      tf.child('tasks').child(todo.id.toString()).update(todo.toMap());
+      tf.child('tasks').push().update(todo.toMap());
       // taskrep.update(todo);
     });
   }
