@@ -36,7 +36,7 @@ class SharedTodoItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(todoprovider);
+    // final data = ref.watch(todoprovider);
 // data.
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -48,8 +48,8 @@ class SharedTodoItem extends ConsumerWidget {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                taskrep.delete(todo.id);
-                data.remove(todo);
+                // taskrep.delete(todo.id);
+                // data.remove(todo);
                 // data.
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
@@ -76,7 +76,7 @@ class SharedTodoItem extends ConsumerWidget {
             ),
             SlidableAction(
               onPressed: (context) {
-                data.remove(todo);
+                // data.remove(todo);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),

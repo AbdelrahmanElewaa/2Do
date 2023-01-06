@@ -157,16 +157,12 @@ query.get().then((event) {
     );
   }
 
-  void handleTodoChange(Todo todo) {
+  void handleTodoChange(SharedTodo todo) {
     setState(() {
-      // if(todo.checked=="false"){
-      //   ch=false;
-      //
-      // }
+     
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
-      // todo.checked = !todo.checked;
-      // tf.child('tasks').push().update(todo.toMap());
-      // taskrep.update(todo);
+      editTask(todo.id!, todo);
+
     });
   }
 }

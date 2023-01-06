@@ -29,3 +29,6 @@ Future<void> delete(String id) async {
   await FirebaseFirestore.instance.collection('tasks').doc(id).delete();
 }
    
+Future<void> editTask(String id,SharedTodo todo) async {
+  await FirebaseFirestore.instance.collection('tasks').doc(id).update(todo.toMap());
+}
