@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
+import 'package:todo/Tasks/Data/tasksFirestore.dart';
+import 'package:todo/Tasks/Domain/sharedTasksModel2.dart';
 import '../Data/providers.dart';
+import '../Data/sharedTasksData.dart';
 import '../Data/tasksRepository.dart';
 import 'TasksModel2.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,17 +26,14 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
   // bool ch=false;
   @override
   void initState() {
-    // taskrep.in
-    taskrep.fetchTodoList().then((value) {
-      setState(() {
-        todoss = value;
-        // todoss.sort()
-        // todoss.any((element) => false)
-      });
-    });
-    // tf.push();
+    
+    // createTaskobj(SharedTodo.addstringonly(name: "sad",des: "sad"));
+    // createTaskobj(SharedTodo.addstringonly(name: "fg",des: "sadfgd"));
+    // createTaskobj(SharedTodo.addstringonly(name: "ef",des: "fdg"));
+    // createTaskobj(SharedTodo.addstringonly(name: "wer",des: "th"));
+    
 
-    // tf.update(todoss.);
+
   } // final List<Todo> _todos = <Todo>[];
 
   updatetodos() async {
@@ -82,17 +82,6 @@ query.get().then((event) {
   }
 
 
-  List<Todo> _decodeTodoData(List<String> todos) {
-    try {
-      //Transforming List<String> to Json
-      var result = todos.map((v) => json.decode(v)).toList();
-      //Transforming the Json into Array<Todo>
-      var todObjects = result.map((v) => Todo.fromJson(v)).toList();
-      return todObjects;
-    } catch (error) {
-      return [];
-    }
-  }
 
 
   @override
@@ -121,17 +110,17 @@ query.get().then((event) {
           ],
         ),
         body: 
-        FutureBuilder(
-          future: usersf,
+        StreamBuilder<List<SharedTodo>>(
+          stream: readTasks(),
           builder: (context, snapshot) {
           if (snapshot.hasData){
-            final List<Todo> tods=snapshot.data!;
+            final List<SharedTodo> tods=snapshot.data!;
              return ReorderableListView(
 
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: 8.0),
-          children: tods.map((Todo todo) {
-            return TodoItem(
+          children: tods.map((SharedTodo todo) {
+            return SharedTodoItem(
               todo: todo,
               onTodoChanged: handleTodoChange,
             );
@@ -176,7 +165,7 @@ query.get().then((event) {
       // }
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
       // todo.checked = !todo.checked;
-      tf.child('tasks').push().update(todo.toMap());
+      // tf.child('tasks').push().update(todo.toMap());
       // taskrep.update(todo);
     });
   }

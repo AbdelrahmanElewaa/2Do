@@ -13,7 +13,7 @@ class TasksRepository {
 
   final _dbHelper = DBHelperTasks.instance;
 
-  Future<int> insert(name, checked, cat, rem, shared, des) async {
+  Future<int> insert({required String name, required String checked, required String cat, required String rem, required String shared, required String des}) async {
     // _dbHelper.database;
     // row to insert
     Map<String, dynamic> row = {
@@ -66,20 +66,13 @@ class TasksRepository {
     return todos;
   }
 
-  Todo addstringonly({required String name, required String des}) {
-    return Todo(
-        name: name,
-        checked: "false",
-        cat: category.other.name,
-        description: des,
-        reminder: DateTime.now().toIso8601String());
-  }
+  
 
   Future<List<Todo>> initTodos() async {
-    insertTodo(addstringonly(name: " walk dog", des: "dsfgds"));
-    insertTodo(addstringonly(name: " doctor", des: "dsfgds"));
-    insertTodo(addstringonly(name: " meeting", des: "dsfgds"));
-    insertTodo(addstringonly(name: " meeting", des: "dsfgds"));
+    insertTodo(Todo.addstringonly(name: " walk dog", des: "dsfgds"));
+    insertTodo(Todo.addstringonly(name: " doctor", des: "dsfgds"));
+    insertTodo(Todo.addstringonly(name: " meeting", des: "dsfgds"));
+    insertTodo(Todo.addstringonly(name: " meeting", des: "dsfgds"));
 
     return fetchTodoList();
     // insertTodo( Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()));

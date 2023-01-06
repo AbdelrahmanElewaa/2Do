@@ -144,12 +144,12 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                         if (_formKey.currentState!.validate()) {
                           taskrep
                               .insert(
-                                  nameController.text,
-                                  "false",
-                                  selected.name,
-                                  date.toIso8601String(),
-                                  "false",
-                                  descriptionController.text)
+                               name:   nameController.text,
+                                 checked: "false",
+                                cat:  selected.name,
+                               rem:   date.toIso8601String(),
+                               shared:   "false",
+                             des:     descriptionController.text)
                               .then((value) {
                             NotificationService().showNotification(
                                 value,

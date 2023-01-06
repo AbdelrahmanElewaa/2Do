@@ -9,7 +9,7 @@ TimeOfDay newtime = TimeOfDay.now();
 category selected = category.other;
 DateTime date = DateTime.now();
 
-List<Todo> todos = [];
+List<SharedTodo> todos = [];
 
 category valuecategory(String cat) {
   return cat == category.assignment.name
@@ -26,30 +26,30 @@ category valuecategory(String cat) {
                           ? category.music
                           : category.other;
 }
-   List<Todo> fromListjson(String data) {
+   List<SharedTodo> fromListjson(String data) {
     // return   json.decode(data).cast<Todo>();
     return fromListMap(List<Map<String, dynamic>>.from(jsonDecode(data)));
   }
 
 
-  List<Todo> fromListMap(List<Map<String, dynamic>> map) {
-    List<Todo> tod=[];
+  List<SharedTodo> fromListMap(List<Map<String, dynamic>> map) {
+    List<SharedTodo> tod=[];
     for (int i=2;i<map.length;i++){
-      tod.add(Todo(
+      tod.add(SharedTodo(
       name: map[i]['name'] ?? 'not specified',
       checked: map[i]['checked'] ?? "false",
       cat: map[i]['category'] ?? category.other.name,
       reminder: map[i]['reminder'] ?? DateTime.now().toIso8601String(),
       shared: map[i]['shared'] ?? "false",
       description: map[i]['description'] ?? 'not specified',
-      id: map[i]['id']?.toInt(),
+      id: map[i]['id']??'',
     ));
     }
     return tod;
   }
 
-class Todo {
-  Todo(
+class SharedTodo {
+  SharedTodo(
       {this.id,
       required this.name,
       this.checked = "false",
@@ -63,7 +63,7 @@ class Todo {
   String reminder;
   String shared;
   String description;
-  int? id;
+  String? id;
 
   Map<String, dynamic> toMap() {
     return {
@@ -77,19 +77,19 @@ class Todo {
     };
   }
 
-  factory Todo.fromMap(Map<String, dynamic> map) {
-    return Todo(
+  factory SharedTodo.fromMap(Map<String, dynamic> map) {
+    return SharedTodo(
       name: map['name'] ?? 'not specified',
       checked: map['checked'] ?? "false",
       cat: map['category'] ?? category.other.name,
       reminder: map['reminder'] ?? DateTime.now().toIso8601String(),
       shared: map['shared'] ?? "false",
       description: map['description'] ?? 'not specified',
-      id: map['id']?.toInt(),
+      id: map['id']??'',
     );
   }
 
-  Todo.fromSnapshot(DataSnapshot snapshot)
+  SharedTodo.fromSnapshot(DataSnapshot snapshot)
       : id = (snapshot.value as Map<String, dynamic>)["id"],
         name = (snapshot.value as Map<String, dynamic>)["name"],
         cat = (snapshot.value as Map<String, dynamic>)["cat"],
@@ -98,13 +98,13 @@ class Todo {
         description = (snapshot.value as Map<String, dynamic>)["description"],
         checked = (snapshot.value as Map<String, dynamic>)["checked"];
 
-  factory Todo.fromJson(String data) {
+  factory SharedTodo.fromJson(String data) {
     // return   json.decode(data).cast<Todo>();
-    return Todo.fromMap(json.decode(data) as Map<String, dynamic>);
+    return SharedTodo.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
-factory Todo.addstringonly({required String name, required String des}) {
-    return Todo(
+factory SharedTodo.addstringonly({required String name, required String des}) {
+    return SharedTodo(
         name: name,
         checked: "false",
         cat: category.other.name,
