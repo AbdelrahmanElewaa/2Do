@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../Data/sharedTasksData.dart';
-import '../Data/tasksRepository.dart';
-import 'EditTask.dart';
+import '../../Tasks/Data/tasksRepository.dart';
+import '../../Tasks/Domain/EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
 class SharedTodoItem extends ConsumerWidget {

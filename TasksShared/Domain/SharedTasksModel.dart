@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
-import 'package:todo/Tasks/Data/tasksFirestore.dart';
-import 'package:todo/Tasks/Domain/sharedTasksModel2.dart';
-import '../Data/providers.dart';
+import 'package:todo/TasksShared/Data/tasksFirestore.dart';
+import 'package:todo/TasksShared/Domain/sharedTasksModel2.dart';
+import '../../Tasks/Data/providers.dart';
 import '../Data/sharedTasksData.dart';
-import '../Data/tasksRepository.dart';
-import 'TasksModel2.dart';
+import '../../Tasks/Data/tasksRepository.dart';
+import '../../Tasks/Domain/TasksModel2.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:collection';
@@ -30,7 +30,7 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
     // createTaskobj(SharedTodo.addstringonly(name: "sad",des: "sad"));
     // createTaskobj(SharedTodo.addstringonly(name: "fg",des: "sadfgd"));
     // createTaskobj(SharedTodo.addstringonly(name: "ef",des: "fdg"));
-    createTaskobj(SharedTodo.addstringonly(name: "wer",des: "th"));
+    // createTaskobj(SharedTodo.addstringonly(name: "wer",des: "th"));
     
 
 

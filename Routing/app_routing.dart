@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../Home/View/home_page.dart';
 import '../Notes/View/notes_add.dart';
 import '../Tasks/Domain/AddTask.dart';
-import '../Tasks/Domain/SharedTasksModel.dart';
+import '../TasksShared/Domain/SharedTasksModel.dart';
 import '../Tasks/Domain/TasksModel.dart';
 import '../Shared/View/start.dart';
 import '../Shared/View/splashscreen.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo/Tasks/Data/sharedTasksData.dart';
+import 'package:todo/TasksShared/Data/sharedTasksData.dart';
 import 'dart:convert';
 
 void createTask({required String name, required String checked, required String cat, required String rem, required String shared, required String des}) async {
