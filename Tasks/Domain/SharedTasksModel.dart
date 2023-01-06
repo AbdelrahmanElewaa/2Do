@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
@@ -6,20 +8,17 @@ import '../Data/tasksRepository.dart';
 import 'TasksModel2.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:collection';
 
 class SharedTodoList extends StatefulWidget {
   @override
   SharedTodoListState createState() => SharedTodoListState();
-
-
-  
 }
 
 class SharedTodoListState extends State<SharedTodoList> {
-   
-   DatabaseReference tf=FirebaseDatabase.instance.ref();
-    final taskrep = TasksRepository.instance;
-
+  DatabaseReference tf = FirebaseDatabase.instance.ref();
+  final taskrep = TasksRepository.instance;
+Future<List<Todo>> usersf = getUsersOrderByPriority();
   List<Todo> todoss = [];
   // bool ch=false;
   @override
@@ -27,104 +26,140 @@ class SharedTodoListState extends State<SharedTodoList> {
     // taskrep.in
     taskrep.fetchTodoList().then((value) {
       setState(() {
-      todoss = value;
-      // todoss.sort()
-      // todoss.any((element) => false)
-    });
+        todoss = value;
+        // todoss.sort()
+        // todoss.any((element) => false)
+      });
     });
     // tf.push();
-    
+
     // tf.update(todoss.);
   } // final List<Todo> _todos = <Todo>[];
 
-update() async{
-  for (int i =0;i<todoss.length;i++){
-      tf.child('tasks').child(i.toString()).update(todoss[i].toMap());
+  updatetodos() async {
+    for (int i = 0; i < todoss.length; i++) {
+      tf.child('tasks').push().update(todoss[i].toMap());
     }
-}
-
-Future<Object?> read() async {
-final snapshot = await tf.get() ;
-    return snapshot.value;
   }
 
 
-  Future<List<Todo>> getAllMerchants() async {
-  List<Todo> merchantList = [];
-  
-  await tf.get().then(( DataSnapshot querySnapshot) {
-    // querySnapshot.getvalue(Todo.Class);
-    querySnapshot.children.forEach((doc) {
-      // Todo merchant = Todo.fromMap(
-      //   // {
-      //     // doc.value;
-      //   // 'shopName': doc['shopname'],
-      //   // 'address': doc['address'],
-      //   // 'description': doc['description'],
-      //   // 'thumbnail': doc['thumbnail'],
-      //   // 'locationCoords': doc['location'],
-      // // }
-      // );
-      // merchantList.add(merchant);
-    });
-  });
+  static Future<List<Todo>> getUsersOrderByPriority() async {
+    DatabaseReference tf = FirebaseDatabase.instance.ref();
+     List<Todo> orderedResult = [];
 
- return merchantList;
-}
+ final Query query = tf.child('tasks');
+// Todo t;
+query.get().then((event) {
+  Iterator<DataSnapshot> it=event.children.iterator;
+  while (it.moveNext()==true){
+     orderedResult.add(Todo.fromJson(jsonEncode(it.current.value)));
+     it.moveNext();
+  };
+// for (int i=0;i<event.children.length;i++){
+//   // print(jsonEncode(event.value));
+//   // event.children.iterator.current.value;
+//   orderedResult.add(Todo.fromJson(jsonEncode(event.children.iterator.current.value)));
+//   event.children.iterator.moveNext();
+// //  orderedResult=fromListjson(jsonEncode(event.value));
+// }
+  
+// return orderedResult;
+});
+
+//     query.onChildAdded.forEach((event) {
+//     orderedResult.add(Todo.fromJson(jsonEncode(event.snapshot.value)));
+//       print(orderedResult);
+// //       // return orderedResult;
+      
+//     });
+    //  }
+//       print(orderedResult);
+// return orderedResult;
+ return await query.get()
+        .then((ignored) => orderedResult);
+// return [];
+    
+  }
+
+
+  List<Todo> _decodeTodoData(List<String> todos) {
+    try {
+      //Transforming List<String> to Json
+      var result = todos.map((v) => json.decode(v)).toList();
+      //Transforming the Json into Array<Todo>
+      var todObjects = result.map((v) => Todo.fromJson(v)).toList();
+      return todObjects;
+    } catch (error) {
+      return [];
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    update();
+    // updatetodos();
+    // print(getUsersOrderByPriority());
     // todoprovider.;
     return SafeArea(
       child: Scaffold(
-
         appBar: AppBar(
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
           title: Text("Tasks"),
-          
           actions: [
             // icon:
             // Icon(Icons.people,color: Colors.white),
-            IconButton(onPressed: () {
-              context.goNamed(
-          "home",
-          params: { "selectedIndex":"2"},
-        );
-            }, 
-            icon: Icon(Icons.keyboard_backspace_rounded,color: Colors.white)),
-
+            IconButton(
+                onPressed: () {
+                  context.goNamed(
+                    "home",
+                    params: {"selectedIndex": "2"},
+                  );
+                },
+                icon: Icon(Icons.keyboard_backspace_rounded,
+                    color: Colors.white)),
           ],
-
         ),
-        body:
-
-        ReorderableListView(
-          // key: ,
+        body: 
+        FutureBuilder(
+          future: usersf,
+          builder: (context, snapshot) {
+          if (snapshot.hasData){
+            final List<Todo> tods=snapshot.data!;
+             return ReorderableListView(
 
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: 8.0),
-          children: todoss.map((Todo todo) {
+          children: tods.map((Todo todo) {
             return TodoItem(
               todo: todo,
               onTodoChanged: handleTodoChange,
             );
           }).toList(),
           onReorder: (int oldIndex, int newIndex) {
-      setState(() {
-      if (oldIndex < newIndex) {
-      newIndex -= 1;
-      }
-      final  widget = todoss.removeAt(oldIndex);
-      todoss.insert(newIndex, widget);
-      });
-      },
-        // children: TodoItem,
-        ),
+            setState(() {
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+              final widget = tods.removeAt(oldIndex);
+              tods.insert(newIndex, widget);
+            });
+          },
+          // children: TodoItem,
+        );
+          }
+          else if(snapshot.hasError){
+            return Text(snapshot.error.toString());
+          }
+          else{
+            return Text("no data");
+          }
+        },),
+        
+        
+        
         // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
-
             elevation: 0.0,
             onPressed: () => GoRouter.of(context).go('/addtask'),
             tooltip: 'Add Item',
@@ -139,14 +174,10 @@ final snapshot = await tf.get() ;
       //   ch=false;
       //
       // }
-      todo.checked=="false"?todo.checked="true":todo.checked="false";
+      todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
       // todo.checked = !todo.checked;
-      taskrep.update(todo);
-
+      tf.child('tasks').child(todo.id.toString()).update(todo.toMap());
+      // taskrep.update(todo);
     });
   }
-
-
 }
-
-

@@ -56,13 +56,15 @@ class _NotesAddState extends State<NotesAdd> {
             child: Column(children: [
               // ignore: prefer_const_constructors
               TextField(
-                controller: titleController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
+                controller: titleController,
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
               Expanded(
                 child: TextField(
-                  controller: contentController,style: TextStyle(color:  Theme.of(context).colorScheme.primary),
+                  controller: contentController,
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   decoration: InputDecoration(
-                    
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(20),

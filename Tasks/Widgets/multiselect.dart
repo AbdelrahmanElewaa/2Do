@@ -9,52 +9,49 @@ class multiselect extends StatefulWidget {
   State<multiselect> createState() => multiselectState();
 }
 
-class multiselectState extends State<multiselect>{
+class multiselectState extends State<multiselect> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return SafeArea(
       child: MultiSelectContainer(
-          itemsDecoration:
-          MultiSelectDecorations(
+          itemsDecoration: MultiSelectDecorations(
             selectedDecoration: ShapeDecoration(
               color: Colors.blue,
-              shape:
-              ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)
-              ),
+              shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
             ),
             decoration: ShapeDecoration(
-              color:  Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColor,
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
             ),
           ),
-
           animations: MultiSelectAnimations(
             decorationAimationDuration: Duration(milliseconds: 800),
             decorationAnimationCurve: standardEasing.flipped,
-
           ),
           // highlightColor: Colors.brown,
           singleSelectedItem: true,
-
           items: [
-            MultiSelectCard(value: category.assignment, label: category.assignment.name),
-            MultiSelectCard(value :category.chore, label: category.chore.name),
-            MultiSelectCard(value :category.groceries, label: category.groceries.name),
-            MultiSelectCard(value :category.meeting, label: category.meeting.name),
-            MultiSelectCard(value :category.music, label: category.music.name),
-            MultiSelectCard(value :category.sport, label: category.sport.name),
-            MultiSelectCard(value :category.other, label: category.other.name, selected: true)
+            MultiSelectCard(
+                value: category.assignment, label: category.assignment.name),
+            MultiSelectCard(value: category.chore, label: category.chore.name),
+            MultiSelectCard(
+                value: category.groceries, label: category.groceries.name),
+            MultiSelectCard(
+                value: category.meeting, label: category.meeting.name),
+            MultiSelectCard(value: category.music, label: category.music.name),
+            MultiSelectCard(value: category.sport, label: category.sport.name),
+            MultiSelectCard(
+                value: category.other,
+                label: category.other.name,
+                selected: true)
             // selected: true
           ],
           onChange: (allSelectedItems, selectedItem) {
-            selected= selectedItem;
-          }
-      ),
+            selected = selectedItem;
+          }),
     );
-
   }
 }
-

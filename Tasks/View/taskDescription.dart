@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 
-
 class tasktodo extends StatelessWidget {
   final Todo todo;
   // final onTodoChanged;
@@ -31,23 +30,18 @@ class tasktodo extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 // Text
-                 ListTile(
+                ListTile(
                   // leading: Icon(Icons.album, size: 60),
-                  title: Text(
-                      "Name:" + todo.name,
-                      style: TextStyle(fontSize: 20.0)
-                  ),
+                  title: Text("Name:" + todo.name,
+                      style: TextStyle(fontSize: 20.0)),
                 ),
               ],
             ),
-
           ),
-
         ),
       ),
     );
     // TODO: implement build
     // throw UnimplementedError();
   }
-
 }

@@ -59,14 +59,14 @@ class home extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Tasks', 
-                              style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                              
-                              ),
+                          Text(
+                            'Tasks',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 28,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
 
                           //ADD Button
                           Hero(

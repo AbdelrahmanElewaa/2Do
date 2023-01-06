@@ -18,12 +18,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int selectedIndex;
   _HomePageState({
     required this.selectedIndex,
     // required this.onTodoChanged,
-  }) : super( );
+  }) : super();
 
   // int _selectedIndex = 0;
   static List<Widget> _pages = <Widget>[
@@ -76,4 +75,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

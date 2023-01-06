@@ -6,8 +6,7 @@ import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
-
-class TodoItem extends ConsumerWidget{
+class TodoItem extends ConsumerWidget {
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
@@ -18,8 +17,8 @@ class TodoItem extends ConsumerWidget{
   final taskrep = TasksRepository.instance;
 
   TextStyle? _getTextStyle(String checked) {
-    if(checked=="false"){
-    // if (!checked) {
+    if (checked == "false") {
+      // if (!checked) {
       return const TextStyle(
         color: Colors.black,
         // decoration: TextDecoration.lineThrough,
@@ -33,6 +32,7 @@ class TodoItem extends ConsumerWidget{
       decorationColor: Colors.blue,
     );
   }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(todoprovider);
@@ -44,21 +44,19 @@ class TodoItem extends ConsumerWidget{
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
           dismissible: DismissiblePane(
-            // closeOnCancel: true,
+              // closeOnCancel: true,
               key: ValueKey("delete"),
-              onDismissed: ()
-              {
+              onDismissed: () {
                 taskrep.delete(todo.id);
                 data.remove(todo);
                 // data.
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
-                  backgroundColor:  Color.fromARGB(255, 71, 181, 255),
+                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-          ),
-          children:   [
+              }),
+          children: [
             SlidableAction(
               onPressed: (context) {
                 Navigator.of(context).push(
@@ -72,16 +70,15 @@ class TodoItem extends ConsumerWidget{
               icon: Icons.edit,
               label: 'Edit',
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                bottomLeft: Radius.circular(15)
-              ),
+                  topLeft: Radius.circular(15),
+                  bottomLeft: Radius.circular(15)),
             ),
             SlidableAction(
               onPressed: (context) {
                 data.remove(todo);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
-                  backgroundColor:  Color.fromARGB(255, 71, 181, 255),
+                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
@@ -93,44 +90,34 @@ class TodoItem extends ConsumerWidget{
               label: 'Delete',
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(15),
-                  bottomRight: Radius.circular(15)
+                  bottomRight: Radius.circular(15)),
             ),
-            ),
-
           ],
         ),
-
-        startActionPane:  ActionPane(
+        startActionPane: ActionPane(
           motion: ScrollMotion(),
           children: [
             SlidableAction(
               // An action can be bigger than the others.
               flex: 1,
-              onPressed: (context) {
-
-              },
+              onPressed: (context) {},
               backgroundColor: Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.archive,
               label: 'Archive',
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15),
-                  bottomLeft: Radius.circular(15)
-              ),
+                  bottomLeft: Radius.circular(15)),
             ),
             SlidableAction(
-              onPressed:  (context) async {
-
-
-              },
+              onPressed: (context) async {},
               backgroundColor: Color(0xFF0392CF),
               foregroundColor: Colors.white,
               icon: Icons.share,
               label: 'Share',
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(15),
-                  bottomRight: Radius.circular(15)
-              ),
+                  bottomRight: Radius.circular(15)),
             ),
           ],
         ),
@@ -153,10 +140,8 @@ class TodoItem extends ConsumerWidget{
               child: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined,
-
               ),
             ),
-
             title: Text(todo.name, style: _getTextStyle(todo.checked)),
           ),
         ),

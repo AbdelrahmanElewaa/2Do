@@ -4,6 +4,7 @@ import 'package:todo/Tasks/Data/TasksData.dart';
 import '../Data/providers.dart';
 import '../Data/tasksRepository.dart';
 import 'TasksModel2.dart';
+
 class TodoList extends StatefulWidget {
   @override
   TodoListState createState() => TodoListState();
@@ -18,10 +19,10 @@ class TodoListState extends State<TodoList> {
     // taskrep.in
     taskrep.fetchTodoList().then((value) {
       setState(() {
-      todoss = value;
-      // todoss.sort()
-      // todoss.any((element) => false)
-    });
+        todoss = value;
+        // todoss.sort()
+        // todoss.any((element) => false)
+      });
     });
     // if (todoss.length==0){
     //    taskrep.initTodos().then((value){
@@ -35,7 +36,6 @@ class TodoListState extends State<TodoList> {
     // todoprovider.;
     return SafeArea(
       child: Scaffold(
-
         appBar: AppBar(
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
@@ -43,16 +43,14 @@ class TodoListState extends State<TodoList> {
           actions: [
             // icon:
             // Icon(Icons.people,color: Colors.white),
-            IconButton(onPressed: () {
-              context.go('/sharedtasks');
-            }, 
-            icon: Icon(Icons.people,color: Colors.white)),
-
+            IconButton(
+                onPressed: () {
+                  context.go('/sharedtasks');
+                },
+                icon: Icon(Icons.people, color: Colors.white)),
           ],
-
         ),
-        body:
-        ReorderableListView(
+        body: ReorderableListView(
           // key: ,
 
           physics: BouncingScrollPhysics(),
@@ -64,19 +62,18 @@ class TodoListState extends State<TodoList> {
             );
           }).toList(),
           onReorder: (int oldIndex, int newIndex) {
-      setState(() {
-      if (oldIndex < newIndex) {
-      newIndex -= 1;
-      }
-      final  widget = todoss.removeAt(oldIndex);
-      todoss.insert(newIndex, widget);
-      });
-      },
-        // children: TodoItem,
+            setState(() {
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+              final widget = todoss.removeAt(oldIndex);
+              todoss.insert(newIndex, widget);
+            });
+          },
+          // children: TodoItem,
         ),
         // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
-
             elevation: 0.0,
             onPressed: () => GoRouter.of(context).go('/addtask'),
             tooltip: 'Add Item',
@@ -91,14 +88,9 @@ class TodoListState extends State<TodoList> {
       //   ch=false;
       //
       // }
-      todo.checked=="false"?todo.checked="true":todo.checked="false";
+      todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
       // todo.checked = !todo.checked;
       taskrep.update(todo);
-
     });
   }
-
-
 }
-
-

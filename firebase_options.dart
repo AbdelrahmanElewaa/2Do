@@ -65,7 +65,8 @@ class DefaultFirebaseOptions {
     projectId: 'todo-d003d',
     databaseURL: 'https://todo-d003d-default-rtdb.firebaseio.com',
     storageBucket: 'todo-d003d.appspot.com',
-    iosClientId: '280438115044-ifd0ns1thfadbqv9s8id9g0b9t2av4dg.apps.googleusercontent.com',
+    iosClientId:
+        '280438115044-ifd0ns1thfadbqv9s8id9g0b9t2av4dg.apps.googleusercontent.com',
     iosBundleId: 'com.example.todo',
   );
 }

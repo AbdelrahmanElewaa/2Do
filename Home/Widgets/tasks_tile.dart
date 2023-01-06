@@ -42,7 +42,9 @@ class TasksTile extends StatelessWidget {
                         color: Color.fromRGBO(12, 34, 51, 1),
                       )),
                 ),
-                SizedBoxx(w: 12.0,),
+                SizedBoxx(
+                  w: 12.0,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

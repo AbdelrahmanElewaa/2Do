@@ -6,7 +6,6 @@ import '../../Helper/IDGen.dart';
 import '../../Shared/Data/constants.dart';
 import 'TasksData.dart';
 
-
 class TasksRepository {
   //singleton pattern
   static final TasksRepository instance = TasksRepository._();
@@ -14,8 +13,7 @@ class TasksRepository {
 
   final _dbHelper = DBHelperTasks.instance;
 
-
-  Future<int> insert(name, checked, cat,rem,shared,des) async {
+  Future<int> insert(name, checked, cat, rem, shared, des) async {
     // _dbHelper.database;
     // row to insert
     Map<String, dynamic> row = {
@@ -60,30 +58,34 @@ class TasksRepository {
     for (var row in allRows) {
       todos.add(Todo.fromMap(row));
     }
-    if (todos.isEmpty){
-      initTodos().then((value){
-        todos=value;
+    if (todos.isEmpty) {
+      initTodos().then((value) {
+        todos = value;
       });
     }
     return todos;
   }
-  Todo addstringonly({required String name,required String des}) {
-    return Todo(name: name, checked: "false",cat: category.other.name,description: des,reminder: DateTime.now().toIso8601String());
+
+  Todo addstringonly({required String name, required String des}) {
+    return Todo(
+        name: name,
+        checked: "false",
+        cat: category.other.name,
+        description: des,
+        reminder: DateTime.now().toIso8601String());
   }
-  Future<List<Todo>> initTodos() async{
 
-    insertTodo(addstringonly(name:" walk dog", des: "dsfgds"));
-    insertTodo(addstringonly(name:" doctor", des: "dsfgds"));
-    insertTodo(addstringonly(name:" meeting", des: "dsfgds"));
-    insertTodo(addstringonly(name:" meeting", des: "dsfgds"));
+  Future<List<Todo>> initTodos() async {
+    insertTodo(addstringonly(name: " walk dog", des: "dsfgds"));
+    insertTodo(addstringonly(name: " doctor", des: "dsfgds"));
+    insertTodo(addstringonly(name: " meeting", des: "dsfgds"));
+    insertTodo(addstringonly(name: " meeting", des: "dsfgds"));
 
-    
-return fetchTodoList();
-   // insertTodo( Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()));
-   // insertTodo(  Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()));
-   // insertTodo(Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()));
-   // insertTodo(Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()));
-
+    return fetchTodoList();
+    // insertTodo( Todo(id: IDGen.nextID(),name: "walk the dog", checked: false,cat: category.sport,description: "bhbh",reminder: TimeOfDay.now()));
+    // insertTodo(  Todo(id: IDGen.nextID(),name: "assignment", checked: false,cat: category.assignment,description: "gvjgvh",reminder: TimeOfDay.now()));
+    // insertTodo(Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()));
+    // insertTodo(Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()));
   }
   // Future<List<Todo>> fetchTodoListByName(title) async {
   //   final allRows = await _dbHelper.queryRows(title);

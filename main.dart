@@ -15,6 +15,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'consts/theme_data.dart';
+
 class TodoApp extends StatefulWidget {
   @override
   State<TodoApp> createState() => _TodoAppState();
@@ -23,7 +24,6 @@ class TodoApp extends StatefulWidget {
 class _TodoAppState extends State<TodoApp> {
   //* Application routing
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
-  
 
   void getCurrentAppTheme() async {
     themeChangeProvider.setDarkTheme =
@@ -40,35 +40,33 @@ class _TodoAppState extends State<TodoApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-       p.ChangeNotifierProvider(create: (_) {
-                return themeChangeProvider;
-              }),
+        p.ChangeNotifierProvider(create: (_) {
+          return themeChangeProvider;
+        }),
       ],
       child: p.Consumer<DarkThemeProvider>(
-        builder: (context,  themeProvider, child) {
-          
-          return MaterialApp.router(
-            theme: Styles.themeData(themeProvider.getDarkTheme),
-            routerConfig: router,
-            title: 'Todo list',
-            // builder: ,
-            // home: TodoList(),
-            // builder: (context, widget) => SplashScreen(),
-            debugShowCheckedModeBanner: false,
-          );
-        }
-      ),
+          builder: (context, themeProvider, child) {
+        return MaterialApp.router(
+          theme: Styles.themeData(themeProvider.getDarkTheme),
+          routerConfig: router,
+          title: 'Todo list',
+          // builder: ,
+          // home: TodoList(),
+          // builder: (context, widget) => SplashScreen(),
+          debugShowCheckedModeBanner: false,
+        );
+      }),
     );
   }
 }
 
-void main() async{
+void main() async {
   // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   NotificationService().initNotification();
 
-  runApp( ProviderScope(child: TodoApp()));
+  runApp(ProviderScope(child: TodoApp()));
 }
