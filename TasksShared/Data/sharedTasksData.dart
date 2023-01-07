@@ -5,27 +5,6 @@ import 'dart:convert';
 
 enum category { assignment, chore, sport, meeting, groceries, music, other }
 
-TimeOfDay newtime = TimeOfDay.now();
-category selected = category.other;
-DateTime date = DateTime.now();
-
-List<SharedTodo> todos = [];
-
-category valuecategory(String cat) {
-  return cat == category.assignment.name
-      ? category.assignment
-      : cat == category.chore.name
-          ? category.chore
-          : cat == category.sport.name
-              ? category.sport
-              : cat == category.meeting.name
-                  ? category.meeting
-                  : cat == category.groceries.name
-                      ? category.groceries
-                      : cat == category.music.name
-                          ? category.music
-                          : category.other;
-}
    List<SharedTodo> fromListjson(String data) {
     // return   json.decode(data).cast<Todo>();
     return fromListMap(List<Map<String, dynamic>>.from(jsonDecode(data)));

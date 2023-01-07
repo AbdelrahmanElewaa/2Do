@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-// import 'package:todo/Tasks/Data/TasksData.dart';
+import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/Tasks/Widgets/multiselectobj.dart';
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Helper/notificationservice.dart';
 import '../../Home/View/home_page.dart';
 import '../../Tasks/Widgets/timepickerobj.dart';
 import '../Data/sharedTasksData.dart';
-// import '../Data/tasksRepository.dart';
-// import '../Widgets/timepickerobj.dart';
+import 'SharedTasksModel.dart';
 
 class EditSharedTask extends StatefulWidget {
   final SharedTodo todo;
@@ -57,7 +56,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
       if (status == AnimationStatus.completed) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage(selectedIndex: 2)),
+          MaterialPageRoute(builder: (context) => SharedTodoList()),
         );
       }
     });

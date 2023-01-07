@@ -8,6 +8,7 @@ import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Tasks/Widgets/multiselect.dart';
 import '../../Tasks/Widgets/timepicker.dart';
 import '../../Helper/notificationservice.dart';
+import 'SharedTasksModel.dart';
 
 
 class AddSharedTask extends StatefulWidget {
@@ -39,10 +40,9 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
     );
     lottieController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // GoRouter.of(context).go('/TodoList');
-        context.goNamed(
-          "home",
-          params: {"selectedIndex": "2"},
+       Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SharedTodoList()),
         );
       }
     });
