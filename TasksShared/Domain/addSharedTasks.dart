@@ -7,7 +7,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Tasks/Widgets/multiselect.dart';
 import '../../Tasks/Widgets/timepicker.dart';
-import '../../helper/notificationservice.dart';
+import '../../Helper/notificationservice.dart';
 
 
 class AddSharedTask extends StatefulWidget {
@@ -144,18 +144,21 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           
-                            createTask(name: nameController.text,checked: "false",cat: selected.name,des: descriptionController.text,rem: date.toIso8601String(),shared: "true");
-                          //     .then((value) {
-                          //   NotificationService().showNotification(
-                          //       value,
-                          //       nameController.text,
-                          //       descriptionController.text,
-                          //       newtime);
-                          // });
+                            createTask(name: nameController.text,checked: "false",cat: selected.name,des: descriptionController.text,rem: date.toIso8601String(),shared: "true")
+                            .then((id) {
+                            NotificationService().showNotification(
+
+                              // id: 
+                              title:   nameController.text,
+                             body:    descriptionController.text,
+                             tod:    newtime
+                                ).then((notid) {
+                                  addnotificationid(id, notid);
+                                },);
+                          });
                
                           showSuccessfulDialog();
-                        }
-                        ;
+                        };
                       },
                     ),
                   ),

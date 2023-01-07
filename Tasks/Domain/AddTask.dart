@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:timezone/data/latest.dart' as tz;
-import '../../helper/notificationservice.dart';
+import '../../Helper/notificationservice.dart';
 import '../Data/tasksRepository.dart';
 import '../Widgets/multiselect.dart';
 import '../Widgets/timepicker.dart';
@@ -152,10 +152,10 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                              des:     descriptionController.text)
                               .then((value) {
                             NotificationService().showNotification(
-                                value,
-                                nameController.text,
-                                descriptionController.text,
-                                newtime);
+                            id:   value,
+                            title:     nameController.text,
+                             body:    descriptionController.text,
+                             tod:    newtime);
                           });
                           // todoss
                           // Todo todo=  Todo(name: nameController.text, description:  descriptionController.text, reminder: newtime.toString(), cat: selected.name );

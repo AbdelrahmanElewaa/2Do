@@ -149,14 +149,12 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                       todo.reminder = date.toIso8601String();
                       todo.cat = selected.name;
                       taskrep.update(todo);
-                      // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
                       NotificationService().editNotification(
-                          todo.id!,
-                          nameController.text,
-                          descriptionController.text,
-                          newtime);
-                      // todos.remove(todo);
-                      showUpdatedDialog();
+                        id:  todo.id!,
+                       title:    nameController.text,
+                        body:   descriptionController.text,
+                         tod:  newtime);
+                     showUpdatedDialog();
                     }
                     ;
                   },

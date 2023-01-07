@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -28,12 +30,14 @@ class NotificationService {
     // the initialization settings are initialized after they are setted
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
-
-  Future<void> showNotification(
-      int id, String title, String body, TimeOfDay tod) async {
+// {}
+  Future<int> showNotification({ int? id,  required String title, required String body, required TimeOfDay tod}) async {
     DateTime now = DateTime.now();
+    var ran = Random();
+    int idd=ran.nextInt(1000000);
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      id,
+      id??idd,
+      // id,
       title,
       body,
       // tz.TZDateTime.now(tz.local).add(Duration(
@@ -58,10 +62,10 @@ class NotificationService {
       androidAllowWhileIdle:
           true, // To show notification even when the app is closed
     );
+    return idd;
   }
 
-  Future<void> editNotification(
-      int id, String title, String body, TimeOfDay tod) async {
+  Future<void> editNotification({ required int id ,  required String title, required String body, required TimeOfDay tod}) async {
     DateTime now = DateTime.now();
     flutterLocalNotificationsPlugin.cancel(id);
     await flutterLocalNotificationsPlugin.zonedSchedule(

@@ -56,7 +56,8 @@ class SharedTodo {
       this.cat = "other",
       required this.reminder,
       this.shared = "false",
-      required this.description});
+      required this.description,
+      this.notid});
   String name;
   String checked;
   String cat;
@@ -64,6 +65,7 @@ class SharedTodo {
   String shared;
   String description;
   String? id;
+  int? notid;
 
   Map<String, dynamic> toMap() {
     return {
@@ -74,6 +76,7 @@ class SharedTodo {
       'shared': shared,
       'description': description,
       'id': id,
+      'notid': notid
     };
   }
 
@@ -86,6 +89,7 @@ class SharedTodo {
       shared: map['shared'] ?? "false",
       description: map['description'] ?? 'not specified',
       id: map['id']??'',
+      notid: map['notid']?.toInt(),
     );
   }
 
@@ -116,5 +120,5 @@ factory SharedTodo.addstringonly({required String name, required String des}) {
 
   @override
   String toString() =>
-      "name: $name, cat: $cat, rem: $reminder, des: $description, checked: $checked, category: $cat, shared: $shared, id: $id";
+      "name: $name, cat: $cat, rem: $reminder, des: $description, checked: $checked, category: $cat, shared: $shared, id: $id, notid: $notid";
 }
