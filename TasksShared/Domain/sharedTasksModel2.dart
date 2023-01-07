@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo/TasksShared/Data/tasksFirestore.dart';
+import 'package:todo/TasksShared/Domain/editSharedTasks.dart';
 import '../Data/sharedTasksData.dart';
 import '../../Tasks/Data/tasksRepository.dart';
 import '../../Tasks/Domain/EditTask.dart';
@@ -36,8 +38,7 @@ class SharedTodoItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final data = ref.watch(todoprovider);
-// data.
+  
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Slidable(
@@ -48,9 +49,7 @@ class SharedTodoItem extends ConsumerWidget {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                // taskrep.delete(todo.id);
-                // data.remove(todo);
-                // data.
+                delete(todo.id!);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),
@@ -60,11 +59,11 @@ class SharedTodoItem extends ConsumerWidget {
           children: [
             SlidableAction(
               onPressed: (context) {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => EditTask(todo: todo),
-                //   ),
-                // );
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EditSharedTask(todo: todo),
+                  ),
+                );
               },
               backgroundColor: Color.fromARGB(255, 71, 181, 255),
               foregroundColor: Colors.white,
@@ -76,15 +75,19 @@ class SharedTodoItem extends ConsumerWidget {
             ),
             SlidableAction(
               onPressed: (context) {
-                // data.remove(todo);
+                delete(todo.id!);
+                // .then((value) {const snackBar = SnackBar(
+                //   content: Text('Item successfully deleted!!'),
+                //   backgroundColor: Color.fromARGB(255, 71, 181, 255),
+                // );
+                // ScaffoldMessenger.of(context).showSnackBar(snackBar);});
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
-              // ).onDismissed();// Noti
-              // },
+          
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.delete,
@@ -124,20 +127,20 @@ class SharedTodoItem extends ConsumerWidget {
         ),
         child: Card(
           elevation: 0,
-          // color: Color.fromRGBO(10, 145, 171, 1),
+    
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
           color: Theme.of(context).primaryColor,
-          // color: Colors.amber,
+     
 
           child: ListTile(
             onTap: () {
-              // TodoListState.listClick(imageGlobalKey);
+        
               onTodoChanged(todo);
             },
             leading: Container(
-              // key: gk[globalKeyGenerator.nextkeyid()],
+             
               child: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined,

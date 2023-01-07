@@ -34,7 +34,7 @@ class NotificationService {
   Future<int> showNotification({ int? id,  required String title, required String body, required TimeOfDay tod}) async {
     DateTime now = DateTime.now();
     var ran = Random();
-    int idd=ran.nextInt(1000000);
+    int idd=ran.nextInt(10000);
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id??idd,
       // id,
