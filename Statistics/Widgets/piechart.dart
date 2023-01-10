@@ -17,10 +17,13 @@ class Pie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final deviceOrientation= MediaQuery.of(context).orientation;
     return Container(
       decoration: BoxDecoration(color: Colors.white70),
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: PieChart(
+        chartRadius: deviceOrientation== Orientation.portrait? 500:75,
+       
         dataMap: dataMap,
         chartType: ChartType.ring,
         baseChartColor: Colors.grey[50]!.withOpacity(0.15),
