@@ -24,66 +24,68 @@ class _DrawerrState extends State<Drawerr> {
     return Drawer(
       elevation: 0.0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      child: ListView(
-        children: [
-          DrawerrHeader(),
-          ListTile(
-            leading: Icon(Icons.person,
-                color: Theme.of(context).colorScheme.primary),
-            title: Textt(text: 'My Profile', size: 15.0),
-            onTap: () {
-              GoRouter.of(context).go('/account');
-            },
-          ),
-          ListTile(
-            leading:
-                Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
-            title: Textt(text: 'Login', size: 15.0),
-            onTap: () {
-              GoRouter.of(context).go('/login');
-            },
-          ),
-          Container(
-            child: SwitchListTile(
-              title: Textt(text: 'Theme', size: 15.0),
-              secondary: Icon(
-                themeState.getDarkTheme
-                    ? Icons.dark_mode_outlined
-                    : Icons.light_mode_outlined,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              onChanged: (bool value) {
-                setState(() {
-                  themeState.setDarkTheme = value;
-                });
+      child: Expanded(
+        child: ListView(
+          children: [
+            DrawerrHeader(),
+            ListTile(
+              leading: Icon(Icons.person,
+                  color: Theme.of(context).colorScheme.primary),
+              title: Textt(text: 'My Profile', size: 15.0),
+              onTap: () {
+                GoRouter.of(context).go('/account');
               },
-              value: themeState.getDarkTheme,
             ),
-          ),
-          SizedBoxx(h: 270.0),
-          Column(
-            children: [
-              GestureDetector(
-                child: Container(
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 4.0,
-                          color: Theme.of(context).colorScheme.secondary),
-                      borderRadius: BorderRadius.circular(30.0)),
-                  child: Center(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Textt(size: 25.0, text: 'Logout'),
-                  )),
+            ListTile(
+              leading:
+                  Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
+              title: Textt(text: 'Login', size: 15.0),
+              onTap: () {
+                GoRouter.of(context).go('/login');
+              },
+            ),
+            Container(
+              child: SwitchListTile(
+                title: Textt(text: 'Theme', size: 15.0),
+                secondary: Icon(
+                  themeState.getDarkTheme
+                      ? Icons.dark_mode_outlined
+                      : Icons.light_mode_outlined,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-                onTap: () {
-                  Navigator.pop(context);
+                onChanged: (bool value) {
+                  setState(() {
+                    themeState.setDarkTheme = value;
+                  });
                 },
+                value: themeState.getDarkTheme,
               ),
-            ],
-          )
-        ],
+            ),
+            SizedBoxx(h: 270.0),
+            Column(
+              children: [
+                GestureDetector(
+                  child: Container(
+                    width: 120.0,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 4.0,
+                            color: Theme.of(context).colorScheme.secondary),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Center(
+                        child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Textt(size: 25.0, text: 'Logout'),
+                    )),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

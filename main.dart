@@ -13,7 +13,7 @@ import 'Routing/app_routing.dart';
 import 'helper/notificationservice.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'package:flutter/services.dart';
 import 'consts/theme_data.dart';
 
 class TodoApp extends StatefulWidget {
@@ -60,7 +60,11 @@ class _TodoAppState extends State<TodoApp> {
   }
 }
 
+
+
 void main() async {
+  //WidgetsFlutterBinding.ensureInitialized();
+  // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // var box = await Hive.openBox('todobox');
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();

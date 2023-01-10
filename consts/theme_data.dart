@@ -17,7 +17,7 @@ class Styles {
         : ThemeData(
             splashColor: Color(0xFF000000),
             secondaryHeaderColor: Color.fromARGB(255, 94, 94, 94),
-            primaryColor: Colors.white,
+            primaryColor:Colors.grey[300],
             scaffoldBackgroundColor: Colors.white,
             colorScheme: ColorScheme.light(
                 primary: Color(0xFF252525),
