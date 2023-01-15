@@ -14,7 +14,7 @@ class AuthService {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email:user.email,
         password: user.pw,
-      ).then((currentUser) async =>  await createUserobj(user)).onError((error, stackTrace) => error.toString()).onError((error, stackTrace) => error.toString());
+      ).then((currentUser) async =>  await createUserobj(user,currentUser.user!.uid)).onError((error, stackTrace) => error.toString()).onError((error, stackTrace) => error.toString());
       return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -38,7 +38,7 @@ class AuthService {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      ).then((value) async => getUser(value.user!.uid).then((value) => print(value.name)));
       return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

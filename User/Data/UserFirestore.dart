@@ -12,12 +12,12 @@ return docUser.id;
 }
 
 
-Future<String> createUserobj(Userr u) async {
-  final docUser=FirebaseFirestore.instance.collection('users').doc();
-  u.uid=docUser.id;
+Future<String> createUserobj(Userr u,String id) async {
+  final docUser=FirebaseFirestore.instance.collection('users').doc(id);
+  u.uid=id;
   final map=u.toMap();
 await docUser.set(map);
-return docUser.id;
+return id;
 }
 
 Stream<List<Userr>> readUsers(){

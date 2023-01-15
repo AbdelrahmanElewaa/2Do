@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         //* back button to signup
         backgroundColor: Colors.transparent,
@@ -44,7 +44,7 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Center(
           child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,

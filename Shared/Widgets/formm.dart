@@ -25,6 +25,8 @@ class Formm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: TextFormField(
+             textInputAction: TextInputAction.next,
+            //  scrollPadding: EdgeInsets.only(bottom:40),
             controller: cont,
             //-Validation
             validator: (value) {
