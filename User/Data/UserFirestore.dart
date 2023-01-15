@@ -34,3 +34,8 @@ Future<void> delete(String id) async {
 Future<void> editUser(String id,Userr u) async {
   await FirebaseFirestore.instance.collection('users').doc(id).update(u.toMap());
 }
+
+
+Future<Userr> getUser(String id) async {
+  return await FirebaseFirestore.instance.collection('users').doc(id). get().then((value) => Userr.fromMap(value.data()!));
+}

@@ -15,7 +15,7 @@ class AuthService {
         email:user.email,
         password: user.pw,
       ).then((currentUser) async =>  await createUserobj(user)).onError((error, stackTrace) => error.toString()).onError((error, stackTrace) => error.toString());
-      
+      return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return 'The password provided is too weak.';
@@ -27,7 +27,7 @@ class AuthService {
     } catch (e) {
       return e.toString();
     }
-    return 'Success';
+    
   }
 
   Future<String?> login({

@@ -9,6 +9,7 @@ import '../../Shared/Widgets/formm.dart';
 import '../../Shared/Widgets/iconn.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
+import '../Domain/authservice.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -85,11 +86,33 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         //-validation (button)
-                        onPressed: () {
+                        onPressed: () async{
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
                             print(email.text+pw.text);
+                            final message = await AuthService().login(
+                              email: email.text, 
+                              password: pw.text);
+                              if (message=='Success')
                             GoRouter.of(context).go('/TodoList');
+                            else{
+                              showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Error"),
+                                  content: Text(message!),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text("Close"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                            }
                           }
                         },
                         child: const Textt(
