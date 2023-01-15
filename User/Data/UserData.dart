@@ -1,8 +1,8 @@
-List<User> Users = <User>[];
+List<Userr> Users = <Userr>[];
 
 
-class User {
-  User({required this.name,required this.email,required this.pw,required this.mobile, this.uid});
+class Userr {
+  Userr({required this.name,required this.email,required this.pw,required this.mobile, this.uid});
   String name;
   String email;
   String pw;
