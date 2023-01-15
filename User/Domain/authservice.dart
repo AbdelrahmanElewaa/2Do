@@ -1,28 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:todo/User/Data/UserFirestore.dart';
 
 import '../Data/UserData.dart';
 
 class AuthService {
   Future<String?> registration({
     required Userr user,
-    required String password,
+    // required String password,
   }) async {
     try {
       // user.
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email:user. email,
+        email:user.email,
         password: user.pw,
-      ).then((currentUser) async =>  await FirebaseFirestore.instance
-                                  .collection("users")
-                                  .doc(user.email)
-                                  .set({
-                                    "uid": currentUser.uid,
-                                    "fname": firstNameInputController.text,
-                                    "surname": lastNameInputController.text,
-                                    "email": emailInputController.text,
-                                  }));
-      return 'Success';
+      ).then((currentUser) async =>  await createUserobj(user)).onError((error, stackTrace) => error.toString()).onError((error, stackTrace) => error.toString());
+      
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return 'The password provided is too weak.';
@@ -34,6 +27,7 @@ class AuthService {
     } catch (e) {
       return e.toString();
     }
+    return 'Success';
   }
 
   Future<String?> login({

@@ -33,6 +33,8 @@ class Formm extends StatelessWidget {
                 return 'Enter missing value';
               } else {
                 cont.text=value!;
+                cont.selection =
+          TextSelection.collapsed(offset: cont.text.length);
                 return null;
               }
             },

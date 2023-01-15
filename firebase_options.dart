@@ -56,6 +56,7 @@ class DefaultFirebaseOptions {
     projectId: 'todo-d003d',
     databaseURL: 'https://todo-d003d-default-rtdb.firebaseio.com',
     storageBucket: 'todo-d003d.appspot.com',
+    
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

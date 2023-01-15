@@ -4,12 +4,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo/User/Data/UserData.dart';
 import '../../Shared/Widgets/formm.dart';
 import '../../Shared/Widgets/iconn.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../Domain/authservice.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -91,12 +94,64 @@ class _SignupPageState extends State<SignupPage> {
                             minimumSize: const Size.fromHeight(70), // NEW
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
-                        onPressed: () {
+                        onPressed: () async{
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
-                            print(name.text+email.text+mob.text+pw.text+conpw.text);
-                            GoRouter.of(context).go('/login');
+                            //  if (pw.text ==
+                            // conpw.text) {
+                              Userr u=Userr(name:name.text,email: email.text,mobile: mob.text,pw: pw.text);
+                              final message = await AuthService().registration(
+                 user: u
+                );
+                if (message=='Success') {
+                  
+                  GoRouter.of(context).go('/login');
+                }
+                // else {
+                //           showDialog(
+                //               context: context,
+                //               builder: (BuildContext context) {
+                //                 return AlertDialog(
+                //                   title: Text("Error"),
+                //                   content: Text(message!),
+                //                   actions: <Widget>[
+                //                     TextButton(
+                //                       child: Text("Close"),
+                //                       onPressed: () {
+                //                         Navigator.of(context).pop();
+                //                       },
+                //                     )
+                //                   ],
+                //                 );
+                //               });
+                //             // print(name.text+email.text+mob.text+pw.text+conpw.text);
                             
+                            
+                //           }
+                // }
+                           
+                
+                else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Error"),
+                                  content: Text("The passwords do not match"),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text("Close"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                            // print(name.text+email.text+mob.text+pw.text+conpw.text);
+                            
+                            
+                          }
                           }
                         },
                         child: Textt(
