@@ -97,8 +97,8 @@ class _SignupPageState extends State<SignupPage> {
                         onPressed: () async{
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
-                            //  if (pw.text ==
-                            // conpw.text) {
+                             if (pw.text ==
+                            conpw.text) {
                               Userr u=Userr(name:name.text,email: email.text,mobile: mob.text,pw: pw.text);
                               final message = await AuthService().registration(
                  user: u
@@ -107,28 +107,28 @@ class _SignupPageState extends State<SignupPage> {
                   
                   GoRouter.of(context).go('/login');
                 }
-                // else {
-                //           showDialog(
-                //               context: context,
-                //               builder: (BuildContext context) {
-                //                 return AlertDialog(
-                //                   title: Text("Error"),
-                //                   content: Text(message!),
-                //                   actions: <Widget>[
-                //                     TextButton(
-                //                       child: Text("Close"),
-                //                       onPressed: () {
-                //                         Navigator.of(context).pop();
-                //                       },
-                //                     )
-                //                   ],
-                //                 );
-                //               });
-                //             // print(name.text+email.text+mob.text+pw.text+conpw.text);
+                else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Error"),
+                                  content: Text(message!),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text("Close"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                            // print(name.text+email.text+mob.text+pw.text+conpw.text);
                             
                             
-                //           }
-                // }
+                          }
+                }
                            
                 
                 else {
