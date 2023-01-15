@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         appBar: AppBar(
           //* back button to login
           backgroundColor: Colors.transparent,
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: Center(
             child: Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,

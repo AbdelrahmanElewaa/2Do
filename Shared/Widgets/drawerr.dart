@@ -44,6 +44,14 @@ class _DrawerrState extends State<Drawerr> {
                 GoRouter.of(context).go('/login');
               },
             ),
+            ListTile(
+              leading:
+                  Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
+              title: Textt(text: 'Logout', size: 15.0),
+              onTap: () {
+                GoRouter.of(context).go('/login');
+              },
+            ),
             Container(
               child: SwitchListTile(
                 title: Textt(text: 'Theme', size: 15.0),
