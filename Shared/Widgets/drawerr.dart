@@ -38,18 +38,18 @@ class _DrawerrState extends State<Drawerr> {
               },
             ),
             ListTile(
-              leading:
-                  Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
+              leading: Icon(Icons.login,
+                  color: Theme.of(context).colorScheme.primary),
               title: Textt(text: 'Login', size: 15.0),
               onTap: () {
                 GoRouter.of(context).go('/login');
               },
             ),
             ListTile(
-              leading:
-                  Icon(Icons.logout, color: Theme.of(context).colorScheme.primary),
+              leading: Icon(Icons.logout,
+                  color: Theme.of(context).colorScheme.primary),
               title: Textt(text: 'Logout', size: 15.0),
-              onTap: () async{
+              onTap: () async {
                 // GoRouter.of(context).go('/login');
                 await FirebaseAuth.instance.signOut();
               },
@@ -71,7 +71,6 @@ class _DrawerrState extends State<Drawerr> {
                 value: themeState.getDarkTheme,
               ),
             ),
-            SizedBoxx(h: 270.0),
             Column(
               children: [
                 GestureDetector(
