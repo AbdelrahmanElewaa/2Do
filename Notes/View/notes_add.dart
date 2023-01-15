@@ -57,13 +57,23 @@ class _NotesAddState extends State<NotesAdd> {
               // ignore: prefer_const_constructors
               TextField(
                 controller: titleController,
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Theme.of(context).colorScheme.primary,
+                    decorationThickness: 0),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                ),
               ),
               Expanded(
                 child: TextField(
                   controller: contentController,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      decorationThickness: 0),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,

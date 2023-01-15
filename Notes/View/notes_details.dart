@@ -66,13 +66,15 @@ class _NotesDetailsState extends State<NotesDetails> {
           ),
           body: Column(children: [
             // Text('${widget.title}'),
-            // ignore: prefer_const_constructors
+            // ignore_for_file: prefer_const_constructors
             TextField(
               controller: titleController,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Theme.of(context).colorScheme.primary,decorationThickness: 0),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                  
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -82,6 +84,9 @@ class _NotesDetailsState extends State<NotesDetails> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField(
                   controller: contentController,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      decorationThickness: 0),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
