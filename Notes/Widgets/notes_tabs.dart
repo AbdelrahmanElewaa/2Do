@@ -35,11 +35,14 @@ class MySquare extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Textt(
-                      text: title,
-                      size: 16.0,
-                      mlines: 1,
+                    Flexible(
+                      child: Textt(
+                        text: title,
+                        size: 16.0,
+                        mlines: 1,
+                      ),
                     )
                   ],
                 ),
