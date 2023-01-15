@@ -64,30 +64,35 @@ class _NotesDetailsState extends State<NotesDetails> {
               },
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            // ignore: prefer_const_literals_to_create_immutables
-            child: Column(children: [
-              Text('${widget.title}'),
-              // ignore: prefer_const_constructors
-              TextField(
-                controller: titleController,
+          body: Column(children: [
+            // Text('${widget.title}'),
+            // ignore: prefer_const_constructors
+            TextField(
+              controller: titleController,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  
+                  borderSide: BorderSide.none,
+                ),
               ),
-              Expanded(
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField(
                   controller: contentController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                 ),
               ),
-            ]),
-          )),
+            ),
+          ])),
     );
   }
 }

@@ -47,40 +47,42 @@ class _NotesScreenState extends State<NotesScreen> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 140.0),
-                child: Textt(text: 'Notes', size: 32.0),
-              )),
-              IconButton(
-                splashRadius: 20.0,
-                icon: Icon(
-                  UniconsLine.exchange_alt,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: [
+                Expanded(flex: 6, child: Textt(text: 'Notes', size: 32.0)),
+                Expanded(
+                  child: IconButton(
+                    splashRadius: 20.0,
+                    icon: Icon(
+                      UniconsLine.exchange_alt,
+                    ),
+                    color: Theme.of(context).iconTheme.color,
+                    onPressed: () {
+                      if (globals.sorting == true) {
+                        globals.sorting = false;
+                      } else {
+                        globals.sorting = true;
+                      }
+                      setState(() {});
+                    },
+                  ),
                 ),
-                color: Theme.of(context).iconTheme.color,
-                onPressed: () {
-                  if (globals.sorting == true) {
-                    globals.sorting = false;
-                  } else {
-                    globals.sorting = true;
-                  }
-                  setState(() {});
-                },
-              ),
-              IconButton(
-                splashRadius: 20.0,
-                icon: Icon(
-                  UniconsLine.plus,
+                Expanded(
+                  child: IconButton(
+                    splashRadius: 20.0,
+                    icon: Icon(
+                      UniconsLine.plus,
+                    ),
+                    color: Theme.of(context).iconTheme.color,
+                    onPressed: () {
+                      GoRouter.of(context).go('/notesadd');
+                    },
+                  ),
                 ),
-                color: Theme.of(context).iconTheme.color,
-                onPressed: () {
-                  GoRouter.of(context).go('/notesadd');
-                },
-              ),
-            ],
+              ],
+            ),
           ),
           SizedBoxx(
             h: 12.0,

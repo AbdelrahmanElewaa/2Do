@@ -45,7 +45,7 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                         width: 2.0),
                   ),
 
-                  labelText: 'Search',
+                  labelText: 'Search....',
                 ),
                 onChanged: (text) {
                   if (text.isNotEmpty) {

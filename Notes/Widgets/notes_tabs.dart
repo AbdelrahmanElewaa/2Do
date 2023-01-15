@@ -25,12 +25,12 @@ class MySquare extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Container(
-          height: 60,
+          height: MediaQuery.of(context).size.height * 0.1,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(0.0)),
+              borderRadius: BorderRadius.circular(25.0)),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -46,26 +46,29 @@ class MySquare extends StatelessWidget {
                     )
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Textt(
-                        text: content,
-                        size: 12.0,
-                        mlines: 1,
-                        colorr: Theme.of(context).secondaryHeaderColor,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Textt(
+                          text: content,
+                          size: 12.0,
+                          mlines: 1,
+                          colorr: Theme.of(context).secondaryHeaderColor,
+                        ),
                       ),
-                    ),
-                    Flexible(
-                      child: Textt(
-                        text: '$time',
-                        size: 12.0,
-                        mlines: 1,
-                        colorr: Theme.of(context).secondaryHeaderColor,
+                      Flexible(
+                        child: Textt(
+                          text: '$time',
+                          size: 12.0,
+                          mlines: 1,
+                          colorr: Theme.of(context).secondaryHeaderColor,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
