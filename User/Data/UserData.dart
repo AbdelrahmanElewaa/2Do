@@ -1,18 +1,13 @@
 List<User> Users = <User>[];
-void addUserData({
-  required String name,
-}) {
-  // setState(() {
-  Users.add(User(name: name));
-  // }
-  // );
-  // _textFieldController.clear();
-}
+
 
 class User {
-  User({required this.name});
+  User({required this.name,required this.email,required this.pw,required this.mobile, this.uid});
   String name;
+  String email;
+  String pw;
+  String mobile;
+  String? uid;
 
-  @override
-  String toString() => "name: $name";
+  
 }
