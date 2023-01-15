@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../Shared/Widgets/formm.dart';
 import '../../Shared/Widgets/iconn.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
@@ -22,6 +21,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         //* back button to signup
         backgroundColor: Colors.transparent,
@@ -39,77 +39,88 @@ class _SignupPageState extends State<SignupPage> {
           child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Wrap(
               children: [
-                //*Signup text
-                Textt(
-                  text: 'Sign up',
-                  size: 50,
-                ),
-                SizedBoxx(h: 10.0),
-                //*Create account text
-                Textt(
-                  text: 'Create a free account',
-                  size: 20,
-                ),
-                SizedBoxx(h: 20.0),
-                //*email textfield
-                Formm(htext: 'Email'),
-                SizedBoxx(h: 12.0),
-                //*password textfield
-                Formm(htext: 'Password', obsectext: true),
-                SizedBoxx(h: 12.0),
-                //*confirm password textfield
-                Formm(htext: 'Confrim Password', obsectext: true),
-                SizedBoxx(h: 4.0),
-                //*signup button
-                Container(
-                  padding: const EdgeInsets.all(25),
-                  child: SizedBox(
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary,
-                          minimumSize: const Size.fromHeight(70), // NEW
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15))),
-                      onPressed: () {
-                        final isValidForm = formKey.currentState!.validate();
-                        if (isValidForm) {
-                          GoRouter.of(context).go('/login');
-                        }
-                      },
-                      child: Textt(
-                        text: 'Sign up',
-                        size: 24,
+               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //*Signup text
+                  Textt(
+                    text: 'Sign up',
+                    size: 50,
+                  ),
+                  SizedBoxx(h: 10.0),
+                  //*Create account text
+                  Textt(
+                    text: 'Create a free account',
+                    size: 20,
+                  ),
+                  SizedBoxx(h: 20.0),
+                  //*email textfield
+                  Formm(htext: 'Name'),
+                  SizedBoxx(h: 12.0),
+                  //*password textfield
+                  Formm(htext: 'Email'),
+                  SizedBoxx(h: 12.0),
+            
+                  Formm(htext: 'Mobile Number'),
+                  SizedBoxx(h: 12.0),
+            
+                  Formm(htext: 'Password', obsectext: true),
+                  SizedBoxx(h: 12.0),
+                  //*confirm password textfield
+                  Formm(htext: 'Confrim Password', obsectext: true),
+                  SizedBoxx(h: 4.0),
+                  //*signup button
+                  Container(
+                    padding: const EdgeInsets.all(25),
+                    child: SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                            minimumSize: const Size.fromHeight(70), // NEW
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          final isValidForm = formKey.currentState!.validate();
+                          if (isValidForm) {
+                            GoRouter.of(context).go('/login');
+                          }
+                        },
+                        child: Textt(
+                          text: 'Sign up',
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //* already have an account text
-                    Textt(
-                      text: "Already have an account ? ",
-                      size: 17,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).go('/login');
-                      },
-                      //* login switch text
-                      child: Textt(
-                        text: 'Login',
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //* already have an account text
+                      Textt(
+                        text: "Already have an account? ",
                         size: 17,
-                        colorr: Theme.of(context).colorScheme.secondary,
-                        decorationn: TextDecoration.underline,
                       ),
-                    ),
-                  ],
-                ),
+                      GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).go('/login');
+                        },
+                        //* login switch text
+                        child: Textt(
+                          text: 'Login',
+                          size: 17,
+                          colorr: Theme.of(context).colorScheme.secondary,
+                          decorationn: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               ],
             ),
           ),

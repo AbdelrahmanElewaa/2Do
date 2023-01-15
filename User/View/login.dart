@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(children: [
       Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           //* back button to login
           backgroundColor: Colors.transparent,

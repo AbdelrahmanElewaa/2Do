@@ -25,8 +25,9 @@ class Formm extends StatelessWidget {
           child: TextFormField(
             //-Validation
             validator: (value) {
-              if (value != null && value.length < 7) {
-                return 'Enter minmum 7 characters';
+              if (value=='') {
+                // && value.length < 7
+                return 'Enter missing value';
               } else {
                 return null;
               }
