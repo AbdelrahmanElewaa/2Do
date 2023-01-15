@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class Formm extends StatelessWidget {
   final htext;
   final bool obsectext;
+  final TextEditingController cont;
   const Formm({
     Key? key,
     this.htext,
     this.obsectext = false,
+    required this.cont,
   }) : super(key: key);
 
   @override
@@ -23,12 +25,14 @@ class Formm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: TextFormField(
+            controller: cont,
             //-Validation
             validator: (value) {
               if (value=='') {
                 // && value.length < 7
                 return 'Enter missing value';
               } else {
+                cont.text=value!;
                 return null;
               }
             },

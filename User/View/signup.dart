@@ -18,6 +18,11 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController name=TextEditingController();
+  final TextEditingController email=TextEditingController();
+  final TextEditingController mob=TextEditingController();
+  final TextEditingController pw=TextEditingController();
+  final TextEditingController conpw=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,19 +63,19 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   SizedBoxx(h: 20.0),
                   //*email textfield
-                  Formm(htext: 'Name'),
+                  Formm(htext: 'Name',cont: name),
                   SizedBoxx(h: 12.0),
                   //*password textfield
-                  Formm(htext: 'Email'),
+                  Formm(htext: 'Email',cont: email),
                   SizedBoxx(h: 12.0),
             
-                  Formm(htext: 'Mobile Number'),
+                  Formm(htext: 'Mobile Number', cont: mob),
                   SizedBoxx(h: 12.0),
             
-                  Formm(htext: 'Password', obsectext: true),
+                  Formm(htext: 'Password', obsectext: true,cont: pw),
                   SizedBoxx(h: 12.0),
                   //*confirm password textfield
-                  Formm(htext: 'Confrim Password', obsectext: true),
+                  Formm(htext: 'Confrim Password', obsectext: true,cont: conpw),
                   SizedBoxx(h: 4.0),
                   //*signup button
                   Container(
@@ -87,7 +92,9 @@ class _SignupPageState extends State<SignupPage> {
                         onPressed: () {
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
+                            print(name.text+email.text+mob.text+pw.text+conpw.text);
                             GoRouter.of(context).go('/login');
+                            
                           }
                         },
                         child: Textt(

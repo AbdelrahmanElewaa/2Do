@@ -19,6 +19,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController email=TextEditingController();
+  final TextEditingController pw=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -65,10 +67,10 @@ class _LoginPageState extends State<LoginPage> {
 
                   SizedBoxx(h: 20.0),
                   //* Email textfield
-                  Formm(htext: 'Email'),
+                  Formm(htext: 'Email',cont: email),
                   SizedBoxx(h: 12.0),
                   //* Password textfield
-                  Formm(htext: 'Password', obsectext: true),
+                  Formm(htext: 'Password', obsectext: true,cont: pw),
                   SizedBoxx(h: 4.0),
                   Container(
                     padding: const EdgeInsets.all(25),
@@ -86,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
+                            print(email.text+pw.text);
                             GoRouter.of(context).go('/TodoList');
                           }
                         },
