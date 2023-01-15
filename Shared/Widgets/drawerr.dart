@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -46,10 +47,11 @@ class _DrawerrState extends State<Drawerr> {
             ),
             ListTile(
               leading:
-                  Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
+                  Icon(Icons.logout, color: Theme.of(context).colorScheme.primary),
               title: Textt(text: 'Logout', size: 15.0),
-              onTap: () {
-                GoRouter.of(context).go('/login');
+              onTap: () async{
+                // GoRouter.of(context).go('/login');
+                await FirebaseAuth.instance.signOut();
               },
             ),
             Container(
