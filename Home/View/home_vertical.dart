@@ -32,6 +32,7 @@ List<Todo> todoss = [];
     });
     super.initState();
   }
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -118,10 +119,11 @@ List<Todo> todoss = [];
           );
         }
         return TasksTile(
-                          icon: Icons.dinner_dining,
+          
+                          icon: Icons.task,
                           taskName: '${todoss[index].name}',
                           subTitle: '${todoss[index].cat}',
-                          color: Colors.red,
+                          color: Colors.orange,
                         );
       }
           ),

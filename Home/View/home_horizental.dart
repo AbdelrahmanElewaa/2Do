@@ -119,10 +119,10 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                             );
                           }
                           return TasksTile(
-                            icon: Icons.dinner_dining,
-                            taskName: '${todoss[index].name}',
-                            subTitle: '${todoss[index].cat}',
-                            color: Colors.red,
+                             icon: Icons.task,
+                          taskName: '${todoss[index].name}',
+                          subTitle: '${todoss[index].cat}',
+                          color: Colors.orange,
                           );
                         }),
                     // SizedBoxx(
