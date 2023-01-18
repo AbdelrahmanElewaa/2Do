@@ -43,13 +43,13 @@ class DBHelper {
   // Inserts a row in the database where each key in the Map is a column name
   // and the value is the column value. The return value is the id of the
   // inserted row.
-  // `conflictAlgorithm` to use in case the same pet is inserted twice.
+  // `conflictAlgorithm` to use in case the same note is inserted twice.
   // In this case, replace any previous data.
-  Future<int> insert(Pet pet) async {
+  Future<int> insert(Note note) async {
     Database db = await database;
     return db.insert(
       _table,
-      pet.toMap(),
+      note.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -88,10 +88,10 @@ class DBHelper {
 
   // We are assuming here that the id column in the map is set. The other
   // column values will be used to update the row.
-  Future<int> update(Pet pet) async {
+  Future<int> update(Note note) async {
     Database db = await database;
-    int id = pet.toMap()[Columns.id.name];
-    return db.update(_table, pet.toMap(),
+    int id = note.toMap()[Columns.id.name];
+    return db.update(_table, note.toMap(),
         where: '${Columns.id.name} = ?', whereArgs: [id]);
   }
 

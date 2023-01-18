@@ -21,18 +21,18 @@ class Noteslist extends StatefulWidget {
 }
 
 class _NoteslistState extends State<Noteslist> {
-  final petsRepository = PetsRepository.instance;
-  List<Pet> pets = [];
+  final petsRepository = NotesRepository.instance;
+  List<Note> pets = [];
   @override
   void initState() {
     if (globals.sorting == true) {
-      petsRepository.fetchPetList().then((value) {
+      petsRepository.fetchNoteList().then((value) {
         setState(() {
           pets = value;
         });
       });
     } else {
-      petsRepository.fetchPetListAsc().then((value) {
+      petsRepository.fetchNoteListAsc().then((value) {
         setState(() {
           pets = value;
         });

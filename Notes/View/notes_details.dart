@@ -21,7 +21,7 @@ class NotesDetails extends StatefulWidget {
 }
 
 class _NotesDetailsState extends State<NotesDetails> {
-  final petsRepository = PetsRepository.instance;
+  final notesRepository = NotesRepository.instance;
   final DateFormat _dateFormatter = DateFormat.MMMEd();
 
   //controllers used in insert/update operation UI
@@ -51,12 +51,12 @@ class _NotesDetailsState extends State<NotesDetails> {
               onPressed: () {
                 if (titleController.text != widget.title ||
                     contentController.text != widget.content) {
-                  Pet pet = Pet(
+                  Note note = Note(
                       id: int.parse(idUpdateController.text),
                       title: titleController.text,
                       content: contentController.text,
                       date: '${_dateFormatter.format(DateTime.now())}');
-                  petsRepository.update(pet).then((rowsAffected) =>
+                  notesRepository.update(note).then((rowsAffected) =>
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('$rowsAffected rows updated'))));
                 }

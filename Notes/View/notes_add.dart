@@ -15,7 +15,7 @@ class NotesAdd extends StatefulWidget {
 }
 
 class _NotesAddState extends State<NotesAdd> {
-  final petsRepository = PetsRepository.instance;
+  final notesRepository = NotesRepository.instance;
   final DateFormat _dateFormatter = DateFormat.yMd().add_jm();
 
   //controllers used in insert/update operation UI
@@ -42,7 +42,7 @@ class _NotesAddState extends State<NotesAdd> {
                   String title = titleController.text;
                   String content = contentController.text;
                   String date = '${_dateFormatter.format(DateTime.now())}';
-                  petsRepository.insert(title, content, date).then((id) =>
+                  notesRepository.insert(title, content, date).then((id) =>
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Note Added'))));
                 }

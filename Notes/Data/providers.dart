@@ -4,10 +4,10 @@ import 'package:todo/Tasks/Data/tasksRepository.dart';
 import '../Domain/notes.dart';
 import '../Data/notes_repository.dart';
 
-final notesprovider = StateProvider<List<Pet>>((ref) {
-  final notesrep = PetsRepository.instance;
-  List<Pet> notess = [];
-  notesrep.fetchPetList().then((value) {
+final notesprovider = StateProvider<List<Note>>((ref) {
+  final notesrep = NotesRepository.instance;
+  List<Note> notess = [];
+  notesrep.fetchNoteList().then((value) {
     notess = value;
     // print('notess: $notess');
     // return notess;

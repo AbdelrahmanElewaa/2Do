@@ -4,10 +4,10 @@ import '../../Shared/Data/constants.dart';
 import 'db_helper.dart';
 import '../Domain/notes.dart';
 
-class PetsRepository {
+class NotesRepository {
   //singleton pattern
-  static final PetsRepository instance = PetsRepository._();
-  PetsRepository._();
+  static final NotesRepository instance = NotesRepository._();
+  NotesRepository._();
 
   final _dbHelper = DBHelper.instance;
 
@@ -19,47 +19,47 @@ class PetsRepository {
       Columns.date.name: date,
     };
 
-    Pet pet = Pet.fromMap(row);
-    debugPrint('inserting $pet');
-    final id = await _dbHelper.insert(pet);
+    Note note = Note.fromMap(row);
+    debugPrint('inserting $note');
+    final id = await _dbHelper.insert(note);
     debugPrint('inserted row id: $id');
     return id;
   }
 
-  Future<List<Pet>> fetchPetList() async {
+  Future<List<Note>> fetchNoteList() async {
     final allRows = await _dbHelper.queryAllRows();
-    List<Pet> pets = [];
+    List<Note> notes = [];
     for (var row in allRows) {
-      pets.add(Pet.fromMap(row));
+      notes.add(Note.fromMap(row));
     }
-    return pets;
+    return notes;
   }
 
-  Future<List<Pet>> fetchPetListAsc() async {
+  Future<List<Note>> fetchNoteListAsc() async {
     final allRows = await _dbHelper.queryAllRowsAsc();
-    List<Pet> pets = [];
+    List<Note> notes = [];
     for (var row in allRows) {
-      pets.add(Pet.fromMap(row));
+      notes.add(Note.fromMap(row));
     }
-    return pets;
+    return notes;
   }
 
-  Future<List<Pet>> fetchPetListByName(title) async {
+  Future<List<Note>> fetchNoteListByName(title) async {
     final allRows = await _dbHelper.queryRows(title);
-    List<Pet> petsByTitle = [];
+    List<Note> notesByTitle = [];
     for (var row in allRows) {
-      petsByTitle.add(Pet.fromMap(row));
+      notesByTitle.add(Note.fromMap(row));
     }
-    return petsByTitle;
+    return notesByTitle;
   }
 
-  Future<Pet> fetchPet(id) async {
+  Future<Note> fetchNote(id) async {
     final allRows = await _dbHelper.getById(id);
-    return allRows.isEmpty ? Pet.empty(id) : Pet.fromMap(allRows[0]);
+    return allRows.isEmpty ? Note.empty(id) : Note.fromMap(allRows[0]);
   }
 
-  Future<int> update(Pet pet) async {
-    final rowsAffected = await _dbHelper.update(pet);
+  Future<int> update(Note note) async {
+    final rowsAffected = await _dbHelper.update(note);
     return rowsAffected;
   }
 

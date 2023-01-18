@@ -17,8 +17,8 @@ class NotesSearchbar extends StatefulWidget {
 
 class _NotesSearchbarState extends State<NotesSearchbar> {
   bool isVisible = true;
-  final petsRepository = PetsRepository.instance;
-  List<Pet> petsByName = [];
+  final notesRepository = NotesRepository.instance;
+  List<Note> notesByName = [];
   //controllers used in query operation UI
   TextEditingController queryController = TextEditingController();
   @override
@@ -49,14 +49,14 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                 ),
                 onChanged: (text) {
                   if (text.isNotEmpty) {
-                    petsRepository.fetchPetListByName(text).then((value) {
+                    notesRepository.fetchNoteListByName(text).then((value) {
                       setState(() {
-                        petsByName = value;
+                        notesByName = value;
                       });
                     });
                   } else {
                     setState(() {
-                      petsByName.clear();
+                      notesByName.clear();
                     });
                   }
                   // else if (text.isEmpty) {
@@ -65,15 +65,15 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                   //     print('emptyyyyyyy');
                   //   });
                   // }
-                  // print('jhghjgjghghghggghgh  ${petsByName.length}');
-                  // if ((petsByName.length) == 0) {
+                  // print('jhghjgjghghghggghgh  ${notesByName.length}');
+                  // if ((notesByName.length) == 0) {
                   //   print('helooooooooooooooo');
 
                   //   setState(() {
                   //     isVisible == false;
                   //   });
                   // } else {
-                  //   print('jhghjgjghghghggghgh  ${petsByName.length}');
+                  //   print('jhghjgjghghghggghgh  ${notesByName.length}');
 
                   //   print('mmmmmmmmmmmmmmmmmmmm');
 
@@ -90,7 +90,7 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
           height: 50,
           child: ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: petsByName.length,
+            itemCount: notesByName.length,
             itemBuilder: (BuildContext context, int index) {
               return Slidable(
                 key: const ValueKey(0),
@@ -103,8 +103,8 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                   // A pane can dismiss the Slidable.
                   dismissible: DismissiblePane(
                     onDismissed: () {
-                      int? id = petsByName[index].id;
-                      petsRepository.delete(id).then((rowsDeleted) =>
+                      int? id = notesByName[index].id;
+                      notesRepository.delete(id).then((rowsDeleted) =>
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Note deleted'))));
                     },
@@ -126,9 +126,9 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                 ),
 
                 child: MySquare(
-                  title: ' ${petsByName[index].title}',
-                  content: '${petsByName[index].content}',
-                  time: '${petsByName[index].date}',
+                  title: ' ${notesByName[index].title}',
+                  content: '${notesByName[index].content}',
+                  time: '${notesByName[index].date}',
                 ),
               );
             },

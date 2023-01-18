@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-class Pet {
+class Note {
   final int? id;
   final String title;
   final String content;
   final String date;
-  Pet({
+  Note({
     required this.id,
     required this.title,
     required this.content,
     required this.date,
   });
 
-  Pet copyWith({
+  Note copyWith({
     int? id,
     String? title,
     String? content,
     String? date,
   }) {
-    return Pet(
+    return Note(
       id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
@@ -35,8 +35,8 @@ class Pet {
     };
   }
 
-  factory Pet.fromMap(Map<String, dynamic> map) {
-    return Pet(
+  factory Note.fromMap(Map<String, dynamic> map) {
+    return Note(
       id: map['id']?.toInt(),
       title: map['title'] ?? '',
       content: map['content'] ?? '',
@@ -46,18 +46,18 @@ class Pet {
 
   String toJson() => json.encode(toMap());
 
-  factory Pet.fromJson(String source) => Pet.fromMap(json.decode(source));
+  factory Note.fromJson(String source) => Note.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Pet(id: $id, title: $title, content: $content, date: $date)';
+    return 'Note(id: $id, title: $title, content: $content, date: $date)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Pet &&
+    return other is Note &&
         other.id == id &&
         other.title == title &&
         other.content == content &&
@@ -69,8 +69,8 @@ class Pet {
     return id.hashCode ^ title.hashCode ^ content.hashCode ^ date.hashCode;
   }
 
-  factory Pet.empty(id) {
-    return Pet(
+  factory Note.empty(id) {
+    return Note(
       id: 0,
       title: '',
       content: '',

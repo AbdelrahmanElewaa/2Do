@@ -22,13 +22,13 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  final petsRepository = PetsRepository.instance;
-  List<Pet> pets = [];
+  final notesRepository = NotesRepository.instance;
+  List<Note> notes = [];
   @override
   void initState() {
-    petsRepository.fetchPetList().then((value) {
+    notesRepository.fetchNoteList().then((value) {
       setState(() {
-        pets = value;
+        notes = value;
       });
     });
     super.initState();
