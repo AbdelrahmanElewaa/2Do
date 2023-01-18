@@ -9,9 +9,29 @@ import '../Widgets/tasks_tile.dart';
 import '../../Shared/Widgets/calenderweek.dart';
 import 'package:intl/intl.dart';
 import 'package:dismissible_page/dismissible_page.dart';
-class HomeVertical extends StatelessWidget {
-  const HomeVertical({super.key});
+import '../../Tasks/Data/tasksRepository.dart';
+import '../../Tasks/Data/TasksData.dart';
+import '../../Tasks/Domain/TasksModel2.dart';
 
+class HomeVertical extends StatefulWidget {
+   HomeVertical({super.key});
+
+  @override
+  State<HomeVertical> createState() => _HomeVerticalState();
+}
+
+class _HomeVerticalState extends State<HomeVertical> {
+  final taskrep = TasksRepository.instance;
+List<Todo> todoss = [];
+ @override
+  void initState() {
+    taskrep.fetchTodoList().then((value) {
+      setState(() {
+        todoss = value;
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,38 +101,33 @@ class HomeVertical extends StatelessWidget {
                       SizedBoxx(h: 20.0),
                       //Tasks Dashboard
                       Expanded(
-                          child: ListView(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          TasksTile(
-                            icon: Icons.work,
-                            taskName: 'Project Meeting',
-                            subTitle: 'Emergency',
-                            color: Colors.blue,
-                          ),
-                          TasksTile(
-                            icon: Icons.sports_gymnastics,
-                            taskName: 'Gym',
-                            subTitle: 'Sports',
-                            color: Colors.green,
-                          ),
-                          TasksTile(
-                            icon: Icons.dinner_dining,
-                            taskName: 'Dinner',
-                            subTitle: 'Appoitment',
-                            color: Colors.red,
-                          ),
-                          TasksTile(
-                            icon: Icons.dinner_dining,
-                            taskName: 'Dinner',
-                            subTitle: 'Appoitment',
-                            color: Colors.red,
-                          ),
-                        ],
-                      )),
-                      SizedBoxx(
-                        h: 8.0,
-                      ),
+                          child:ListView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: todoss.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == todoss.length) {
+          return ElevatedButton(
+            child: const Text('Refresh'),
+            onPressed: () {
+              taskrep.fetchTodoList().then((value) {
+                setState(() {
+                  todoss = value;
+                });
+              });
+            },
+          );
+        }
+        return TasksTile(
+                          icon: Icons.dinner_dining,
+                          taskName: '${todoss[index].name}',
+                          subTitle: 'Appoitment',
+                          color: Colors.red,
+                        );
+      }
+          ),
+                      // SizedBoxx(
+                      //   h: 8.0,
+                           )     // ),
                     ],
                   ),
                 ),

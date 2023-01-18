@@ -52,6 +52,7 @@ class TasksRepository {
     return id;
   }
 
+// View all data in the database and putting in a list of datatype Todo
   Future<List<Todo>> fetchTodoList() async {
     final allRows = await _dbHelper.queryAllRows();
     List<Todo> todos = [];
