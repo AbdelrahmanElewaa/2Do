@@ -120,7 +120,7 @@ List<Todo> todoss = [];
         return TasksTile(
                           icon: Icons.dinner_dining,
                           taskName: '${todoss[index].name}',
-                          subTitle: '${todoss[index].description}',
+                          subTitle: '${todoss[index].cat}',
                           color: Colors.red,
                         );
       }
