@@ -40,10 +40,10 @@ class _DropDownState extends State<DropDown> {
                     leading: Icon(Icons.delete),
                     title: Text('Delete'),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.info),
-                    title: Text('Info'),
-                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.info),
+                  //   title: Text('Info'),
+                  // ),
                 ],
               );
             },
