@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../Data/notes_repository.dart';
@@ -46,7 +47,10 @@ class _NotesAddState extends State<NotesAdd> {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Note Added'))));
                 }
-                Navigator.of(context).pop();
+                context.goNamed(
+                  "home",
+                  params: {"selectedIndex": "3"},
+                );
               },
             ),
           ),
