@@ -61,7 +61,7 @@ class _StatVerticalState extends State<StatVertical> {
                     headerStyle: HeaderStyle(
                         titleTextStyle: TextStyle(
                             color: Theme.of(context).colorScheme.primary)),
-                    firstDay: DateTime.utc(2010, 10, 16),
+                    firstDay: DateTime.utc(2018, 10, 16),
                     lastDay: DateTime.utc(2030, 3, 14),
                     focusedDay: DateTime.now(),
                   ),
