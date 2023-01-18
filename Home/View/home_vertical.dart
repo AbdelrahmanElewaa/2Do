@@ -36,7 +36,7 @@ List<Todo> todoss = [];
   Widget build(BuildContext context) {
     return Column(
           children: [
-            SizedBoxx(h: 10.0),
+            SizedBoxx(h: 5.0),
             //greating Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -53,7 +53,7 @@ List<Todo> todoss = [];
                   ),
 
                   //Search Bar
-                  SearchBar(),
+                 // SearchBar(),
                 ],
               ),
             ),
