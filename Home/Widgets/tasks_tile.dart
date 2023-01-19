@@ -9,6 +9,8 @@ class TasksTile extends StatelessWidget {
   final icon;
   final String taskName;
   final String subTitle;
+    final String time;
+final String date;
   final color;
   const TasksTile({
     Key? key,
@@ -16,6 +18,8 @@ class TasksTile extends StatelessWidget {
     required this.taskName,
     required this.subTitle,
     required this.color,
+    required this.time,
+    required this.date,
   });
 
   @override
@@ -65,6 +69,20 @@ class TasksTile extends StatelessWidget {
                           fontSize: 14,
                           color: Theme.of(context).colorScheme.secondary,
                         )),
+Text(date,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.secondary,
+                        )),
+                        Text(time,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.secondary,
+                        )),
+
+                        
                   ],
                 ),
               ],

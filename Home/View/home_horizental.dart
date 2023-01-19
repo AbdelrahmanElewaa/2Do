@@ -121,8 +121,10 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                           return TasksTile(
                              icon: Icons.task,
                           taskName: '${todoss[index].name}',
-                          subTitle: '${todoss[index].cat}',
-                          color: Colors.orange,
+                            subTitle: '${todoss[index].cat}',
+                            date: '${todoss[index].reminder.substring(0,10)}',
+                            time:'${todoss[index].reminder.substring(11,16)}' , 
+                            color: Colors.blue,
                           );
                         }),
                     // SizedBoxx(
