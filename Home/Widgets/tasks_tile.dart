@@ -73,13 +73,13 @@ Text(date,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Colors.orange,
                         )),
                         Text(time,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Colors.red,
                         )),
 
                         
