@@ -111,25 +111,11 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                            if (index == todoss.length) {
-                            return ElevatedButton(
-                              child: const Text('Refresh'),
-                              onPressed: () {
-                                if(todoss.length==null)
-                                {
-taskrep.fetchTodoList().then((value) {
-                                  setState(() {
-                                    
-        for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
-            todoss.add(value[i]);
-          }
-        }
-                                  });
-                                });
-                                }
-                                
-                              },
-                            );
+                            return  Text(
+                                '',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              );
                           }
                           return TasksTile(
                              icon: Icons.task,

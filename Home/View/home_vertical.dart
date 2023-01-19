@@ -30,8 +30,9 @@ class _HomeVerticalState extends State<HomeVertical> {
       setState(() {
         //value.reminder.substring(0, 10);
 
-        for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+        for (int i = 0; i < value.length; i++) {
+          if (value[i].reminder.substring(0, 10) ==
+              DateFormat('yyyy-MM-dd').format(DateTime.now())) {
             todoss.add(value[i]);
           }
         }
@@ -115,34 +116,18 @@ class _HomeVerticalState extends State<HomeVertical> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return ElevatedButton(
-                              child: const Text('Refresh'),
-                              onPressed: () {
-                                if(todoss.length==null)
-                                {
-taskrep.fetchTodoList().then((value) {
-                                  setState(() {
-                                    
-        for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
-            todoss.add(value[i]);
-          }
-        }
-                                  });
-                                });
-                                }
-                                
-                              },
-                            );
+                            return  Text(
+                                '',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              );
                           }
-                          String date =
-                              DateTime.now().toString().substring(0, 10);
 
                           return TasksTile(
                             icon: Icons.task,
                             taskName: '${todoss[index].name}',
                             subTitle: '${todoss[index].cat}',
-                           // subTitle: '$date',
+                            // subTitle: '$date',
                             date: '${todoss[index].reminder.substring(0, 10)}',
                             time: '${todoss[index].reminder.substring(11, 16)}',
                             color: Colors.orange,
