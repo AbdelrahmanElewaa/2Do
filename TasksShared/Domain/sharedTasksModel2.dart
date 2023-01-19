@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
@@ -9,16 +11,49 @@ import '../../Tasks/Data/tasksRepository.dart';
 import '../../Tasks/Domain/EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
-class SharedTodoItem extends ConsumerWidget {
-  SharedTodoItem({
+class SharedTod extends StatefulWidget {
+
+   SharedTod({
     required this.todo,
     required this.onTodoChanged,
   }) : super(key: ObjectKey(todo));
 
   final SharedTodo todo;
   final onTodoChanged;
-  final taskrep = TasksRepository.instance;
+  // const SharedTod({super.key});
 
+  @override
+  State<SharedTod> createState() => _SharedTodState(todo: todo,onTodoChanged: onTodoChanged);
+}
+
+class _SharedTodState extends State<SharedTod> {
+ 
+
+   _SharedTodState({
+    required this.todo,
+    required this.onTodoChanged,
+  }) :  super();
+
+  final SharedTodo todo;
+  final onTodoChanged;
+  final taskrep = TasksRepository.instance;
+  String uid=' ';
+
+@override
+  void initState(){
+     FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      // GoRouter.of(context).go('/login');
+      context.go('/login');
+    } else {
+     uid= user.uid;
+      print('User is signed in!');
+    }
+  });
+  }
   TextStyle? _getTextStyle(String checked) {
     if (checked == "false") {
       // if (!checked) {
@@ -36,8 +71,10 @@ class SharedTodoItem extends ConsumerWidget {
     );
   }
 
+
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
   
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -49,7 +86,7 @@ class SharedTodoItem extends ConsumerWidget {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                delete(todo.id!);
+                delete(todo.id!,uid);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),
@@ -75,7 +112,7 @@ class SharedTodoItem extends ConsumerWidget {
             ),
             SlidableAction(
               onPressed: (context) {
-                delete(todo.id!);
+                delete(todo.id!,uid);
                 // .then((value) {const snackBar = SnackBar(
                 //   content: Text('Item successfully deleted!!'),
                 //   backgroundColor: Color.fromARGB(255, 71, 181, 255),
@@ -153,3 +190,4 @@ class SharedTodoItem extends ConsumerWidget {
     );
   }
 }
+

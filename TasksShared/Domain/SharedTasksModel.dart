@@ -23,7 +23,8 @@ class SharedTodoListState extends State<SharedTodoList> {
   final taskrep = TasksRepository.instance;
 Future<List<Todo>> usersf = getUsersOrderByPriority();
   List<Todo> todoss = [];
-  // bool ch=false;
+  String uid=' ';
+
   @override
   void initState() {
 
@@ -35,13 +36,16 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
       // GoRouter.of(context).go('/login');
       context.go('/login');
     } else {
+      setState(() {
+        uid= user.uid;
+      });
       print('User is signed in!');
     }
   });
     
 
 
-  } // final List<Todo> _todos = <Todo>[];
+  } 
 
   updatetodos() async {
     for (int i = 0; i < todoss.length; i++) {
@@ -118,7 +122,7 @@ query.get().then((event) {
         ),
         body: 
         StreamBuilder<List<SharedTodo>>(
-          stream: readTasks(),
+          stream: readTasks(uid),
           builder: (context, snapshot) {
           if (snapshot.hasData){
             final List<SharedTodo> tods=snapshot.data!;
@@ -127,7 +131,7 @@ query.get().then((event) {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: 8.0),
           children: tods.map((SharedTodo todo) {
-            return SharedTodoItem(
+            return SharedTod(
               todo: todo,
               onTodoChanged: handleTodoChange,
             );
@@ -168,7 +172,7 @@ query.get().then((event) {
     setState(() {
      
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
-      editTask(todo.id!, todo);
+      editTask(todo.id!, todo,uid);
 
     });
   }
