@@ -28,7 +28,7 @@ class _HomeHorizentalState extends State<HomeHorizental> {
     taskrep.fetchTodoList().then((value) {
       setState(() {
        for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())&& value[i].checked==false){
             todoss.add(value[i]);
           }
         }
@@ -111,16 +111,13 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return ElevatedButton(
-                              child: const Text('Refresh'),
-                              onPressed: () {
-                                taskrep.fetchTodoList().then((value) {
-                                  setState(() {
-                                    todoss = value;
-                                  });
-                                });
-                              },
-                            );
+                           return 
+                            
+                             Center(child: const Text('There is No Tasks Today.. Nice Work!!',style:TextStyle(
+                              
+                              fontSize: 20,
+                              
+                            ) ,));
                           }
                           return TasksTile(
                              icon: Icons.task,

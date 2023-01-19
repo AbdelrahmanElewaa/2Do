@@ -107,7 +107,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                       ),
                     ],
                   ),
-                  SizedBoxx(h: 20.0),
+                  SizedBoxx(h: 180.0),
                   //Tasks Dashboard
                   Expanded(
                     child: ListView.builder(
@@ -115,7 +115,13 @@ class _HomeVerticalState extends State<HomeVertical> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return  const Text('There is No Tasks Today.. Nice Work!!');
+                            return 
+                            
+                             Center(child: const Text('There is No Tasks Today.. Nice Work!!',style:TextStyle(
+                              
+                              fontSize: 20,
+                              
+                            ) ,));
                           }
                           String date =
                               DateTime.now().toString().substring(0, 10);
