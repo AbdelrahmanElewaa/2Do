@@ -162,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime.now());
                               String formattedDate =
-                                  DateFormat('yyyy-MM-dd').format(pickedDate!);
+                                  DateFormat('yyyy-MM-dd').format(pickedDate??DateTime.now());
                               print(formattedDate);
                             },
                             icon: Iconn(
