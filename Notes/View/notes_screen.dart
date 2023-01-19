@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Home/View/home_page.dart';
+import 'package:todo/NotesShared/Data/shared_notes_repository.dart';
 import 'package:unicons/unicons.dart';
 import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
+import '../../TasksShared/Data/tasksFirestore.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
 import '../Data/notes_repository.dart';
@@ -53,6 +55,37 @@ class _NotesScreenState extends State<NotesScreen> {
             child: Row(
               children: [
                 Expanded(flex: 6, child: Textt(text: 'Notes', size: 32.0)),
+                Expanded(
+                  child: IconButton(
+                    splashRadius: 20.0,
+                    icon: Icon(
+                      UniconsLine.angle_double_down,
+                    ),
+                    color: Theme.of(context).iconTheme.color,
+                    onPressed: () {},
+                  ),
+                ),
+                Expanded(
+                  child: IconButton(
+                    splashRadius: 20.0,
+                    icon: Icon(
+                      UniconsLine.angle_double_up,
+                    ),
+                    color: Theme.of(context).iconTheme.color,
+                    onPressed: () {
+                      for (Note n in notes) {
+                        // deleteNotes(n.id.toString());
+
+                        createNotes(
+                            id: n.id.toString(),
+                            title: n.title,
+                            content: n.content,
+                            date: n.date);
+                      }
+                      ;
+                    },
+                  ),
+                ),
                 Expanded(
                   child: IconButton(
                     splashRadius: 20.0,
