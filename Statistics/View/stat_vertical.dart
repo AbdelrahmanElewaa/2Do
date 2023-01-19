@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:todo/Statistics/Widgets/piechart.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
+import 'utils.dart';
 
 class StatVertical extends StatefulWidget {
   const StatVertical({super.key});
@@ -16,6 +17,10 @@ class StatVertical extends StatefulWidget {
 }
 
 class _StatVerticalState extends State<StatVertical> {
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,47 +35,46 @@ class _StatVerticalState extends State<StatVertical> {
             child: Column(
               children: [
                 //Calender
+                TableCalendar(
+                  firstDay: kFirstDay,
+                  lastDay: kLastDay,
+                  focusedDay: _focusedDay,
+                  calendarFormat: _calendarFormat,
+                  selectedDayPredicate: (day) {
+                    // Use `selectedDayPredicate` to determine which day is currently selected.
+                    // If this returns true, then `day` will be marked as selected.
 
-                Container(
-                  height: MediaQuery.of(context).size.height / 2.3,
-                  child: TableCalendar(
-                    calendarFormat: CalendarFormat.month,
-                    weekendDays: const [
-                      DateTime.friday,
-                      DateTime.saturday,
-                    ],
-                    calendarStyle: CalendarStyle(
-                      weekendTextStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 17,
-                      ),
-                      defaultTextStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    daysOfWeekStyle: DaysOfWeekStyle(
-                        weekendStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                        weekdayStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold)),
-                    headerStyle: HeaderStyle(
-                        titleTextStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.primary)),
-                    firstDay: DateTime.utc(2018, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: DateTime.now(),
-                  ),
-                )
+                    // Using `isSameDay` is recommended to disregard
+                    // the time-part of compared DateTime objects.
+                    return isSameDay(_selectedDay, day);
+                  },
+                  onDaySelected: (selectedDay, focusedDay) {
+                    if (!isSameDay(_selectedDay, selectedDay)) {
+                      // Call `setState()` when updating the selected day
+                      setState(() {
+                        _selectedDay = selectedDay;
+                        _focusedDay = focusedDay;
+                      });
+                    }
+                  },
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      // Call `setState()` when updating calendar format
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    }
+                  },
+                  onPageChanged: (focusedDay) {
+                    // No need to call `setState()` here
+                    _focusedDay = focusedDay;
+                  },
+                ),
               ],
             ),
           ),
           SizedBoxx(h: 20.0),
-          Pie(),
+          Expanded(child: Pie()),
         ],
       ),
     );
