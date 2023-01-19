@@ -72,7 +72,7 @@ class TasksTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Colors.orange,
                         )),
                   ],
                 ),
@@ -84,7 +84,7 @@ class TasksTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: Colors.orange,
+                          color: Colors.blue,
                         )),
                     Text(time,
                         style: TextStyle(
