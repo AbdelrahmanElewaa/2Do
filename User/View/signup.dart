@@ -140,8 +140,6 @@ class _SignupPageState extends State<SignupPage> {
                               if (value == '') {
                                 // && value.length < 7
                                 return 'Required';
-                              } else if (value.length < 7) {
-                                return 'Invalid Name';
                               } else {
                                 return null;
                               }
