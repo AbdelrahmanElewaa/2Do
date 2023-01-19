@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/Tasks/Widgets/multiselectobj.dart';
@@ -27,6 +29,7 @@ class EditSharedTask extends StatefulWidget {
 class editShared extends State<EditSharedTask> with SingleTickerProviderStateMixin {
   // final taskrep = TasksRepository.instance;
   final SharedTodo todo;
+  
   // final onTodoChanged;
   editShared({
     required this.todo,
@@ -39,6 +42,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   late AnimationController lc;
+  String uid=' ';
 
   @override
   void initState() {
@@ -60,6 +64,23 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
         );
       }
     });
+
+
+     FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      // GoRouter.of(context).go('/login');
+      context.go('/login');
+    } else {
+      setState(() {
+        uid= user.uid;
+      });
+     
+      print('User is signed in!');
+    }
+  });
   }
 
   @override
@@ -150,7 +171,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                       todo.description = descriptionController.text;
                       todo.reminder = date.toIso8601String();
                       todo.cat = selected.name;
-                      editTask(todo.id!,todo);
+                      editTask(todo.id!,todo,uid);
                       NotificationService().editNotification(
                         id:  todo.notid!,
                        title:    nameController.text,

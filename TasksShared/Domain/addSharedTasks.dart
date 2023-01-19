@@ -1,4 +1,5 @@
 import 'package:dismissible_page/dismissible_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -28,7 +29,8 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
   TextEditingController timeController = TextEditingController();
   late AnimationController lottieController;
   TimeOfDay timeOfDay = TimeOfDay.now();
-  // final taskrep = TasksRepository.instance;
+   String uid=' ';
+ 
 
   @override
   void initState() {
@@ -46,6 +48,19 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
         );
       }
     });
+
+     FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      // GoRouter.of(context).go('/login');
+      context.go('/login');
+    } else {
+     uid= user.uid;
+      print('User is signed in!');
+    }
+  });
   }
 
   @override
@@ -144,7 +159,7 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           
-                            createTask(name: nameController.text,checked: "false",cat: selected.name,des: descriptionController.text,rem: date.toIso8601String(),shared: "true")
+                            createTask(name: nameController.text,checked: "false",cat: selected.name,des: descriptionController.text,rem: date.toIso8601String(),shared: "true",uid:uid)
                             .then((id) {
                             NotificationService().showNotification(
 
@@ -153,7 +168,7 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                              body:    descriptionController.text,
                              tod:    newtime
                                 ).then((notid) {
-                                  addnotificationid(id, notid);
+                                  addnotificationid(id, notid,uid);
                                 },);
                           });
                
