@@ -9,8 +9,8 @@ class TasksTile extends StatelessWidget {
   final icon;
   final String taskName;
   final String subTitle;
-    final String time;
-final String date;
+  final String time;
+  final String date;
   final color;
   const TasksTile({
     Key? key,
@@ -26,30 +26,34 @@ final String date;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(16)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                      padding: EdgeInsets.all(16),
-                      color: color,
-                      child: Icon(
-                        icon,
-                        color: Color.fromRGBO(12, 34, 51, 1),
-                      )),
+      child: GestureDetector(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 16),
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(16)),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                          padding: EdgeInsets.all(16),
+                          color: color,
+                          child: Icon(
+                            icon,
+                            color: Color.fromRGBO(12, 34, 51, 1),
+                          )),
+                    ),
+                  ],
                 ),
-                SizedBoxx(
-                  w: 12.0,
-                ),
-                Column(
+              ),
+              Expanded(
+                flex: 2,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //title
@@ -63,33 +67,61 @@ final String date;
                     ),
                     SizedBoxx(h: 5.0),
                     //sub title
+
                     Text(subTitle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Theme.of(context).colorScheme.secondary,
                         )),
-Text(date,
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(date,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Colors.orange,
                         )),
-                        Text(time,
+                    Text(time,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Colors.red,
                         )),
-
-                        
                   ],
                 ),
-              ],
-            ),
-            DropDown(),
-          ],
+              ),
+            ],
+          ),
         ),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Wrap(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.edit),
+                    title: Text('Edit'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.delete),
+                    title: Text('Delete'),
+                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.info),
+                  //   title: Text('Info'),
+                  // ),
+                ],
+              );
+            },
+          );
+        },
       ),
     );
   }
