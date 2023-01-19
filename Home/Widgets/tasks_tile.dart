@@ -63,8 +63,10 @@ final String date;
                     ),
                     SizedBoxx(h: 5.0),
                     //sub title
+
                     Text(subTitle,
                         style: TextStyle(
+                  
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Theme.of(context).colorScheme.secondary,
