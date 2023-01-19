@@ -59,7 +59,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: IconButton(
                     splashRadius: 20.0,
                     icon: Icon(
-                      UniconsLine.angle_double_down,
+                      UniconsLine.cloud_download,
                     ),
                     color: Theme.of(context).iconTheme.color,
                     onPressed: () {},
@@ -69,7 +69,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: IconButton(
                     splashRadius: 20.0,
                     icon: Icon(
-                      UniconsLine.angle_double_up,
+                      UniconsLine.cloud_upload,
                     ),
                     color: Theme.of(context).iconTheme.color,
                     onPressed: () {
@@ -99,7 +99,7 @@ class _NotesScreenState extends State<NotesScreen> {
                       } else {
                         globals.sorting = true;
                       }
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) => HomePage(
