@@ -31,7 +31,7 @@ class _HomeVerticalState extends State<HomeVertical> {
         //value.reminder.substring(0, 10);
 
         for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now()) && value[i].checked==false){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
             todoss.add(value[i]);
           }
         }
@@ -107,7 +107,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                       ),
                     ],
                   ),
-                  SizedBoxx(h: 180.0),
+                  SizedBoxx(h: 20.0),
                   //Tasks Dashboard
                   Expanded(
                     child: ListView.builder(
@@ -115,13 +115,25 @@ class _HomeVerticalState extends State<HomeVertical> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return 
-                            
-                             Center(child: const Text('There is No Tasks Today.. Nice Work!!',style:TextStyle(
-                              
-                              fontSize: 20,
-                              
-                            ) ,));
+                            return ElevatedButton(
+                              child: const Text('Refresh'),
+                              onPressed: () {
+                                if(todoss.length==null)
+                                {
+taskrep.fetchTodoList().then((value) {
+                                  setState(() {
+                                    
+        for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
+                                  });
+                                });
+                                }
+                                
+                              },
+                            );
                           }
                           String date =
                               DateTime.now().toString().substring(0, 10);

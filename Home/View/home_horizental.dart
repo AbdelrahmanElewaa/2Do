@@ -28,7 +28,7 @@ class _HomeHorizentalState extends State<HomeHorizental> {
     taskrep.fetchTodoList().then((value) {
       setState(() {
        for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())&& value[i].checked==false){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
             todoss.add(value[i]);
           }
         }
@@ -110,14 +110,26 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                         padding: const EdgeInsets.all(8),
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
-                          if (index == todoss.length) {
-                           return 
-                            
-                             Center(child: const Text('There is No Tasks Today.. Nice Work!!',style:TextStyle(
-                              
-                              fontSize: 20,
-                              
-                            ) ,));
+                           if (index == todoss.length) {
+                            return ElevatedButton(
+                              child: const Text('Refresh'),
+                              onPressed: () {
+                                if(todoss.length==null)
+                                {
+taskrep.fetchTodoList().then((value) {
+                                  setState(() {
+                                    
+        for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
+                                  });
+                                });
+                                }
+                                
+                              },
+                            );
                           }
                           return TasksTile(
                              icon: Icons.task,
@@ -125,7 +137,7 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                             subTitle: '${todoss[index].cat}',
                             date: '${todoss[index].reminder.substring(0,10)}',
                             time:'${todoss[index].reminder.substring(11,16)}' , 
-                            color: Colors.blue,
+                            color: Colors.orange,
                           );
                         }),
                     // SizedBoxx(
