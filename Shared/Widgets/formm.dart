@@ -3,11 +3,15 @@
 import 'package:flutter/material.dart';
 
 class Formm extends StatelessWidget {
+  final w;
+  final valid;
   final htext;
   final bool obsectext;
   final TextEditingController cont;
   const Formm({
     Key? key,
+    this.w = 1.0,
+    this.valid,
     this.htext,
     this.obsectext = false,
     required this.cont,
@@ -15,41 +19,32 @@ class Formm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15),
-          child: TextFormField(
-             textInputAction: TextInputAction.next,
-            //  scrollPadding: EdgeInsets.only(bottom:40),
-            controller: cont,
-            //-Validation
-            validator: (value) {
-              if (value=='') {
-                // && value.length < 7
-                return 'Enter missing value';
-              } else {
-          //       cont.text=value!;
-          //       cont.selection =
-          // TextSelection.collapsed(offset: cont.text.length);
-                return null;
-              }
-            },
-            obscureText: obsectext,
+    return Container(
+      width: MediaQuery.of(context).size.width * w,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        child: TextFormField(
+          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.only(bottom: 40),
+          controller: cont,
+          //-Validation
+          validator: valid,
+          obscureText: obsectext,
 
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+          decoration: InputDecoration(
+            // textfield input color
+            labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary, width: 2.0),
             ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: htext,
-            ),
+
+            labelText: htext,
           ),
         ),
       ),

@@ -20,26 +20,26 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController email=TextEditingController();
-  final TextEditingController pw=TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController pw = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Scaffold(
-        // resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          //* back button to login
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: Iconn(
-              icN: Icons.arrow_back_ios_new,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
+    return Scaffold(
+      // resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        //* back button to login
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Iconn(
+            icN: Icons.arrow_back_ios_new,
           ),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: SingleChildScrollView(
+      ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: Center(
+        child: SingleChildScrollView(
           child: Center(
             child: Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -68,10 +68,33 @@ class _LoginPageState extends State<LoginPage> {
 
                   SizedBoxx(h: 20.0),
                   //* Email textfield
-                  Formm(htext: 'Email',cont: email),
+                  Formm(
+                    htext: 'Email',
+                    cont: email,
+                    valid: (value) {
+                      if (value == '') {
+                        return 'Required';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
                   SizedBoxx(h: 12.0),
                   //* Password textfield
-                  Formm(htext: 'Password', obsectext: true,cont: pw),
+                  Formm(
+                    htext: 'Password',
+                    obsectext: true,
+                    cont: pw,
+                    valid: (value) {
+                      if (value == '') {
+                        return 'Required';
+                      } else if (value.length < 7) {
+                        return 'Password must be at least 7 characters';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
                   SizedBoxx(h: 4.0),
                   Container(
                     padding: const EdgeInsets.all(25),
@@ -86,35 +109,34 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         //-validation (button)
-                        onPressed: () async{
+                        onPressed: () async {
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
-                            print(email.text+pw.text);
-                            final message = await AuthService().login(
-                              email: email.text, 
-                              password: pw.text);
-                              if (message=='Success')
-                             context.goNamed(
-                  "home",
-                  params: {"selectedIndex": "0"},
-                );
-                            else{
+                            print(email.text + pw.text);
+                            final message = await AuthService()
+                                .login(email: email.text, password: pw.text);
+                            if (message == 'Success')
+                              context.goNamed(
+                                "home",
+                                params: {"selectedIndex": "0"},
+                              );
+                            else {
                               showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Error"),
-                                  content: Text(message!),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: Text("Close"),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
-                                  ],
-                                );
-                              });
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Error"),
+                                      content: Text(message!),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
                             }
                           }
                         },
@@ -158,6 +180,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-    ]);
+    );
   }
 }
