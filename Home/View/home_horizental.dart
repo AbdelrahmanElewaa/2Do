@@ -27,7 +27,11 @@ class _HomeHorizentalState extends State<HomeHorizental> {
   void initState() {
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        todoss = value;
+       for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
       });
     });
     super.initState();
@@ -121,8 +125,10 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                           return TasksTile(
                              icon: Icons.task,
                           taskName: '${todoss[index].name}',
-                          subTitle: '${todoss[index].cat}',
-                          color: Colors.orange,
+                            subTitle: '${todoss[index].cat}',
+                            date: '${todoss[index].reminder.substring(0,10)}',
+                            time:'${todoss[index].reminder.substring(11,16)}' , 
+                            color: Colors.blue,
                           );
                         }),
                     // SizedBoxx(

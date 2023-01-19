@@ -74,9 +74,9 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
       // GoRouter.of(context).go('/login');
       context.go('/login');
     } else {
-      setState(() {
+      // setState(() {
         uid= user.uid;
-      });
+      // });
      
       print('User is signed in!');
     }

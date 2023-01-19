@@ -27,7 +27,7 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
 
   @override
   void initState() {
-
+WidgetsFlutterBinding.ensureInitialized();
     FirebaseAuth.instance
   .idTokenChanges()
   .listen((User? user) {
@@ -122,7 +122,7 @@ query.get().then((event) {
         ),
         body: 
         StreamBuilder<List<SharedTodo>>(
-          stream: readTasks(uid),
+          stream:  readTasks(uid),
           builder: (context, snapshot) {
           if (snapshot.hasData){
             final List<SharedTodo> tods=snapshot.data!;

@@ -5,27 +5,9 @@ import 'dart:convert';
 
 enum category { assignment, chore, sport, meeting, groceries, music, other }
 
-   List<SharedTodo> fromListjson(String data) {
-    // return   json.decode(data).cast<Todo>();
-    return fromListMap(List<Map<String, dynamic>>.from(jsonDecode(data)));
-  }
+   
 
 
-  List<SharedTodo> fromListMap(List<Map<String, dynamic>> map) {
-    List<SharedTodo> tod=[];
-    for (int i=2;i<map.length;i++){
-      tod.add(SharedTodo(
-      name: map[i]['name'] ?? 'not specified',
-      checked: map[i]['checked'] ?? "false",
-      cat: map[i]['category'] ?? category.other.name,
-      reminder: map[i]['reminder'] ?? DateTime.now().toIso8601String(),
-      shared: map[i]['shared'] ?? "false",
-      description: map[i]['description'] ?? 'not specified',
-      id: map[i]['id']??'',
-    ));
-    }
-    return tod;
-  }
 
 class SharedTodo {
   SharedTodo(
@@ -36,7 +18,8 @@ class SharedTodo {
       required this.reminder,
       this.shared = "false",
       required this.description,
-      this.notid});
+      this.notid,
+      required this.sharedwith});
   String name;
   String checked;
   String cat;
@@ -45,6 +28,7 @@ class SharedTodo {
   String description;
   String? id;
   int? notid;
+  String sharedwith;
 
   Map<String, dynamic> toMap() {
     return {
@@ -55,7 +39,8 @@ class SharedTodo {
       'shared': shared,
       'description': description,
       'id': id,
-      'notid': notid
+      'notid': notid,
+      'sharedwith': sharedwith
     };
   }
 
@@ -69,17 +54,11 @@ class SharedTodo {
       description: map['description'] ?? 'not specified',
       id: map['id']??'',
       notid: map['notid']?.toInt(),
+      sharedwith: map['sharedwith']??''
     );
   }
 
-  SharedTodo.fromSnapshot(DataSnapshot snapshot)
-      : id = (snapshot.value as Map<String, dynamic>)["id"],
-        name = (snapshot.value as Map<String, dynamic>)["name"],
-        cat = (snapshot.value as Map<String, dynamic>)["cat"],
-        reminder = (snapshot.value as Map<String, dynamic>)["reminder"],
-        shared = (snapshot.value as Map<String, dynamic>)["shared"],
-        description = (snapshot.value as Map<String, dynamic>)["description"],
-        checked = (snapshot.value as Map<String, dynamic>)["checked"];
+
 
   factory SharedTodo.fromJson(String data) {
     // return   json.decode(data).cast<Todo>();
@@ -92,7 +71,8 @@ factory SharedTodo.addstringonly({required String name, required String des}) {
         checked: "false",
         cat: category.other.name,
         description: des,
-        reminder: DateTime.now().toIso8601String());
+        reminder: DateTime.now().toIso8601String(),
+        sharedwith: ' ');
   }
 
   String toJson() => json.encode(toMap());

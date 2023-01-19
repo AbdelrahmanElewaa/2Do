@@ -9,6 +9,7 @@ import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Tasks/Widgets/multiselect.dart';
 import '../../Tasks/Widgets/timepicker.dart';
 import '../../Helper/notificationservice.dart';
+import '../../User/Domain/UserModel.dart';
 import 'SharedTasksModel.dart';
 
 
@@ -27,9 +28,11 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController timeController = TextEditingController();
+  TextEditingController shareController = TextEditingController();
   late AnimationController lottieController;
   TimeOfDay timeOfDay = TimeOfDay.now();
    String uid=' ';
+
  
 
   @override
@@ -144,6 +147,31 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                       ),
                     ),
                   ),
+                   TextFormField(
+                    cursorColor: Colors.blue,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Shared with is empty';
+                      }
+                      return null;
+                    },
+                    controller: shareController,
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.label_important_rounded,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        hintText: 'Enter shared with uid',
+                        hintStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        labelText: 'Shared with',
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                        )),
+                  ),
                   timepicker(),
                   SizedBox(
                     height: 20,
@@ -158,8 +186,34 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                       child: const Text('Submit'),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          
-                            createTask(name: nameController.text,checked: "false",cat: selected.name,des: descriptionController.text,rem: date.toIso8601String(),shared: "true",uid:uid)
+
+                          bool found=await getuser(shareController.text);
+                          if (found==false){
+
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Error"),
+                                  content: Text("User not found!"),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text("Close"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                          }
+                          else{
+                            createTask(name: nameController.text,checked: "false",cat: selected.name,
+                            des: descriptionController.text,rem: date.toIso8601String(),
+                            shared: "true",uid:shareController.text);
+                            createTask(name: nameController.text,checked: "false",cat: selected.name,
+                            des: descriptionController.text,rem: date.toIso8601String(),
+                            shared: "true",uid:uid)
                             .then((id) {
                             NotificationService().showNotification(
 
@@ -173,6 +227,9 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                           });
                
                           showSuccessfulDialog();
+
+                          }
+
                         };
                       },
                     ),

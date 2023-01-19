@@ -5,7 +5,7 @@ import 'dart:convert';
 
 Future<String> createTask({required String name, required String checked, required String cat, required String rem, required String shared, required String des,required String uid}) async {
   final docTask=FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc();
-  final task=SharedTodo(id: docTask.id,name:name,checked: checked,description: des,reminder: rem,cat: cat,shared: shared );
+  final task=SharedTodo(id: docTask.id,name:name,checked: checked,description: des,reminder: rem,cat: cat,shared: shared,sharedwith: shared );
 final map=task.toMap();
 await docTask.set(map);
 return docTask.id;

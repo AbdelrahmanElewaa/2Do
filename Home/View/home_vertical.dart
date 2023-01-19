@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ import '../../Tasks/Data/TasksData.dart';
 import '../../Tasks/Domain/TasksModel2.dart';
 
 class HomeVertical extends StatefulWidget {
-   HomeVertical({super.key});
+  HomeVertical({super.key});
 
   @override
   State<HomeVertical> createState() => _HomeVerticalState();
@@ -22,120 +23,131 @@ class HomeVertical extends StatefulWidget {
 
 class _HomeVerticalState extends State<HomeVertical> {
   final taskrep = TasksRepository.instance;
-List<Todo> todoss = [];
- @override
+  List<Todo> todoss = [];
+  @override
   void initState() {
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        todoss = value;
+        //value.reminder.substring(0, 10);
+
+        for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
+        //todoss = value;
       });
     });
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: [
-            SizedBoxx(h: 5.0),
-            //greating Row
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      children: [
+        SizedBoxx(h: 5.0),
+        //greating Row
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Column(
+            children: [
+              SizedBoxx(
+                h: 10.0,
+              ),
+              Calenderweek(),
+              //Calender
+
+              SizedBoxx(
+                h: 25.0,
+              ),
+
+              //Search Bar
+              // SearchBar(),
+            ],
+          ),
+        ),
+        // SizedBoxx(h: 20.0),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(25),
+            color: Colors.transparent,
+            child: Center(
               child: Column(
                 children: [
-                  SizedBoxx(
-                    h: 10.0,
-                  ),
-                  Calenderweek(),
-                  //Calender
+                  // Excercise Heading
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Tasks',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
 
-                  SizedBoxx(
-                    h: 25.0,
+                      //ADD Button
+                      Hero(
+                        tag: 'unique tag',
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.pushTransparentRoute(AddTask());
+                            // GoRouter.of(context).go('/addtask');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary),
+                          child: Icon(
+                            Icons.add,
+                            size: 40,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                  SizedBoxx(h: 20.0),
+                  //Tasks Dashboard
+                  Expanded(
+                    child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: todoss.length + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == todoss.length) {
+                            return ElevatedButton(
+                              child: const Text('Refresh'),
+                              onPressed: () {
+                                taskrep.fetchTodoList().then((value) {
+                                  setState(() {
+                                    todoss = value;
+                                  });
+                                });
+                              },
+                            );
+                          }
+                          String date =
+                              DateTime.now().toString().substring(0, 10);
 
-                  //Search Bar
-                 // SearchBar(),
+                          return TasksTile(
+                            icon: Icons.task,
+                            taskName: '${todoss[index].name}',
+                            subTitle: '${todoss[index].cat}',
+                           // subTitle: '$date',
+                            date: '${todoss[index].reminder.substring(0, 10)}',
+                            time: '${todoss[index].reminder.substring(11, 16)}',
+                            color: Colors.orange,
+                          );
+                        }),
+                    // SizedBoxx(
+                    //   h: 8.0,
+                  ) // ),
                 ],
               ),
             ),
-           // SizedBoxx(h: 20.0),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(25),
-                color: Colors.transparent,
-                child: Center(
-                  child: Column(
-                    children: [
-                      // Excercise Heading
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Tasks',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 28,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-
-                          //ADD Button
-                          Hero(
-                            tag: 'unique tag',
-                            child: ElevatedButton(
-                              onPressed: () {
-                                context.pushTransparentRoute(AddTask());
-                                // GoRouter.of(context).go('/addtask');
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  shape: CircleBorder(),
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.secondary),
-                              child: Icon(
-                                Icons.add,
-                                size: 40,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBoxx(h: 20.0),
-                      //Tasks Dashboard
-                      Expanded(
-                          child:ListView.builder(
-      padding: const EdgeInsets.all(8),
-      itemCount: todoss.length + 1,
-      itemBuilder: (BuildContext context, int index) {
-        if (index == todoss.length) {
-          return ElevatedButton(
-            child: const Text('Refresh'),
-            onPressed: () {
-              taskrep.fetchTodoList().then((value) {
-                setState(() {
-                  todoss = value;
-                });
-              });
-            },
-          );
-        }
-        return TasksTile(
-          
-                          icon: Icons.task,
-                          taskName: '${todoss[index].name}',
-                          subTitle: '${todoss[index].cat}',
-                          color: Colors.orange,
-                        );
-      }
           ),
-                      // SizedBoxx(
-                      //   h: 8.0,
-                           )     // ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
+        ),
+      ],
+    );
   }
 }
