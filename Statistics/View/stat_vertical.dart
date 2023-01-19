@@ -74,6 +74,7 @@ class _StatVerticalState extends State<StatVertical> {
             ),
           ),
           SizedBoxx(h: 20.0),
+          
           Expanded(child: Pie()),
         ],
       ),
