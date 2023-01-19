@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,14 @@ class _HomeVerticalState extends State<HomeVertical> {
   void initState() {
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        todoss = value;
+        //value.reminder.substring(0, 10);
+
+        for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
+        //todoss = value;
       });
     });
     super.initState();
@@ -113,19 +121,21 @@ class _HomeVerticalState extends State<HomeVertical> {
                                 taskrep.fetchTodoList().then((value) {
                                   setState(() {
                                     todoss = value;
-                                    String date =
-                                        todoss[index].reminder.substring(1, 10);
                                   });
                                 });
                               },
                             );
                           }
+                          String date =
+                              DateTime.now().toString().substring(0, 10);
+
                           return TasksTile(
                             icon: Icons.task,
-                           taskName: '${todoss[index].name}',
+                            taskName: '${todoss[index].name}',
                             subTitle: '${todoss[index].cat}',
-                            date: '${todoss[index].reminder.substring(0,10)}',
-                            time:'${todoss[index].reminder.substring(11,16)}' ,    
+                           // subTitle: '$date',
+                            date: '${todoss[index].reminder.substring(0, 10)}',
+                            time: '${todoss[index].reminder.substring(11, 16)}',
                             color: Colors.orange,
                           );
                         }),
