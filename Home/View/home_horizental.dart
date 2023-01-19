@@ -27,8 +27,9 @@ class _HomeHorizentalState extends State<HomeHorizental> {
   void initState() {
     taskrep.fetchTodoList().then((value) {
       setState(() {
-       for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+        for (int i = 0; i < value.length; i++) {
+          if (value[i].reminder.substring(0, 10) ==
+              DateFormat('yyyy-MM-dd').format(DateTime.now())) {
             todoss.add(value[i]);
           }
         }
@@ -110,19 +111,19 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                         padding: const EdgeInsets.all(8),
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
-                           if (index == todoss.length) {
-                            return  Text(
-                                '',
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor),
-                              );
+                          if (index == todoss.length) {
+                            return Text(
+                              '',
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor),
+                            );
                           }
                           return TasksTile(
-                             icon: Icons.task,
-                          taskName: '${todoss[index].name}',
+                            icon: Icons.task,
+                            taskName: '${todoss[index].name}',
                             subTitle: '${todoss[index].cat}',
-                            date: '${todoss[index].reminder.substring(0,10)}',
-                            time:'${todoss[index].reminder.substring(11,16)}' , 
+                            date: '${todoss[index].reminder.substring(0, 10)}',
+                            time: '${todoss[index].reminder.substring(11, 16)}',
                             color: Colors.orange,
                           );
                         }),
