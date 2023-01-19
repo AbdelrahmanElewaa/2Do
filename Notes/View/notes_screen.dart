@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo/Home/View/home_page.dart';
 import 'package:unicons/unicons.dart';
 import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
@@ -65,7 +66,12 @@ class _NotesScreenState extends State<NotesScreen> {
                       } else {
                         globals.sorting = true;
                       }
-                      setState(() {});
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => HomePage(
+                                    selectedIndex: 3,
+                                  )));
                     },
                   ),
                 ),
