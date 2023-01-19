@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_for_elements_to_map_fromiterable, prefer_const_constructors
+
 import 'dart:collection';
 
 import 'package:table_calendar/table_calendar.dart';
@@ -45,5 +47,5 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 }
 
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+final kFirstDay = DateTime(kToday.year, kToday.month - 4, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 4, kToday.day);
