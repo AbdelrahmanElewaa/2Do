@@ -115,16 +115,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return ElevatedButton(
-                              child: const Text('Refresh'),
-                              onPressed: () {
-                                taskrep.fetchTodoList().then((value) {
-                                  setState(() {
-                                    todoss = value;
-                                  });
-                                });
-                              },
-                            );
+                            return  const Text('There is No Tasks Today.. Nice Work!!');
                           }
                           String date =
                               DateTime.now().toString().substring(0, 10);
