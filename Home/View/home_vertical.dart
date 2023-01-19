@@ -31,7 +31,7 @@ class _HomeVerticalState extends State<HomeVertical> {
         //value.reminder.substring(0, 10);
 
         for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now()) && value[i].checked==false){
             todoss.add(value[i]);
           }
         }
@@ -115,16 +115,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                         itemCount: todoss.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == todoss.length) {
-                            return ElevatedButton(
-                              child: const Text('Refresh'),
-                              onPressed: () {
-                                taskrep.fetchTodoList().then((value) {
-                                  setState(() {
-                                    todoss = value;
-                                  });
-                                });
-                              },
-                            );
+                            return  const Text('There is No Tasks Today.. Nice Work!!');
                           }
                           String date =
                               DateTime.now().toString().substring(0, 10);
