@@ -31,7 +31,7 @@ class _HomeVerticalState extends State<HomeVertical> {
         //value.reminder.substring(0, 10);
 
         for(int i=0; i<value.length; i++){
-          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now()) && value[i].checked==false){
             todoss.add(value[i]);
           }
         }
