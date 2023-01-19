@@ -94,7 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                               email: email.text, 
                               password: pw.text);
                               if (message=='Success')
-                            GoRouter.of(context).go('/TodoList');
+                             context.goNamed(
+                  "home",
+                  params: {"selectedIndex": "0"},
+                );
                             else{
                               showDialog(
                               context: context,

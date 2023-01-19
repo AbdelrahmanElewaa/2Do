@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
@@ -26,11 +26,18 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
   // bool ch=false;
   @override
   void initState() {
-    
-    // createTaskobj(SharedTodo.addstringonly(name: "sad",des: "sad"));
-    // createTaskobj(SharedTodo.addstringonly(name: "fg",des: "sadfgd"));
-    // createTaskobj(SharedTodo.addstringonly(name: "ef",des: "fdg"));
-    // createTaskobj(SharedTodo.addstringonly(name: "wer",des: "th"));
+
+    FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      // GoRouter.of(context).go('/login');
+      context.go('/login');
+    } else {
+      print('User is signed in!');
+    }
+  });
     
 
 
