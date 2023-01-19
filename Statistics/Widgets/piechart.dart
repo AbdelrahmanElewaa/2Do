@@ -56,7 +56,7 @@ class _PieState extends State<Pie> {
       // decoration: BoxDecoration(color: Colors.white70),
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: PieChart(
-        chartRadius: deviceOrientation == Orientation.portrait ? 500 : 75,
+        chartRadius: deviceOrientation == Orientation.portrait ? MediaQuery.of(context).size.height : 75,
         animationDuration: Duration(milliseconds: 300),
         dataMap: <String, double>{
           "Finished": checked,

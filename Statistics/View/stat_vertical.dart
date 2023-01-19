@@ -20,6 +20,7 @@ class _StatVerticalState extends State<StatVertical> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
+
         children: [
           SizedBoxx(
             h: 20.0,
@@ -28,49 +29,48 @@ class _StatVerticalState extends State<StatVertical> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
+              
               children: [
                 //Calender
-
-                Container(
-                  height: MediaQuery.of(context).size.height / 2.3,
-                  child: TableCalendar(
-                    calendarFormat: CalendarFormat.month,
-                    weekendDays: const [
-                      DateTime.friday,
-                      DateTime.saturday,
-                    ],
-                    calendarStyle: CalendarStyle(
-                      weekendTextStyle: TextStyle(
+          
+                TableCalendar(
+                  calendarFormat: CalendarFormat.month,
+                  weekendDays: const [
+                    DateTime.friday,
+                    DateTime.saturday,
+                  ],
+                  calendarStyle: CalendarStyle(
+                    weekendTextStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 17,
+                    ),
+                    defaultTextStyle: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 17,
-                      ),
-                      defaultTextStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  daysOfWeekStyle: DaysOfWeekStyle(
+                      weekendStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
-                    ),
-                    daysOfWeekStyle: DaysOfWeekStyle(
-                        weekendStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                        weekdayStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold)),
-                    headerStyle: HeaderStyle(
-                        titleTextStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.primary)),
-                    firstDay: DateTime.utc(2018, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    focusedDay: DateTime.now(),
-                  ),
+                      weekdayStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold)),
+                  headerStyle: HeaderStyle(
+                      titleTextStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary)),
+                  firstDay: DateTime.utc(2018, 10, 16),
+                  lastDay: DateTime.utc(2030, 3, 14),
+                  focusedDay: DateTime.now(),
                 )
               ],
             ),
           ),
           SizedBoxx(h: 20.0),
-          Pie(),
+          
+          Expanded(child: Pie()),
         ],
       ),
     );
