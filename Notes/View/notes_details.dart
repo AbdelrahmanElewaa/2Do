@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../Data/notes_repository.dart';
 import '../Domain/notes.dart';
+import 'package:go_router/go_router.dart';
 
 class NotesDetails extends StatefulWidget {
   final bool update;
@@ -60,7 +61,10 @@ class _NotesDetailsState extends State<NotesDetails> {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('$rowsAffected rows updated'))));
                 }
-                Navigator.of(context).pop();
+                context.goNamed(
+                  "home",
+                  params: {"selectedIndex": "3"},
+                );
               },
             ),
           ),
@@ -72,7 +76,8 @@ class _NotesDetailsState extends State<NotesDetails> {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
-                  color: Theme.of(context).colorScheme.primary,decorationThickness: 0),
+                  color: Theme.of(context).colorScheme.primary,
+                  decorationThickness: 0),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
