@@ -27,7 +27,11 @@ class _HomeHorizentalState extends State<HomeHorizental> {
   void initState() {
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        todoss = value;
+       for(int i=0; i<value.length; i++){
+          if(value[i].reminder.substring(0, 10) == DateFormat('yyyy-MM-dd').format(DateTime.now())){
+            todoss.add(value[i]);
+          }
+        }
       });
     });
     super.initState();
