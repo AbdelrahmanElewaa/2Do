@@ -99,7 +99,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                 activeDayColor: Theme.of(context).scaffoldBackgroundColor,
                 activeBackgroundDayColor:
                     Theme.of(context).colorScheme.secondary,
-                dotsColor: Color.fromARGB(255, 0, 89, 255),
+                dotsColor: Colors.blue,
                 locale: 'en_ISO',
               ),
               //Calender

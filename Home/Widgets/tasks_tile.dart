@@ -105,17 +105,14 @@ class TasksTile extends StatelessWidget {
             context: context,
             builder: (context) {
               return Wrap(
-                // ignore: prefer_const_literals_to_create_immutables
+                
                 children: [
                   ListTile(
                     leading: Icon(Icons.description),
                     title: Text(info),
                   ),
                   
-                  // ListTile(
-                  //   leading: Icon(Icons.info),
-                  //   title: Text('Info'),
-                  // ),
+                 
                 ],
               );
             },
