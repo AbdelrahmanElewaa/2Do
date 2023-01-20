@@ -98,6 +98,8 @@ class _PieState extends State<Pie> {
           ElevatedButton(
               child: const Text('Refresh'),
               onPressed: () {
+                todoss = [];
+                checked = 0;
                 taskrep.fetchTodoList().then((value) {
                   setState(() {
                     if (this.widget.s == null) {
