@@ -54,7 +54,7 @@ class SharedTodo {
       description: map['description'] ?? 'not specified',
       id: map['id']??'',
       notid: map['notid']?.toInt(),
-      sharedwith: map['sharedwith']??''
+      sharedwith: map['sharedwith']??'not specified'
     );
   }
 
@@ -72,7 +72,7 @@ factory SharedTodo.addstringonly({required String name, required String des}) {
         cat: category.other.name,
         description: des,
         reminder: DateTime.now().toIso8601String(),
-        sharedwith: ' ');
+        sharedwith: ' hkn');
   }
 
   String toJson() => json.encode(toMap());
