@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:todo/User/Data/UserData.dart';
 
-Future<String> createUser({required name,required email,required pw,required mobile, uid,required profileURL}) async {
+Future<String> createUser({required name,required email,required pw,required dob, uid,required profileURL}) async {
   final docUser=FirebaseFirestore.instance.collection('users').doc();
-  final user=Userr(uid: docUser.id,name:name,email: email,mobile: mobile,pw: pw,profileURL: profileURL);
+  final user=Userr(uid: docUser.id,name:name,email: email,dob: dob,pw: pw,profileURL: profileURL);
 final map=user.toMap();
 await docUser.set(map);
 return docUser.id;

@@ -115,7 +115,7 @@ class _AccountState extends State<Account> {
                 ),
                 ProfileListItem(
                   header: 'Date of birth',
-                  text: currUser!.mobile,
+                  text: currUser!.dob,
                 ),
               ],
             ),
