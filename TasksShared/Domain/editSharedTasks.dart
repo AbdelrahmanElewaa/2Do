@@ -171,12 +171,15 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                       todo.description = descriptionController.text;
                       todo.reminder = date.toIso8601String();
                       todo.cat = selected.name;
-                      editTask(todo.id!,todo,uid);
+                      editTask(todo,uid);
+                      if (todo.notid !=null){
+
                       NotificationService().editNotification(
                         id:  todo.notid!,
                        title:    nameController.text,
                         body:   descriptionController.text,
                          tod:  newtime);
+                      }
                      showUpdatedDialog();
                     }
                     ;
