@@ -172,7 +172,7 @@ query.get().then((event) {
     setState(() {
      
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
-      editTask(todo.id!, todo,uid);
+      editTask( todo,uid);
 
     });
   }
