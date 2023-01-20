@@ -4,7 +4,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,7 +16,14 @@ import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'dart:io';
+// import 'dart:typed_data';
 
+import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:flutter/material.dart';
+import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
+// import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import '../Domain/authservice.dart';
 
 class SignupPage extends StatefulWidget {
@@ -27,19 +34,36 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  // File? image;
-  // Future pickImage() async {
-  //   try{
-  //   final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (image == null) return;
-  //   final imageTemporary = File(image.path);
-  //   setState(() {
-  //     this.image = imageTemporary;
-  //   });
-  //   }on PlatformException catch(e){
-  //     print(e);
-  //   }
-  // }
+
+  final ImagePicker _picker = ImagePicker();
+  String profilePicLink = " ";
+  void imgFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+     Reference ref = FirebaseStorage.instance
+        .ref().child(pickedFile!.name);
+        await ref.putFile(File(pickedFile.path));
+        ref.getDownloadURL().then((value) async {
+      setState(() {
+       profilePicLink = value;
+      });
+    });
+  }
+
+    void imgFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+
+     Reference ref = FirebaseStorage.instance
+        .ref().child(pickedFile!.name);
+        await ref.putFile(File(pickedFile.path));
+        ref.getDownloadURL().then((value) async {
+      setState(() {
+       profilePicLink = value;
+      });
+    });
+  }
+
+ 
 
   final RegExp namevalid = RegExp('[a-zA-Z]');
   final formKey = GlobalKey<FormState>();
@@ -79,52 +103,71 @@ class _SignupPageState extends State<SignupPage> {
                   ),
 
                   SizedBoxx(h: 10.0),
-                  // Stack(
-                  //   children: [
-                  //     //* Avatar + edit button
-                  //     CircleAvatar(
-                  //       radius: 45,
-                  //       backgroundImage: AssetImage('assets/1024.png'),
-                  //     ),
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         showModalBottomSheet(
-                  //           context: context,
-                  //           builder: (context) {
-                  //             return Wrap(
-                  //               // ignore: prefer_const_literals_to_create_immutables
-                  //               children: [
-                  //                 ListTile(
-                  //                   leading: Icon(Icons.edit),
-                  //                   title: Text('Edit'),
-                  //                 ),
-                  //                 ListTile(
-                  //                   leading: Icon(Icons.delete),
-                  //                   title: Text('Delete'),
-                  //                   // onTap: () => pickImage(),
-                  //                 ),
-                  //                 // ListTile(
-                  //                 //   leading: Icon(Icons.info),
-                  //                 //   title: Text('Info'),
-                  //                 // ),
-                  //               ],
-                  //             );
-                  //           },
-                  //         );
-                  //       },
-                  //       child: Container(
-                  //         margin: EdgeInsets.fromLTRB(60, 60, 0, 0),
-                  //         decoration: BoxDecoration(
-                  //             color: Theme.of(context).colorScheme.secondary,
-                  //             shape: BoxShape.circle),
-                  //         child: Iconn(
-                  //           icN: Icons.mode_edit_outline,
-                  //           sizee: 30.0,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                 
+                 
+                  Stack(
+                    children: [
+                      //* Avatar + edit button
+                      profilePicLink == " " ? const Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 80,
+                  ) : Container(
+
+                    child: Image.network(profilePicLink, width: 50)
+                  ),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return Wrap(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  ListTile(
+                                    leading: Icon(Icons.edit),
+                                    title: Text('Upload from camera'),
+                                    onTap: () => imgFromCamera(),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.edit),
+                                    title: Text('Upload from gallery'),
+                                    onTap: () => imgFromGallery(),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.delete),
+                                    title: Text('Delete'),
+
+                                    onTap: () { setState(() {
+                                      
+                                    profilePicLink=" ";
+                                    }); 
+                                    },
+                                  ),
+                                  // ListTile(
+                                  //   leading: Icon(Icons.info),
+                                  //   title: Text('Info'),
+                                  // ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(60, 60, 0, 0),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary,
+                              shape: BoxShape.circle),
+                          child: Iconn(
+                            icN: Icons.mode_edit_outline,
+                            sizee: 30.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+
                   SizedBoxx(),
 
                   //*Name textfield
