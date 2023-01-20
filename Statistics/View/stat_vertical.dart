@@ -21,7 +21,7 @@ class StatVertical extends StatefulWidget {
 class _StatVerticalState extends State<StatVertical> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay = DateTime.utc(2023,01,19);
+  DateTime? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +47,7 @@ class _StatVerticalState extends State<StatVertical> {
                   },
                   onDaySelected: (selectedDay, focusedDay) {
                     setState(() {
+                      Pie(s: _selectedDay);
                       _selectedDay = selectedDay;
                       _focusedDay = focusedDay;
                     });
@@ -67,7 +68,7 @@ class _StatVerticalState extends State<StatVertical> {
           ),
           SizedBoxx(h: 20.0),
 
-          Expanded(child: Pie(s:_selectedDay)),
+          Expanded(child: Pie(s: _selectedDay)),
         ],
       ),
     );
