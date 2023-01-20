@@ -9,7 +9,7 @@ import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Tasks/Widgets/multiselect.dart';
 import '../../Tasks/Widgets/timepicker.dart';
 import '../../Helper/notificationservice.dart';
-import '../../User/Domain/UserModel.dart';
+import '../../User/Data/UserFirestore.dart';
 import 'SharedTasksModel.dart';
 
 
@@ -187,7 +187,7 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
 
-                          bool found=await getuser(shareController.text);
+                          bool found=await findUser(shareController.text);
                           if (found==false){
 
                             showDialog(

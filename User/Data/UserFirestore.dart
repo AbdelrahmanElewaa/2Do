@@ -39,3 +39,14 @@ Future<void> editUser(String id,Userr u) async {
 Future<Userr> getUser(String id) async {
   return await FirebaseFirestore.instance.collection('users').doc(id). get().then((value) => Userr.fromMap(value.data()!));
 }
+
+Future<bool> findUser(String uid) async{
+  return await FirebaseFirestore.instance.collection('users').where("uid",isEqualTo: uid ).get().then((value) {
+if (value.size==0)
+return false;
+else
+return true;
+  });
+
+  
+}
