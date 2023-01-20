@@ -48,8 +48,9 @@ Stream<List<SharedTodo>> readTasks(String uid){
 
 
 
-Future<void> delete(String id,String uid) async {
-  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(id).delete();
+Future<void> delete(SharedTodo todo,String uid) async {
+  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id).delete();
+  await FirebaseFirestore.instance.collection('users').doc(todo.sharedwith).collection('tasks').doc(todo.id).delete();
 }
    
 Future<void> editTask(SharedTodo todo,String uid) async {
