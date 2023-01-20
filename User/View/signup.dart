@@ -29,45 +29,51 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-
   final ImagePicker _picker = ImagePicker();
   String profilePicLink = " ";
   void imgFromGallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
-     Reference ref = FirebaseStorage.instance
-        .ref().child(pickedFile!.name);
-        await ref.putFile(File(pickedFile.path));
-        ref.getDownloadURL().then((value) async {
+    Reference ref = FirebaseStorage.instance.ref().child(pickedFile!.name);
+    await ref.putFile(File(pickedFile.path));
+    ref.getDownloadURL().then((value) async {
       setState(() {
-       profilePicLink = value;
+        profilePicLink = value;
       });
     });
   }
 
-    void imgFromCamera() async {
+  void imgFromCamera() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
-     Reference ref = FirebaseStorage.instance
-        .ref().child(pickedFile!.name);
-        await ref.putFile(File(pickedFile.path));
-        ref.getDownloadURL().then((value) async {
+    Reference ref = FirebaseStorage.instance.ref().child(pickedFile!.name);
+    await ref.putFile(File(pickedFile.path));
+    ref.getDownloadURL().then((value) async {
       setState(() {
-       profilePicLink = value;
+        profilePicLink = value;
       });
     });
   }
 
- 
+  final RegExp namevalid = RegExp(r'(^[a-zA-Z]+$)');
+  final RegExp numbervalid = RegExp(r'^[0-9]+$');
+  final RegExp emailvalid = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+  final RegExp passwordvalid =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+  // final RegExp capital = RegExp(r'^([A-Z])$');
+  // final RegExp small = RegExp(r'^([a-z])+$');
+  // final RegExp special = RegExp(r'^[!@#\$&*~]+$');
+  // final RegExp number = RegExp(r'^([0-9])+$');
+  // final RegExp length = RegExp(r'^.{8,}$');
+  // final RegExp small = RegExp(r'(.*[a-z].*)');
 
-  final RegExp namevalid = RegExp('[a-zA-Z]');
   final formKey = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController mob = TextEditingController();
   final TextEditingController pw = TextEditingController();
   final TextEditingController conpw = TextEditingController();
-  String formattedDate=' ';
+  String formattedDate = ' ';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +94,7 @@ class _SignupPageState extends State<SignupPage> {
         child: SingleChildScrollView(
           child: Center(
             child: Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -99,18 +106,18 @@ class _SignupPageState extends State<SignupPage> {
                   ),
 
                   SizedBoxx(h: 10.0),
-                 
-                 
+
                   Stack(
                     children: [
                       //* Avatar + edit button
-                      profilePicLink == " " ? const Icon(
-                    Icons.person,
-                    color: Colors.black,
-                    size: 80,
-                  ) : Container(
-                    child: Image.network(profilePicLink, width: 50)
-                  ),
+                      profilePicLink == " "
+                          ? const Icon(
+                              Icons.person,
+                              color: Colors.black,
+                              size: 80,
+                            )
+                          : Container(
+                              child: Image.network(profilePicLink, width: 50)),
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
@@ -132,11 +139,10 @@ class _SignupPageState extends State<SignupPage> {
                                   ListTile(
                                     leading: Icon(Icons.delete),
                                     title: Text('Delete'),
-
-                                    onTap: () { setState(() {
-                                      
-                                    profilePicLink=" ";
-                                    }); 
+                                    onTap: () {
+                                      setState(() {
+                                        profilePicLink = " ";
+                                      });
                                     },
                                   ),
                                   // ListTile(
@@ -162,7 +168,6 @@ class _SignupPageState extends State<SignupPage> {
                     ],
                   ),
 
-
                   SizedBoxx(),
 
                   //*Name textfield
@@ -175,9 +180,12 @@ class _SignupPageState extends State<SignupPage> {
                             htext: 'Name',
                             cont: name,
                             valid: (value) {
-                              if (value == '') {
-                                // && value.length < 7
+                              if (value!.isEmpty) {
                                 return 'Required';
+                              } else if (!namevalid.hasMatch(value)) {
+                                return 'Name must be alphabets';
+                              } else if (value.length < 3) {
+                                return 'Name must be atleast 3 characters';
                               } else {
                                 return null;
                               }
@@ -197,8 +205,8 @@ class _SignupPageState extends State<SignupPage> {
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime.now());
-                               formattedDate =
-                                  DateFormat('yyyy-MM-dd').format(pickedDate??DateTime.now());
+                              formattedDate = DateFormat('yyyy-MM-dd')
+                                  .format(pickedDate ?? DateTime.now());
                               print(formattedDate);
                             },
                             icon: Iconn(
@@ -215,8 +223,10 @@ class _SignupPageState extends State<SignupPage> {
                     htext: 'Email',
                     cont: email,
                     valid: (value) {
-                      if (value == '') {
+                      if (value!.isEmpty) {
                         return 'Required';
+                      } else if (!emailvalid.hasMatch(value)) {
+                        return 'Invalid email format';
                       } else {
                         return null;
                       }
@@ -229,11 +239,12 @@ class _SignupPageState extends State<SignupPage> {
                     htext: 'Password',
                     obsectext: true,
                     cont: pw,
+                    errmax: 2,
                     valid: (value) {
-                      if (value == '') {
-                        return 'Required';
-                      } else if (value.length < 7) {
-                        return 'Password must be at least 7 characters';
+                      if (value!.isEmpty) {
+                        return 'Requireddd';
+                      } else if (!passwordvalid.hasMatch(value)) {
+                        return 'Password must contain atleast 1 uppercase, 1 lowercase, 1 number and 1 special character';
                       } else {
                         return null;
                       }
@@ -246,8 +257,8 @@ class _SignupPageState extends State<SignupPage> {
                     obsectext: true,
                     cont: conpw,
                     valid: (value) {
-                      if (value == '') {
-                        return 'Required';
+                      if (value != pw.text) {
+                        return 'Password Does not match';
                       } else if (value.length < 7) {
                         // return 'Password Does not match';
                       } else {
@@ -273,31 +284,30 @@ class _SignupPageState extends State<SignupPage> {
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
                             if (pw.text == conpw.text) {
-                              if(profilePicLink==' '){
-                                 errorDialog( context,  "Please insert a photo");
-                              }
-                              else if(formattedDate==' ')
-                              errorDialog( context,  "Please enter your date of birth");
-                              else{
+                              if (profilePicLink == ' ') {
+                                errorDialog(context, "Please insert a photo");
+                              } else if (formattedDate == ' ')
+                                errorDialog(
+                                    context, "Please enter your date of birth");
+                              else {
+                                Userr u = Userr(
+                                    name: name.text,
+                                    email: email.text,
+                                    dob: formattedDate,
+                                    pw: pw.text,
+                                    profileURL: profilePicLink);
+                                final message =
+                                    await AuthService().registration(user: u);
+                                if (message == 'Success') {
+                                  GoRouter.of(context).go('/login');
+                                } else {
+                                  errorDialog(context, message!);
+                                  // print(name.text+email.text+mob.text+pw.text+conpw.text);
 
-                              Userr u = Userr(
-                                  name: name.text,
-                                  email: email.text,
-                                  dob: formattedDate,
-                                  pw: pw.text,
-                                  profileURL: profilePicLink);
-                              final message =
-                                  await AuthService().registration(user: u);
-                              if (message == 'Success') {
-                                GoRouter.of(context).go('/login');
-                              } else {
-                                errorDialog( context,  message!);
-                                // print(name.text+email.text+mob.text+pw.text+conpw.text);
-
+                                }
                               }
-                              }
-                            } else  {
-                              errorDialog( context,  "Passwords do not match");
+                            } else {
+                              errorDialog(context, "Passwords do not match");
                               // print(name.text+email.text+mob.text+pw.text+conpw.text);
 
                             }
@@ -341,25 +351,21 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  void errorDialog(BuildContext context, String error) =>
-      showDialog(
-context: context,
-                                  // context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text("Error"),
-                                      content:
-                                          Text(error),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: Text("Close"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  });
-                                  
-  }
-
+  void errorDialog(BuildContext context, String error) => showDialog(
+      context: context,
+      // context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(error),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      });
+}
