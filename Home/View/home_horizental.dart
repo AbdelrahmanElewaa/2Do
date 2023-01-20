@@ -1,3 +1,4 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +7,12 @@ import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/drawerr.dart';
 import '../../Tasks/Domain/AddTask.dart';
 import '../Widgets/tasks_tile.dart';
-import '../../Shared/Widgets/calenderweek.dart';
 import 'package:intl/intl.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import '../../Tasks/Data/tasksRepository.dart';
 import '../../Tasks/Data/TasksData.dart';
 import '../../Tasks/Domain/TasksModel2.dart';
+import 'home_bottom.dart';
 
 class HomeHorizental extends StatefulWidget {
   const HomeHorizental({super.key});
@@ -21,6 +22,7 @@ class HomeHorizental extends StatefulWidget {
 }
 
 class _HomeHorizentalState extends State<HomeHorizental> {
+  late DateTime _selectedDate = DateTime.now();
   final taskrep = TasksRepository.instance;
   List<Todo> todoss = [];
   @override
@@ -52,100 +54,56 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Column(
                   children: [
-                    // SizedBoxx(
-                    //   h: 10.0,
-                    // ),
-                    Calenderweek(),
-                    //Calender
-
-                    // SizedBoxx(
-                    //   h: 25.0,
-                    // ),
-
-                    //Search Bar
-                    //  SearchBar(),
-                  ],
-                ),
-              ),
-              // SizedBoxx(h: 20.0),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  color: Colors.transparent,
-                  child: Center(
-                    child: Column(
-                      children: [
-                        // Excercise Heading
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Tasks',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-
-                            //ADD Button
-                            Hero(
-                              tag: 'unique tag',
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context.pushTransparentRoute(AddTask());
-                                  // GoRouter.of(context).go('/addtask');
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    backgroundColor: Theme.of(context)
-                                        .colorScheme
-                                        .secondary),
-                                child: Icon(
-                                  Icons.add,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        //SizedBoxx(h: 20.0),
-                        //Tasks Dashboard
-                        Expanded(
-                          child: ListView.builder(
-                              padding: const EdgeInsets.all(8),
-                              itemCount: todoss.length + 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (index == todoss.length) {
-                                  return Text(
-                                    '',
-                                    style: TextStyle(
-                                        color: Theme.of(context).primaryColor),
-                                  );
+                    CalendarTimeline(
+                      initialDate: _selectedDate,
+                      firstDate: DateTime(2015, 1, 15),
+                      lastDate: DateTime(2030, 11, 20),
+                      onDateSelected: (date) {
+                        setState(() {
+                        _selectedDate = date;
+                          todoss = [];
+                          taskrep.fetchTodoList().then((value) {
+                            setState(() {
+                              if (date == null) {
+                                for (int i = 0; i < value.length; i++) {
+                                  if (value[i].reminder.substring(0, 10) ==
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(DateTime.now())) {
+                                    todoss.add(value[i]);
+                                  }
                                 }
-                                return TasksTile(
-                                  icon: Icons.task,
-                                  taskName: '${todoss[index].name}',
-                                  subTitle: '${todoss[index].cat}',
-                                  date:
-                                      '${todoss[index].reminder.substring(0, 10)}',
-                                  time:
-                                      '${todoss[index].reminder.substring(11, 16)}',
-                                  info: '${todoss[index].description}',
-                                  color: Colors.orange,
-                                );
-                              }),
-                          // SizedBoxx(
-                          //   h: 8.0,
-                        ) // ),
-                      ],
+                              } else {
+                                print(DateFormat('yyyy-MM-dd').format(date));
+
+                                for (int i = 0; i < value.length; i++) {
+                                  if (value[i].reminder.substring(0, 10) ==
+                                      DateFormat('yyyy-MM-dd').format(date)) {
+                                    todoss.add(value[i]);
+                                  }
+                                }
+                              }
+                            });
+                          });
+                          HomeBottom(todoss: todoss);
+                        });
+                      },
+                      leftMargin: 20,
+                      dayNameColor: Color.fromARGB(255, 255, 7, 7),
+                      monthColor: Theme.of(context).colorScheme.primary,
+                      dayColor: Theme.of(context).colorScheme.primary,
+                      activeDayColor: Theme.of(context).scaffoldBackgroundColor,
+                      activeBackgroundDayColor:
+                          Theme.of(context).colorScheme.secondary,
+                      dotsColor: Color.fromARGB(255, 0, 89, 255),
+                      locale: 'en_ISO',
                     ),
-                  ),
+                  ],
                 ),
               ),
               // SizedBoxx(
               //   h: 8.0,
               // ),
+              HomeBottom(todoss: todoss),
             ],
           ),
         ),

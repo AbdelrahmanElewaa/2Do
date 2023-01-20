@@ -27,9 +27,9 @@ class _StatState extends State<Stat> {
 
   @override
   Widget build(BuildContext context) {
-     final deviceOrientation= MediaQuery.of(context).orientation;
+    final deviceOrientation = MediaQuery.of(context).orientation;
     return Scaffold(
-      body: deviceOrientation== Orientation.portrait? StatVertical():StatHorizental(), 
+      body: StatVertical(),
     );
   }
 }
