@@ -52,8 +52,9 @@ Future<void> delete(String id,String uid) async {
   await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(id).delete();
 }
    
-Future<void> editTask(String id,SharedTodo todo,String uid) async {
-  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(id).update(todo.toMap());
+Future<void> editTask(SharedTodo todo,String uid) async {
+  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id).update(todo.toMap());
+  await FirebaseFirestore.instance.collection('users').doc(todo.sharedwith).collection('tasks').doc(todo.id).update(todo.toMap());
 }
 
 Future<void> addnotificationid(String id,int notid,String uid) async {
