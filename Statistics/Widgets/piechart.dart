@@ -32,31 +32,28 @@ class _PieState extends State<Pie> {
   Widget build(BuildContext context) {
     final deviceOrientation = MediaQuery.of(context).orientation;
     return Container(
-      // decoration: BoxDecoration(color: Colors.white70),
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          PieChart(
-            chartRadius: deviceOrientation == Orientation.portrait ? 500 : 75,
-            animationDuration: Duration(milliseconds: 300),
-            dataMap: <String, double>{
-              "Finished": widget.checked,
-              "Not Finished": widget.list - widget.checked,
-            },
-            chartLegendSpacing: 32,
-            chartType: ChartType.disc,
-            baseChartColor: Colors.grey[50]!.withOpacity(0.15),
-            gradientList: gradientList,
-            // ignore: prefer_const_literals_to_create_immutables
+      height: 300,
+      child: PieChart(
+        chartRadius: deviceOrientation == Orientation.portrait
+            ? MediaQuery.of(context).size.height * 0.25
+            : MediaQuery.of(context).size.width * 0.25,
+        animationDuration: Duration(milliseconds: 300),
+        dataMap: <String, double>{
+          "Finished": widget.checked,
+          "Not Finished": widget.list - widget.checked,
+        },
+        chartLegendSpacing: 32,
+        chartType: ChartType.disc,
+        baseChartColor: Colors.grey[50]!.withOpacity(0.15),
+        gradientList: gradientList,
+        // ignore: prefer_const_literals_to_create_immutables
 
-            initialAngleInDegree: 0,
-            chartValuesOptions: ChartValuesOptions(
-              showChartValuesInPercentage: true,
-              decimalPlaces: 1,
-            ),
-            totalValue: widget.list,
-          ),
-        ],
+        initialAngleInDegree: 0,
+        chartValuesOptions: ChartValuesOptions(
+          showChartValuesInPercentage: true,
+          decimalPlaces: 1,
+        ),
+        totalValue: widget.list,
       ),
     );
   }
