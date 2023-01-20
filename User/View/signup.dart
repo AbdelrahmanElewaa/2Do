@@ -276,12 +276,14 @@ class _SignupPageState extends State<SignupPage> {
                               if(profilePicLink==' '){
                                  errorDialog( context,  "Please insert a photo");
                               }
+                              else if(formattedDate==' ')
+                              errorDialog( context,  "Please enter your date of birth");
                               else{
 
                               Userr u = Userr(
                                   name: name.text,
                                   email: email.text,
-                                  mobile: mob.text,
+                                  dob: formattedDate,
                                   pw: pw.text,
                                   profileURL: profilePicLink);
                               final message =
