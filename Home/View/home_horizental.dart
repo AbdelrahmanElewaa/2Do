@@ -94,7 +94,7 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                       activeDayColor: Theme.of(context).scaffoldBackgroundColor,
                       activeBackgroundDayColor:
                           Theme.of(context).colorScheme.secondary,
-                      dotsColor: Color.fromARGB(255, 0, 89, 255),
+                      dotsColor: Theme.of(context).colorScheme.primary,
                       locale: 'en_ISO',
                     ),
                   ],
