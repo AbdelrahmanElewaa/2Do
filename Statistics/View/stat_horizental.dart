@@ -21,10 +21,6 @@ class _StatHorizentalState extends State<StatHorizental> {
     return SafeArea(
       child: Column(
         children: [
-          // SizedBoxx(
-          //   h: 5.0,
-          // ),
-          //greating Row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
@@ -32,7 +28,6 @@ class _StatHorizentalState extends State<StatHorizental> {
                 //Calender
 
                 Container(
-                  //height: MediaQuery.of(context).size.height,
                   child: TableCalendar(
                     calendarFormat: CalendarFormat.twoWeeks,
                     weekendDays: const [
