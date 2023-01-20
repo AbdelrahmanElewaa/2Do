@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 class Formm extends StatelessWidget {
+  final errmax;
   final w;
   final valid;
   final htext;
@@ -14,6 +15,7 @@ class Formm extends StatelessWidget {
     this.valid,
     this.htext,
     this.obsectext = false,
+    this.errmax,
     required this.cont,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class Formm extends StatelessWidget {
           ),
           decoration: InputDecoration(
             // textfield input color
+            errorMaxLines: errmax,
             labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
