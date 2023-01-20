@@ -47,7 +47,21 @@ class _ProfileListItemState extends State<ProfileListItem> {
                     ),
                   ),
                   //* update button
-                 
+                  GestureDetector(
+                    child: Text(
+                      'update',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                    onTap: () {
+                      if (textcontroller.text != widget.text)
+                        //* update the text
+                        print(textcontroller.text);
+                    },
+                  ),
                 ],
               ),
               //* text
