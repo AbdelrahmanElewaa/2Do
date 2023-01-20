@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/User/Data/UserFirestore.dart';
+import 'package:todo/globals.dart';
 
 import '../Data/UserData.dart';
 
@@ -14,7 +15,15 @@ class AuthService {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email:user.email,
         password: user.pw,
-      ).then((currentUser) async =>  await createUserobj(user,currentUser.user!.uid)).onError((error, stackTrace) => error.toString()).onError((error, stackTrace) => error.toString());
+      ).then((currentUser) async =>  await createUserobj(user,currentUser.user!.uid)
+      .then((value)=>
+        getUser(value)
+      .then((value) 
+      {
+        currUser=value;
+      })
+      ))
+      .onError((error, stackTrace) {error.toString();} ).onError((error, stackTrace) {error.toString();});
       return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -38,7 +47,10 @@ class AuthService {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
-      ).then((value) async => getUser(value.user!.uid).then((value) => print(value.name)));
+      ).then((value) async => getUser(value.user!.uid).then((value) {
+        currUser=value;
+        print(value.name);
+        }));
       return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
