@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_this, avoid_print
+// ignore_for_file: prefer_const_constructors, unnecessary_this, avoid_print, must_be_immutable
 
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../../Tasks/Data/tasksRepository.dart';
 import '../../Tasks/Data/TasksData.dart';
-import '../../Tasks/Domain/TasksModel2.dart';
 
 class Pie extends StatefulWidget {
   var s;
@@ -23,15 +22,15 @@ class _PieState extends State<Pie> {
   double checked = 0;
   @override
   void initState() {
-    print(DateFormat('yyyy-MM-dd').format(this.widget.s));
-    print(" ");
-    print(DateFormat('yyyy-MM-dd').format(DateTime.now()));
+    // print(DateFormat('yyyy-MM-dd').format(this.widget.s));
+    // print(DateFormat('yyyy-MM-dd').format(DateTime.now()));
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        if (DateFormat('yyyy-MM-dd').format(this.widget.s) ==
-            DateFormat('yyyy-MM-dd').format(DateTime.now())) {
+        if (this.widget.s == null) {
           todoss = value;
         } else {
+          // print(DateFormat('yyyy-MM-dd').format(this.widget.s));
+
           for (int i = 0; i < value.length; i++) {
             if (value[i].reminder.substring(0, 10) ==
                 DateFormat('yyyy-MM-dd').format(this.widget.s)) {
@@ -96,17 +95,7 @@ class _PieState extends State<Pie> {
             ),
             totalValue: todoss.length.toDouble(),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-            ),
-            onPressed: () {
-              setState(() {
-              this.widget.s = DateTime.utc(2023, 01, 19);
-              });
-            },
-            child: Text('All Tasks'),
-          )
+          
         ],
       ),
     );
