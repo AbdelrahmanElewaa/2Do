@@ -45,7 +45,6 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Center(
             child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

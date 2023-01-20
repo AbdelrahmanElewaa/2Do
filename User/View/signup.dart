@@ -94,7 +94,6 @@ class _SignupPageState extends State<SignupPage> {
         child: SingleChildScrollView(
           child: Center(
             child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -242,7 +241,7 @@ class _SignupPageState extends State<SignupPage> {
                     errmax: 2,
                     valid: (value) {
                       if (value!.isEmpty) {
-                        return 'Requireddd';
+                        return 'Required';
                       } else if (!passwordvalid.hasMatch(value)) {
                         return 'Password must contain atleast 1 uppercase, 1 lowercase, 1 number and 1 special character';
                       } else {
