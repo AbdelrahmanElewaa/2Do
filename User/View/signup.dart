@@ -16,13 +16,8 @@ import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'dart:io';
-// import 'dart:typed_data';
-
 import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import '../Domain/authservice.dart';
 
@@ -278,11 +273,33 @@ class _SignupPageState extends State<SignupPage> {
                           final isValidForm = formKey.currentState!.validate();
                           if (isValidForm) {
                             if (pw.text == conpw.text) {
+                              if(profilePicLink==' '){
+                                 showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Error"),
+                                      content:
+                                          Text("PLease insert a photo"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                              }
+                              else{
+
                               Userr u = Userr(
                                   name: name.text,
                                   email: email.text,
                                   mobile: mob.text,
-                                  pw: pw.text);
+                                  pw: pw.text,
+                                  profileURL: profilePicLink);
                               final message =
                                   await AuthService().registration(user: u);
                               if (message == 'Success') {
@@ -307,7 +324,8 @@ class _SignupPageState extends State<SignupPage> {
                                 // print(name.text+email.text+mob.text+pw.text+conpw.text);
 
                               }
-                            } else {
+                              }
+                            } else  {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
