@@ -6,9 +6,18 @@ import 'package:todo/Home/Widgets/account_tile.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../../Shared/Widgets/iconn.dart';
 
-class Account extends StatelessWidget {
-  const Account({super.key});
+class Account extends StatefulWidget {
+  final name;
+  final email;
+  final password;
+  final date;
+  const Account({super.key, this.name, this.email, this.password, this.date});
 
+  @override
+  State<Account> createState() => _AccountState();
+}
+
+class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +86,7 @@ class Account extends StatelessWidget {
                   text: 'Omar mohamed',
                 ),
                 ProfileListItem(
-                  header: 'Username',
+                  header: 'Email',
                   text: '@Omarr',
                 ),
                 ProfileListItem(
@@ -85,7 +94,7 @@ class Account extends StatelessWidget {
                   text: 'sdahsdbasj',
                 ),
                 ProfileListItem(
-                  header: 'Mobile Number',
+                  header: 'Date of birth',
                   text: '01287121314',
                 ),
               ],
