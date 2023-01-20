@@ -210,15 +210,14 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                           else{
                             createTask(name: nameController.text,checked: "false",cat: selected.name,
                             des: descriptionController.text,rem: date.toIso8601String(),
-                            shared: "true",uid:shareController.text);
-                            createTask(name: nameController.text,checked: "false",cat: selected.name,
+                            shared: "true",uid:uid,sharedwith: shareController.text)
+                            .then((id) async{
+                           await createTask(name: nameController.text,checked: "false",cat: selected.name,
                             des: descriptionController.text,rem: date.toIso8601String(),
-                            shared: "true",uid:uid)
-                            .then((id) {
+                            shared: "true",uid:shareController.text,sharedwith: uid,taskid: id);
                             NotificationService().showNotification(
 
-                              // id: 
-                              title:   nameController.text,
+                            title:   nameController.text,
                              body:    descriptionController.text,
                              tod:    newtime
                                 ).then((notid) {
