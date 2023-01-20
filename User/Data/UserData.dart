@@ -4,11 +4,11 @@ List<Userr> Users = <Userr>[];
 
 
 class Userr {
-  Userr({required this.name,required this.email,required this.pw,required this.mobile, this.uid,required this.profileURL});
+  Userr({required this.name,required this.email,required this.pw,required this.dob, this.uid,required this.profileURL});
   String name;
   String email;
   String pw;
-  String mobile;
+  String dob;
   String? uid;
   String profileURL;
 
@@ -17,7 +17,7 @@ Map<String, dynamic> toMap() {
       'name': name,
       'email': email,
       'pw': pw,
-      'mobile': mobile,
+      'dob': dob,
       'uid': uid,
       'profileURL':profileURL
     };
@@ -28,7 +28,7 @@ Map<String, dynamic> toMap() {
       name: map['name'] ?? 'not specified',
       email: map['email'] ?? "not specified",
       pw: map['pw'] ?? '',
-      mobile: map['mobile'] ?? "not specified",
+      dob: map['dob'] ?? "not specified",
       uid: map['uid'] ?? "",
       profileURL: map['profileURL']??''
     );
