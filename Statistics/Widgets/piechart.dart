@@ -95,7 +95,33 @@ class _PieState extends State<Pie> {
             ),
             totalValue: todoss.length.toDouble(),
           ),
-          
+          ElevatedButton(
+              child: const Text('Refresh'),
+              onPressed: () {
+                taskrep.fetchTodoList().then((value) {
+                  setState(() {
+                    if (this.widget.s == null) {
+                      todoss = value;
+                    } else {
+                      print(DateFormat('yyyy-MM-dd').format(this.widget.s));
+
+                      for (int i = 0; i < value.length; i++) {
+                        if (value[i].reminder.substring(0, 10) ==
+                            DateFormat('yyyy-MM-dd').format(this.widget.s)) {
+                          todoss.add(value[i]);
+                        }
+                      }
+                    }
+
+                    for (int i = 0; i < todoss.length; i++) {
+                      if (todoss[i].checked == "true") {
+                        checked++;
+                      }
+                    }
+                  });
+                });
+                print(checked);
+              })
         ],
       ),
     );
