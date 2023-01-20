@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:todo/User/Data/UserFirestore.dart';
+import 'package:todo/User/Domain/authservice.dart';
+import 'package:todo/globals.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
 
@@ -56,10 +59,17 @@ class _ProfileListItemState extends State<ProfileListItem> {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
-                    onTap: () {
+                    onTap: () async{
                       if (textcontroller.text != widget.text)
                         //* update the text
-                        print(textcontroller.text);
+                        widget.header=='Name'?currUser!.name=textcontroller.text:
+                        widget.header=='Email'?currUser!.email=textcontroller.text:
+                        widget.header=='Password'?currUser!.pw=textcontroller.text:
+                        currUser!.dob=textcontroller.text;
+                       await editUser(currUser!.uid!, currUser!);
+                        widget.header=='Passowrd'?await AuthService().updatepw(widget.text,textcontroller.text):
+                        widget.header=='Email'?'':'';
+                        // print(textcontroller.text);
                     },
                   ),
                 ],
