@@ -15,6 +15,8 @@ class MySquare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceOrientation = MediaQuery.of(context).orientation;
+
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).goNamed(
@@ -25,7 +27,9 @@ class MySquare extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.1,
+          height: deviceOrientation == Orientation.portrait
+              ? MediaQuery.of(context).size.height * 0.1
+              : MediaQuery.of(context).size.height * 0.2,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(25.0)),
