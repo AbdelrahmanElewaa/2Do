@@ -39,100 +39,106 @@ class _NotesScreenState extends State<NotesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-            child: Padding(
-      padding: const EdgeInsets.fromLTRB(
-        16.0,
-        8.0,
-        16.0,
-        8.0,
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
+    return SafeArea(
+        child: Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(
+              16.0,
+              8.0,
+              16.0,
+              8.0,
+            ),
+            child: Column(
               children: [
-                Expanded(flex: 6, child: Textt(text: 'Notes', size: 32.0)),
-                Expanded(
-                  child: IconButton(
-                    splashRadius: 20.0,
-                    icon: Icon(
-                      UniconsLine.cloud_download,
-                    ),
-                    color: Theme.of(context).iconTheme.color,
-                    onPressed: () {},
-                  ),
-                ),
-                Expanded(
-                  child: IconButton(
-                    splashRadius: 20.0,
-                    icon: Icon(
-                      UniconsLine.cloud_upload,
-                    ),
-                    color: Theme.of(context).iconTheme.color,
-                    onPressed: () {
-                      for (Note n in notes) {
-                        // deleteNotes(n.id.toString());
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 6, child: Textt(text: 'Notes', size: 32.0)),
+                      Expanded(
+                        child: IconButton(
+                          splashRadius: 20.0,
+                          icon: Icon(
+                            UniconsLine.cloud_download,
+                          ),
+                          color: Theme.of(context).iconTheme.color,
+                          onPressed: () {},
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          splashRadius: 20.0,
+                          icon: Icon(
+                            UniconsLine.cloud_upload,
+                          ),
+                          color: Theme.of(context).iconTheme.color,
+                          onPressed: () {
+                            for (Note n in notes) {
+                              // deleteNotes(n.id.toString());
 
-                        createNotes(
-                            id: n.id.toString(),
-                            title: n.title,
-                            content: n.content,
-                            date: n.date);
-                      }
-                      ;
-                    },
+                              createNotes(
+                                  id: n.id.toString(),
+                                  title: n.title,
+                                  content: n.content,
+                                  date: n.date);
+                            }
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          splashRadius: 20.0,
+                          icon: Icon(
+                            UniconsLine.exchange_alt,
+                          ),
+                          color: Theme.of(context).iconTheme.color,
+                          onPressed: () {
+                            if (globals.sorting == true) {
+                              globals.sorting = false;
+                            } else {
+                              globals.sorting = true;
+                            }
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) => HomePage(
+                                          selectedIndex: 3,
+                                        )));
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          splashRadius: 20.0,
+                          icon: Icon(
+                            UniconsLine.plus,
+                          ),
+                          color: Theme.of(context).iconTheme.color,
+                          onPressed: () {
+                            GoRouter.of(context).go('/notesadd');
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: IconButton(
-                    splashRadius: 20.0,
-                    icon: Icon(
-                      UniconsLine.exchange_alt,
-                    ),
-                    color: Theme.of(context).iconTheme.color,
-                    onPressed: () {
-                      if (globals.sorting == true) {
-                        globals.sorting = false;
-                      } else {
-                        globals.sorting = true;
-                      }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => HomePage(
-                                    selectedIndex: 3,
-                                  )));
-                    },
-                  ),
+                SizedBoxx(
+                  h: 12.0,
                 ),
-                Expanded(
-                  child: IconButton(
-                    splashRadius: 20.0,
-                    icon: Icon(
-                      UniconsLine.plus,
-                    ),
-                    color: Theme.of(context).iconTheme.color,
-                    onPressed: () {
-                      GoRouter.of(context).go('/notesadd');
-                    },
-                  ),
+                NotesSearchbar(),
+                SizedBoxx(
+                  h: 12.0,
                 ),
+                Noteslist(),
               ],
             ),
           ),
-          SizedBoxx(
-            h: 12.0,
-          ),
-          NotesSearchbar(),
-          SizedBoxx(
-            h: 12.0,
-          ),
-          Noteslist(),
-        ],
+        ),
       ),
-    )));
+    ));
   }
 }
