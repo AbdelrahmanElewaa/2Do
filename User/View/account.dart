@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo/Home/Widgets/account_tile.dart';
+import 'package:todo/globals.dart';
 
 import '../../Shared/Widgets/textt.dart';
 import '../../Shared/Widgets/iconn.dart';
@@ -18,6 +21,23 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+
+ @override
+  void initState() {
+
+  FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      // GoRouter.of(context).go('/login');
+      context.go('/login');
+    } else {
+    //  uid= user.uid;
+      print('User is signed in!');
+    }
+  });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +59,9 @@ class _AccountState extends State<Account> {
               Stack(
                 children: [
                   //* Avatar + edit button
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundImage: AssetImage('assets/1024.png'),
+                  Container(
+
+                    child: Image.network(currUser!.profileURL, width: 50)
                   ),
                   GestureDetector(
                     onTap: () {
@@ -63,7 +83,7 @@ class _AccountState extends State<Account> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Textt(
-                  text: 'Omar mohamed abdel',
+                  text: currUser!.name,
                   size: 20.0,
                 ),
               )
@@ -83,19 +103,19 @@ class _AccountState extends State<Account> {
               children: [
                 ProfileListItem(
                   header: 'Name',
-                  text: 'Omar mohamed',
+                  text: currUser!.name,
                 ),
                 ProfileListItem(
                   header: 'Email',
-                  text: '@Omarr',
+                  text: currUser!.email,
                 ),
                 ProfileListItem(
                   header: 'Password',
-                  text: 'sdahsdbasj',
+                  text: currUser!.pw,
                 ),
                 ProfileListItem(
                   header: 'Date of birth',
-                  text: '01287121314',
+                  text: currUser!.mobile,
                 ),
               ],
             ),
