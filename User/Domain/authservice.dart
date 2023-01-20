@@ -64,4 +64,37 @@ class AuthService {
       return e.toString();
     }
   }
+  
+
+  Future<void> updatepw(String currentPassword ,String newPassword) async{
+
+
+final user =  FirebaseAuth.instance.currentUser!;
+final cred = EmailAuthProvider.credential(
+
+    email: user.email!, password: currentPassword);
+
+user.reauthenticateWithCredential(cred).then((value) {
+  user.updatePassword(newPassword).then((_) {
+    //Success, do something
+    print("success");
+  }).catchError((error) {
+    print(error.toString());
+    //Error, show something
+  });
+}).catchError((err) {
+ print(err.toString());
+    
+});
 }
+
+
+//    await FirebaseAuth.instance
+//   .currentUser!.updatePassword(newPassword)
+//   .catchError((err){
+//   print(err.toString());
+// });
+
+}
+
+

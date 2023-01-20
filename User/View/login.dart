@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (value == '') {
                         return 'Required';
                       } else if (value.length < 7) {
-                        return 'Password must be at least 7 characters';
+                        // return 'Password must be at least 7 characters';
                       } else {
                         return null;
                       }
