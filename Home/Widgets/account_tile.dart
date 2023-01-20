@@ -4,58 +4,64 @@ import 'package:flutter/material.dart';
 
 import '../../Shared/Widgets/sizedboxx.dart';
 
-class ProfileListItem extends StatelessWidget {
+class ProfileListItem extends StatefulWidget {
   final header;
   final text;
   const ProfileListItem({super.key, required this.header, this.text});
 
   @override
+  State<ProfileListItem> createState() => _ProfileListItemState();
+}
+
+class _ProfileListItemState extends State<ProfileListItem> {
+  TextEditingController textcontroller = TextEditingController();
+  void initState() {
+    textcontroller.text = widget.text;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      //* container
       child: Container(
-        height: 80,
-        margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
           color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(25),
         ),
+        //* text field
         child: Padding(
-          padding: const EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(children: [
-                SizedBoxx(w: 20.0),
-                Text(
-                  header,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Color.fromARGB(255, 0, 0, 0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //* header
+                  Text(
+                    widget.header,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  //* update button
+                 
+                ],
+              ),
+              //* text
+              TextField(
+                controller: textcontroller,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: widget.text,
                 ),
-              ]),
-              Row(children: [
-                SizedBoxx(w: 20.0),
-                Text(
-                  text,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-                Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    print('hello');
-                  },
-                  child: Text('Update',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.secondary)),
-                ),
-              ]),
+              ),
             ],
           ),
         ),
