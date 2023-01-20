@@ -86,7 +86,7 @@ class _SharedTodState extends State<SharedTod> {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                delete(todo.id!,uid);
+                delete(todo,uid);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),
@@ -112,12 +112,7 @@ class _SharedTodState extends State<SharedTod> {
             ),
             SlidableAction(
               onPressed: (context) {
-                delete(todo.id!,uid);
-                // .then((value) {const snackBar = SnackBar(
-                //   content: Text('Item successfully deleted!!'),
-                //   backgroundColor: Color.fromARGB(255, 71, 181, 255),
-                // );
-                // ScaffoldMessenger.of(context).showSnackBar(snackBar);});
+                delete(todo,uid);
                 const snackBar = SnackBar(
                   content: Text('Item successfully deleted!!'),
                   backgroundColor: Color.fromARGB(255, 71, 181, 255),
