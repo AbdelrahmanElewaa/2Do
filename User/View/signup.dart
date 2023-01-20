@@ -67,6 +67,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController mob = TextEditingController();
   final TextEditingController pw = TextEditingController();
   final TextEditingController conpw = TextEditingController();
+  String formattedDate=' ';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +109,6 @@ class _SignupPageState extends State<SignupPage> {
                     color: Colors.black,
                     size: 80,
                   ) : Container(
-
                     child: Image.network(profilePicLink, width: 50)
                   ),
                       GestureDetector(
@@ -197,7 +197,7 @@ class _SignupPageState extends State<SignupPage> {
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime.now());
-                              String formattedDate =
+                               formattedDate =
                                   DateFormat('yyyy-MM-dd').format(pickedDate??DateTime.now());
                               print(formattedDate);
                             },
@@ -249,7 +249,7 @@ class _SignupPageState extends State<SignupPage> {
                       if (value == '') {
                         return 'Required';
                       } else if (value.length < 7) {
-                        return 'Password Does not match';
+                        // return 'Password Does not match';
                       } else {
                         return null;
                       }
@@ -274,23 +274,7 @@ class _SignupPageState extends State<SignupPage> {
                           if (isValidForm) {
                             if (pw.text == conpw.text) {
                               if(profilePicLink==' '){
-                                 showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text("Error"),
-                                      content:
-                                          Text("PLease insert a photo"),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: Text("Close"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  });
+                                 errorDialog( context,  "Please insert a photo");
                               }
                               else{
 
@@ -305,44 +289,13 @@ class _SignupPageState extends State<SignupPage> {
                               if (message == 'Success') {
                                 GoRouter.of(context).go('/login');
                               } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text("Error"),
-                                        content: Text(message!),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: Text("Close"),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          )
-                                        ],
-                                      );
-                                    });
+                                errorDialog( context,  message!);
                                 // print(name.text+email.text+mob.text+pw.text+conpw.text);
 
                               }
                               }
                             } else  {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text("Error"),
-                                      content:
-                                          Text("The passwords do not match"),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: Text("Close"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  });
+                              errorDialog( context,  "Passwords do not match");
                               // print(name.text+email.text+mob.text+pw.text+conpw.text);
 
                             }
@@ -385,4 +338,26 @@ class _SignupPageState extends State<SignupPage> {
       ),
     );
   }
-}
+
+  void errorDialog(BuildContext context, String error) =>
+      showDialog(
+context: context,
+                                  // context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Error"),
+                                      content:
+                                          Text(error),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                                  
+  }
+
