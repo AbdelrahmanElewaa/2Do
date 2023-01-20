@@ -68,28 +68,17 @@ class _NotesDetailsState extends State<NotesDetails> {
               },
             ),
           ),
-          body: Column(children: [
-            // Text('${widget.title}'),
-            // ignore_for_file: prefer_const_constructors
-            TextField(
-              controller: titleController,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                  color: Theme.of(context).colorScheme.primary,
-                  decorationThickness: 0),
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextField(
-                  controller: contentController,
+          body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(children: [
+                // Text('${widget.title}'),
+                // ignore_for_file: prefer_const_constructors
+                TextField(
+                  controller: titleController,
                   style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
                       color: Theme.of(context).colorScheme.primary,
                       decorationThickness: 0),
                   decoration: InputDecoration(
@@ -97,12 +86,28 @@ class _NotesDetailsState extends State<NotesDetails> {
                       borderSide: BorderSide.none,
                     ),
                   ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
                 ),
-              ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextField(
+                      controller: contentController,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          decorationThickness: 0),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                    ),
+                  ),
+                ),
+              ]),
             ),
-          ])),
+          )),
     );
   }
 }
