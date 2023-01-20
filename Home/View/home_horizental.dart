@@ -22,6 +22,7 @@ class HomeHorizental extends StatefulWidget {
 }
 
 class _HomeHorizentalState extends State<HomeHorizental> {
+  late DateTime _selectedDate = DateTime.now();
   final taskrep = TasksRepository.instance;
   List<Todo> todoss = [];
   @override
@@ -54,11 +55,12 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                 child: Column(
                   children: [
                     CalendarTimeline(
-                      initialDate: DateTime.now(),
+                      initialDate: _selectedDate,
                       firstDate: DateTime(2015, 1, 15),
                       lastDate: DateTime(2030, 11, 20),
                       onDateSelected: (date) {
                         setState(() {
+                        _selectedDate = date;
                           todoss = [];
                           taskrep.fetchTodoList().then((value) {
                             setState(() {

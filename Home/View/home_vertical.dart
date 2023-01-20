@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unnecessary_import, implementation_imports, unused_import
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,6 +25,8 @@ class HomeVertical extends StatefulWidget {
 }
 
 class _HomeVerticalState extends State<HomeVertical> {
+  late DateTime _selectedDate = DateTime.now();
+
   final taskrep = TasksRepository.instance;
   List<Todo> todoss = [];
   @override
@@ -58,11 +60,12 @@ class _HomeVerticalState extends State<HomeVertical> {
                 h: 10.0,
               ),
               CalendarTimeline(
-                initialDate: DateTime.now(),
+                initialDate: _selectedDate,
                 firstDate: DateTime(2015, 1, 15),
                 lastDate: DateTime(2030, 11, 20),
                 onDateSelected: (date) {
                   setState(() {
+                    _selectedDate = date;
                     todoss = [];
                     taskrep.fetchTodoList().then((value) {
                       setState(() {
@@ -112,5 +115,3 @@ class _HomeVerticalState extends State<HomeVertical> {
     );
   }
 }
-
-
