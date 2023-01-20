@@ -124,6 +124,7 @@ class _HomeHorizentalState extends State<HomeHorizental> {
                             subTitle: '${todoss[index].cat}',
                             date: '${todoss[index].reminder.substring(0, 10)}',
                             time: '${todoss[index].reminder.substring(11, 16)}',
+                            info: '${todoss[index].description}',
                             color: Colors.orange,
                           );
                         }),

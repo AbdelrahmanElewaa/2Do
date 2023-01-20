@@ -11,6 +11,7 @@ class TasksTile extends StatelessWidget {
   final String subTitle;
   final String time;
   final String date;
+  final String info;
   final color;
   const TasksTile({
     Key? key,
@@ -20,6 +21,7 @@ class TasksTile extends StatelessWidget {
     required this.color,
     required this.time,
     required this.date,
+    required this.info,
   });
 
   @override
@@ -106,13 +108,10 @@ class TasksTile extends StatelessWidget {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   ListTile(
-                    leading: Icon(Icons.edit),
-                    title: Text('Edit'),
+                    leading: Icon(Icons.description),
+                    title: Text(info),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.delete),
-                    title: Text('Delete'),
-                  ),
+                  
                   // ListTile(
                   //   leading: Icon(Icons.info),
                   //   title: Text('Info'),

@@ -130,6 +130,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                             // subTitle: '$date',
                             date: '${todoss[index].reminder.substring(0, 10)}',
                             time: '${todoss[index].reminder.substring(11, 16)}',
+                            info: '${todoss[index].description}',
                             color: Colors.orange,
                           );
                         }),
