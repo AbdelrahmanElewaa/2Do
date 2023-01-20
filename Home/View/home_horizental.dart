@@ -40,106 +40,116 @@ class _HomeHorizentalState extends State<HomeHorizental> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //    SizedBoxx(h: 10.0),
-        //greating Row
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              // SizedBoxx(
-              //   h: 10.0,
-              // ),
-              Calenderweek(),
-              //Calender
+              //    SizedBoxx(h: 10.0),
+              //greating Row
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Column(
+                  children: [
+                    // SizedBoxx(
+                    //   h: 10.0,
+                    // ),
+                    Calenderweek(),
+                    //Calender
 
-              // SizedBoxx(
-              //   h: 25.0,
-              // ),
+                    // SizedBoxx(
+                    //   h: 25.0,
+                    // ),
 
-              //Search Bar
-              //  SearchBar(),
+                    //Search Bar
+                    //  SearchBar(),
+                  ],
+                ),
+              ),
+              // SizedBoxx(h: 20.0),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        // Excercise Heading
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Tasks',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+
+                            //ADD Button
+                            Hero(
+                              tag: 'unique tag',
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  context.pushTransparentRoute(AddTask());
+                                  // GoRouter.of(context).go('/addtask');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                    backgroundColor: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 40,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        //SizedBoxx(h: 20.0),
+                        //Tasks Dashboard
+                        Expanded(
+                          child: ListView.builder(
+                              padding: const EdgeInsets.all(8),
+                              itemCount: todoss.length + 1,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (index == todoss.length) {
+                                  return Text(
+                                    '',
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor),
+                                  );
+                                }
+                                return TasksTile(
+                                  icon: Icons.task,
+                                  taskName: '${todoss[index].name}',
+                                  subTitle: '${todoss[index].cat}',
+                                  date:
+                                      '${todoss[index].reminder.substring(0, 10)}',
+                                  time:
+                                      '${todoss[index].reminder.substring(11, 16)}',
+                                  info: '${todoss[index].description}',
+                                  color: Colors.orange,
+                                );
+                              }),
+                          // SizedBoxx(
+                          //   h: 8.0,
+                        ) // ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              // SizedBoxx(
+              //   h: 8.0,
+              // ),
             ],
           ),
         ),
-        // SizedBoxx(h: 20.0),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            color: Colors.transparent,
-            child: Center(
-              child: Column(
-                children: [
-                  // Excercise Heading
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tasks',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-
-                      //ADD Button
-                      Hero(
-                        tag: 'unique tag',
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context.pushTransparentRoute(AddTask());
-                            // GoRouter.of(context).go('/addtask');
-                          },
-                          style: ElevatedButton.styleFrom(
-                              shape: CircleBorder(),
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.secondary),
-                          child: Icon(
-                            Icons.add,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  //SizedBoxx(h: 20.0),
-                  //Tasks Dashboard
-                  Expanded(
-                    child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        itemCount: todoss.length + 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == todoss.length) {
-                            return Text(
-                              '',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor),
-                            );
-                          }
-                          return TasksTile(
-                            icon: Icons.task,
-                            taskName: '${todoss[index].name}',
-                            subTitle: '${todoss[index].cat}',
-                            date: '${todoss[index].reminder.substring(0, 10)}',
-                            time: '${todoss[index].reminder.substring(11, 16)}',
-                            info: '${todoss[index].description}',
-                            color: Colors.orange,
-                          );
-                        }),
-                    // SizedBoxx(
-                    //   h: 8.0,
-                  ) // ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        // SizedBoxx(
-        //   h: 8.0,
-        // ),
-      ],
+      ),
     );
     //         ),
     //       ),
