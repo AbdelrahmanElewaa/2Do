@@ -71,6 +71,28 @@ class _StatVerticalState extends State<StatVertical> {
                   lastDay: kLastDay,
                   focusedDay: _focusedDay,
                   calendarFormat: _calendarFormat,
+                  calendarStyle: CalendarStyle(
+                    weekendTextStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 17,
+                    ),
+                    defaultTextStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  daysOfWeekStyle: DaysOfWeekStyle(
+                      weekendStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                      weekdayStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold)),
+                  headerStyle: HeaderStyle(
+                      titleTextStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary)),
                   selectedDayPredicate: (day) {
                     return isSameDay(_selectedDay, day);
                   },
