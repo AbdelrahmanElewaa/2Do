@@ -54,41 +54,46 @@ class _NotesAddState extends State<NotesAdd> {
               },
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            // ignore: prefer_const_literals_to_create_immutables
-            child: Column(children: [
-              // ignore: prefer_const_constructors
-              TextField(
-                controller: titleController,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    color: Theme.of(context).colorScheme.primary,
-                    decorationThickness: 0),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: TextField(
-                  controller: contentController,
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      decorationThickness: 0),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20),
+          body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                // ignore: prefer_const_literals_to_create_immutables
+                child: Column(children: [
+                  // ignore: prefer_const_constructors
+                  TextField(
+                    controller: titleController,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Theme.of(context).colorScheme.primary,
+                        decorationThickness: 0),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                ),
+                  Expanded(
+                    child: TextField(
+                      controller: contentController,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          decorationThickness: 0),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                    ),
+                  ),
+                ]),
               ),
-            ]),
+            ),
           )),
     );
   }
