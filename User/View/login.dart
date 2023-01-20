@@ -19,6 +19,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final RegExp emailvalid = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+  final RegExp passwordvalid =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
   final formKey = GlobalKey<FormState>();
   final TextEditingController email = TextEditingController();
   final TextEditingController pw = TextEditingController();
@@ -72,8 +75,10 @@ class _LoginPageState extends State<LoginPage> {
                     htext: 'Email',
                     cont: email,
                     valid: (value) {
-                      if (value == '') {
+                      if (value!.isEmpty) {
                         return 'Required';
+                      } else if (!emailvalid.hasMatch(value)) {
+                        return 'Invalid email format';
                       } else {
                         return null;
                       }
@@ -82,14 +87,15 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBoxx(h: 12.0),
                   //* Password textfield
                   Formm(
+                    errmax: 2,
                     htext: 'Password',
                     obsectext: true,
                     cont: pw,
                     valid: (value) {
-                      if (value == '') {
+                      if (value!.isEmpty) {
                         return 'Required';
-                      } else if (value.length < 7) {
-                        // return 'Password must be at least 7 characters';
+                      } else if (!passwordvalid.hasMatch(value)) {
+                        return 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character';
                       } else {
                         return null;
                       }
