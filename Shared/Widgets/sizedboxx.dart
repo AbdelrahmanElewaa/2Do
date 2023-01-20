@@ -4,7 +4,7 @@ class SizedBoxx extends StatelessWidget {
   final h;
   final w;
 
-  const SizedBoxx({super.key, this.h = 8.0, this.w});
+  const SizedBoxx({super.key, this.h = 10.0, this.w});
 
   @override
   Widget build(BuildContext context) {
