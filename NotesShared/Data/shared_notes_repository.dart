@@ -26,7 +26,7 @@ Future<void> deleteNotes(String id) async {
 }
 
 Stream<List<SharedNote>> readNotes() {
-  return FirebaseFirestore.instance.collection('tasks').snapshots().map(
+  return FirebaseFirestore.instance.collection('notes').snapshots().map(
       (event) => event.docs.map((e) => SharedNote.fromMap(e.data())).toList());
 }
 
