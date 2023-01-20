@@ -102,10 +102,7 @@ class _StatVerticalState extends State<StatVertical> {
                           }
                         });
                       });
-                      Pie(
-                          s: _selectedDay,
-                          list: todoss.length.toDouble(),
-                          checked: checked);
+                      Pie(list: todoss.length.toDouble(), checked: checked);
                       _selectedDay = selectedDay;
                       _focusedDay = focusedDay;
                     });
@@ -127,10 +124,7 @@ class _StatVerticalState extends State<StatVertical> {
           SizedBoxx(h: 20.0),
 
           Expanded(
-              child: Pie(
-                  s: _selectedDay,
-                  list: todoss.length.toDouble(),
-                  checked: checked)),
+              child: Pie(list: todoss.length.toDouble(), checked: checked)),
         ],
       ),
     );
