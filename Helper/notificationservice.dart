@@ -116,4 +116,7 @@ class NotificationService {
           priority: Priority.max),
     );
   }
+  void deleteNotification(int id){
+    flutterLocalNotificationsPlugin.cancel(id);
+  }
 }
