@@ -21,7 +21,7 @@ class multiselectobjState extends State<multiselectobj> {
                   borderRadius: BorderRadius.circular(20.0)),
             ),
             decoration: ShapeDecoration(
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).primaryColor,
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
