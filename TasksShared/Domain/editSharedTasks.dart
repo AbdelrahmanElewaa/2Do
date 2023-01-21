@@ -7,6 +7,7 @@ import 'package:todo/Tasks/Widgets/multiselectobj.dart';
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import '../../Helper/notificationservice.dart';
 import '../../Home/View/home_page.dart';
+import '../../Shared/Widgets/iconn.dart';
 import '../../Tasks/Widgets/timepickerobj.dart';
 import '../Data/sharedTasksData.dart';
 import 'SharedTasksModel.dart';
@@ -153,6 +154,41 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 65,
+                    height: 65,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.circular(15)),
+                    child:   IconButton(
+                      onPressed: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate:  DateTime.now(),
+                            lastDate: DateTime(2050));
+                        if(pickedDate!=null){
+                          date=pickedDate;
+                        }
+                        else
+                          date=DateTime.now();
+
+                      },
+                      icon: Iconn(
+                        icN: Icons.date_range_outlined,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Text("Date")
+                ],
+
+              ),
               timepickerobj(),
               SizedBox(
                 height: 20,
@@ -172,14 +208,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                       todo.reminder = date.toIso8601String();
                       todo.cat = selected.name;
                       editTask(todo,uid);
-                      if (todo.notid !=null){
 
-                      NotificationService().editNotification(
-                        id:  todo.notid!,
-                       title:    nameController.text,
-                        body:   descriptionController.text,
-                         tod:  newtime);
-                      }
                      showUpdatedDialog();
                     }
                     ;
