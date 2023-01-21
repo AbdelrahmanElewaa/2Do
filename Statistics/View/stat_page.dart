@@ -12,14 +12,14 @@ import '../../Tasks/Data/TasksData.dart';
 import '../../Tasks/Data/tasksRepository.dart';
 import 'utils.dart';
 
-class StatVertical extends StatefulWidget {
-  const StatVertical({super.key});
+class StatPage extends StatefulWidget {
+  const StatPage({super.key});
 
   @override
-  State<StatVertical> createState() => _StatVerticalState();
+  State<StatPage> createState() => _StatPageState();
 }
 
-class _StatVerticalState extends State<StatVertical> {
+class _StatPageState extends State<StatPage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay = null;
