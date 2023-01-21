@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo/globals.dart';
 import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
@@ -48,13 +49,12 @@ class TodoItem extends ConsumerWidget {
               key: ValueKey("delete"),
               onDismissed: () {
                 taskrep.delete(todo.id);
-                data.remove(todo);
-                // data.
-                const snackBar = SnackBar(
+
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
                   content: Text('Item successfully deleted!!'),
-                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  action: SnackBarAction(label: 'Undo', onPressed: () => taskrep.insertTodo(todo),),
+                ));
               }),
           children: [
             SlidableAction(
@@ -75,12 +75,13 @@ class TodoItem extends ConsumerWidget {
             ),
             SlidableAction(
               onPressed: (context) {
-                data.remove(todo);
-                const snackBar = SnackBar(
-                  content: Text('Item successfully deleted!!'),
-                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                taskrep.delete(todo.id);
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                    content: Text('Item successfully deleted!!'),
+                action: SnackBarAction(label: 'Undo', onPressed: () => taskrep.insertTodo(todo),),
+                ));
+
               },
               // ).onDismissed();// Noti
               // },
