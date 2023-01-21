@@ -1,10 +1,12 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import '../../Helper/notificationservice.dart';
+import '../../Shared/Widgets/iconn.dart';
 import '../Data/tasksRepository.dart';
 import '../Widgets/multiselect.dart';
 import '../Widgets/timepicker.dart';
@@ -53,7 +55,6 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void gettime() {}
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -128,6 +129,30 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
+                  IconButton(
+                    onPressed: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate:  DateTime.now(),
+                          lastDate: DateTime(2050));
+                    // String  formattedDate =
+                    //     pickedDate!.toIso8601String();
+                     if(pickedDate!=null){
+                       date=pickedDate;
+                     }
+                     else
+                       date=DateTime.now();
+                      //
+                      // DateTime(year)
+                    // DateFormat('yyyy-MM-dd')
+                    //       .format(pickedDate ?? DateTime.now());
+                    //   print(formattedDate);
+                    },
+                    icon: Iconn(
+                      icN: Icons.date_range_outlined,
+                    ),
+                  ),
                   timepicker(),
                   SizedBox(
                     height: 20,
@@ -161,10 +186,6 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
 
                           });
                           showSuccessfulDialog();
-                          // todoss
-                          // Todo todo=  Todo(name: nameController.text, description:  descriptionController.text, reminder: newtime.toString(), cat: selected.name );
-                          //   taskrep.update(todo);
-                          // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
 
 
                         }
@@ -210,22 +231,4 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
               const SizedBox(height: 21),
             ]),
           ));
-
-  void errorDialog(BuildContext context, String error) => showDialog(
-      context: context,
-      // context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Error"),
-          content: Text(error),
-          actions: <Widget>[
-            TextButton(
-              child: Text("Close"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      });
 }
