@@ -103,31 +103,22 @@ query.get().then((event) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+
            leading: BackButton(
     color: Theme.of(context).colorScheme.primary ),
+
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           automaticallyImplyLeading: false,
           title: Text("Tasks", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-          actions: [
-            // icon:
-            // Icon(Icons.people,color: Colors.white),
-            IconButton(
-                onPressed: () {
-                  context.goNamed(
-                    "home",
-                    params: {"selectedIndex": "2"},
-                  );
-                },
-                icon: Icon(Icons.keyboard_backspace_rounded,
-                    color: Colors.white)),
-          ],
+
         ),
         body: 
         StreamBuilder<List<SharedTodo>>(
           stream:  readTasks(uid),
           builder: (context, snapshot) {
           if (snapshot.hasData){
+
             final List<SharedTodo> tods=snapshot.data!;
              return ReorderableListView(
 
@@ -158,8 +149,8 @@ query.get().then((event) {
             return Text("no data");
           }
         },),
-        
-        
+
+
         
         // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
