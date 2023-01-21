@@ -14,7 +14,8 @@ import '../../../globals.dart' as globals;
 import 'notes_searchbar.dart';
 
 class Noteslist extends StatefulWidget {
-  Noteslist({super.key});
+  final bool? st;
+  Noteslist({super.key, this.st});
 
   @override
   State<Noteslist> createState() => _NoteslistState();
@@ -31,7 +32,8 @@ class _NoteslistState extends State<Noteslist> {
           pets = value;
         });
       });
-    } else {
+    }
+    else {
       petsRepository.fetchNoteListAsc().then((value) {
         setState(() {
           pets = value;
@@ -44,20 +46,29 @@ class _NoteslistState extends State<Noteslist> {
 
   @override
   Widget build(BuildContext context) {
+     if (widget.st == true) {
+      petsRepository.fetchNoteList().then((value) {
+        setState(() {
+          pets = value;
+        });
+      });
+    }
     return Expanded(
       child: ListView.builder(
           itemCount: pets.length,
           itemBuilder: (BuildContext context, int index) {
             return Slidable(
-              key: const ValueKey(0),
-              startActionPane: ActionPane(
+              key: Key(pets[index].id.toString()),
+              endActionPane: ActionPane(
                 motion: const StretchMotion(),
                 dismissible: DismissiblePane(
                   onDismissed: () {
                     int? id = pets[index].id;
-                    petsRepository.delete(id).then((rowsDeleted) =>
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Note deleted'))));
+                    petsRepository.delete(id);
+                    pets.removeAt(index);
+                    // .then((rowsDeleted) =>
+                    //     ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(content: Text('Note deleted'))));
                   },
                 ),
                 children: [
