@@ -35,6 +35,10 @@ class NotificationService {
     DateTime now = DateTime.now();
     var ran = Random();
     int idd=ran.nextInt(10000);
+     tz.TZDateTime scheduledDate=nextInstanceOfTenAM(tz.TZDateTime.from(
+         DateTime(now.year, now.month, now.day, tod.hour, tod.minute),
+         tz.local));
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id??idd,
       // id,
@@ -42,9 +46,7 @@ class NotificationService {
       body,
       // tz.TZDateTime.now(tz.local).add(Duration(
       // seconds: 1)),
-      tz.TZDateTime.from(
-          DateTime(now.year, now.month, now.day, tod.hour, tod.minute),
-          tz.local),
+      scheduledDate,
       // schedule the notification to show after 2 seconds.
       const NotificationDetails(
         // Android details
@@ -63,8 +65,15 @@ class NotificationService {
           true, // To show notification even when the app is closed
     );
     return idd;
-  }
 
+  }
+  tz.TZDateTime nextInstanceOfTenAM(tz.TZDateTime time) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    if (time.isBefore(now)) {
+       time = time.add(const Duration(days: 1));
+    }
+    return time;
+  }
   Future<void> editNotification({ required int id ,  required String title, required String body, required TimeOfDay tod}) async {
     DateTime now = DateTime.now();
     flutterLocalNotificationsPlugin.cancel(id);
