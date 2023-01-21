@@ -9,7 +9,7 @@ TimeOfDay newtime = TimeOfDay.now();
 category selected = category.other;
 DateTime date = DateTime.now();
 
-List<Todo> todos = [];
+// List<Todo> todos = [];
 
 category valuecategory(String cat) {
   return cat == category.assignment.name
