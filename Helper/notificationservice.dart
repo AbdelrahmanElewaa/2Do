@@ -31,12 +31,12 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 // {}
-  Future<int> showNotification({ int? id,  required String title, required String body, required TimeOfDay tod}) async {
-    DateTime now = DateTime.now();
+  Future<int> showNotification({ int? id,  required String title, required String body, required DateTime tod}) async {
+    // DateTime now = DateTime.now();
     var ran = Random();
     int idd=ran.nextInt(10000);
      tz.TZDateTime scheduledDate=nextInstanceOfTenAM(tz.TZDateTime.from(
-         DateTime(now.year, now.month, now.day, tod.hour, tod.minute),
+         tod,
          tz.local));
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
@@ -74,8 +74,10 @@ class NotificationService {
     }
     return time;
   }
-  Future<void> editNotification({ required int id ,  required String title, required String body, required TimeOfDay tod}) async {
-    DateTime now = DateTime.now();
+  Future<void> editNotification({ required int id ,  required String title, required String body, required DateTime tod}) async {
+    tz.TZDateTime scheduledDate=nextInstanceOfTenAM(tz.TZDateTime.from(
+        tod,
+        tz.local)) ;
     flutterLocalNotificationsPlugin.cancel(id);
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
@@ -83,9 +85,7 @@ class NotificationService {
       body,
       // tz.TZDateTime.now(tz.local).add(Duration(
       // seconds: 1)),
-      tz.TZDateTime.from(
-          DateTime(now.year, now.month, now.day, tod.hour, tod.minute),
-          tz.local),
+      scheduledDate,
       // schedule the notification to show after 2 seconds.
       const NotificationDetails(
         // Android details
