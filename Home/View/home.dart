@@ -18,6 +18,8 @@ class home extends StatelessWidget {
   String formattedDate = DateFormat('MM-yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
+    //Media Query is used to get the device orientation
+    // Media Query is a class that provides information about the size and orientation of the screen
     final deviceOrientation= MediaQuery.of(context).orientation;
     return SafeArea(
       child: Scaffold(
