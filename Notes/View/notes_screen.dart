@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, unused_import, prefer_const_constructors_in_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Home/View/home_page.dart';
 import 'package:todo/NotesShared/Data/shared_notes_repository.dart';
 import 'package:unicons/unicons.dart';
+import '../../NotesShared/Domain/shared_notes.dart';
 import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
@@ -25,6 +27,8 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
+  String uid = ' ';
+
   final notesRepository = NotesRepository.instance;
   List<Note> notes = [];
   @override
@@ -66,7 +70,44 @@ class _NotesScreenState extends State<NotesScreen> {
                             UniconsLine.cloud_download,
                           ),
                           color: Theme.of(context).iconTheme.color,
-                          onPressed: () {},
+                          onPressed: () {
+                            WidgetsFlutterBinding.ensureInitialized();
+                            FirebaseAuth.instance
+                                .idTokenChanges()
+                                .listen((User? user) {
+                              if (user == null) {
+                                print('User is currently signed out!');
+                                // GoRouter.of(context).go('/login');
+                                context.go('/login');
+                              } else {
+                                // return StreamBuilder<List<SharedNote>>(
+                                //   stream: readNotes(),
+                                //   builder: (context, snapshot) {
+                                //     if (snapshot.hasData) {
+                                //       print('snapshot.hasData');
+                                //       final List<SharedNote> notes =
+                                //           snapshot.data!;
+                                //       for (SharedNote n in notes) {
+                                //         notesRepository.insertWithid(
+                                //             n.id, n.title, n.content, n.date);
+                                //       }
+
+                                //       return Text('data');
+                                //     } else if (snapshot.hasError) {
+                                //       print('snapshot.error');
+
+                                //       return Text(snapshot.error.toString());
+                                //     } else {
+                                //       print('no data');
+                                //       return Text("no data");
+                                //     }
+                                //   },
+                                // );
+
+                                // print('User is signed in!');
+                              }
+                            });
+                          },
                         ),
                       ),
                       Expanded(
@@ -77,15 +118,26 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                           color: Theme.of(context).iconTheme.color,
                           onPressed: () {
-                            for (Note n in notes) {
-                              // deleteNotes(n.id.toString());
-
-                              createNotes(
-                                  id: n.id.toString(),
-                                  title: n.title,
-                                  content: n.content,
-                                  date: n.date);
-                            }
+                            WidgetsFlutterBinding.ensureInitialized();
+                            FirebaseAuth.instance
+                                .idTokenChanges()
+                                .listen((User? user) {
+                              if (user == null) {
+                                print('User is currently signed out!');
+                                context.go('/login');
+                              } else {
+                                setState(() {
+                                  for (Note n in notes) {
+                                    createNotes(
+                                        id: n.id.toString(),
+                                        title: n.title,
+                                        content: n.content,
+                                        date: n.date);
+                                  }
+                                });
+                                print('User is signed in!');
+                              }
+                            });
                           },
                         ),
                       ),
