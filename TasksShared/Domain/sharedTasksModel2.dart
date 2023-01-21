@@ -13,8 +13,7 @@ import '../../Tasks/Domain/EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
 class SharedTod extends StatefulWidget {
-
-   SharedTod({
+  SharedTod({
     required this.todo,
     required this.onTodoChanged,
   }) : super(key: ObjectKey(todo));
@@ -24,37 +23,35 @@ class SharedTod extends StatefulWidget {
   // const SharedTod({super.key});
 
   @override
-  State<SharedTod> createState() => _SharedTodState(todo: todo,onTodoChanged: onTodoChanged);
+  State<SharedTod> createState() =>
+      _SharedTodState(todo: todo, onTodoChanged: onTodoChanged);
 }
 
 class _SharedTodState extends State<SharedTod> {
- 
-
-   _SharedTodState({
+  _SharedTodState({
     required this.todo,
     required this.onTodoChanged,
-  }) :  super();
+  }) : super();
 
   final SharedTodo todo;
   final onTodoChanged;
   final taskrep = TasksRepository.instance;
-  String uid=' ';
+  String uid = ' ';
 
-@override
-  void initState(){
-     FirebaseAuth.instance
-  .idTokenChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-      // GoRouter.of(context).go('/login');
-      context.go('/login');
-    } else {
-     uid= user.uid;
-      print('User is signed in!');
-    }
-  });
+  @override
+  void initState() {
+    FirebaseAuth.instance.idTokenChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        // GoRouter.of(context).go('/login');
+        context.go('/login');
+      } else {
+        uid = user.uid;
+        print('User is signed in!');
+      }
+    });
   }
+
   TextStyle? _getTextStyle(String checked) {
     if (checked == "false") {
       // if (!checked) {
@@ -64,19 +61,16 @@ class _SharedTodState extends State<SharedTod> {
       );
     }
 
-    return const TextStyle(
+    return TextStyle(
       color: Colors.black,
       decoration: TextDecoration.lineThrough,
       decorationThickness: 3,
-      decorationColor: Colors.blue,
+      decorationColor: Theme.of(context).colorScheme.secondary,
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-  
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Slidable(
@@ -87,12 +81,13 @@ class _SharedTodState extends State<SharedTod> {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                delete(todo,uid);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(
-                  content: Text('Todo successfully deleted!!'),
-                  action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
-                )));
+                delete(todo, uid);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Todo successfully deleted!!'),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () => createTaskobj(todo: todo, uid: uid),
+                    )));
               }),
           children: [
             SlidableAction(
@@ -113,14 +108,14 @@ class _SharedTodState extends State<SharedTod> {
             ),
             SlidableAction(
               onPressed: (context) {
-                delete(todo,uid);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(
+                delete(todo, uid);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Todo successfully deleted!!'),
-                    action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () => createTaskobj(todo: todo, uid: uid),
                     )));
               },
-          
               backgroundColor: Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               icon: Icons.delete,
@@ -160,20 +155,15 @@ class _SharedTodState extends State<SharedTod> {
         ),
         child: Card(
           elevation: 0,
-    
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
           color: Theme.of(context).primaryColor,
-     
-
           child: ListTile(
             onTap: () {
-        
               onTodoChanged(todo);
             },
             leading: Container(
-             
               child: Icon(
                 color: Theme.of(context).iconTheme.color,
                 Icons.note_alt_outlined,
@@ -186,4 +176,3 @@ class _SharedTodState extends State<SharedTod> {
     );
   }
 }
-
