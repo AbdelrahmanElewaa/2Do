@@ -151,18 +151,22 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                                shared:   "false",
                              des:     descriptionController.text)
                               .then((value) {
-                            NotificationService().showNotification(
-                            id:   value,
-                            title:     nameController.text,
-                             body:    descriptionController.text,
-                             tod:    newtime);
+                                  NotificationService().showNotification(
+                                      id:   value,
+                                      title:     nameController.text,
+                                      body:    descriptionController.text,
+                                      tod:    newtime);
+
+
+
                           });
+                          showSuccessfulDialog();
                           // todoss
                           // Todo todo=  Todo(name: nameController.text, description:  descriptionController.text, reminder: newtime.toString(), cat: selected.name );
                           //   taskrep.update(todo);
                           // addTodoItem(name: nameController.text, des:  descriptionController.text, rem: newtime, cat: selected    );
 
-                          showSuccessfulDialog();
+
                         }
                         ;
                       },
@@ -206,4 +210,22 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
               const SizedBox(height: 21),
             ]),
           ));
+
+  void errorDialog(BuildContext context, String error) => showDialog(
+      context: context,
+      // context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(error),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      });
 }
