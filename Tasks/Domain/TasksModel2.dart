@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo/Helper/notificationservice.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/globals.dart';
+import '../../Home/View/home_page.dart';
 import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
@@ -12,26 +14,30 @@ class TodoItem extends StatefulWidget {
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
+    required this.todos
   }) : super(key: ObjectKey(todo));
 
   final Todo todo;
   final onTodoChanged;
+  final List<Todo>todos;
+
 
   @override
   State<TodoItem> createState() =>
-      TodoItemState(onTodoChanged: onTodoChanged, todo: todo);
+      TodoItemState(onTodoChanged: onTodoChanged, todo: todo,todos: todos);
 }
 
 class TodoItemState extends State<TodoItem> {
   TodoItemState({
     required this.todo,
     required this.onTodoChanged,
+    required this.todos
   }) : super();
 
   final Todo todo;
   final onTodoChanged;
+  final List<Todo>todos;
   final taskrep = TasksRepository.instance;
-
   TextStyle? _getTextStyle(String checked) {
     if (checked == "false") {
       // if (!checked) {
@@ -49,6 +55,8 @@ class TodoItemState extends State<TodoItem> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     // final data = ref.watch(todoprovider);
@@ -63,24 +71,36 @@ class TodoItemState extends State<TodoItem> {
               // closeOnCancel: true,
               key: ValueKey("delete"),
               onDismissed: () {
-                setState(() {
+                // setState(() {
                   taskrep.delete(todo.id);
-                });
+                  todos.remove(todo);
+                // });
 
                 NotificationService().deleteNotification(todo.id!);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Todo successfully deleted!!'),
                   action: SnackBarAction(
                       label: 'Undo',
-                      onPressed: () => setState(() {
-                            taskrep.insertTodo(todo).then((value) {
-                              NotificationService().showNotification(
-                                  id: value,
-                                  title: todo.name,
-                                  body: todo.description,
-                                  tod: DateTime.parse(todo.reminder));
-                            });
-                          })),
+                      onPressed: () {
+                        taskrep.insertTodo(todo).then((value) {
+                          NotificationService().showNotification(
+                              id: value,
+                              title: todo.name,
+                              body: todo.description,
+                              tod: DateTime.parse(todo.reminder));
+
+                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => HomePage(
+                                  selectedIndex: 2,
+                                )));
+                      }
+                          // setState(() {
+
+                          // })
+                  ),
                 ));
               }),
           children: [
@@ -102,23 +122,26 @@ class TodoItemState extends State<TodoItem> {
             ),
             SlidableAction(
               onPressed: (context) {
-                setState(() {
+                // setState(() {
                   taskrep.delete(todo.id);
-                });
+                  todos.remove(todo);
+                // });
                 NotificationService().deleteNotification(todo.id!);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Todo successfully deleted!!'),
                   action: SnackBarAction(
                       label: 'Undo',
-                      onPressed: () => setState(() {
+                      onPressed: () =>
+                          // setState(() {
                             taskrep.insertTodo(todo).then((value) {
                               NotificationService().showNotification(
                                   id: value,
                                   title: todo.name,
                                   body: todo.description,
                                   tod: DateTime.parse(todo.reminder));
-                            });
-                          })),
+                            }),
+                          // })
+                  ),
                 ));
               },
               // ).onDismissed();// Noti
