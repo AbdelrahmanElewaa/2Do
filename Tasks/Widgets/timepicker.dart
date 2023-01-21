@@ -34,7 +34,8 @@ class timepickerState extends State<timepicker> {
 
   void onTimeChanged2(DateTime time) {
     setState(() {
-      date = time;
+      date = DateTime(date.year,date.month,date.day,time.hour,time.minute,time.second);
+      // date.
       // time.toIso8601String();
       // String.
       // newtime = time;
