@@ -30,13 +30,34 @@ return taskid;
 
 
 
-Future<String> createTaskobj(SharedTodo todo,String uid) async {
-  final docTask=FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc();
-  todo.id=docTask.id;
-  final map=todo.toMap();
-await docTask.set(map);
-return docTask.id;
+Future<String> createTaskobj({required SharedTodo todo,required String uid}) async {
+
+    final docTask=FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc();
+    todo.id=docTask.id;
+    final map=todo.toMap();
+    await docTask.set(map);
+   await createTaskobjforshared(uid: uid,todo: todo);
+    return docTask.id;
+
+
 }
+
+
+Future<String> createTaskobjforshared({required SharedTodo todo,required String uid}) async {
+  final temp=todo.sharedwith;
+todo.sharedwith=uid;
+uid=temp;
+
+    final docTask=FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id!);
+    todo.id=docTask.id;
+    final map=todo.toMap();
+    await docTask.set(map);
+    return docTask.id;
+
+
+}
+
+
 
 Stream<List<SharedTodo>> readTasks(String uid){
   return FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').
@@ -55,7 +76,10 @@ Future<void> delete(SharedTodo todo,String uid) async {
    
 Future<void> editTask(SharedTodo todo,String uid) async {
   await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id).update(todo.toMap());
-  await FirebaseFirestore.instance.collection('users').doc(todo.sharedwith).collection('tasks').doc(todo.id).update(todo.toMap());
+  final temp=todo.sharedwith;
+  todo.sharedwith=uid;
+  uid=temp;
+  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id).update(todo.toMap());
 }
 
 Future<void> addnotificationid(String id,int notid,String uid) async {
