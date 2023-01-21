@@ -129,30 +129,44 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate:  DateTime.now(),
-                          lastDate: DateTime(2050));
-                    // String  formattedDate =
-                    //     pickedDate!.toIso8601String();
-                     if(pickedDate!=null){
-                       date=pickedDate;
-                     }
-                     else
-                       date=DateTime.now();
-                      //
-                      // DateTime(year)
-                    // DateFormat('yyyy-MM-dd')
-                    //       .format(pickedDate ?? DateTime.now());
-                    //   print(formattedDate);
-                    },
-                    icon: Iconn(
-                      icN: Icons.date_range_outlined,
-                    ),
+                  SizedBox(
+                    height: 20,
                   ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 65,
+                        height: 65,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(15)),
+                        child:   IconButton(
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate:  DateTime.now(),
+                                lastDate: DateTime(2050));
+                            if(pickedDate!=null){
+                              date=pickedDate;
+                            }
+                            else
+                              date=DateTime.now();
+
+                          },
+                          icon: Iconn(
+                            icN: Icons.date_range_outlined,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20,),
+                      Text("Date")
+                    ],
+
+                  ),
+
+
+
                   timepicker(),
                   SizedBox(
                     height: 20,
@@ -180,7 +194,7 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                                       id:   value,
                                       title:     nameController.text,
                                       body:    descriptionController.text,
-                                      tod:    newtime);
+                                      tod:    date);
 
 
 
