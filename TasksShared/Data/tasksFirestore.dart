@@ -81,7 +81,3 @@ Future<void> editTask(SharedTodo todo,String uid) async {
   uid=temp;
   await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(todo.id).update(todo.toMap());
 }
-
-Future<void> addnotificationid(String id,int notid,String uid) async {
-  await FirebaseFirestore.instance.collection('users').doc(uid).collection('tasks').doc(id).update({"notid": notid});
-}
