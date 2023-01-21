@@ -90,7 +90,7 @@ class _SharedTodState extends State<SharedTod> {
                 delete(todo,uid);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(
-                  content: Text('Item successfully deleted!!'),
+                  content: Text('Todo successfully deleted!!'),
                   action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
                 )));
               }),
@@ -116,7 +116,7 @@ class _SharedTodState extends State<SharedTod> {
                 delete(todo,uid);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(
-                    content: Text('Item successfully deleted!!'),
+                    content: Text('Todo successfully deleted!!'),
                     action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
                     )));
               },
