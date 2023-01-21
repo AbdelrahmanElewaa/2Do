@@ -82,14 +82,14 @@ class TasksRepository {
     // insertTodo(Todo(id: IDGen.nextID(),name: "meeting", checked: false,cat: category.meeting,description: "bhhhj",reminder: TimeOfDay.now()));
     // insertTodo(Todo(id: IDGen.nextID(),name: "doctor's apppointment", checked: false,cat: category.meeting,description: "bhjhbj",reminder: TimeOfDay.now()));
   }
-  // Future<List<Todo>> fetchTodoListByName(title) async {
-  //   final allRows = await _dbHelper.queryRows(title);
-  //   List<Todo> petsByTitle = [];
-  //   for (var row in allRows) {
-  //     petsByTitle.add(Todo.fromMap(row));
-  //   }
-  //   return petsByTitle;
-  // }
+  Future<List<Todo>> fetchTodoListByName(title) async {
+    final allRows = await _dbHelper.queryRows(title);
+    List<Todo> namesByTitle = [];
+    for (var row in allRows) {
+      namesByTitle.add(Todo.fromMap(row));
+    }
+    return namesByTitle;
+  }
 
   // Future<Todo> fetchPet(id) async {
   //   final allRows = await _dbHelper.getById(id);

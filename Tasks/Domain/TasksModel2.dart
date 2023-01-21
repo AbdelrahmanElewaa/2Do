@@ -7,11 +7,26 @@ import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
-class TodoItem extends ConsumerWidget {
+class TodoItem extends StatefulWidget{
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
   }) : super(key: ObjectKey(todo));
+
+  final Todo todo;
+  final onTodoChanged;
+
+  @override
+  State<TodoItem> createState() =>TodoItemState(onTodoChanged: onTodoChanged,todo: todo);
+
+
+}
+
+class TodoItemState extends State<TodoItem> {
+  TodoItemState({
+    required this.todo,
+    required this.onTodoChanged,
+  }):super();
 
   final Todo todo;
   final onTodoChanged;
@@ -35,8 +50,8 @@ class TodoItem extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(todoprovider);
+  Widget build(BuildContext context) {
+    // final data = ref.watch(todoprovider);
 // data.
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -53,7 +68,9 @@ class TodoItem extends ConsumerWidget {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(
                   content: Text('Item successfully deleted!!'),
-                  action: SnackBarAction(label: 'Undo', onPressed: () => taskrep.insertTodo(todo),),
+                  action: SnackBarAction(label: 'Undo', onPressed: () => setState(() {
+                    taskrep.insertTodo(todo);
+                  }) ),
                 ));
               }),
           children: [
@@ -78,8 +95,10 @@ class TodoItem extends ConsumerWidget {
                 taskrep.delete(todo.id);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(
-                    content: Text('Item successfully deleted!!'),
-                action: SnackBarAction(label: 'Undo', onPressed: () => taskrep.insertTodo(todo),),
+                  content: Text('Item successfully deleted!!'),
+                  action: SnackBarAction(label: 'Undo', onPressed: () => setState(() {
+                    taskrep.insertTodo(todo);
+                  }) ),
                 ));
 
               },
