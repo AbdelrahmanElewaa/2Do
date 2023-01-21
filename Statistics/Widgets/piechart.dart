@@ -43,6 +43,15 @@ class _PieState extends State<Pie> {
           "Not Finished": widget.list - widget.checked,
         },
         chartLegendSpacing: 32,
+        legendOptions: LegendOptions(
+          showLegendsInRow: false,
+          legendPosition: LegendPosition.right,
+          showLegends: true,
+          legendTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
         chartType: ChartType.disc,
         baseChartColor: Colors.grey[50]!.withOpacity(0.15),
         gradientList: gradientList,
