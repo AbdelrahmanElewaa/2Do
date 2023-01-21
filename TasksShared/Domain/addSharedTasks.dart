@@ -88,181 +88,189 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
         tag: 'unique tag',
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Todo list'),
-            backgroundColor: Colors.blue,
+             leading: BackButton(
+    color: Theme.of(context).colorScheme.primary),
+            title: Text('Todo list', style: TextStyle(color: Theme.of(context).colorScheme.primary ),),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
           ),
           body: SingleChildScrollView(
             child: Form(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  TextFormField(
-                    cursorColor: Colors.blue,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Name is empty';
-                      }
-                      return null;
-                    },
-                    controller: nameController,
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
-                    decoration: InputDecoration(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    TextFormField(
+                      cursorColor: Colors.blue,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Name is empty';
+                        }
+                        return null;
+                      },
+                      controller: nameController,
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.primary),
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.label_important_rounded,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          hintText: 'Enter task name',
+                          hintStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          labelText: 'Name',
+                          labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          )),
+                    ),
+                    TextFormField(
+                      controller: descriptionController,
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.primary),
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Description is empty';
+                        }
+                        return null;
+                      },
+                      maxLines: 5,
+                      decoration: InputDecoration(
                         icon: Icon(
-                          Icons.label_important_rounded,
+                          Icons.edit_note,
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        hintText: 'Enter task name',
+                        hintText: 'Enter task description',
                         hintStyle: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        labelText: 'Name',
+                        labelText: 'Description',
                         labelStyle: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
-                        )),
-                  ),
-                  TextFormField(
-                    controller: descriptionController,
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Description is empty';
-                      }
-                      return null;
-                    },
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.edit_note,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      hintText: 'Enter task description',
-                      hintStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      labelText: 'Description',
-                      labelStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     ),
-                  ),
-                   TextFormField(
-                    cursorColor: Colors.blue,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Shared with is empty';
-                      }
-                      return null;
-                    },
-                    controller: shareController,
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
-                    decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.label_important_rounded,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        hintText: 'Enter shared with uid',
-                        hintStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        labelText: 'Shared with',
-                        labelStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 65,
-                        height: 65,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondary,
-                            borderRadius: BorderRadius.circular(15)),
-                        child:   IconButton(
-                          onPressed: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate:  DateTime.now(),
-                                lastDate: DateTime(2050));
-                            if(pickedDate!=null){
-                              date=pickedDate;
-                            }
-                            else
-                              date=DateTime.now();
+                     TextFormField(
+                      cursorColor: Colors.blue,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Shared with is empty';
+                        }
+                        return null;
+                      },
+                      controller: shareController,
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.primary),
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.label_important_rounded,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          hintText: 'Enter shared with uid',
+                          hintStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          labelText: 'Shared with',
+                          labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary,
+                              borderRadius: BorderRadius.circular(15)),
+                          child:   IconButton(
+                            onPressed: () async {
+                              DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate:  DateTime.now(),
+                                  lastDate: DateTime(2050));
+                              if(pickedDate!=null){
+                                date=pickedDate;
+                              }
+                              else
+                                date=DateTime.now();
 
-                          },
-                          icon: Iconn(
-                            icN: Icons.date_range_outlined,
+                            },
+                            icon: Iconn(
+                              icN: Icons.date_range_outlined,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 20,),
-                      Text("Date")
-                    ],
+                        SizedBox(width: 20,),
+                        Text("Date",style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),)
+                      ],
 
-                  ),
-                  timepicker(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  multiselect(),
-                  Center(
-                    // padding: const EdgeInsets.only( top: 40.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                      ),
-                      child: const Text('Submit'),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-
-                          bool found=await findUser(shareController.text);
-                          if (found==false){
-
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Error"),
-                                  content: Text("User not found!"),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: Text("Close"),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
-                                  ],
-                                );
-                              });
-                          }
-                          else{
-                            createTask(name: nameController.text,checked: "false",cat: selected.name,
-                            des: descriptionController.text,rem: date.toIso8601String(),
-                            shared: "true",uid:uid,sharedwith: shareController.text)
-                            .then((id) async{
-                           await createTask(name: nameController.text,checked: "false",cat: selected.name,
-                            des: descriptionController.text,rem: date.toIso8601String(),
-                            shared: "true",uid:shareController.text,sharedwith: uid,taskid: id);
-
-                          });
-               
-                          showSuccessfulDialog();
-
-                          }
-
-                        };
-                      },
                     ),
-                  ),
-                ],
+                    timepicker(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    multiselect(),
+                    Center(
+                      // padding: const EdgeInsets.only( top: 40.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: const Text('Submit'),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+
+                            bool found=await findUser(shareController.text);
+                            if (found==false){
+
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Error"),
+                                    content: Text("User not found!"),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                            }
+                            else{
+                              createTask(name: nameController.text,checked: "false",cat: selected.name,
+                              des: descriptionController.text,rem: date.toIso8601String(),
+                              shared: "true",uid:uid,sharedwith: shareController.text)
+                              .then((id) async{
+                             await createTask(name: nameController.text,checked: "false",cat: selected.name,
+                              des: descriptionController.text,rem: date.toIso8601String(),
+                              shared: "true",uid:shareController.text,sharedwith: uid,taskid: id);
+
+                            });
+                 
+                            showSuccessfulDialog();
+
+                            }
+
+                          };
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

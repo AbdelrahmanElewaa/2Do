@@ -36,6 +36,7 @@ class Formm extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.primary,
           ),
           decoration: InputDecoration(
             // textfield input color

@@ -39,15 +39,16 @@ class TodoListState extends State<TodoList> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           automaticallyImplyLeading: false,
-          title: !searchBoolean ? Text("Tasks") : searchTextField(),
+          title: !searchBoolean ? Text("Tasks", style: TextStyle(color: Theme.of(context).colorScheme.primary),) : searchTextField(),
           actions:
 
           !searchBoolean
               ? [
             IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(Icons.search,color: Theme.of(context).colorScheme.primary),
                 onPressed: () {
                   setState(() {
                     searchBoolean = true;
@@ -58,11 +59,11 @@ class TodoListState extends State<TodoList> {
                 onPressed: () {
                   context.go('/sharedtasks');
                 },
-                icon: Icon(Icons.people, color: Colors.white)),
+                icon: Icon(Icons.people, color: Theme.of(context).colorScheme.primary)),
           ]
               : [
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: Icon(Icons.clear,color: Theme.of(context).colorScheme.primary),
                 onPressed: () {
                   setState(() {
                     searchBoolean = false;
@@ -76,7 +77,7 @@ class TodoListState extends State<TodoList> {
                 onPressed: () {
                   context.go('/sharedtasks');
                 },
-                icon: Icon(Icons.people, color: Colors.white)),
+                icon: Icon(Icons.people, color: Theme.of(context).colorScheme.primary)),
           ]
 
 

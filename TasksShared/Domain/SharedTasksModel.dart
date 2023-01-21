@@ -103,9 +103,12 @@ query.get().then((event) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+           leading: BackButton(
+    color: Theme.of(context).colorScheme.primary ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
           automaticallyImplyLeading: false,
-          title: Text("Tasks"),
+          title: Text("Tasks", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
           actions: [
             // icon:
             // Icon(Icons.people,color: Colors.white),
