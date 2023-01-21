@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 
+import '../../Notes/Domain/notes.dart';
+import '../../Shared/Data/constants.dart';
 import '../Domain/shared_notes.dart';
 
 Future<String> createNotes(
@@ -20,6 +22,8 @@ Future<String> createNotes(
   await docNote.set(map);
   return docNote.id;
 }
+
+
 
 Future<void> deleteNotes(String id) async {
   await FirebaseFirestore.instance.collection('notes').doc(id).delete;

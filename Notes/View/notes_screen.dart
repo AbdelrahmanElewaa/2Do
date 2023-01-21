@@ -28,6 +28,7 @@ class NotesScreen extends StatefulWidget {
 
 class _NotesScreenState extends State<NotesScreen> {
   String uid = ' ';
+  bool stream = false;
 
   final notesRepository = NotesRepository.instance;
   List<Note> notes = [];
@@ -71,46 +72,65 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                           color: Theme.of(context).iconTheme.color,
                           onPressed: () {
-                            WidgetsFlutterBinding.ensureInitialized();
+                            // WidgetsFlutterBinding.ensureInitialized();
                             FirebaseAuth.instance
                                 .idTokenChanges()
                                 .listen((User? user) {
                               if (user == null) {
                                 print('User is currently signed out!');
+                                setState(() {
+                                  stream = false;
+                                });
                                 // GoRouter.of(context).go('/login');
                                 context.go('/login');
-                              } else {
-                                // return StreamBuilder<List<SharedNote>>(
-                                //   stream: readNotes(),
-                                //   builder: (context, snapshot) {
-                                //     if (snapshot.hasData) {
-                                //       print('snapshot.hasData');
-                                //       final List<SharedNote> notes =
-                                //           snapshot.data!;
-                                //       for (SharedNote n in notes) {
-                                //         notesRepository.insertWithid(
-                                //             n.id, n.title, n.content, n.date);
-                                //       }
-
-                                //       return Text('data');
-                                //     } else if (snapshot.hasError) {
-                                //       print('snapshot.error');
-
-                                //       return Text(snapshot.error.toString());
-                                //     } else {
-                                //       print('no data');
-                                //       return Text("no data");
-                                //     }
-                                //   },
-                                // );
-
-                                // print('User is signed in!');
                               }
+                              setState(() {
+                                stream = true;
+                              });
                             });
                           },
                         ),
                       ),
+                      stream
+                          ? StreamBuilder<List<SharedNote>>(
+                              stream: readNotes(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  print('snapshot.hasData');
+                                  final List<SharedNote> notes = snapshot.data!;
+                                  Future.delayed(Duration.zero, () async {
+                                    for (SharedNote n in notes) {
+                                      notesRepository.insertWithid(
+                                          int.parse(n.id!),
+                                          n.title,
+                                          n.content,
+                                          n.date);
+                                    }
+                                  });
+
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             HomePage(
+                                  //               selectedIndex: 3,
+                                  //             )));
+
+                                  return Text('');
+                                } else if (snapshot.hasError) {
+                                  print('snapshot.error');
+//*TODO: add error message
+                                  return Text(snapshot.error.toString());
+                                } else {
+                                  print('no data');
+                                  return Text("");
+                                }
+                              },
+                            )
+                          : Text(''),
+                          
                       Expanded(
+                        
                         child: IconButton(
                           splashRadius: 20.0,
                           icon: Icon(
@@ -141,6 +161,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           },
                         ),
                       ),
+                      //* sorting button
                       Expanded(
                         child: IconButton(
                           splashRadius: 20.0,
@@ -163,6 +184,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           },
                         ),
                       ),
+                      //* add button
                       Expanded(
                         child: IconButton(
                           splashRadius: 20.0,
@@ -181,11 +203,13 @@ class _NotesScreenState extends State<NotesScreen> {
                 SizedBoxx(
                   h: 12.0,
                 ),
+                //* search bar
                 NotesSearchbar(),
                 SizedBoxx(
                   h: 12.0,
                 ),
-                Noteslist(),
+                //* notes list
+                Noteslist(st: stream),
               ],
             ),
           ),
