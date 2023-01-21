@@ -37,7 +37,10 @@ class _LoginPageState extends State<LoginPage> {
           icon: Iconn(
             icN: Icons.arrow_back_ios_new,
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.goNamed(
+            "home",
+            params: {"selectedIndex": "0"},
+          ),
         ),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -94,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.isEmpty) {
                         return 'Required';
                       } else if (!passwordvalid.hasMatch(value)) {
-                        return 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character';
+                        // return 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character';
                       } else {
                         return null;
                       }
@@ -136,7 +139,10 @@ class _LoginPageState extends State<LoginPage> {
                                         TextButton(
                                           child: Text("Close"),
                                           onPressed: () {
-                                            Navigator.of(context).pop();
+                                            context.goNamed(
+                                              "home",
+                                              params: {"selectedIndex": "0"},
+                                            );
                                           },
                                         )
                                       ],
