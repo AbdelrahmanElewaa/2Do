@@ -1,14 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-import 'package:todo/Statistics/Widgets/piechart.dart';
-import 'stat_horizental.dart';
-import 'stat_vertical.dart';
-import '../../Shared/Widgets/sizedboxx.dart';
-// import '../../Common widgets/sizedboxx.dart';
+import 'stat_page.dart';
 
 class Stat extends StatefulWidget {
   Stat({super.key});
@@ -29,7 +23,7 @@ class _StatState extends State<Stat> {
   Widget build(BuildContext context) {
     final deviceOrientation = MediaQuery.of(context).orientation;
     return Scaffold(
-      body: StatVertical(),
+      body: StatPage(),
     );
   }
 }
