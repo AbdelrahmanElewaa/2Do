@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
+import '../../Shared/Widgets/iconn.dart';
 import '../../Tasks/Widgets/multiselect.dart';
 import '../../Tasks/Widgets/timepicker.dart';
 import '../../Helper/notificationservice.dart';
@@ -172,6 +173,41 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                           color: Theme.of(context).colorScheme.primary,
                         )),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 65,
+                        height: 65,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(15)),
+                        child:   IconButton(
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate:  DateTime.now(),
+                                lastDate: DateTime(2050));
+                            if(pickedDate!=null){
+                              date=pickedDate;
+                            }
+                            else
+                              date=DateTime.now();
+
+                          },
+                          icon: Iconn(
+                            icN: Icons.date_range_outlined,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20,),
+                      Text("Date")
+                    ],
+
+                  ),
                   timepicker(),
                   SizedBox(
                     height: 20,
@@ -215,14 +251,7 @@ class addshare extends State<AddSharedTask> with SingleTickerProviderStateMixin 
                            await createTask(name: nameController.text,checked: "false",cat: selected.name,
                             des: descriptionController.text,rem: date.toIso8601String(),
                             shared: "true",uid:shareController.text,sharedwith: uid,taskid: id);
-                            NotificationService().showNotification(
 
-                            title:   nameController.text,
-                             body:    descriptionController.text,
-                             tod:    newtime
-                                ).then((notid) {
-                                  addnotificationid(id, notid,uid);
-                                },);
                           });
                
                           showSuccessfulDialog();
