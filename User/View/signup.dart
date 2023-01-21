@@ -181,7 +181,8 @@ class _SignupPageState extends State<SignupPage> {
                             valid: (value) {
                               if (value!.isEmpty) {
                                 return 'Required';
-                              } else if (!namevalid.hasMatch(value)) {
+                              } else if (!namevalid.hasMatch(value) &&
+                                  !RegExp(r"\s").hasMatch(value)) {
                                 return 'Name must be alphabets';
                               } else if (value.length < 3) {
                                 return 'Name must be atleast 3 characters';
