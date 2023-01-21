@@ -16,7 +16,7 @@ class multiselectobjState extends State<multiselectobj> {
       child: MultiSelectContainer(
           itemsDecoration: MultiSelectDecorations(
             selectedDecoration: ShapeDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).colorScheme.secondary,
               shape: ContinuousRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
             ),
