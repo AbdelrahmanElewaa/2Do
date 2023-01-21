@@ -43,6 +43,7 @@ class TasksRepository {
       tasksCulomns.reminder.name: todo.reminder,
       tasksCulomns.shared.name: todo.shared,
       tasksCulomns.description.name: todo.description,
+      tasksCulomns.id.name:todo.id
     };
 
     Todo td = Todo.fromMap(row);
