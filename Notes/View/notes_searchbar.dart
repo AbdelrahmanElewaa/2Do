@@ -16,6 +16,7 @@ class NotesSearchbar extends StatefulWidget {
 }
 
 class _NotesSearchbarState extends State<NotesSearchbar> {
+  bool search = false;
   bool isVisible = true;
   final notesRepository = NotesRepository.instance;
   List<Note> notesByName = [];
@@ -31,6 +32,7 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
               width: 5,
             ),
             Expanded(
+              flex: 9,
               child: TextField(
                 controller: queryController,
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
@@ -82,12 +84,27 @@ class _NotesSearchbarState extends State<NotesSearchbar> {
                   //   });
                   // }
                 },
+                onTap: () {
+                  setState(() {
+                    search = true;
+                  });
+                },
               ),
-            )
+            ),
+            Expanded(
+                child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        search = false;
+                        FocusScope.of(context).unfocus();
+                        queryController.clear();
+                      });
+                    },
+                    icon: Icon(Icons.clear)))
           ],
         ),
         SizedBox(
-          height: 50,
+          height: search ? MediaQuery.of(context).size.height * 0.7 : 0.0,
           child: ListView.builder(
             padding: const EdgeInsets.all(8),
             itemCount: notesByName.length,

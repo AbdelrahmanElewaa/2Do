@@ -146,7 +146,8 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate:  DateTime.now(),
-                                lastDate: DateTime(2050));
+                                lastDate: DateTime(2050)
+                                );
                             if(pickedDate!=null){
                               date=pickedDate;
                             }
@@ -160,7 +161,7 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       SizedBox(width: 20,),
-                      Text("Date")
+                      Text("Date", style: TextStyle(color: Theme.of(context).colorScheme.primary),)
                     ],
 
                   ),
