@@ -80,20 +80,6 @@ class TodoListState extends State<TodoList> {
                 icon: Icon(Icons.people, color: Theme.of(context).colorScheme.primary)),
           ]
 
-
-
-
-          // [
-          //   // icon:
-          //   // Icon(Icons.people,color: Colors.white),
-          //   IconButton(
-          //       onPressed: () {
-          //         context.go('/sharedtasks');
-          //       },
-          //       icon: Icon(Icons.people, color: Colors.white)),
-          //
-          //
-          // ],
         ),
         body: !searchBoolean?defaultlistview() :searchlistview(),// floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
@@ -107,10 +93,7 @@ class TodoListState extends State<TodoList> {
 
   void handleTodoChange(Todo todo) {
     setState(() {
-      // if(todo.checked=="false"){
-      //   ch=false;
-      //
-      // }
+
       todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
       // todo.checked = !todo.checked;
       taskrep.update(todo);
@@ -128,6 +111,7 @@ class TodoListState extends State<TodoList> {
         return TodoItem(
           todo: todo,
           onTodoChanged: handleTodoChange,
+          todos: normaltodos,
         );
       }).toList(),
       onReorder: (int oldIndex, int newIndex) {
@@ -151,6 +135,7 @@ class TodoListState extends State<TodoList> {
         return TodoItem(
             todo: todo,
             onTodoChanged: handleTodoChange,
+          todos: normaltodos
         );
       }).toList(),
     );
