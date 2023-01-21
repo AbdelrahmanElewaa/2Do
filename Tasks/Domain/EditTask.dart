@@ -4,6 +4,7 @@ import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/Tasks/Widgets/multiselectobj.dart';
 import '../../Helper/notificationservice.dart';
 import '../../Home/View/home_page.dart';
+import '../../Shared/Widgets/iconn.dart';
 import '../Data/tasksRepository.dart';
 import '../Widgets/timepickerobj.dart';
 
@@ -130,6 +131,42 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+
+              Row(
+                children: [
+                  Container(
+                    width: 65,
+                    height: 65,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.circular(15)),
+                    child:   IconButton(
+                      onPressed: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate:  DateTime.now(),
+                            lastDate: DateTime(2050));
+                        if(pickedDate!=null){
+                          date=pickedDate;
+                        }
+                        else
+                          date=DateTime.now();
+
+                      },
+                      icon: Iconn(
+                        icN: Icons.date_range_outlined,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Text("Date")
+                ],
+
+              ),
               timepickerobj(),
               SizedBox(
                 height: 20,
@@ -153,7 +190,7 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                         id:  todo.id!,
                        title:    nameController.text,
                         body:   descriptionController.text,
-                         tod:  newtime);
+                         tod:  date);
                      showUpdatedDialog();
                     }
                     ;
