@@ -6,6 +6,7 @@ import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import 'package:todo/TasksShared/Domain/editSharedTasks.dart';
+import 'package:todo/globals.dart';
 import '../Data/sharedTasksData.dart';
 import '../../Tasks/Data/tasksRepository.dart';
 import '../../Tasks/Domain/EditTask.dart';
@@ -87,11 +88,11 @@ class _SharedTodState extends State<SharedTod> {
               key: ValueKey("delete"),
               onDismissed: () {
                 delete(todo,uid);
-                const snackBar = SnackBar(
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
                   content: Text('Item successfully deleted!!'),
-                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
+                )));
               }),
           children: [
             SlidableAction(
@@ -113,11 +114,11 @@ class _SharedTodState extends State<SharedTod> {
             SlidableAction(
               onPressed: (context) {
                 delete(todo,uid);
-                const snackBar = SnackBar(
-                  content: Text('Item successfully deleted!!'),
-                  backgroundColor: Color.fromARGB(255, 71, 181, 255),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                    content: Text('Item successfully deleted!!'),
+                    action: SnackBarAction(label: 'Undo', onPressed: () => createTaskobj(todo: todo,uid: uid),
+                    )));
               },
           
               backgroundColor: Color(0xFFFE4A49),
