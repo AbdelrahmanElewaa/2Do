@@ -26,6 +26,22 @@ class NotesRepository {
     return id;
   }
 
+   Future<int> insertWithid(int id,title,content,date) async {
+    // row to insert
+    Map<String, dynamic> row = {
+      Columns.id.name: id,
+      Columns.title.name: title,
+      Columns.content.name: content,
+      Columns.date.name: date,
+    };
+
+    Note note = Note.fromMap(row);
+    debugPrint('inserting $note');
+    id = await _dbHelper.insert(note);
+    debugPrint('inserted row id: $id');
+    return id;
+  }
+
   Future<List<Note>> fetchNoteList() async {
     final allRows = await _dbHelper.queryAllRows();
     List<Note> notes = [];
