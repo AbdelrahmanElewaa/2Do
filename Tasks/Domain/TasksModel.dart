@@ -12,14 +12,16 @@ class TodoList extends StatefulWidget {
 
 class TodoListState extends State<TodoList> {
   final taskrep = TasksRepository.instance;
-  List<Todo> todoss = [];
+  List<Todo> normaltodos = [];
+  List<Todo> searchtodos = [];
+  bool searchBoolean = false;
   // bool ch=false;
   @override
   void initState() {
     // taskrep.in
     taskrep.fetchTodoList().then((value) {
       setState(() {
-        todoss = value;
+        normaltodos = value;
         // todoss.sort()
         // todoss.any((element) => false)
       });
@@ -39,40 +41,60 @@ class TodoListState extends State<TodoList> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
-          title: Text("Tasks"),
-          actions: [
-            // icon:
-            // Icon(Icons.people,color: Colors.white),
+          title: !searchBoolean ? Text("Tasks") : searchTextField(),
+          actions:
+
+          !searchBoolean
+              ? [
+            IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  setState(() {
+                    searchBoolean = true;
+                    searchtodos = [];
+                  });
+                }),
             IconButton(
                 onPressed: () {
                   context.go('/sharedtasks');
                 },
                 icon: Icon(Icons.people, color: Colors.white)),
-          ],
-        ),
-        body: ReorderableListView(
-          // key: ,
+          ]
+              : [
+            IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  setState(() {
+                    searchBoolean = false;
+                    taskrep.fetchTodoList().then((value) {
+                        normaltodos = value;
+                    });
+                  });
+                }
+            ),
+            IconButton(
+                onPressed: () {
+                  context.go('/sharedtasks');
+                },
+                icon: Icon(Icons.people, color: Colors.white)),
+          ]
 
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          children: todoss.map((Todo todo) {
-            return TodoItem(
-              todo: todo,
-              onTodoChanged: handleTodoChange,
-            );
-          }).toList(),
-          onReorder: (int oldIndex, int newIndex) {
-            setState(() {
-              if (oldIndex < newIndex) {
-                newIndex -= 1;
-              }
-              final widget = todoss.removeAt(oldIndex);
-              todoss.insert(newIndex, widget);
-            });
-          },
-          // children: TodoItem,
+
+
+
+          // [
+          //   // icon:
+          //   // Icon(Icons.people,color: Colors.white),
+          //   IconButton(
+          //       onPressed: () {
+          //         context.go('/sharedtasks');
+          //       },
+          //       icon: Icon(Icons.people, color: Colors.white)),
+          //
+          //
+          // ],
         ),
-        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        body: !searchBoolean?defaultlistview() :searchlistview(),// floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
             onPressed: () => GoRouter.of(context).go('/addtask'),
@@ -93,4 +115,74 @@ class TodoListState extends State<TodoList> {
       taskrep.update(todo);
     });
   }
+
+  Widget defaultlistview(){
+
+  return  ReorderableListView(
+      // key: ,
+
+      physics: BouncingScrollPhysics(),
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      children: normaltodos.map((Todo todo) {
+        return TodoItem(
+          todo: todo,
+          onTodoChanged: handleTodoChange,
+        );
+      }).toList(),
+      onReorder: (int oldIndex, int newIndex) {
+        setState(() {
+          if (oldIndex < newIndex) {
+            newIndex -= 1;
+          }
+          final widget = normaltodos.removeAt(oldIndex);
+          normaltodos.insert(newIndex, widget);
+        });
+      },
+      // children: TodoItem,
+    );
+  }
+
+  Widget searchlistview(){
+    return ListView(
+      physics: BouncingScrollPhysics(),
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      children: searchtodos.map((Todo todo) {
+        return TodoItem(
+            todo: todo,
+            onTodoChanged: handleTodoChange,
+        );
+      }).toList(),
+    );
+  }
+
+  Widget searchTextField() {
+    return TextField(
+      onChanged: (String s) async{
+        searchtodos= await taskrep.fetchTodoListByName(s);
+        setState(() {
+        });
+      },
+      autofocus: true,
+      cursorColor: Colors.white,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
+      textInputAction: TextInputAction.search,
+      decoration: InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white)
+        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white)
+        ),
+        hintText: 'Search',
+        hintStyle: TextStyle(
+          color: Colors.white60,
+          fontSize: 20,
+        ),
+      ),
+    );
+  }
+
 }
