@@ -72,10 +72,11 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
     // Build a Form widget using the _formKey created above.
     return Scaffold(
       appBar: AppBar(
-          leading: BackButton(
-    color: Theme.of(context).colorScheme.primary // <-- SEE HERE
-  ),
-        title: Text('Todo list', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+        leading: BackButton(
+            color: Theme.of(context).colorScheme.primary // <-- SEE HERE
+            ),
+        title: Text('Todo list',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary)),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -95,7 +96,8 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                     return null;
                   },
                   controller: nameController,
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   decoration: InputDecoration(
                     icon: Icon(
                       Icons.label_important_rounded,
@@ -116,7 +118,8 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                 // Text(todo.name),
                 TextFormField(
                   controller: descriptionController,
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'Description is empty';
@@ -149,31 +152,53 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.secondary,
                           borderRadius: BorderRadius.circular(15)),
-                      child:   IconButton(
+                      child: IconButton(
                         onPressed: () async {
                           DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate:  DateTime.now(),
-                              lastDate: DateTime(2050));
-                          if(pickedDate!=null){
-                            date=pickedDate;
-                          }
-                          else
-                            date=DateTime.now();
-
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2050),
+                            builder: (context, child) {
+                              return Theme(
+                                data: Theme.of(context).copyWith(
+                                  colorScheme: ColorScheme.light(
+                                    primary:
+                                        Theme.of(context).colorScheme.secondary,
+                                    onPrimary:
+                                        Theme.of(context).colorScheme.primary,
+                                    onSurface: Colors.black, // background color
+                                  ),
+                                  textButtonTheme: TextButtonThemeData(
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.red, // button text color
+                                    ),
+                                  ),
+                                ),
+                                child: child!,
+                              );
+                            },
+                          );
+                          if (pickedDate != null) {
+                            date = pickedDate;
+                          } else
+                            date = DateTime.now();
                         },
                         icon: Iconn(
                           icN: Icons.date_range_outlined,
                         ),
                       ),
                     ),
-                    SizedBox(width: 20,),
-                    Text("Date", style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Date",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
                   ],
-
                 ),
                 timepickerobj(),
                 SizedBox(
@@ -184,7 +209,7 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     child: const Text('Submit'),
                     onPressed: () async {
@@ -195,11 +220,11 @@ class edit extends State<EditTask> with SingleTickerProviderStateMixin {
                         todo.cat = selected.name;
                         taskrep.update(todo);
                         NotificationService().editNotification(
-                          id:  todo.id!,
-                         title:    nameController.text,
-                          body:   descriptionController.text,
-                           tod:  date);
-                       showUpdatedDialog();
+                            id: todo.id!,
+                            title: nameController.text,
+                            body: descriptionController.text,
+                            tod: date);
+                        showUpdatedDialog();
                       }
                       ;
                     },

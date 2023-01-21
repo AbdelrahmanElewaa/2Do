@@ -27,10 +27,11 @@ class EditSharedTask extends StatefulWidget {
 }
 
 // Create a corresponding State class. This class holds data related to the form.
-class editShared extends State<EditSharedTask> with SingleTickerProviderStateMixin {
+class editShared extends State<EditSharedTask>
+    with SingleTickerProviderStateMixin {
   // final taskrep = TasksRepository.instance;
   final SharedTodo todo;
-  
+
   // final onTodoChanged;
   editShared({
     required this.todo,
@@ -43,7 +44,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   late AnimationController lc;
-  String uid=' ';
+  String uid = ' ';
 
   @override
   void initState() {
@@ -66,22 +67,19 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
       }
     });
 
+    FirebaseAuth.instance.idTokenChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        // GoRouter.of(context).go('/login');
+        context.go('/login');
+      } else {
+        // setState(() {
+        uid = user.uid;
+        // });
 
-     FirebaseAuth.instance
-  .idTokenChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-      // GoRouter.of(context).go('/login');
-      context.go('/login');
-    } else {
-      // setState(() {
-        uid= user.uid;
-      // });
-     
-      print('User is signed in!');
-    }
-  });
+        print('User is signed in!');
+      }
+    });
   }
 
   @override
@@ -95,9 +93,11 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
     // Build a Form widget using the _formKey created above.
     return Scaffold(
       appBar: AppBar(
-         leading: BackButton(
-    color: Theme.of(context).colorScheme.primary ),
-        title: Text('Todo list', style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+        leading: BackButton(color: Theme.of(context).colorScheme.primary),
+        title: Text(
+          'Todo list',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -117,7 +117,8 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                     return null;
                   },
                   controller: nameController,
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   decoration: InputDecoration(
                     icon: Icon(
                       Icons.label_important_rounded,
@@ -138,7 +139,8 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                 // Text(todo.name),
                 TextFormField(
                   controller: descriptionController,
-                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'Description is empty';
@@ -170,29 +172,48 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.secondary,
                           borderRadius: BorderRadius.circular(15)),
-                      child:   IconButton(
+                      child: IconButton(
                         onPressed: () async {
                           DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate:  DateTime.now(),
-                              lastDate: DateTime(2050));
-                          if(pickedDate!=null){
-                            date=pickedDate;
-                          }
-                          else
-                            date=DateTime.now();
-
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2050),
+                            builder: (context, child) {
+                              return Theme(
+                                data: Theme.of(context).copyWith(
+                                  colorScheme: ColorScheme.light(
+                                    primary:
+                                        Theme.of(context).colorScheme.secondary,
+                                    onPrimary:
+                                        Theme.of(context).colorScheme.primary,
+                                    onSurface: Colors.black, // background color
+                                  ),
+                                  textButtonTheme: TextButtonThemeData(
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.red, // button text color
+                                    ),
+                                  ),
+                                ),
+                                child: child!,
+                              );
+                            },
+                          );
+                          if (pickedDate != null) {
+                            date = pickedDate;
+                          } else
+                            date = DateTime.now();
                         },
                         icon: Iconn(
                           icN: Icons.date_range_outlined,
                         ),
                       ),
                     ),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Text("Date")
                   ],
-
                 ),
                 timepickerobj(),
                 SizedBox(
@@ -203,7 +224,7 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                   // padding: const EdgeInsets.only( top: 40.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     child: const Text('Submit'),
                     onPressed: () async {
@@ -212,9 +233,9 @@ class editShared extends State<EditSharedTask> with SingleTickerProviderStateMix
                         todo.description = descriptionController.text;
                         todo.reminder = date.toIso8601String();
                         todo.cat = selected.name;
-                        editTask(todo,uid);
+                        editTask(todo, uid);
 
-                       showUpdatedDialog();
+                        showUpdatedDialog();
                       }
                       ;
                     },

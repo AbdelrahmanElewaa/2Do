@@ -8,7 +8,7 @@ import '../Data/tasksRepository.dart';
 import 'EditTask.dart';
 import 'package:todo/Tasks/Data/providers.dart';
 
-class TodoItem extends StatefulWidget{
+class TodoItem extends StatefulWidget {
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
@@ -18,16 +18,15 @@ class TodoItem extends StatefulWidget{
   final onTodoChanged;
 
   @override
-  State<TodoItem> createState() =>TodoItemState(onTodoChanged: onTodoChanged,todo: todo);
-
-
+  State<TodoItem> createState() =>
+      TodoItemState(onTodoChanged: onTodoChanged, todo: todo);
 }
 
 class TodoItemState extends State<TodoItem> {
   TodoItemState({
     required this.todo,
     required this.onTodoChanged,
-  }):super();
+  }) : super();
 
   final Todo todo;
   final onTodoChanged;
@@ -42,11 +41,11 @@ class TodoItemState extends State<TodoItem> {
       );
     }
 
-    return const TextStyle(
+    return TextStyle(
       color: Colors.black,
       decoration: TextDecoration.lineThrough,
       decorationThickness: 3,
-      decorationColor: Colors.blue,
+      decorationColor: Theme.of(context).colorScheme.secondary,
     );
   }
 
@@ -69,21 +68,19 @@ class TodoItemState extends State<TodoItem> {
                 });
 
                 NotificationService().deleteNotification(todo.id!);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Todo successfully deleted!!'),
-                  action: SnackBarAction(label: 'Undo', onPressed: () => setState(() {
-                    taskrep.insertTodo(todo).then((value) {
-                      NotificationService().showNotification(
-                          id:   value,
-                          title:     todo.name,
-                          body:   todo.description,
-                          tod:   DateTime.parse(todo.reminder) );
-
-
-
-                    });
-                  }) ),
+                  action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () => setState(() {
+                            taskrep.insertTodo(todo).then((value) {
+                              NotificationService().showNotification(
+                                  id: value,
+                                  title: todo.name,
+                                  body: todo.description,
+                                  tod: DateTime.parse(todo.reminder));
+                            });
+                          })),
                 ));
               }),
           children: [
@@ -109,23 +106,20 @@ class TodoItemState extends State<TodoItem> {
                   taskrep.delete(todo.id);
                 });
                 NotificationService().deleteNotification(todo.id!);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Todo successfully deleted!!'),
-                  action: SnackBarAction(label: 'Undo', onPressed: () => setState(() {
-                    taskrep.insertTodo(todo).then((value) {
-                      NotificationService().showNotification(
-                          id:   value,
-                          title:     todo.name,
-                          body:   todo.description,
-                          tod:   DateTime.parse(todo.reminder) );
-
-
-
-                    });
-                  }) ),
+                  action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () => setState(() {
+                            taskrep.insertTodo(todo).then((value) {
+                              NotificationService().showNotification(
+                                  id: value,
+                                  title: todo.name,
+                                  body: todo.description,
+                                  tod: DateTime.parse(todo.reminder));
+                            });
+                          })),
                 ));
-
               },
               // ).onDismissed();// Noti
               // },
