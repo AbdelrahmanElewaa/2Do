@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:todo/Home/Widgets/account_tile.dart';
 import 'package:todo/globals.dart';
-
+import 'dart:io';
 import '../../Shared/Widgets/textt.dart';
 import '../../Shared/Widgets/iconn.dart';
 
@@ -21,6 +24,8 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  final ImagePicker _picker = ImagePicker();
+  String profilePicLink = currUser!.profileURL;
 
  @override
   void initState() {
@@ -33,7 +38,7 @@ class _AccountState extends State<Account> {
       // GoRouter.of(context).go('/login');
       context.go('/login');
     } else {
-    //  uid= user.uid;
+     // currUser!.uid! = user.uid;
       print('User is signed in!');
     }
   });
@@ -59,16 +64,56 @@ class _AccountState extends State<Account> {
               Stack(
                 children: [
                   //* Avatar + edit button
-                  Container(
-
-                    child: Image.network(currUser!.profileURL, width: 50)
+                  profilePicLink == " "
+                      ? const Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 80,
+                  )
+                      : CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage:
+                    NetworkImage(profilePicLink),
+                    backgroundColor: Colors.transparent,
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("Settings");
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return Wrap(
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Upload from camera'),
+                                onTap: () => imgFromCamera(),
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Upload from gallery'),
+                                onTap: () => imgFromGallery(),
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.delete),
+                                title: Text('Delete'),
+                                onTap: () {
+                                  setState(() {
+                                    profilePicLink = " ";
+                                  });
+                                },
+                              ),
+                              // ListTile(
+                              //   leading: Icon(Icons.info),
+                              //   title: Text('Info'),
+                              // ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(60, 60, 0, 0),
+                      margin: EdgeInsets.fromLTRB(70, 80, 0, 0),
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.secondary,
                           shape: BoxShape.circle),
@@ -80,12 +125,48 @@ class _AccountState extends State<Account> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Textt(
-                  text: currUser!.name,
-                  size: 20.0,
-                ),
+
+              Column(
+                children: [
+                  Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  0,
+                  10,
+                  0,
+                  10
+              ),
+                    child: Textt(
+                      text: currUser!.name,
+                      size: 20.0,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+
+                    child: Textt(
+
+                      text: currUser!.uid,
+                      size: 15.0,
+                    ),
+                  ),
+                  TextButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                        Theme.of(context).colorScheme.secondary,
+                        // minimumSize: const Size.fromHeight(70), // NEW
+                        shape: RoundedRectangleBorder(
+
+                            borderRadius: BorderRadius.circular(15)
+                        )),
+                    child: Text('Copy'),
+                    onPressed: (){
+                      Clipboard.setData(ClipboardData(text: currUser!.uid));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Copied to clipboard!!')));
+                    },
+                  ),
+                ],
+
               )
             ]),
           ),
@@ -124,4 +205,28 @@ class _AccountState extends State<Account> {
       ),
     );
   }
+
+ void imgFromCamera() async {
+   final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+
+   Reference ref = FirebaseStorage.instance.ref().child(pickedFile!.name);
+   await ref.putFile(File(pickedFile.path));
+   ref.getDownloadURL().then((value) async {
+     setState(() {
+       profilePicLink = value;
+     });
+   });
+ }
+
+ void imgFromGallery() async {
+   final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+   Reference ref = FirebaseStorage.instance.ref().child(pickedFile!.name);
+   await ref.putFile(File(pickedFile.path));
+   ref.getDownloadURL().then((value) async {
+     setState(() {
+       profilePicLink = value;
+     });
+   });
+ }
 }
