@@ -110,13 +110,17 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       //* Avatar + edit button
                       profilePicLink == " "
-                          ? const Icon(
-                              Icons.person,
-                              color: Colors.black,
+                          ?  Icon(
+                              Icons.account_circle,
+                              color: Theme.of(context).colorScheme.primary,
                               size: 80,
                             )
-                          : Container(
-                              child: Image.network(profilePicLink, width: 50)),
+                          : CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage:
+                        NetworkImage(profilePicLink),
+                        backgroundColor: Colors.transparent,
+                      ),
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
@@ -154,7 +158,7 @@ class _SignupPageState extends State<SignupPage> {
                           );
                         },
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(60, 60, 0, 0),
+                          margin: EdgeInsets.fromLTRB(70, 70, 0, 0),
                           decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.secondary,
                               shape: BoxShape.circle),
