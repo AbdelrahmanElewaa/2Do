@@ -84,7 +84,12 @@ class addshare extends State<AddSharedTask>
         tag: 'unique tag',
         child: Scaffold(
           appBar: AppBar(
-            leading: BackButton(color: Theme.of(context).colorScheme.primary),
+            leading:  IconButton(
+              icon: Iconn(
+                icN: Icons.arrow_back_ios_new,
+              ),
+              onPressed: () => context.go('/sharedtasks'),
+            ),
             title: Text(
               'Todo list',
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
