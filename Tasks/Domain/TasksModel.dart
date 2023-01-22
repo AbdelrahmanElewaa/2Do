@@ -4,13 +4,20 @@ import 'package:todo/Tasks/Data/TasksData.dart';
 import '../Data/providers.dart';
 import '../Data/tasksRepository.dart';
 import 'TasksModel2.dart';
+import 'TodoNotifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TodoList extends StatefulWidget {
+class TodoList extends ConsumerStatefulWidget {
   @override
-  TodoListState createState() => TodoListState();
+  // ConsumerState<ConsumerStatefulWidget> createState() {
+    TodoListState createState() => TodoListState();
+  // }
 }
+//   @override
+//   TodoListState createState() => TodoListState();
+// }
 
-class TodoListState extends State<TodoList> {
+class TodoListState extends ConsumerState<TodoList> {
   final taskrep = TasksRepository.instance;
   List<Todo> normaltodos = [];
   List<Todo> searchtodos = [];
@@ -25,17 +32,17 @@ class TodoListState extends State<TodoList> {
         // todoss.sort()
         // todoss.any((element) => false)
       });
+
+      ref.watch(todosProvider).todos=normaltodos;
     });
-    // if (todoss.length==0){
-    //    taskrep.initTodos().then((value){
-    //     todoss=value;
-    //   });
-    // }
+
   } // final List<Todo> _todos = <Todo>[];
 
   @override
   Widget build(BuildContext context) {
-    // todoprovider.;
+
+
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -53,6 +60,7 @@ class TodoListState extends State<TodoList> {
                   setState(() {
                     searchBoolean = true;
                     searchtodos = [];
+                    ref.watch(todosProvider).todos=searchtodos;
                   });
                 }),
             IconButton(
@@ -69,6 +77,7 @@ class TodoListState extends State<TodoList> {
                     searchBoolean = false;
                     taskrep.fetchTodoList().then((value) {
                         normaltodos = value;
+                        ref.watch(todosProvider).todos=normaltodos;
                     });
                   });
                 }
@@ -94,35 +103,36 @@ class TodoListState extends State<TodoList> {
   void handleTodoChange(Todo todo) {
     setState(() {
 
-      todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
-      // todo.checked = !todo.checked;
-      taskrep.update(todo);
+      // todo.checked == "false" ? todo.checked = "true" : todo.checked = "false";
+
+      taskrep.update(ref.read(todosProvider.notifier).toggle(todo.id!));
+
     });
   }
 
   Widget defaultlistview(){
 
-  return  ReorderableListView(
+  return  ListView(
       // key: ,
 
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.symmetric(vertical: 8.0),
-      children: normaltodos.map((Todo todo) {
+      children: ref.watch(todosProvider).todos.map((Todo todo) {
         return TodoItem(
           todo: todo,
           onTodoChanged: handleTodoChange,
-          todos: normaltodos,
+          todos: ref.watch(todosProvider).todos,
         );
       }).toList(),
-      onReorder: (int oldIndex, int newIndex) {
-        setState(() {
-          if (oldIndex < newIndex) {
-            newIndex -= 1;
-          }
-          final widget = normaltodos.removeAt(oldIndex);
-          normaltodos.insert(newIndex, widget);
-        });
-      },
+      // onReorder: (int oldIndex, int newIndex) {
+      //   setState(() {
+      //     if (oldIndex < newIndex) {
+      //       newIndex -= 1;
+      //     }
+      //     final widget = normaltodos.removeAt(oldIndex);
+      //     normaltodos.insert(newIndex, widget);
+      //   });
+      // },
       // children: TodoItem,
     );
   }
@@ -131,11 +141,11 @@ class TodoListState extends State<TodoList> {
     return ListView(
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.symmetric(vertical: 8.0),
-      children: searchtodos.map((Todo todo) {
+      children: ref.watch(todosProvider).todos.map((Todo todo) {
         return TodoItem(
             todo: todo,
             onTodoChanged: handleTodoChange,
-          todos: normaltodos
+          todos: ref.watch(todosProvider).todos
         );
       }).toList(),
     );
@@ -145,6 +155,7 @@ class TodoListState extends State<TodoList> {
     return TextField(
       onChanged: (String s) async{
         searchtodos= await taskrep.fetchTodoListByName(s);
+        ref.watch(todosProvider).todos=searchtodos;
         setState(() {
         });
       },
@@ -171,4 +182,6 @@ class TodoListState extends State<TodoList> {
     );
   }
 
-}
+
+  }
+
