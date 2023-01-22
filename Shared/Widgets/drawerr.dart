@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Shared/Widgets/sizedboxx.dart';
 import 'package:todo/Shared/Widgets/textt.dart';
+import 'package:todo/globals.dart';
+import '../../Home/View/home_page.dart';
 import 'drawerrheader.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/provider/dark_theme_provider.dart';
@@ -28,6 +30,15 @@ class _DrawerrState extends State<Drawerr> {
       child: ListView(
         children: [
           DrawerrHeader(),
+          currUser==null?
+          ListTile(
+            leading:
+            Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
+            title: Textt(text: 'Login', size: 15.0),
+            onTap: () {
+              GoRouter.of(context).go('/login');
+            },
+          ):
           ListTile(
             leading: Icon(Icons.person,
                 color: Theme.of(context).colorScheme.primary),
@@ -36,21 +47,31 @@ class _DrawerrState extends State<Drawerr> {
               GoRouter.of(context).go('/account');
             },
           ),
-          ListTile(
-            leading:
-                Icon(Icons.login, color: Theme.of(context).colorScheme.primary),
-            title: Textt(text: 'Login', size: 15.0),
-            onTap: () {
-              GoRouter.of(context).go('/login');
-            },
-          ),
+          currUser!=null?
           ListTile(
             leading: Icon(Icons.logout,
                 color: Theme.of(context).colorScheme.primary),
             title: Textt(text: 'Logout', size: 15.0),
             onTap: () async {
               // GoRouter.of(context).go('/login');
+              currUser=null;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => HomePage(
+                        selectedIndex: 0,
+                      )));
               await FirebaseAuth.instance.signOut();
+
+
+            },
+          ):
+          ListTile(
+            leading: Icon(Icons.login,
+                color: Theme.of(context).colorScheme.primary),
+            title: Textt(text: 'Sign Up', size: 15.0),
+            onTap: () {
+              GoRouter.of(context).go('/signup');
             },
           ),
           Container(
@@ -70,28 +91,28 @@ class _DrawerrState extends State<Drawerr> {
               value: themeState.getDarkTheme,
             ),
           ),
-          Column(
-            children: [
-              GestureDetector(
-                child: Container(
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 4.0,
-                          color: Theme.of(context).colorScheme.secondary),
-                      borderRadius: BorderRadius.circular(30.0)),
-                  child: Center(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Textt(size: 25.0, text: 'Logout'),
-                  )),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          )
+          // Column(
+          //   children: [
+          //     GestureDetector(
+          //       child: Container(
+          //         width: 120.0,
+          //         decoration: BoxDecoration(
+          //             border: Border.all(
+          //                 width: 4.0,
+          //                 color: Theme.of(context).colorScheme.secondary),
+          //             borderRadius: BorderRadius.circular(30.0)),
+          //         child: Center(
+          //             child: Padding(
+          //           padding: const EdgeInsets.symmetric(vertical: 5.0),
+          //           child: Textt(size: 25.0, text: 'Logout'),
+          //         )),
+          //       ),
+          //       onTap: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
