@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
 import 'package:todo/TasksShared/Data/tasksFirestore.dart';
 import 'package:todo/TasksShared/Domain/sharedTasksModel2.dart';
+import 'package:todo/globals.dart';
+import '../../Shared/Widgets/iconn.dart';
 import '../../Tasks/Data/providers.dart';
 import '../Data/sharedTasksData.dart';
 import '../../Tasks/Data/tasksRepository.dart';
@@ -28,24 +30,33 @@ Future<List<Todo>> usersf = getUsersOrderByPriority();
   @override
   void initState() {
 WidgetsFlutterBinding.ensureInitialized();
-    FirebaseAuth.instance
-  .idTokenChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-      // GoRouter.of(context).go('/login');
-      context.go('/login');
-    } else {
-      setState(() {
-        uid= user.uid;
-      });
-      print('User is signed in!');
-    }
-  });
-    
+//     FirebaseAuth.instance
+//   .idTokenChanges()
+//   .listen((User? user) {
+//     if (user == null) {
+//       print('User is currently signed out!');
+//       // GoRouter.of(context).go('/login');
+//       context.go('/login');
+//     } else {
+//       // setState(() {
+//         uid= user.uid;
+//       // });
+//       print('User is signed in!');
+//     }
+//   });
 
+if(currUser==null)
+  context.go('/login');
+else
+  uid= currUser!.uid!;
+    // currUser==null? context.go('/login'): uid= currUser!.uid!;
 
-  } 
+  }
+
+  // @override
+  // void didChangeDependencies() {
+  //   currUser==null? context.go('/login'): uid= currUser!.uid!;
+  // }
 
   updatetodos() async {
     for (int i = 0; i < todoss.length; i++) {
@@ -104,8 +115,15 @@ query.get().then((event) {
       child: Scaffold(
         appBar: AppBar(
 
-           leading: BackButton(
-    color: Theme.of(context).colorScheme.primary ),
+            leading: IconButton(
+              icon: Iconn(
+                icN: Icons.arrow_back_ios_new,
+              ),
+              onPressed: () => context.goNamed(
+                "home",
+                params: {"selectedIndex": "2"},
+              ),
+            ),
 
           backgroundColor: Colors.transparent,
           elevation: 0.0,
