@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo/Tasks/Data/TasksData.dart';
+import '../../globals.dart';
 import '../Data/providers.dart';
 import '../Data/tasksRepository.dart';
 import 'TasksModel2.dart';
@@ -65,7 +66,8 @@ class TodoListState extends ConsumerState<TodoList> {
                 }),
             IconButton(
                 onPressed: () {
-                  context.go('/sharedtasks');
+                  currUser==null? context.go('/login'): context.go('/sharedtasks');
+
                 },
                 icon: Icon(Icons.people, color: Theme.of(context).colorScheme.primary)),
           ]
@@ -84,7 +86,7 @@ class TodoListState extends ConsumerState<TodoList> {
             ),
             IconButton(
                 onPressed: () {
-                  context.go('/sharedtasks');
+                  currUser==null? context.go('/login'): context.go('/sharedtasks');
                 },
                 icon: Icon(Icons.people, color: Theme.of(context).colorScheme.primary)),
           ]
