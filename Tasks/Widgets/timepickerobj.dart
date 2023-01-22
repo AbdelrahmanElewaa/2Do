@@ -86,6 +86,12 @@ class timepickerobjState extends State<timepickerobj> {
                     is24HrFormat: false,
                     moonAsset: Image.asset('assets/moon.png'),
                     sunAsset: Image.asset('assets/sun.png'),
+                    cancelStyle: TextStyle(
+                      color: Colors.black,
+                    ),
+                    okStyle: TextStyle(
+                      color: Colors.black,
+                    ),
                     
                     // onChangeDateTime:
                   ),
