@@ -12,6 +12,7 @@ import '../../Shared/Widgets/searchbar.dart';
 import '../../Shared/Widgets/sizedboxx.dart';
 import '../../Shared/Widgets/textt.dart';
 import '../../TasksShared/Data/tasksFirestore.dart';
+import '../../globals.dart';
 import '../Domain/notes.dart';
 import '../Widgets/notes_tabs.dart';
 import '../Data/notes_repository.dart';
@@ -72,7 +73,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                           color: Theme.of(context).iconTheme.color,
                           onPressed: () {
-                            // WidgetsFlutterBinding.ensureInitialized();
+                            WidgetsFlutterBinding.ensureInitialized();
                             FirebaseAuth.instance
                                 .idTokenChanges()
                                 .listen((User? user) {
@@ -84,9 +85,13 @@ class _NotesScreenState extends State<NotesScreen> {
                                 // GoRouter.of(context).go('/login');
                                 context.go('/login');
                               }
-                              setState(() {
-                                stream = true;
-                              });
+                              else{
+                                // currUser==null? context.go('/login'):  stream = true;;
+                                setState(() {
+                                  stream = true;
+                                });
+                              }
+
                             });
                           },
                         ),
@@ -139,6 +144,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           color: Theme.of(context).iconTheme.color,
                           onPressed: () {
                             WidgetsFlutterBinding.ensureInitialized();
+                            currUser==null? context.go('/login'): context.go('/sharedtasks');
                             FirebaseAuth.instance
                                 .idTokenChanges()
                                 .listen((User? user) {
