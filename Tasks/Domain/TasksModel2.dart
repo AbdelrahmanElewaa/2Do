@@ -83,19 +83,25 @@ class TodoItemState extends State<TodoItem> {
                       label: 'Undo',
                       onPressed: () {
                         taskrep.insertTodo(todo).then((value) {
+                          NotificationService().initNotification();
                           NotificationService().showNotification(
-                              id: value,
+                              id: todo.id,
                               title: todo.name,
                               body: todo.description,
                               tod: DateTime.parse(todo.reminder));
+                          todos.add(todo);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => HomePage(
+                                    selectedIndex: 2,
+                                  )));
 
                         });
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => HomePage(
-                                  selectedIndex: 2,
-                                )));
+                        // setState(() {
+                        //
+                        // });
+
                       }
                           // setState(() {
 
@@ -131,15 +137,18 @@ class TodoItemState extends State<TodoItem> {
                   content: Text('Todo successfully deleted!!'),
                   action: SnackBarAction(
                       label: 'Undo',
-                      onPressed: () =>
+                      onPressed: () {
+                        taskrep.insertTodo(todo).then((value) {
+                          NotificationService().showNotification(
+                              id: value,
+                              title: todo.name,
+                              body: todo.description,
+                              tod: DateTime.parse(todo.reminder));
+                        });
+                        todos.add(todo);
+                      }
                           // setState(() {
-                            taskrep.insertTodo(todo).then((value) {
-                              NotificationService().showNotification(
-                                  id: value,
-                                  title: todo.name,
-                                  body: todo.description,
-                                  tod: DateTime.parse(todo.reminder));
-                            }),
+
                           // })
                   ),
                 ));
