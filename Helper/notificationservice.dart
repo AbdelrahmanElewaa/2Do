@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz2;
 
 class NotificationService {
   static final NotificationService _notificationService =
@@ -33,6 +34,7 @@ class NotificationService {
 // {}
   Future<int> showNotification({ int? id,  required String title, required String body, required DateTime tod}) async {
     // DateTime now = DateTime.now();
+    tz2.initializeTimeZones();
     var ran = Random();
     int idd=ran.nextInt(10000);
      tz.TZDateTime scheduledDate=nextInstanceOfTenAM(tz.TZDateTime.from(
@@ -75,6 +77,8 @@ class NotificationService {
     return time;
   }
   Future<void> editNotification({ required int id ,  required String title, required String body, required DateTime tod}) async {
+
+    tz2.initializeTimeZones();
     tz.TZDateTime scheduledDate=nextInstanceOfTenAM(tz.TZDateTime.from(
         tod,
         tz.local)) ;
