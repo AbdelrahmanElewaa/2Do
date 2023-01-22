@@ -30,18 +30,19 @@ class _AccountState extends State<Account> {
  @override
   void initState() {
 
-  FirebaseAuth.instance
-  .idTokenChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-      // GoRouter.of(context).go('/login');
-      context.go('/login');
-    } else {
-     // currUser!.uid! = user.uid;
-      print('User is signed in!');
-    }
-  });
+  // FirebaseAuth.instance
+  // .idTokenChanges()
+  // .listen((User? user) {
+  //   if (user == null) {
+  //     print('User is currently signed out!');
+  //     // GoRouter.of(context).go('/login');
+  //     context.go('/login');
+  //   } else {
+  //    // currUser!.uid! = user.uid;
+  //     print('User is signed in!');
+  //   }
+  // });
+   currUser==null? context.go('/login'): '';
   }
   @override
   Widget build(BuildContext context) {
