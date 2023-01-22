@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Shared/Widgets/sizedboxx.dart';
 import 'package:todo/Shared/Widgets/textt.dart';
+import 'package:todo/globals.dart';
 // import 'package:todo/Common%20widgets/textt.dart';
 
 class DrawerrHeader extends StatelessWidget {
@@ -17,11 +18,25 @@ class DrawerrHeader extends StatelessWidget {
         child: DrawerHeader(
           child: Column(
             children: [
-              CircleAvatar(
-                  radius: 55.0, backgroundImage: AssetImage('assets/1024.png')),
+              currUser==null
+                  ?  Icon(
+                Icons.account_circle,
+                color: Theme.of(context).colorScheme.primary,
+                size: 80,
+              )
+                  : CircleAvatar(
+                radius: 50.0,
+                backgroundImage:
+                NetworkImage(currUser!.profileURL),
+                backgroundColor: Colors.transparent,
+              ),
               SizedBoxx(h: 5.0),
+              currUser==null?
               Textt(
-                text: 'Omar mohamed',
+                text: 'User',
+                size: 30.0,
+              ):Textt(
+                text: currUser!.name,
                 size: 30.0,
               ),
             ],
