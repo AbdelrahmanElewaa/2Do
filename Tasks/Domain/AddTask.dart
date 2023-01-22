@@ -69,9 +69,15 @@ class add extends State<AddTask> with SingleTickerProviderStateMixin {
         tag: 'unique tag',
         child: Scaffold(
           appBar: AppBar(
-            leading: BackButton(
-                color: Theme.of(context).colorScheme.primary // <-- SEE HERE
-                ),
+            leading: IconButton(
+              icon: Iconn(
+                icN: Icons.arrow_back_ios_new,
+              ),
+              onPressed: () => context.goNamed(
+                "home",
+                params: {"selectedIndex": "2"},
+              ),
+            ),
             title: Text(
               'Todo list',
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
