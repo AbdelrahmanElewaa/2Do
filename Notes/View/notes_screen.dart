@@ -123,8 +123,8 @@ class _NotesScreenState extends State<NotesScreen> {
 
                                   return Text('');
                                 } else if (snapshot.hasError) {
-                                  print('snapshot.error');
-//*TODO: add error message
+                                 errorDialog(context,
+                                      "Error: Please check your internet connection");
                                   return Text(snapshot.error.toString());
                                 } else {
                                   print('no data');
@@ -224,3 +224,20 @@ class _NotesScreenState extends State<NotesScreen> {
     ));
   }
 }
+ void errorDialog(BuildContext context, String error) => showDialog(
+      context: context,
+      // context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(error),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      });
