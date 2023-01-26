@@ -52,19 +52,23 @@ class _NotesDetailsState extends State<NotesDetails> {
               onPressed: () {
                 if (titleController.text != widget.title ||
                     contentController.text != widget.content) {
-                  Note note = Note(
-                      id: int.parse(idUpdateController.text),
-                      title: titleController.text,
-                      content: contentController.text,
-                      date: '${_dateFormatter.format(DateTime.now())}');
-                  notesRepository.update(note).then((rowsAffected) =>
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('$rowsAffected rows updated'))));
+                  if (titleController.text.isNotEmpty &&
+                      contentController.text.isNotEmpty) {
+                    Note note = Note(
+                        id: int.parse(idUpdateController.text),
+                        title: titleController.text,
+                        content: contentController.text,
+                        date: '${_dateFormatter.format(DateTime.now())}');
+                    notesRepository.update(note).then((rowsAffected) =>
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('$rowsAffected rows updated'))));
+                  }
+                  context.goNamed(
+                    "home",
+                    params: {"selectedIndex": "3"},
+                  );
                 }
-                context.goNamed(
-                  "home",
-                  params: {"selectedIndex": "3"},
-                );
+                ;
               },
             ),
           ),
