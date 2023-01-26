@@ -38,7 +38,7 @@ class _NotesAddState extends State<NotesAdd> {
               icon: Icon(Icons.arrow_back_ios_new,
                   color: Theme.of(context).colorScheme.primary),
               onPressed: () {
-                if (titleController.text.isNotEmpty ||
+                if (titleController.text.isNotEmpty &&
                     contentController.text.isNotEmpty) {
                   String title = titleController.text;
                   String content = contentController.text;
