@@ -45,6 +45,8 @@ class _TodoAppState extends State<TodoApp> {
       providers: [
         // (_) is a constructor for the ChangeNotifierProvider which is used in DarkThemeProvider class
         //changeNotifierProvider is a provider that provides a ChangeNotifier
+        // create: (_) => DarkThemeProvider() is a function that creates a DarkThemeProvider
+        //p is a prefix for the provider package
         p.ChangeNotifierProvider(create: (_) {
           return themeChangeProvider;
         }),
@@ -59,7 +61,7 @@ class _TodoAppState extends State<TodoApp> {
           theme: Styles.themeData(themeProvider.getDarkTheme),
           routerConfig: router,
           title: 'Todo list',
-          // builder: ,
+          // builder: , 
           // home: TodoList(),
           // builder: (context, widget) => SplashScreen(),
           debugShowCheckedModeBanner: false,

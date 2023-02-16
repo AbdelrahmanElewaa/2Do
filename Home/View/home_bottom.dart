@@ -62,6 +62,9 @@ class HomeBottom extends StatelessWidget {
               SizedBoxx(h: 20.0),
               //Tasks Dashboard
               Expanded(
+                //ListView.builder is a widget that builds a list of items and only builds the items that are visible on the screen and not the whole list and
+                //it is used when the list is long and it is not possible to build the whole list at once
+                
                 child: ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemCount: todoss.length + 1,
